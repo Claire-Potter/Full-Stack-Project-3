@@ -1,16 +1,17 @@
 body {
     background-color: #F9FAFC;
+    font-family: 'Dongle', sans-serif;
 }
 
 .brand {
-    font-family: Lato, sans-serif;
+    font-family: 'Mochiy Pop P One', sans-serif;;
     font-size: 1.4rem;
     font-weight: 700;
     color: #4A4A4F;
 }
 
-.red-o {
-    color: #E84610;
+.cyan-x {
+    color: #0dcaf0;
 }
 
 .thin {
