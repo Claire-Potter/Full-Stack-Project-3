@@ -10,6 +10,10 @@ body {
     color: #4A4A4F;
 }
 
+.hidden {
+    display: none;
+}
+
 .cyan-x {
     color: #0dcaf0;
 }

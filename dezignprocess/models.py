@@ -62,6 +62,8 @@ class Step(models.Model):
     order_number = models.IntegerField()
     resources = models.ManyToManyField(KnowledgeResource)
     templates = models.ManyToManyField(Template)
+    list_number = models.IntegerField(
+        default="1",)
 
     class Progress(models.TextChoices):
         """
