@@ -1,25 +1,43 @@
 body {
-    background-color: #F9FAFC;
+    background-color: #ffffff;
     font-family: 'Dongle', sans-serif;
 }
 
-.brand {
-    font-family: 'Mochiy Pop P One', sans-serif;;
+.logo {
+    font-family: 'Mochiy Pop P One', sans-serif;
+    ;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #4A4A4F;
-}
-
-.hidden {
-    display: none;
+    color: #031633;
 }
 
 .cyan-x {
     color: #0dcaf0;
+    font-size: 2.5rem;
 }
 
-.thin {
-    font-weight: 300;
+.search {
+    font-size: 1.4rem;
+}
+
+.enter-search::content {
+    border: #0dcaf0;
+
+}
+
+.btn-outline {
+    border: solid 1px #0dcaf0;
+}
+
+.btn-outline:hover {
+    background-color: #0dcaf0;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.logo-small {
+    font-size: 2rem;
+    color: #0dcaf0;
 }
 
 .light-bg {
@@ -39,6 +57,14 @@ body {
     background-color: transparent;
 }
 
+.bolder {
+    font-weight: bolder;
+}
+
+.smaller-font {
+    font-size: 1.5rem;
+}
+
 .image-container {
     position: relative;
 }
@@ -47,14 +73,15 @@ body {
     position: absolute;
     bottom: 5%;
     min-width: 30%;
-    left: -2px;
-    background-color: #23BBBB;
+    left: 0px;
+    background-color: #0dcaf0;
 }
 
-.author {
+.step-number {
     color: white;
     margin: 4px;
     text-transform: uppercase;
+    font-size: 1.5rem;
 }
 
 .masthead {
@@ -153,4 +180,10 @@ body {
 
 .step-information p {
     padding: 0px 10px;
+}
+
+@media (max-width: 365px) {
+    .collapse-search {
+        display: none
+    }
 }

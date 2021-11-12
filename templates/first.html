@@ -1,9 +1,9 @@
 {% extends "index.html" %}
 
-{% block next %}
+{% block first %}
             <div class="col-12">
                 <div class="row">
-                    {% for step in step_next %}
+                    {% for step in step_list %}
                     <div class="col-md-4 mb-3">
                         <div class="card">
                             <div class="image-container">
@@ -19,8 +19,8 @@
                             </div>
                             <div class="card-body">
                                 <a href="#" class="post-link">
-                                    <h2 class="card-title bolder">{{ step.title }}</h2>
-                                    <p class="card-text smaller-font">{{ step.excerpt }}</p></a>
+                                    <h2 class="card-title bolder">{{ step.title }}</h2></a>
+                                    <p class="card-text smaller-font">{{ step.excerpt }}</p>
                                 <hr />
                                 <div class="step-information">
                                     <p class="card-text text-muted h5">Status:

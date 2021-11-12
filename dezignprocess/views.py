@@ -12,7 +12,7 @@ class StepList(generic.ListView):
     model = Step
     context_object_name = 'step_list'
     queryset = Step.objects.filter(list_number='1')
-    template_name = "index.html"
+    template_name = "first.html"
     paginate_by: 3
 
 

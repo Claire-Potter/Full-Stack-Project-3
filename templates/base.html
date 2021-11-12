@@ -18,22 +18,22 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
     </script>
 
-        <script type="text/javascript" src="/js/lib/dummy.js"></script>
-      
-          <link rel="stylesheet" type="text/css" href="/css/result-light.css">
-      
-            <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-            <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-            <script type="text/javascript" src="//stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-        <style id="compiled-css" type="text/css">
-            
-          /* EOS */
-        </style>
-      
-        <script id="insert"></script>
+    <script type="text/javascript" src="/js/lib/dummy.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script type="text/javascript" src="//stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style id="compiled-css" type="text/css">
+        /* EOS */
+    </style>
+
+    <script id="insert"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
@@ -42,10 +42,11 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand cyan-x">X</span><span
-                    class="brand">perience</span><span class="thin">|DezignWiz</span></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="logo cyan-x"><i
+                        class="fab fa-xing-square"></i></span><span class="logo">perience</span><span
+                    class="logo-small"> DezignWiz</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -68,22 +69,23 @@
                     </li>
                     {% endif %}
                 </ul>
-                <span class="navbar-text text-muted">
-                    a step by step tool
-                </span>
             </div>
+            <form class="d-flex collapse-search">
+                <input class="form-control me-2 search enter-search collapse-search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline search collapse-search" type="submit">Search</button>
+            </form>
         </div>
     </nav>
 
-    <main class="flex-shrink-0 main-bg">
+    <main class="flex-shrink-0 bg-body">
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <p class="m-0 text-center text-white">Made by Claire Potter</p>
+    <footer class="footer mt-auto py-3 bg-dark">
+        <p class="m-0 text-center text-white">Copyright@Claire Potter2021</p>
         <p class="m-0 text-center text-white">Follow us: <i class="fab fa-facebook-square ms-3"></i>
             <i class="fab fa-twitter-square ms-3"></i>
             <i class="fab fa-instagram-square ms-3"></i>

@@ -16,43 +16,11 @@
                     <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
-            <div class="col-12">
-                <div class="row">
-                    {% for step in step_list %}
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="image-container">
-                                {% if "placeholder" in step.featured_image.url %}
-                                <img class="card-img-top"
-                                    src="https://res.cloudinary.com/newxperience/image/upload/v1636711280/Xperience%20DezignWiz/design_thinking_placeholder_ebd5z6.jpg">
-                                {% else %}
-                                <img class="card-img-top" src=" {{ step.featured_image.url }} ">
-                                {% endif %}
-                                <div class="image-flash">
-                                    <p class="author">Step Number: {{ step.order_number }} </p>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="#" class="post-link">
-                                    <h2 class="card-title">{{ step.title }}</h2>
-                                    <p class="card-text">{{ step.excerpt }}</p>
-                                </a>
-                                <hr />
-                                <div class="step-information">
-                                    <p class="card-text text-muted h6">Status:
-                                        {{ step.progress }}</p>
-                                    <p class="card-text text-muted h6">Resources:
-                                        {{ step.number_of_resources }}</p>
-                                    <p class="card-text text-muted h6">Templates:
-                                        {{ step.number_of_templates }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+            {% block first %}
+            {% endblock %}
+            {% block next %}
+            {% endblock %}
         </div>
     </div>
 </section>
-{%endblock%}
+{% endblock %}
