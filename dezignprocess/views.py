@@ -7,9 +7,8 @@ class StepList(generic.ListView):
     """
     Model created to store the data required for creating
     the different Steps within the Design Thinking Process.
-    Steps include: Getting Started, Empathy, Define, Ideate,
-    Prototype, Test and Finishing Off.
+    Steps include: Getting Started, Empathy, Define
     """
     model = Step
     template_name = "index.html"
-    paginate_by = 7
+    paginate_by: 3
