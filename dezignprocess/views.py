@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Step
+from .forms import CommentForm
 
 
 class StepList(generic.ListView):
@@ -46,5 +47,6 @@ class StepDetail(View):
             {
                 "step": step,
                 "comments": comments,
+                "comment_form": CommentForm()
             },
         )
