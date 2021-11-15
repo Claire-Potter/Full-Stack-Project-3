@@ -35,7 +35,7 @@ class StepDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Step.objects
         step = get_object_or_404(queryset, slug=slug)
-        comments = 0
+        comments = ""
         if step.comments.filter(id=self.request.user.id).exists():
             comments = step.comments.order_by("created_on")
         
