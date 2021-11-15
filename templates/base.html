@@ -38,7 +38,7 @@
 
 </head>
 
-<body class="d-flex flex-column h-100 main-bg fs-2">
+<body class="d-flex flex-column h-100 main fs-2">
 
     <!-- Navigation -->
 
@@ -58,20 +58,22 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Logout</a>
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
+
                 </ul>
             </div>
             <form class="d-flex collapse-search">
-                <input class="form-control me-2 search enter-search collapse-search" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2 search enter-search collapse-search" type="search" placeholder="Search"
+                    aria-label="Search">
                 <button class="btn btn-outline search collapse-search" type="submit">Search</button>
             </form>
         </div>
