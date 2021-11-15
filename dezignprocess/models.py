@@ -96,3 +96,10 @@ class Step(models.Model):
 
     def number_of_templates(self):
         return '%s' % (self.templates.count())
+
+    def resources_as_list(self):
+        return '-'.join([str(resource) for resource in self.resources.all()])
+
+    def templates_as_list(self):
+        return '-'.join([str(template) for template in self.templates.all()])
+

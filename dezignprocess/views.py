@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.views import generic
+from django.shortcuts import render, get_object_or_404
+from django.views import generic, View
 from .models import Step
 
 
@@ -27,3 +27,18 @@ class StepNext(generic.ListView):
     queryset = Step.objects.filter(list_number='2')
     template_name = "next.html"
     paginate_by: 3
+
+
+class StepDetail(View):
+
+    def get(self, request, slug, *args, **kwargs):
+        queryset = Step.objects
+        step = get_object_or_404(queryset, slug=slug)
+
+        return render(
+            request,
+            "step_detail.html",
+            {
+                "step": step,
+            },
+        )

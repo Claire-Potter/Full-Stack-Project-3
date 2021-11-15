@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="#" class="post-link">
+                                <a href="{% url 'step_detail' step.slug %}" class="post-link">
                                     <h2 class="card-title bolder">{{ step.title }}</h2></a>
                                     <p class="card-text smaller-font">{{ step.excerpt }}</p>
                                 <hr />
