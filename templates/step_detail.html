@@ -14,10 +14,10 @@
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <!-- The featured image URL goes in the src attribute -->
                 {% if "placeholder" in step.featured_image.url %}
-                <img src="https://res.cloudinary.com/newxperience/image/upload/v1636711280/Xperience%20DezignWiz/design_thinking_placeholder_ebd5z6.jpg"
+                <img src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design_thinking_placeholder_ebd5z6.jpg"
                     width="100%">
                 {% else %}
-                <img src=" {{ post.featured_image.url }}" width="100%">
+                <img src=" {{ step.featured_image.url }}" width="100%">
                 {% endif %}
             </div>
         </div>
