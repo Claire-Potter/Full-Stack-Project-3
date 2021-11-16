@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
+from django.contrib import messages
 from .models import Step
 from .forms import CommentForm
 
@@ -65,6 +66,7 @@ class StepDetail(View):
             comment = comment_form.save(commit=False)
             comment.step = step
             comment.save()
+            messages.success(request, 'Comment submission successful')
         else:
             comment_form = CommentForm()
 
