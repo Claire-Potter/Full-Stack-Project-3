@@ -105,18 +105,21 @@ class Step(models.Model):
 
 
 class Comment(models.Model):
-    step = models.ForeignKey(Step, on_delete=models.CASCADE,related_name="comments")
+    step = models.ForeignKey(Step, on_delete=models.CASCADE,
+                             related_name="comments")
+    username = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="comments",
+        default="1"
+    )
     name = models.CharField(max_length=80)
     email = models.EmailField()
     body = models.TextField()
-    dezign_thinker = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="steps", default="0"
-    )
     created_on = models.DateTimeField(auto_now_add=True)
 
 
 class Meta:
-        ordering = ["created_on"]
+    ordering = ["-created_on"]
+
 
 def __str__(self):
-        return f"Comment {self.body} by {self.name}"
+    return f"Comment {self.body} by {self.name}"
