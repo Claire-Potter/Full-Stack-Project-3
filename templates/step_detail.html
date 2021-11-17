@@ -22,15 +22,16 @@
     <div class="row">
         <div class="col-md-4">
             {% if "placeholder" in step.step_image.url %}
-            <div class="step-image"><img src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design_thinking_placeholder_ebd5z6.jpg" class="img-fluid image-inner" alt="Responsive image"></div>
+            <div class="step-image"><img
+                    src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                    class="img-fluid image-inner" alt="Responsive image"></div>
             {% else %}
-            <div class="step-image"><img src=" {{ step.step_image.url }}" class="img-fluid image-inner" alt="Responsive image"></div>
+            <div class="step-image"><img src=" {{ step.step_image.url }}" class="img-fluid image-inner"
+                    alt="Responsive image"></div>
             {% endif %}
         </div>
         <div class="col-md-8 card mb-4  mt-3 left  top">
             <div class="card-body">
-                <!-- The step content goes inside the card-text. -->
-                <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text ">
                     {{ step.excerpt | safe }}
                 </p>
@@ -48,12 +49,85 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <hr>
+        <div class="col-12 text-end">
+            <!--Tooltip code from W3 school tutorial and adapted for site 
+          https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
+          -->
+            {% if "Getting Started" in step.title %}
+            <a class="btn btn-direction-color mb-3 mr-1" href="{% url 'home' %}" role="button"
+                aria-label="button to be clicked to view the previous step" data-toggle="tooltip" data-placement="top" title="Previous"><i class="fa fa-arrow-left"></i></a>
+            <a class="btn btn-direction-color  mb-3"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/empathy/" role="button"
+                aria-label="button to be clicked to view the next step" data-toggle="tooltip" data-placement="top" title="Next"><i class="fa fa-arrow-right"></i></a>
+            {% elif "Empathy" in step.title %}
+            <a class="btn btn-direction-color mb-3 mr-1"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/getting-started/" role="button"
+                aria-label="button to be clicked to view the previous step" data-toggle="tooltip" data-placement="top" title="Previous">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a id="next-button" class="btn btn-direction-color mb-3"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/define/" role="button"
+                aria-label="button to be clicked to view the next step" data-toggle="tooltip" data-placement="top" title="Next">
+                <i class="fa fa-arrow-right"></i>
+            </a>
+            {% elif "Define" in step.title %}
+            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/empathy/" role="button"
+                aria-label="button to be clicked to view the previous step" data-toggle="tooltip" data-placement="top" title="Previous"> 
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a id="next-button" class="btn btn-direction-color mb-3"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/ideate/" role="button"
+                aria-label="button to be clicked to view the next step" data-toggle="tooltip" data-placement="top" title="Next">
+                <i class="fa fa-arrow-right"></i>
+            </a>
+            {% elif "Ideate" in step.title %}
+            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/define/" role="button"
+                aria-label="button to be clicked to view the previous step" data-toggle="tooltip" data-placement="top" title="Previous">
+            <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-direction-color mb-3"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/prototype/" role="button"
+                aria-label="button to be clicked to view the next step" data-toggle="tooltip" data-placement="top" title="Next">
+                <i class="fa fa-arrow-right"></i>
+            </a>
+            {% elif "Prototype" in step.title %}
+            <a class="btn btn-direction-color mb-3 mr-1"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/ideate/" role="button"
+                aria-label="button to be clicked to view the previous step" data-toggle="tooltip" data-placement="top" title="Previous">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-direction-color mb-3"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/test/" role="button"
+                aria-label="button to be clicked to view the next step" data-toggle="tooltip" data-placement="top" title="Next">
+                <i class="fa fa-arrow-right"></i>
+            </a>
+            {% elif "Test" in step.title %}
+            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
+                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/prototype/" role="button"
+                aria-label="button to be clicked to view the previous step" data-toggle="tooltip" data-placement="top" title="Previous">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a id="next-button" class="btn btn-direction-color mb-3" href="{% url 'home' %}" role="button"
+                aria-label="button to be clicked to go back to home page" data-toggle="tooltip" data-placement="top" title="Home">
+                <i class="fa fa-arrow-right"></i>
+            </a>
+            {% else %}
+            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1 tooltip" href="{% url 'home' %}" role="button"
+                aria-label="button to be clicked to go back to home page " data-toggle="tooltip" data-placement="top" title="Home">
+                <i class="fa fa-arrow-left">
+            </a>
+            {% endif %}
         </div>
     </div>
+</div>
+<div class="row">
+    <div class="col">
+        <hr>
+    </div>
+</div>
+<div class="container">
     <div class="row">
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Resources:</h3>
@@ -128,5 +202,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock content %}
