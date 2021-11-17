@@ -2,33 +2,34 @@
 
 {% load crispy_forms_tags %}
 
-<div class="masthead">
+<div class="jumbotron">
     <div class="container">
         <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <h1 class="post-title">{{ step.title }}</h1>
-                <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle">Step Number: {{ step.order_number }} | Status:
+            <div class="col-md-6 jumbotron-text">
+                <h1 class="step-title">{{ step.title }}</h1>
+                <!-- step author goes before the | the step's created date goes after -->
+                <p class="step-subtitle">Step Number: {{ step.order_number }} | Status:
                     {{ step.progress }}</p>
             </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
+            <div class="d-none d-md-block col-md-6">
                 <!-- The featured image URL goes in the src attribute -->
-                {% if "placeholder" in step.featured_image.url %}
-                <img src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design_thinking_placeholder_ebd5z6.jpg"
-                    width="100%">
-                {% else %}
-                <img src=" {{ step.featured_image.url }}" width="100%">
-                {% endif %}
+                <p class="steps-icon"><i class="fas fa-cogs"></i></p>
             </div>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
+        <div class="col-md-4">
+            {% if "placeholder" in step.step_image.url %}
+            <div class="step-image"><img src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design_thinking_placeholder_ebd5z6.jpg" class="img-fluid image-inner" alt="Responsive image"></div>
+            {% else %}
+            <div class="step-image"><img src=" {{ step.step_image.url }}" class="img-fluid image-inner" alt="Responsive image"></div>
+            {% endif %}
+        </div>
+        <div class="col-md-8 card mb-4  mt-3 left  top">
             <div class="card-body">
-                <!-- The post content goes inside the card-text. -->
+                <!-- The step content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
                 <p class="card-text ">
                     {{ step.excerpt | safe }}

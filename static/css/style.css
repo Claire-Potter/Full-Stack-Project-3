@@ -5,14 +5,17 @@ body {
 
 .logo {
     font-family: 'Mochiy Pop P One', sans-serif;
-    ;
     font-size: 1.4rem;
     font-weight: 700;
     color: #031633;
 }
 
-.cyan-x {
-    color: #0dcaf0;
+.nav-background {
+    background-color: #e2f0f9;
+}
+
+.scarlett-x {
+    color: #df4c73;
     font-size: 2.5rem;
 }
 
@@ -21,27 +24,42 @@ body {
 }
 
 .enter-search::content {
-    border: #0dcaf0;
+    border: #df4c73;
 
 }
 
 .btn-outline {
-    border: solid 1px #0dcaf0;
+    border: solid 1px #df4c73;
 }
 
 .btn-outline:hover {
-    background-color: #0dcaf0;
+    background-color: #df4c73;
     color: #ffffff;
     font-weight: bold;
 }
 
 .logo-small {
     font-size: 2rem;
-    color: #0dcaf0;
+    color: #df4c73;
 }
 
 .light-bg {
     background-color: #fff;
+}
+
+.footer-background {
+    background-color: #286fb4
+}
+
+.btn-direction-color {
+    background-color: #286fb4;
+    color: #ffffff;
+    text-align: center;
+    ;
+}
+
+.btn-direction-color:hover {
+    color: #df4c73;
 }
 
 .dark-bg {
@@ -54,8 +72,14 @@ body {
 
 .card {
     border: none;
-    background-color: transparent;
 }
+
+.card-with-background {
+    background-color: #e2f1f7;
+    border: 2px solid #e2f1f7;
+    border-radius: 5px;
+}
+
 
 .bolder {
     font-weight: bolder;
@@ -69,12 +93,14 @@ body {
     position: relative;
 }
 
-.image-flash {
+.image-overlay {
     position: absolute;
     bottom: 5%;
     min-width: 30%;
-    left: 0px;
-    background-color: #0dcaf0;
+    left: 2px;
+    background-color: #df4c73;
+    border: 2px solid #df4c73;
+    border-radius: 5px;
 }
 
 .step-number {
@@ -84,73 +110,76 @@ body {
     font-size: 1.5rem;
 }
 
-.masthead {
+.jumbotron {
     margin-top: 10px;
     overflow: hidden;
     position: relative;
     display: inline-block;
-    height: 33vh;
+    height: 35vh;
     width: 100%;
 }
 
-.masthead-text {
-    background-color: #445261;
+.jumbotron-text {
+    background-color: #73929d;
     color: white;
-    position: relative;
 }
 
-.masthead-image {
-    position: relative;
-    overflow: hidden;
+.steps-icon {
+    color: white;
+    font-size: 14rem;
+    text-align: right;
+    vertical-align: middle;
+    background-color: #73929d;
+    padding: 5px;
+
 }
 
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
+.image-inner {
+    box-shadow: 0 0 10px 10px #73929d ;
 }
 
-.post-link {
+.step-image {
+    width: 250px;
+    border: 10px solid #73929d;
+    border-radius: 5px;
+}
+
+
+.step-link {
     text-decoration: none;
     color: #445261;
 }
 
-.post-link:hover,
+.step-link:hover,
 .page-link {
-    color: #E84610;
+    color: #df4c73;
 }
 
-.post-title {
-    margin-top: 20%;
+.step-title {
+    margin-top: 15%;
     margin-left: 5%;
 }
 
-.post-subtitle {
+.step-subtitle {
     margin-left: 5%;
-    color: lightgray;
+    color: #f5f6f6;
+    margin-bottom: 15px;
 }
 
 .btn-signup {
-    background-color: #23BBBB;
+    background-color: #df4c73;
     color: #fff;
+    margin-top: 5px;
 }
 
 .btn-signup:hover,
 .btn-signup:active {
     background-color: #fff;
-    color: #23BBBB;
+    color: #df4c73;
 }
 
 .link {
-    color: #23BBBB;
+    color: #df4c73;
     text-decoration: none;
 }
 
@@ -161,14 +190,14 @@ body {
 }
 
 .btn-like {
-    color: #E84610;
+    color: #df4c73;
     border: none;
     background: transparent;
 }
 
 .btn-like:hover,
 .btn-like:active {
-    color: #E84610;
+    color: #df4c73;
     background: transparent;
     border: none;
 }
@@ -179,8 +208,9 @@ body {
 }
 
 .step-information p {
-    padding: 0px 10px;
+    padding: 0px 5px;
 }
+
 
 @media (max-width: 365px) {
     .collapse-search {

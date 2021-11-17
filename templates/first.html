@@ -5,20 +5,20 @@
                 <div class="row">
                     {% for step in step_list %}
                     <div class="col-md-4 mb-3">
-                        <div class="card">
+                        <div class="card card-with-background">
                             <div class="image-container">
                                 {% if "placeholder" in step.featured_image.url %}
-                                <img class="card-img-top"
+                                <img class="card-img-top img-border"
                                     src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design_thinking_placeholder_ebd5z6.jpg">
                                 {% else %}
-                                <img class="card-img-top" src=" {{ step.featured_image.url }} ">
+                                <img class="card-img-top img-border" src=" {{ step.featured_image.url }} ">
                                 {% endif %}
-                                <div class="image-flash">
+                                <div class="image-overlay">
                                     <p class="step-number">Step Number: {{ step.order_number }} </p>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="{% url 'step_detail' step.slug %}" class="post-link">
+                                <a href="{% url 'step_detail' step.slug %}" class="step-link">
                                     <h2 class="card-title bolder">{{ step.title }}</h2></a>
                                     <p class="card-text smaller-font">{{ step.excerpt }}</p>
                                 <hr />
