@@ -17,19 +17,3 @@ const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 //alert.close(messages);
 //}, 2000);
 
-
-// search button functionality
-
-searchInput.addEventListener('keyup', (e) => {
-const searchString = e.target.value;
-console.log(searchString);
-console.log(step)});
-//const filteredSteps = step.filter(step => {
-    //return step.title.includes(searchString) || step.excerpt.includes(searchString)
-        //step.resources.includes(searchString) || step.templates.includes(searchString) ||
-        //step.comments.includes(searchString) || step.progress.includes(searchString)
-//});
-//console.log(filteredSteps);
-//});
-//const inputValue = searchInput.value;
-//alert(inputValue);

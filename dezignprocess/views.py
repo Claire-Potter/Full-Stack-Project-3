@@ -5,7 +5,7 @@ from .models import Step
 from .forms import CommentForm
 
 
-class StepList(generic.ListView, View):
+class StepList(generic.ListView):
     """
     Model created to store the data required for creating
     the different Steps within the Design Thinking Process.
@@ -27,21 +27,8 @@ class StepNext(generic.ListView):
     model = Step
     context_object_name = 'step_next'
     queryset = Step.objects.filter(list_number='2')
-    template_name = "next.html"
+    template_name = 'next.html'
     paginate_by: 3
-
-
-def StepSearch(request):
-    queryset = Step.objects
-    step_f = queryset.all().order_by('order_number')
-    step_f_html = []
-    for instance in queryset.all():
-        step_f_html.append({'title': instance.title,
-                            'excerpt': instance.excerpt,
-                            'order_number': instance.order_number,
-                            'progress': instance.progress})
-    step_dic = {'step_f': step_f, 'ac_tab_n': 'ac_tab', 'step_f_html': step_f_html}
-    return render(request, "first.html", step_dic)
 
 
 class StepDetail(View):
@@ -92,3 +79,22 @@ class StepDetail(View):
                 "comment_form": CommentForm()
             },
         )
+
+
+def search(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        model = Step
+        steps = Step.objects.filter(title__contains=searched)
+        return render(
+            request, 'search.html',
+            
+            {
+                'searched': searched,
+                'steps': steps,
+            },
+        )
+    else:
+        return render(
+            request, 'search.html',
+             {},)

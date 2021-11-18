@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5 ">
+                {% if searched %}
+                    <h1>You Searched for {{ searched }}</h1>
+                    <hr />
+                    {% for step in steps %}
+                    <div>
+                        <p>Search Result: {{ steps }} {{ step }} </p>
+                    </div><br />
+                    {% endfor %}
+                {% else %}
+                <h1>You forgot to enter any search criteria. Please try again.</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
