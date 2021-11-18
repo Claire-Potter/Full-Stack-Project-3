@@ -6,13 +6,36 @@
         <div class="row">
             <div class="col-12 mb-5 ">
                 {% if searched %}
-                    <h1>You Searched for {{ searched }}</h1>
-                    <hr />
-                    {% for step in steps %}
-                    <div>
-                        <p>Search Result: {{ steps }} {{ step }} </p>
-                    </div><br />
-                    {% endfor %}
+                <h1>You Searched for {{ searched }}</h1>
+                <hr />
+                {% for step in steps %}
+                <div class="container">
+                    <div class="row g-0">
+                        <div class="col-md-12 card mb-3">
+                            <div class="card align-items-center">
+                                {% if "placeholder" in step.step_image.url %}
+                                <div class="step-image"><img
+                                        src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                                        class="card-img-top img-fluid image-inner" alt="Responsive image"></div>
+                                {% else %}
+                                <div class="step-image"><img src=" {{ step.step_image.url }}"
+                                        class="card-img-top img-fluid image-inner" alt="Responsive image"></div>
+                                {% endif %}
+                                <div class="card-body">
+                                    <a href="{% url 'step_detail' step.slug %}" class="step-link text-center">
+                                        <h2 class="card-title bolder">{{ step.title }}</h2></a>
+                                    <p class="card-text text-center">
+                                        {{ step.excerpt | safe }}
+                                    </p>
+                                    <p class="card-text text-center">
+                                        {{ step.progress| safe }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
                 {% else %}
                 <h1>You forgot to enter any search criteria. Please try again.</h1>
                 {% endif %}

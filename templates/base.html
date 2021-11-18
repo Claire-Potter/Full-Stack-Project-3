@@ -52,11 +52,14 @@
 
                 </ul>
             </div>
-            <form class="d-flex collapse-search" method=POST action="{% url 'search' %}">
+            <form class="d-flex collapse-search" autocomplete="off" method=POST action="{% url 'search' %}">
                 {% csrf_token %}
-                <input id="search-input" class="form-control me-2 search enter-search collapse-search" type="search"
-                    placeholder="Search Steps" aria-label="Search Design Thinking Steps" name="searched">
-                <button id="search-button" class="btn btn-outline search collapse-search" type="submit">Search</button>
+                <div class="autocomplete">
+                    <input id="myInput" class="form-control me-2 search enter-search collapse-search"
+                        type="search" placeholder="Search Steps" aria-label="Search Design Thinking Steps"
+                        name="searched">
+                </div>
+                <input class="btn btn-outline search collapse-search" type="submit" value="Search">
             </form>
         </div>
     </nav>

@@ -5,6 +5,27 @@ from .models import Step
 from .forms import CommentForm
 
 
+def search(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        steps = Step.objects.filter(title=searched)
+        
+
+        return render(
+            request, 'search.html',
+            
+            {
+                'searched': searched,
+                'steps': steps,
+            },
+        )
+    else:
+
+        return render(
+            request, 'search.html',
+             {},)
+
+
 class StepList(generic.ListView):
     """
     Model created to store the data required for creating
@@ -79,22 +100,3 @@ class StepDetail(View):
                 "comment_form": CommentForm()
             },
         )
-
-
-def search(request):
-    if request.method == 'POST':
-        searched = request.POST['searched']
-        model = Step
-        steps = Step.objects.filter(title__contains=searched)
-        return render(
-            request, 'search.html',
-            
-            {
-                'searched': searched,
-                'steps': steps,
-            },
-        )
-    else:
-        return render(
-            request, 'search.html',
-             {},)

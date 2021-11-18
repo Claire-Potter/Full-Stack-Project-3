@@ -60,6 +60,7 @@ class Step(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     step_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True)
+    body = models.TextField(blank=True)
     order_number = models.IntegerField()
     resources = models.ManyToManyField(KnowledgeResource)
     templates = models.ManyToManyField(Template)
