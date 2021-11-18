@@ -59,26 +59,7 @@
             </form>
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8-offset-md-2">
-                {% for message in messages %}
-                <div class="alert-{{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
-                    {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                </div>
-                {% endfor %}
-
-            </div>
-        </div>
-    </div>
-    <main class="flex-shrink-0 bg-body">
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
-    </main>
-
+  <div>Step.html</div>
     <!-- Footer -->
     <footer class="footer mt-auto py-3 footer-background">
         <p class="m-0 text-center text-white">Copyright@Claire Potter2021</p>
