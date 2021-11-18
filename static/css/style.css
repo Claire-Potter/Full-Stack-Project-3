@@ -30,6 +30,12 @@ body {
 
 }
 
+.search:focus {
+    border-color: #286fb4;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #286fb4;
+}
+
 .btn-outline {
     border: solid 1px #df4c73;
 }
@@ -52,8 +58,29 @@ body {
 
 ul {
     list-style-type: none;
-   }
+}
 
+.accordion-button {
+    color: black;
+    font-size: 2rem;
+    font-weight: bolder;
+    background-color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.accordion-button:not(.collapsed) {
+    color: black;
+    font-size: 2rem;
+    font-weight: bolder;
+    background-color: #ffffff;
+}
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: #286fb4;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #286fb4;
+}
 
 .footer-background {
     background-color: #286fb4
@@ -143,7 +170,7 @@ ul {
 }
 
 .image-inner {
-    box-shadow: 0 0 10px 10px #73929d ;
+    box-shadow: 0 0 10px 10px #73929d;
 }
 
 .step-image {
