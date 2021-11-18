@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.contrib import messages
-from .models import Step
+from .models import Step, KnowledgeResource, Item
 from .forms import CommentForm
 
 
@@ -100,3 +100,15 @@ class StepDetail(View):
                 "comment_form": CommentForm()
             },
         )
+
+
+class Videos(generic.ListView):
+    """
+    Model created to store the data required for creating
+    the different Steps within the Design Thinking Process.
+    Steps include: Getting Started, Empathy, Define
+    """
+    model = Item
+    context_object_name = 'videos'
+    queryset = Item.objects.filter(video='https://youtu.be/angiB1UljS8')
+    template_name = "video.html"

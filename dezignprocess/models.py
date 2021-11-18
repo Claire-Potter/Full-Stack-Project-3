@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from embed_video.fields import EmbedVideoField
+
+class Item(models.Model):
+    video = EmbedVideoField()  # same like models.URLField()
 
 
 class KnowledgeResource(models.Model):
@@ -15,6 +19,7 @@ class KnowledgeResource(models.Model):
     title = models.CharField(max_length=80, unique=True)
     excerpt = models.TextField(blank=True)
     order_number = models.IntegerField()
+    video = EmbedVideoField(blank=True)
 
     class Meta:
         """
