@@ -135,7 +135,40 @@
         <div class="col-md-8 card mb-4  mt-3 ">
             <h3>Resources:</h3>
             <div class="card-body">
-                {{ step.video_title }}
+                {% if "placeholder" in step.video_name %}
+                <div><p>No videos have been added for this step.</p></div>
+                {% else %}
+                <div class="px-3 mb-5">
+                    <h4>{{ step.video_name }}</h4>
+                    <iframe width="426" height="240" src="{{ step.video_url }}" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                {% endif %}
+
+                {% if "placeholder" in step.video_two_name %}
+                <div class="hidden"></div>
+                {% else %}
+                <div class="px-3 mb-5">
+                    <h4>{{ step.video_two_name }}</h4>
+                    <iframe width="426" height="240" src="{{ step.video_two_url }}" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                {% endif %}
+                {% if "placeholder" in step.video_three_name %}
+                <div class="hidden"></div>
+                {% else %}
+                <div class="px-3 mb-5">
+                    <h4>{{ step.video_three_name }}</h4>
+                    <iframe width="426" height="240" src="{{ step.video_three_url }}"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+                {% endif %}
 
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">

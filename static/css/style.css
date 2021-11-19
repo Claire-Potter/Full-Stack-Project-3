@@ -5,6 +5,10 @@ body {
     font-family: 'Dongle', sans-serif;
 }
 
+.hidden {
+    display: none;
+}
+
 .logo {
     font-family: 'Mochiy Pop P One', sans-serif;
     font-size: 1.4rem;

@@ -1,9 +1,0 @@
-
-{% video videos as my_video %}
-<div>
-    URL: {{ my_video.url }}
-    Thumbnail: {{ my_video.thumbnail }}
-    Backend: {{ my_video.backend }}
-    {% video my_video 'small' %}
-</div>
-{% endvideo %}

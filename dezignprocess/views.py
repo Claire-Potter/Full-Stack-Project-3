@@ -53,7 +53,7 @@ class StepNext(generic.ListView):
 class StepDetail(View):
 
     def get(self, request, slug,):
-        queryset = Step.objects
+        queryset = Step.objects.all()
         step = get_object_or_404(queryset, slug=slug)
         comments = ""
         if step.comments.filter(name=self.request.user.username).exists():
