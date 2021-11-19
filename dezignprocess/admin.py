@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Step, KnowledgeResource, Template, Comment, Item
+from .models import Step, Comment, Template
 
 admin.site.register(Step)
-admin.site.register(KnowledgeResource)
 admin.site.register(Template)
-admin.site.register(Item)
+
 
 
 @admin.register(Comment)

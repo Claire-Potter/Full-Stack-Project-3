@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.contrib import messages
-from .models import Step, KnowledgeResource, Item
+from .models import Step
 from .forms import CommentForm
 
 
@@ -9,11 +9,9 @@ def search(request):
     if request.method == 'POST':
         searched = request.POST['searched']
         steps = Step.objects.filter(title=searched)
-        
 
         return render(
             request, 'search.html',
-            
             {
                 'searched': searched,
                 'steps': steps,
@@ -23,7 +21,7 @@ def search(request):
 
         return render(
             request, 'search.html',
-             {},)
+            {},)
 
 
 class StepList(generic.ListView):
@@ -100,15 +98,3 @@ class StepDetail(View):
                 "comment_form": CommentForm()
             },
         )
-
-
-class Videos(generic.ListView):
-    """
-    Model created to store the data required for creating
-    the different Steps within the Design Thinking Process.
-    Steps include: Getting Started, Empathy, Define
-    """
-    model = Item
-    context_object_name = 'videos'
-    queryset = Item.objects.filter(video='https://youtu.be/angiB1UljS8')
-    template_name = "video.html"

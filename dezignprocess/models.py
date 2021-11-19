@@ -3,34 +3,6 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from embed_video.fields import EmbedVideoField
 
-class Item(models.Model):
-    video = EmbedVideoField()  # same like models.URLField()
-
-
-class KnowledgeResource(models.Model):
-    """
-    Model created to store the various resources utilised
-    within the site. These are learning resource videos,
-    created by Code Institute to upskill students on the
-    various stages within the Design Thinking Process.
-    The resources arfe assigned against the relevant step
-    within the process.
-    """
-    title = models.CharField(max_length=80, unique=True)
-    excerpt = models.TextField(blank=True)
-    order_number = models.IntegerField()
-    video = EmbedVideoField(blank=True)
-
-    class Meta:
-        """
-        Meta created to order the Step Model according
-        to order number assigned.
-        """
-        ordering = ["order_number"]
-
-    def __str__(self):
-        return '%s' % (self.title)
-
 
 class Template(models.Model):
     """
@@ -67,7 +39,11 @@ class Step(models.Model):
     excerpt = models.TextField(blank=True)
     body = models.TextField(blank=True)
     order_number = models.IntegerField()
-    resources = models.ManyToManyField(KnowledgeResource)
+    resources = models.IntegerField(blank=True)
+    video = EmbedVideoField(blank=True)
+    video_name = models.CharField(max_length=80, blank=True)
+    video_two = EmbedVideoField(blank=True)
+    videotwo_name = models.CharField(max_length=80, blank=True)
     templates = models.ManyToManyField(Template)
     list_number = models.IntegerField(
         default="1",)
@@ -98,14 +74,8 @@ class Step(models.Model):
     def __str__(self):
         return '%s' % (self.title)
 
-    def number_of_resources(self):
-        return '%s' % (self.resources.count())
-
     def number_of_templates(self):
         return '%s' % (self.templates.count())
-
-    def resources_as_list(self):
-        return '-'.join([str(resource) for resource in self.resources.all()])
 
     def templates_as_list(self):
         return '-'.join([str(template) for template in self.templates.all()])
