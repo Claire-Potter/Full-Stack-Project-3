@@ -30,7 +30,7 @@ body {
 }
 
 .enter-search::content {
-    border: #df4c73;
+    border: #286fb4;
 
 }
 
@@ -42,7 +42,7 @@ body {
 
 
 .btn-outline:hover {
-    background-color: #df4c73;
+    background-color: #286fb4;
     color: #ffffff;
     font-weight: bold;
 }
@@ -79,7 +79,7 @@ body {
 
 .autocomplete-active {
     /*when navigating through the items using the arrow keys:*/
-    background-color: DodgerBlue !important;
+    background-color: #286fb4 !important;
     color: #ffffff;
 }
 
@@ -119,6 +119,20 @@ ul {
     box-shadow: 0 0 0 0.25rem #286fb4;
 }
 
+.get-started {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    background-color: #df4c73;
+    border: solid 1px lightgrey;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.get-started:hover {
+    background-color: #286fb4;
+    color: #ffffff;
+}
+
 .footer-background {
     background-color: #286fb4
 }
@@ -131,7 +145,8 @@ ul {
 }
 
 .btn-direction-color:hover {
-    color: #df4c73;
+    color: #286fb4;
+    background-color: #e2f1f7;
 }
 
 .dark-bg {

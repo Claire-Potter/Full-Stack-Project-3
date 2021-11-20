@@ -55,9 +55,8 @@
             <form class="d-flex collapse-search" autocomplete="off" method=POST action="{% url 'search' %}">
                 {% csrf_token %}
                 <div class="autocomplete">
-                    <input id="myInput" class="form-control me-2 search enter-search collapse-search"
-                        type="search" placeholder="Search Steps" aria-label="Search Design Thinking Steps"
-                        name="searched">
+                    <input id="myInput" class="form-control me-2 search enter-search collapse-search" type="search"
+                        placeholder="Search Steps" aria-label="Search Design Thinking Steps" name="searched">
                 </div>
                 <input class="btn btn-outline search collapse-search" type="submit" value="Search">
             </form>
@@ -96,6 +95,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
     <script src="{% static 'javascript/script.js' %}"></script>
+    <script src="bootstrap-autocomplete.min.js"></script>
 
 </body>
 

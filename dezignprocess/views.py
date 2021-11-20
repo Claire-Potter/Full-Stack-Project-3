@@ -24,6 +24,15 @@ def search(request):
             {},)
 
 
+class Home(generic.ListView):
+    """
+    View to call the home page. This is a welcome page
+    and does not contain any model information.
+    """
+    model = Step
+    template_name = "index.html"
+
+
 class StepList(generic.ListView):
     """
     Model created to store the data required for creating
@@ -56,22 +65,74 @@ class StepDetail(View):
         queryset = Step.objects.all()
         step = get_object_or_404(queryset, slug=slug)
         comments = ""
+        step_display_prev = ""
+        step_display_next = ""
+        if step.title == 'Getting Started':
+            step_display_prev = 'finishing-off'
+            step_display_next = 'empathy'
+        elif step.title == 'Empathy':
+            step_display_prev = 'getting-started'
+            step_display_next = 'define'
+        elif step.title == 'Define':
+            step_display_prev = 'empathy'
+            step_display_next = 'ideate'
+        elif step.title == 'Ideate':
+            step_display_prev = 'define'
+            step_display_next = 'prototype'
+        elif step.title == 'Prototype':
+            step_display_prev = 'ideate'
+            step_display_next = 'test'
+        elif step.title == 'Test':
+            step_display_prev = 'prototype'
+            step_display_next = 'finishing-off'
+        elif step.title == 'Finishing Off':
+            step_display_prev = 'test'
+            step_display_next = 'getting-started'
+        else:
+            ""
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(name=self.request.user.username).order_by("-created_on")
-
         return render(
             request,
             "step_detail.html",
             {
                 "step": step,
                 "comments": comments,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                "step_display_prev": step_display_prev,
+                "step_display_next": step_display_next
             },
         )
 
     def post(self, request, slug,):
         queryset = Step.objects
         step = get_object_or_404(queryset, slug=slug)
+        step_display_prev = ""
+        step_display_next = ""
+        if step.title == 'Getting Started':
+            step_display_prev = 'finishing-off'
+            step_display_next = 'empathy'
+        elif step.title == 'Empathy':
+            step_display_prev = 'getting-started'
+            step_display_next = 'define'
+        elif step.title == 'Define':
+            step_display_prev = 'empathy'
+            step_display_next = 'ideate'
+        elif step.title == 'Ideate':
+            step_display_prev = 'define'
+            step_display_next = 'prototype'
+        elif step.title == 'Prototype':
+            step_display_prev = 'ideate'
+            step_display_next = 'test'
+        elif step.title == 'Test':
+            step_display_prev = 'prototype'
+            step_display_next = 'finishing-off'
+        elif step.title == 'Finishing_Off':
+            step_display_prev = 'test'
+            step_display_next = 'getting-started'
+        else:
+            ""
+        
         comments = ""
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(name=self.request.user.username).order_by("-created_on")
@@ -95,6 +156,9 @@ class StepDetail(View):
             {
                 "step": step,
                 "comments": comments,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                "step_display_prev": step_display_prev,
+                "step_display_next": step_display_next
+
             },
         )

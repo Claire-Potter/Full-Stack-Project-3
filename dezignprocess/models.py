@@ -49,7 +49,7 @@ class Step(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     templates = models.ManyToManyField(Template)
     list_number = models.IntegerField(
-        default="1",)
+        default='1')
 
     class Progress(models.TextChoices):
         """

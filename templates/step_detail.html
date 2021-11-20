@@ -41,203 +41,134 @@
             <!--Tooltip code from W3 school tutorial and adapted for site 
           https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
           -->
-            {% if "Getting Started" in step.title %}
-            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1" href="{% url 'home' %}" role="button"
+
+            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
+                href="{% url 'step_detail' slug=step_display_prev %}" role="button"
                 aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
                 data-bs-placement="top" title="Previous"><i class="fa fa-arrow-left"></i></a>
             <a id="next-button" class="btn btn-direction-color  mb-3"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/empathy/" role="button"
+                href="{% url 'step_detail' slug=step_display_next %}" role="button"
                 aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip" data-bs-placement="top"
                 title="Next"><i class="fa fa-arrow-right"></i></a>
-            {% elif "Empathy" in step.title %}
-            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/getting-started/" role="button"
-                aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Previous">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a id="next-button" class="btn btn-direction-color mb-3"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/define/" role="button"
-                aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="Next">
-                <i class="fa fa-arrow-right"></i>
-            </a>
-            {% elif "Define" in step.title %}
-            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/empathy/" role="button"
-                aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Previous">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a id="next-button" class="btn btn-direction-color mb-3"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/ideate/" role="button"
-                aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="Next">
-                <i class="fa fa-arrow-right"></i>
-            </a>
-            {% elif "Ideate" in step.title %}
-            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/define/" role="button"
-                aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Previous">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a id="next-button" class="btn btn-direction-color mb-3"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/prototype/" role="button"
-                aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="Next">
-                <i class="fa fa-arrow-right"></i>
-            </a>
-            {% elif "Prototype" in step.title %}
-            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/ideate/" role="button"
-                aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Previous">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a id="next-button" class="btn btn-direction-color mb-3"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/test/" role="button"
-                aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="Next">
-                <i class="fa fa-arrow-right"></i>
-            </a>
-            {% elif "Test" in step.title %}
-            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
-                href="https://8000-plum-cat-mt2ogx7v.ws-eu18.gitpod.io/prototype/" role="button"
-                aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Previous">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a id="next-button" class="btn btn-direction-color mb-3" href="{% url 'home' %}" role="button"
-                aria-label="button to be clicked to go back to home page" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Home">
-                <i class="fa fa-arrow-right"></i>
-            </a>
-            {% else %}
-            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1 tooltip" href="{% url 'home' %}" role="button"
-                aria-label="button to be clicked to go back to home page " data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Home">
-                <i class="fa fa-arrow-left">
-            </a>
-            {% endif %}
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row g-0">
-        <div class="col=md-12  mb-4  mt-3">
-            <hr>
+    <div class="container">
+        <div class="row g-0">
+            <div class="col=md-12  mb-4  mt-3">
+                <hr>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row g-0">
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Resources:</h3>
-            <div class="card-body">
-                {% if "placeholder" in step.video_name %}
-                <div><p>No videos have been added for this step.</p></div>
-                {% else %}
-                <div class="px-3 mb-5">
-                    <h4>{{ step.video_name }}</h4>
-                    <iframe width="426" height="240" src="{{ step.video_url }}" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-                {% endif %}
-
-                {% if "placeholder" in step.video_two_name %}
-                <div class="hidden"></div>
-                {% else %}
-                <div class="px-3 mb-5">
-                    <h4>{{ step.video_two_name }}</h4>
-                    <iframe width="426" height="240" src="{{ step.video_two_url }}" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-                {% endif %}
-                {% if "placeholder" in step.video_three_name %}
-                <div class="hidden"></div>
-                {% else %}
-                <div class="px-3 mb-5">
-                    <h4>{{ step.video_three_name }}</h4>
-                    <iframe width="426" height="240" src="{{ step.video_three_url }}"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>
-                </div>
-                {% endif %}
-
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-
-                    </p>
-                    <!-- The body of the comment goes before the | -->
-
-                </div>
-                <!-- Our for loop ends here -->
-
-            </div>
-        </div>
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <h3>Templates:</h3>
-            <div class="card-body">
-                <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                {{ step.templates_as_list }}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-
-                    </p>
-                    <!-- The body of the comment goes before the | -->
-
-                </div>
-                <!-- Our for loop ends here -->
-
-            </div>
-        </div>
-        <div class="row">
+    <div class="container">
+        <div class="row g-0">
             <div class="col-md-8 card mb-4  mt-3 ">
-                <h3>Comments:</h3>
-                <p>Create your own comments to track your progress through the Design Thinking process.</p>
+                <h3>Resources:</h3>
                 <div class="card-body">
-                    <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                    {% for comment in comments %}
+                    {% if "placeholder" in step.video_name %}
+                    <div>
+                        <p>No videos have been added for this step.</p>
+                    </div>
+                    {% else %}
+                    <div class="px-3 mb-5">
+                        <h4>{{ step.video_name }}</h4>
+                        <iframe width="426" height="240" src="{{ step.video_url }}" title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    {% endif %}
+
+                    {% if "placeholder" in step.video_two_name %}
+                    <div class="hidden"></div>
+                    {% else %}
+                    <div class="px-3 mb-5">
+                        <h4>{{ step.video_two_name }}</h4>
+                        <iframe width="426" height="240" src="{{ step.video_two_url }}" title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    {% endif %}
+                    {% if "placeholder" in step.video_three_name %}
+                    <div class="hidden"></div>
+                    {% else %}
+                    <div class="px-3 mb-5">
+                        <h4>{{ step.video_three_name }}</h4>
+                        <iframe width="426" height="240" src="{{ step.video_three_url }}" title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    {% endif %}
+
                     <div class="comments" style="padding: 10px;">
                         <p class="font-weight-bold">
                             <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                            {{ comment.name }}
-                            <span class=" text-muted font-weight-normal">
-                                <!-- The comment's created date goes here -->
-                                {{ comment.created_on }}
-                            </span> wrote:
+
                         </p>
                         <!-- The body of the comment goes before the | -->
-                        {{ comment.body | linebreaks }}
+
                     </div>
                     <!-- Our for loop ends here -->
-                    {% endfor %}
+
                 </div>
             </div>
-            <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="col-md-8 card mb-4  mt-3 ">
+                <h3>Templates:</h3>
                 <div class="card-body">
-                    {% if user.is_authenticated %}
-                    <h3>Leave a comment:</h3>
-                    <p>Posting as: {{ user.username }}</p>
-                    <form method="post" style="margin-top: 1.3em;">
-                        {{ comment_form | crispy }}
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                    </form>
-                    {% endif %}
+                    <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                    {{ step.templates_as_list }}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold">
+                            <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+
+                        </p>
+                        <!-- The body of the comment goes before the | -->
+
+                    </div>
+                    <!-- Our for loop ends here -->
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 card mb-4  mt-3 ">
+                    <h3>Comments:</h3>
+                    <p>Create your own comments to track your progress through the Design Thinking process.</p>
+                    <div class="card-body">
+                        <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                        {% for comment in comments %}
+                        <div class="comments" style="padding: 10px;">
+                            <p class="font-weight-bold">
+                                <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                                {{ comment.name }}
+                                <span class=" text-muted font-weight-normal">
+                                    <!-- The comment's created date goes here -->
+                                    {{ comment.created_on }}
+                                </span> wrote:
+                            </p>
+                            <!-- The body of the comment goes before the | -->
+                            {{ comment.body | linebreaks }}
+                        </div>
+                        <!-- Our for loop ends here -->
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-4 card mb-4  mt-3 ">
+                    <div class="card-body">
+                        {% if user.is_authenticated %}
+                        <h3>Leave a comment:</h3>
+                        <p>Posting as: {{ user.username }}</p>
+                        <form method="post" style="margin-top: 1.3em;">
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                        </form>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-{% endblock content %}
+    {% endblock content %}

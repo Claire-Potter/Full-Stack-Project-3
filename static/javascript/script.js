@@ -107,9 +107,9 @@ function autocomplete(inp, arr) {
   }
   
   /*An array containing all the country names in the world:*/
-  var steps = ["Getting Started", "Empathy", "Define", "Ideate", "Prototype", "Test"];
+  var steps = ["Getting Started", "Empathy", "Define", "Ideate", "Prototype", "Test",];
   
-  /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+  /*initiate the autocomplete function on the "myInput" element, and pass along the steps array as possible autocomplete values:*/
   autocomplete(document.getElementById("myInput"), steps);
 
 
