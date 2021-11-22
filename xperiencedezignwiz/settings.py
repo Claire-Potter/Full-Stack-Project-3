@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'embed_video',
     'dezignprocess',
+    'dezignsurvey',
+    'home',
 ]
 
 SITE_ID = 1

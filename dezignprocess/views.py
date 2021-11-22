@@ -24,15 +24,6 @@ def search(request):
             {},)
 
 
-class Home(generic.ListView):
-    """
-    View to call the home page. This is a welcome page
-    and does not contain any model information.
-    """
-    model = Step
-    template_name = "index.html"
-
-
 class StepList(generic.ListView):
     """
     Model created to store the data required for creating
