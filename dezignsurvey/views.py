@@ -1,45 +1,22 @@
-from django.shortcuts import render, get_object_or_404
-from django.views import View
-from django.contrib import messages
+from django.shortcuts import render, redirect
 from .models import Survey
 from .forms import SurveyForm
+from django.contrib import messages
 
 
-class Survey(View):
-
-    def get(self, request):
-        queryset = Survey.objects.all()
-        survey = get_object_or_404(queryset)
-        survey_form = SurveyForm()
-
-        return render(
-            request,
-            "survey.html",
-            {
-                "survey_form": SurveyForm(),
-            },
-        )
-
-    def post(self, request):
-        queryset = Survey.objects.all()
-        survey = get_object_or_404(queryset)
-        survey_form = SurveyForm(data=request.POST)
-
+def survey_home(request):
+    if request.method == "POST":
+        survey_form = SurveyForm(request.POST, request.FILES)
         if survey_form.is_valid():
-
-            survey_form.instance.email = request.user.email
-            survey_form.instance.username = request.user.username
-            survey = survey_form.save(commit=False)
-            survey.save()
-            messages.success(request, 'Survey completion successful')
+            survey_form.save()
+            messages.success(request, ('Your survey was successfully added!'))
         else:
-            survey_form = SurveyForm()
+            messages.error(request, 'Error saving form')
+        return redirect("survey_home")
 
-        return render(
-            request,
-            "survey.html",
-            {
-                "survey_form": SurveyForm(),
-            },
-        )
-
+    survey_form = SurveyForm()
+    surveys = Survey.objects.all()
+    return render(request=request,
+                  template_name="survey.html",
+                  context={'survey_form': survey_form,
+                           'surveys': surveys})

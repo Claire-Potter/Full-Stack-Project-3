@@ -118,54 +118,57 @@
                 <div class="card-body">
                     <div class="comments" style="padding: 10px;">
                         <p class="font-weight-bold">
-                            <a href="{% url 'home' %}" role="link" aria-label="link to the survey">Design Thinking
-                                Survey</a></p>
-                        <!-- The body of the comment goes before the | -->
 
+                            <a class="btn mb-3 mr-1 get-started" href="{% url 'survey' %}" role="button"
+                                aria-label="button to be clicked to view steps one to three">Design Thinking Surveys</a>
+                    </div>
+                    </p>
+                    <!-- The body of the comment goes before the | -->
+
+                </div>
+                <!-- Our for loop ends here -->
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 card mb-4  mt-3 ">
+                <h3>Comments:</h3>
+                <p>Create your own comments to track your progress through the Design Thinking process.</p>
+                <div class="card-body">
+                    <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
+                    {% for comment in comments %}
+                    <div class="comments" style="padding: 10px;">
+                        <p class="font-weight-bold">
+                            <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                            {{ comment.name }}
+                            <span class=" text-muted font-weight-normal">
+                                <!-- The comment's created date goes here -->
+                                {{ comment.created_on }}
+                            </span> wrote:
+                        </p>
+                        <!-- The body of the comment goes before the | -->
+                        {{ comment.body | linebreaks }}
                     </div>
                     <!-- Our for loop ends here -->
-
+                    {% endfor %}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-8 card mb-4  mt-3 ">
-                    <h3>Comments:</h3>
-                    <p>Create your own comments to track your progress through the Design Thinking process.</p>
-                    <div class="card-body">
-                        <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
-                        {% for comment in comments %}
-                        <div class="comments" style="padding: 10px;">
-                            <p class="font-weight-bold">
-                                <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-                                {{ comment.name }}
-                                <span class=" text-muted font-weight-normal">
-                                    <!-- The comment's created date goes here -->
-                                    {{ comment.created_on }}
-                                </span> wrote:
-                            </p>
-                            <!-- The body of the comment goes before the | -->
-                            {{ comment.body | linebreaks }}
-                        </div>
-                        <!-- Our for loop ends here -->
-                        {% endfor %}
-                    </div>
-                </div>
-                <div class="col-md-4 card mb-4  mt-3 ">
-                    <div class="card-body">
-                        {% if user.is_authenticated %}
-                        <h3>Leave a comment:</h3>
-                        <p>Posting as: {{ user.username }}</p>
-                        <form method="post" style="margin-top: 1.3em;">
-                            {{ comment_form | crispy }}
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                        </form>
-                        {% endif %}
-                    </div>
+            <div class="col-md-4 card mb-4  mt-3 ">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h3>Leave a comment:</h3>
+                    <p>Posting as: {{ user.username }}</p>
+                    <form method="post" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    {% endblock content %}
+{% endblock content %}

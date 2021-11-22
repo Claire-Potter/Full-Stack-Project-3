@@ -18,12 +18,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from dezignprocess import views
-from dezignsurvey import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("dezignprocess.urls"), name="dezignprocess_urls"),
+    path("", include("home.urls")),
     path("", include("dezignsurvey.urls"), name="dezignsurvey_urls"),
+    path("", include("dezignprocess.urls"), name="dezignprocess_urls"),
     path("accounts/", include("allauth.urls")),
 ]
