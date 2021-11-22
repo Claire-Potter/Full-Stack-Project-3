@@ -4,27 +4,6 @@ from cloudinary.models import CloudinaryField
 from embed_video.fields import EmbedVideoField
 
 
-class Template(models.Model):
-    """
-    Model created to store the document templates per step.
-    These are templates utilised to create the necessary
-    Design Thinking support documents per step.
-    """
-    title = models.CharField(max_length=80, unique=True)
-    excerpt = models.TextField(blank=True)
-    order_number = models.IntegerField()
-
-    class Meta:
-        """
-        Meta created to order the Step Model according
-        to order number assigned.
-        """
-        ordering = ["order_number"]
-
-    def __str__(self):
-        return '%s' % (self.title)
-
-
 class Step(models.Model):
     """
     Model created to store the data required for creating
@@ -47,7 +26,7 @@ class Step(models.Model):
     video_three_url = EmbedVideoField(blank=True)
     video_three_name = models.CharField(max_length=80, default='placeholder')
     added = models.DateTimeField(auto_now_add=True)
-    templates = models.ManyToManyField(Template)
+    templates = models.IntegerField(blank=True)
     list_number = models.IntegerField(
         default='1')
 
@@ -77,11 +56,31 @@ class Step(models.Model):
     def __str__(self):
         return '%s' % (self.title)
 
-    def number_of_templates(self):
-        return '%s' % (self.templates.count())
 
-    def templates_as_list(self):
-        return '-'.join([str(template) for template in self.templates.all()])
+class Template(models.Model):
+    """
+    Model created to store the document templates per step.
+    These are templates utilised to create the necessary
+    Design Thinking support documents per step.
+    """
+    title = models.CharField(max_length=80, unique=True)
+    slug = models.SlugField(max_length=80, default='steps_document')
+    excerpt = models.TextField(blank=True)
+    body = models.TextField(blank=True)
+    template_image = CloudinaryField('image', default='placeholder')
+    step = models.ForeignKey(Step, on_delete=models.CASCADE,
+                             related_name="template")
+    order_number = models.IntegerField()
+
+    class Meta:
+        """
+        Meta created to order the Step Model according
+        to order number assigned.
+        """
+        ordering = ["order_number"]
+
+    def __str__(self):
+        return '%s' % (self.title)
 
 
 class Comment(models.Model):

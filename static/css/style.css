@@ -298,6 +298,10 @@ ul {
     padding: 0px 5px;
 }
 
+.iframe-container {
+    height: 260px;
+}
+
 @media (max-width: 365px) {
     .collapse-search {
         display: none

@@ -59,81 +59,92 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-8 card mb-4  mt-3 ">
-                <h3>Resources:</h3>
-                <div class="card-body">
-                    {% if "placeholder" in step.video_name %}
-                    <div>
-                        <p>No videos have been added for this step.</p>
+    <div class="col-12">
+        <div class="row">
+            <h3>Resources:</h3>
+
+            {% if "placeholder" in step.video_name %}
+            <div>
+                <p>No videos have been added for this step.</p>
+            </div>
+            {% else %}
+            <div class="col-md-4 mb-3">
+                <div class="card card-with-background">
+                    <div class="card-body">
+                        <h4 class="card-title bolder">{{ step.video_name }}</h4>
                     </div>
-                    {% else %}
-                    <div class="px-3 mb-5">
-                        <h4>{{ step.video_name }}</h4>
-                        <iframe width="426" height="240" src="{{ step.video_url }}" title="YouTube video player"
-                            frameborder="0"
+                    <div class="iframe-container">
+                        <iframe class="embed-responsive-item" width="100%" height="100%" src="{{ step.video_url }}"
+                            title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
-                    {% endif %}
-
-                    {% if "placeholder" in step.video_two_name %}
-                    <div class="hidden"></div>
-                    {% else %}
-                    <div class="px-3 mb-5">
-                        <h4>{{ step.video_two_name }}</h4>
-                        <iframe width="426" height="240" src="{{ step.video_two_url }}" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>
-                    {% endif %}
-                    {% if "placeholder" in step.video_three_name %}
-                    <div class="hidden"></div>
-                    {% else %}
-                    <div class="px-3 mb-5">
-                        <h4>{{ step.video_three_name }}</h4>
-                        <iframe width="426" height="240" src="{{ step.video_three_url }}" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen></iframe>
-                    </div>
-                    {% endif %}
-
-                    <div class="comments" style="padding: 10px;">
-                        <p class="font-weight-bold">
-                            <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
-
-                        </p>
-                        <!-- The body of the comment goes before the | -->
-
-                    </div>
-                    <!-- Our for loop ends here -->
-
                 </div>
             </div>
-            <div class="col-md-8 card mb-4  mt-3 ">
-                <h3>Design Thinking tools:</h3>
-                <div class="card-body">
-                    <div class="comments" style="padding: 10px;">
-                        <p class="font-weight-bold">
+            {% endif %}
 
-                            <a class="btn mb-3 mr-1 get-started" href="{% url 'survey' %}" role="button"
-                                aria-label="button to be clicked to view steps one to three">Design Thinking Surveys</a>
+            {% if "placeholder" in step.video_two_name %}
+            <div class="hidden"></div>
+            {% else %}
+            <div class="col-md-4 mb-3">
+                <div class="card card-with-background">
+                    <div class="card-body">
+                        <h4 class="card-title bolder">{{ step.video_two_name }}</h4>
                     </div>
-                    </p>
-                    <!-- The body of the comment goes before the | -->
-
+                    <div class="iframe-container">
+                        <iframe class="embed-responsive-item" width="100%" height="100%" src="{{ step.video_two_url }}"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
-                <!-- Our for loop ends here -->
-
             </div>
+            {% endif %}
+            {% if "placeholder" in step.video_three_name %}
+            <div class="hidden"></div>
+            {% else %}
+            <div class="col-md-4 mb-3">
+                <div class="card card-with-background">
+                    <div class="card-body">
+                        <h4 class="card-title bolder">{{ step.video_three_name }}</h4>
+                    </div>
+                    <div class="iframe-container">
+                        <iframe class="embed-responsive-item" width="100%" height="100%"
+                            src="{{ step.video_three_url }}" title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
+    </div>
+    <div class="col-12">
         <div class="row">
             <div class="col-md-8 card mb-4  mt-3 ">
-                <h3>Comments:</h3>
-                <p>Create your own comments to track your progress through the Design Thinking process.</p>
+                <h3>Design Thinking tools:</h3>
+                <div>{{ template_01 }}</div>
+                <div>{{ template_02 }}</div>
+                <div>{{ template_03 }}</div>
+                {% block template %}
+                {% endblock %}
+
+                {% if "Empathy" in step.title %}
+                <a class="btn mb-3 mr-1 get-started" href="{% url 'survey' %}" role="button"
+                    aria-label="button to be clicked to view steps one to three">Design Thinking Surveys</a>
+                {% else %}
+                <div class="hidden"></div>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-md-8 card mb-4  mt-3 ">
+                <h3>Updates:</h3>
+                <p>Create your own update comments to track your progress through the Design Thinking process.</p>
                 <div class="card-body">
                     <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                     {% for comment in comments %}
@@ -156,7 +167,7 @@
             <div class="col-md-4 card mb-4  mt-3 ">
                 <div class="card-body">
                     {% if user.is_authenticated %}
-                    <h3>Leave a comment:</h3>
+                    <h3>Create an Update:</h3>
                     <p>Posting as: {{ user.username }}</p>
                     <form method="post" style="margin-top: 1.3em;">
                         {{ comment_form | crispy }}
