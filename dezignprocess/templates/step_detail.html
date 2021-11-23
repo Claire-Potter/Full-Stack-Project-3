@@ -1,7 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 
 {% load crispy_forms_tags %}
-
 <div class="jumbotron">
     <div class="container">
         <div class="row g-0">
@@ -20,8 +19,8 @@
 </div>
 <div class="container">
     <div class="row g-0">
-        <div class="col-md-12 card mb-3 align-items-center">
-            <div class="card">
+        <div class="col-md-12 card mb-3">
+            <div class="card align-items-center">
                 {% if "placeholder" in step.step_image.url %}
                 <div class="step-image"><img
                         src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
@@ -52,16 +51,17 @@
                 title="Next"><i class="fa fa-arrow-right"></i></a>
         </div>
     </div>
-    <div class="container">
-        <div class="row g-0">
-            <div class="col=md-12  mb-4  mt-3">
-                <hr>
-            </div>
+</div>
+<div class="container">
+    <div class="row g-0">
+        <div class="col=md-12  mb-4  mt-3">
+            <hr>
         </div>
     </div>
+
     <div class="col-12">
         <div class="row">
-            <h3>Resources:</h3>
+            <h2 class="card-title bolder">Resources:</h2>
 
             {% if "placeholder" in step.video_name %}
             <div>
@@ -121,54 +121,96 @@
     </div>
     <div class="col-12">
         <div class="row">
-            <div class="col-md-8 card mb-4  mt-3 ">
-                <h3>Design Thinking tools:</h3>
-                <div>{{ template_01 }}</div>
-                <div>{{ template_02 }}</div>
-                <div>{{ template_03 }}</div>
-                {% block template %}
-                {% endblock %}
+            <h2 class="card-title bolder">Design Thinking tools:</h2>
+            <p class="card-text card-italic-smaller">Follow the below links to access some helpful information.</p>
+            <div class="col-md-4 mb-3 ">
+                <div class="card">
+                    {% if "placeholder" in template_01 %}
+                    <div class="hidden"></div>
+                    {% else %}
+                    <div class="card-body">
+                        <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
+                                    class="fas fa-wrench"></i></span> {{ template_01 }} <a class="btn btn-go-color"
+                                href="{% url 'step_templates' slug=temp_slug_01 %}" role="button"
+                                aria-label="button to be clicked to view the template for the step"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
+                                    class="fas fa-arrow-right"></i></a></p>
+                    </div>
+                    {% endif %}
+                    {% if "placeholder" in template_02 %}
+                    <div class="hidden"></div>
+                    {% else %}
+                    <div class="card-body">
+                        <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
+                                    class="fas fa-screwdriver"></i></span> {{ template_02 }} <a class="btn btn-go-color"
+                                href="{% url 'step_templates' slug=temp_slug_02 %}" role="button"
+                                aria-label="button to be clicked to view the template for the step"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
+                                    class="fas fa-arrow-right"></i>
+                            </a></p>
+                    </div>
+                    {% endif %}
+                    {% if "placeholder" in template_03 %}
+                    <div class="hidden"></div>
+                    {% else %}
+                    <div class="card-body">
+                        <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
+                                    class="fas fa-hammer"></i></span> {{ template_03}} <a class="btn btn-go-color"
+                                href="{% url 'step_templates' slug=temp_slug_03 %}" role="button"
+                                aria-label="button to be clicked to view the template for the step"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
+                                    class="fas fa-arrow-right"></i></a></p>
+                    </div>
+                    {% endif %}
 
-                {% if "Empathy" in step.title %}
-                <a class="btn mb-3 mr-1 get-started" href="{% url 'survey' %}" role="button"
-                    aria-label="button to be clicked to view steps one to three">Design Thinking Surveys</a>
-                {% else %}
-                <div class="hidden"></div>
-                {% endif %}
+                    {% if "Empathy" in step.title %}
+                    <div class="card-body">
+                        <p class="card-text card-italic-smaller">Utilise the below tool to customise your own survey
+                            template.</p>
+                        <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
+                                    class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
+                                href="{% url 'survey' %}" role="button"
+                                aria-label="button to be clicked to view the template for the step"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
+                                    class="fas fa-arrow-right"></i></a></p>
+                    </div>
+                    {% else %}
+                    <div class="hidden"></div>
+                    {% endif %}
+                </div>
             </div>
 
         </div>
 
     </div>
+</div>
+<div class="container">
     <div class="col-12">
         <div class="row">
             <div class="col-md-8 card mb-4  mt-3 ">
-                <h3>Updates:</h3>
-                <p>Create your own update comments to track your progress through the Design Thinking process.</p>
+                <h2 class="card-title bolder">Updates:</h2>
+                <p class="card-italic-smaller">Create your own update comments to track your progress through the Design
+                    Thinking process.</p>
                 <div class="card-body">
                     <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                     {% for comment in comments %}
                     <div class="comments" style="padding: 10px;">
-                        <p class="font-weight-bold">
-                            <!-- The commenter's name goes here. Check the model if you're not sure what that is -->
+                        <p class="card-title bolder">
                             {{ comment.name }}
-                            <span class=" text-muted font-weight-normal">
-                                <!-- The comment's created date goes here -->
+                            <span class="card-text text-muted h5">
                                 {{ comment.created_on }}
                             </span> wrote:
                         </p>
-                        <!-- The body of the comment goes before the | -->
                         {{ comment.body | linebreaks }}
                     </div>
-                    <!-- Our for loop ends here -->
                     {% endfor %}
                 </div>
             </div>
             <div class="col-md-4 card mb-4  mt-3 ">
                 <div class="card-body">
                     {% if user.is_authenticated %}
-                    <h3>Create an Update:</h3>
-                    <p>Posting as: {{ user.username }}</p>
+                    <h2 class="card-title bolder">Create an Update:</h2>
+                    <p class="card-italic-smaller">Posting as: {{ user.username }}</p>
                     <form method="post" style="margin-top: 1.3em;">
                         {{ comment_form | crispy }}
                         {% csrf_token %}
@@ -180,6 +222,4 @@
         </div>
     </div>
 </div>
-
-
 {% endblock content %}

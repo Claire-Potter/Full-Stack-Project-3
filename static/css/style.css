@@ -144,9 +144,29 @@ ul {
     ;
 }
 
+.btn-go-color {
+    color: #286fb4;
+    text-align: center;
+    ;
+}
+
+.btn-go-color:hover {
+    color: #e2f1f7;
+}
+
 .btn-direction-color:hover {
     color: #286fb4;
     background-color: #e2f1f7;
+}
+
+.tool-icons {
+    font-size: smaller;
+    color: grey;
+}
+
+.card-italic-smaller {
+    font-size: smaller;
+    font-style: italic;
 }
 
 .dark-bg {

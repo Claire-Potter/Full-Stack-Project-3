@@ -63,7 +63,7 @@ class Template(models.Model):
     These are templates utilised to create the necessary
     Design Thinking support documents per step.
     """
-    title = models.CharField(max_length=80, unique=True)
+    title = models.CharField(max_length=80, unique=True, default='placeholder')
     slug = models.SlugField(max_length=80, default='steps_document')
     excerpt = models.TextField(blank=True)
     body = models.TextField(blank=True)
