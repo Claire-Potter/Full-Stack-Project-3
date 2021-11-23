@@ -42,7 +42,22 @@
                 </div>
                 {% endfor %}
                 {% else %}
-                <h1>You forgot to enter any search criteria. Please try again.</h1>
+                <h1>You forgot to enter any search criteria.</h1>
+                <p class="card-text text-center">
+                    This search is setup to return the pages for the steps within the Design Thinking process.
+                    Please search for one of the steps:
+                </p>
+                <ul>
+                    <li>Getting Started</li>
+                    <li>Empathy</li>
+                    <li>Define</li>
+                    <li>Ideate</li>
+                    <li>Prototype</li>
+                    <li>Test</li>
+                    <li>Finishing Off</li>
+                </ul>
+                <div class="text-center"><a class="btn get-started mx-auto" href="{{ request.META.HTTP_REFERER }}"
+                    type="button">Return</a></div>
                 {% endif %}
             </div>
         </div>
