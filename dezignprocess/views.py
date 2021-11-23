@@ -273,34 +273,10 @@ class TemplatesList(View):
     def get(self, request, slug,):
         queryset = Template.objects
         template = get_object_or_404(queryset, slug=slug)
-        return_to_step = ""
-        if template.title == 'No Template Required':
-            return_to_step = 'getting-started'
-        elif template.title == 'Survey':
-            return_to_step = 'empathy'
-        elif template.title == 'Interview Guide':
-            return_to_step = 'empathy'
-        elif template.title == 'Persona':
-            return_to_step = 'empathy'
-        elif template.title == 'Problem Statement':
-            return_to_step = 'define'
-        elif template.title == 'Round Robin':
-            return_to_step = 'ideate'
-        elif template.title == 'Opposite Thinking':
-            return_to_step = 'ideate'
-        elif template.title == 'Types Of Prototypes':
-            return_to_step = 'prototype'
-        elif template.title == 'How To Conduct a User Test':
-            return_to_step = 'test'
-        elif template.title == 'The End':
-            return_to_step = 'finishing-off'
-        else:
-            return_to_step = 'getting-started'
         return render(
             request,
             "step_templates.html",
             {
                 "template": template,
-                "return_to_step": return_to_step,
             },
         )

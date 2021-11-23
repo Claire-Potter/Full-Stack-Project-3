@@ -23,15 +23,18 @@
                                 <div class="step-image"><img src=" {{ step.step_image.url }}"
                                         class="card-img-top img-fluid image-inner" alt="Responsive image"></div>
                                 {% endif %}
-                                <div class="card-body">
+                                <div class="card-body align-items-center">
                                     <a href="{% url 'step_detail' step.slug %}" class="step-link text-center">
-                                        <h2 class="card-title bolder">{{ step.title }}</h2></a>
+                                        <h2 class="card-title bolder">{{ step.title }}</h2>
+                                    </a>
                                     <p class="card-text text-center">
                                         {{ step.excerpt | safe }}
                                     </p>
                                     <p class="card-text text-center">
                                         {{ step.progress| safe }}
                                     </p>
+                                    <div class="text-center"><a class="btn get-started mx-auto" href="{{ request.META.HTTP_REFERER }}"
+                                        type="button">Return</a></div>
                                 </div>
                             </div>
                         </div>

@@ -21,8 +21,7 @@
 
                 </div>
             </div>
-            <a class="btn mb-3 mr-1 get-started" href="{{% url 'step_detail' slug=return_to_step  %}" role="button"
-                aria-label="button to be clicked to view steps one to three">Return</a>
+            <a class="btn mb-3 mr-1 get-started" href="{{ request.META.HTTP_REFERER }}" type="button">Return</a>
         </div>
     </div>
 </div>
