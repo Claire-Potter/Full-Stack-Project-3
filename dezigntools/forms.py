@@ -1,11 +1,12 @@
 from django import forms
+from django.shortcuts import get_object_or_404
 from .models import Survey, DefaultQuestions, Question, Option
 
 
 class SurveyForm(forms.ModelForm):
     class Meta:
         model = Survey
-        fields = ["title", "include_default_questions"]
+        fields = ["title"]
 
 
 class QuestionForm(forms.ModelForm):
@@ -32,11 +33,9 @@ class AnswerForm(forms.Form):
 
 class DefaultQuestionsAnswerForm(forms.ModelForm):
     class Meta:
-        model = DefaultQuestions
-        if Survey.objects.filter(include_default_questions="True"):
-            fields = ["name", "gender", "age_range", "job_title", "industry"]
-        else:
-            fields = ["name"]
+         model = DefaultQuestions
+         fields = ["name", "gender", "age_range", "job_title", "industry"]
+
 
 
 class BaseAnswerFormSet(forms.BaseFormSet):

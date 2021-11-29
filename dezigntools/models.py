@@ -12,7 +12,6 @@ class Survey(models.Model):
     is_active = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
-    include_default_questions = models.BooleanField(default=False)
 
 
 class Gender(models.Model):
@@ -48,10 +47,10 @@ class DefaultQuestions(models.Model):
 
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE, related_name="defaultquestions_set")
     name = models.CharField(max_length=128)
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name="survey_answers")
-    age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE, related_name="survey_answers")
-    job_title = models.CharField(max_length=128)
-    industry = models.CharField(max_length=128)
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name="survey_answers", null=True)
+    age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE, related_name="survey_answers", null=True)
+    job_title = models.CharField(max_length=128, null=True)
+    industry = models.CharField(max_length=128, null=True)
 
 
 class Question(models.Model):

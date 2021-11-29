@@ -11,57 +11,77 @@
 {% load crispy_forms_tags %}
 
 <div class="container">
+	<div class="row">
+		<div class="col-md-12">
 
-	<!--Django Model Form-->
+			<!--Django Model Form-->
 
-	<h2 class="my-4">Customise your own Design Thinking Survey</h2>
+			<h2 class="card-title bolder">Customise your own Design Thinking Survey</h2>
 
-	<form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}" novalidate>
+			<form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}"
+				novalidate>
 
-		{% csrf_token %}
+				{% csrf_token %}
 
-		{{form|crispy}}
+				{{form|crispy}}
 
-		<div><button class="btn mb-3 mr-1 get-started" type="submit">Create</button></div>
+				<div>
+					<h2 class="card-title bolder mt-5">The following questions will be included by default in your survey:</h2>
+					<ul class="card-title">
+						<li> <b>name</b>  - user will capture their name as text</li>
+						<li>
+							<b>gender</b> - user will select their gender choice (male, female, unknown or would rather not
+							disclose)
+						</li>
+						<li><b>age range</b> - user will select their age range (from under 18 up to 65 + options provided)
+						</li>
+						<li><b>job title</b> - user will capture their job title as text</li>
+						<li><b>industry </b>- user will capture their job title as text</li>
+					</ul>
+				</div>
 
-		<div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
+				<div><button class="btn mb-3 mr-1 get-started" type="submit">Create</button></div>
 
-		<div>
-			<p>Click cancel to return to your list of surveys.</p>
+				<div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
+
+				<div>
+					<p>Click cancel to return to your list of surveys.</p>
+				</div>
+
+				{% if form.errors %}
+
+				<div class="ui message error">
+
+					<div class="header">We had some issues</div>
+
+					<ul class="list">
+
+						{% for field in form %}
+
+						{% for error in field.errors %}
+
+						<li>{{ field.label_tag }} {{ error }}</li>
+
+						{% endfor %}
+
+						{% endfor %}
+
+						{% for error in form.non_field_errors %}
+
+						<li>{{ error }}</li>
+
+						{% endfor %}
+
+					</ul>
+
+				</div>
+
+				{% endif %}
+
+			</form>
+
 		</div>
-
-		{% if form.errors %}
-
-		<div class="ui message error">
-
-			<div class="header">We had some issues</div>
-
-			<ul class="list">
-
-				{% for field in form %}
-
-				{% for error in field.errors %}
-
-				<li>{{ field.label_tag }} {{ error }}</li>
-
-				{% endfor %}
-
-				{% endfor %}
-
-				{% for error in form.non_field_errors %}
-
-				<li>{{ error }}</li>
-
-				{% endfor %}
-
-			</ul>
-
-		</div>
-
-		{% endif %}
-
-	</form>
-
+	</div>
 </div>
 
 
