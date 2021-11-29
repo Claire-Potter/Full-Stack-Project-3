@@ -8,9 +8,50 @@ class Survey(models.Model):
     """A survey created by a user."""
 
     title = models.CharField(max_length=64)
+    survey_image = CloudinaryField('image', default='placeholder')
     is_active = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
+    include_default_questions = models.BooleanField(default=False)
+
+
+class Gender(models.Model):
+    """
+    Model created to store the gender choices.
+    """
+    title = models.CharField(max_length=80, unique=True)
+    order_number = models.IntegerField()
+
+    class Meta:
+        ordering = ["order_number"]
+
+    def __str__(self):
+        return '%s' % (self.title)
+
+
+class AgeRange(models.Model):
+    """
+    Model created to store the age_range choices.
+    """
+    title = models.CharField(max_length=80, unique=True)
+    order_number = models.IntegerField()
+
+    class Meta:
+        ordering = ["order_number"]
+
+    def __str__(self):
+        return '%s' % (self.title)
+
+
+class DefaultQuestions(models.Model):
+    """Add default questions to a survey"""
+
+    survey = models.ForeignKey(Survey, on_delete=models.CASCADE, related_name="defaultquestions_set")
+    name = models.CharField(max_length=128)
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name="survey_answers")
+    age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE, related_name="survey_answers")
+    job_title = models.CharField(max_length=128)
+    industry = models.CharField(max_length=128)
 
 
 class Question(models.Model):

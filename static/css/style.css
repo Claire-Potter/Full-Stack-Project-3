@@ -322,6 +322,12 @@ ul {
     height: 260px;
 }
 
+.survey-image {
+    width: 250px;
+    border: 2px solid #73929d;
+    border-radius: 5px;
+}
+
 @media (max-width: 365px) {
     .collapse-search {
         display: none

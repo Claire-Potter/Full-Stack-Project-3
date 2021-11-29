@@ -2,13 +2,22 @@
 {% block title %}Start - Surveys{% endblock %}
 
 {% block content %}
-<div class="ui center aligned basic very padded segment">
-    <h1 class="ui header">{{ survey.title }}
-        <div class="sub header">You have been invited to take this survey</div>
-    </h1>
-    <form method="post" action="{% url 'survey-start' survey.pk %}" style="display: inline-block;">
-        {% csrf_token %}
-        <button type="submit" class="ui primary button">Start survey
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="card-title bolder mt-5">{{ survey.title }}</h2>
+            <div class="card-title ">You have been invited to take this survey</div>
+            <div class="ui container left aligned">
+                <form method="post" action="{% url 'survey-start' survey.pk %}">
+                    {% csrf_token %}
+                    <div><button class="btn mb-3 mr-1 get-started" type="submit">Start Survey</button></div>
+                    <div><a class="btn mb-3 mr-1 get-started" href="{% url 'home' %}"
+                            role="button">Cancel and Return Home</a></div>
+                    <div>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

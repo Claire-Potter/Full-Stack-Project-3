@@ -1,11 +1,11 @@
 from django import forms
-from .models import Survey, Question, Option
+from .models import Survey, DefaultQuestions, Question, Option
 
 
 class SurveyForm(forms.ModelForm):
     class Meta:
         model = Survey
-        fields = ["title"]
+        fields = ["title", "include_default_questions"]
 
 
 class QuestionForm(forms.ModelForm):
@@ -30,9 +30,17 @@ class AnswerForm(forms.Form):
         self.fields["option"] = option_field
 
 
+class DefaultQuestionsAnswerForm(forms.ModelForm):
+    class Meta:
+        model = DefaultQuestions
+        if Survey.objects.filter(include_default_questions="True"):
+            fields = ["name", "gender", "age_range", "job_title", "industry"]
+        else:
+            fields = ["name"]
+
+
 class BaseAnswerFormSet(forms.BaseFormSet):
     def get_form_kwargs(self, index):
         kwargs = super().get_form_kwargs(index)
         kwargs["options"] = kwargs["options"][index]
         return kwargs
-        

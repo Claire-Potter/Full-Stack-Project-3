@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from .models import Survey, Question, Answer, Submission
-from .forms import SurveyForm, QuestionForm, OptionForm, AnswerForm, BaseAnswerFormSet
+from .models import Survey, Question, Answer, Submission, DefaultQuestions
+from .forms import SurveyForm, QuestionForm, OptionForm, AnswerForm, BaseAnswerFormSet, DefaultQuestionsAnswerForm
 
 
 @login_required
@@ -142,9 +142,43 @@ def start(request, pk):
     survey = get_object_or_404(Survey, pk=pk, is_active=True)
     if request.method == "POST":
         sub = Submission.objects.create(survey=survey)
-        return redirect("survey-submit", survey_pk=pk, sub_pk=sub.pk)
+        return redirect("submit-default", survey_pk=pk, sub_pk=sub.pk)
 
     return render(request, "survey/start.html", {"survey": survey})
+
+
+def submit_default(request, survey_pk, sub_pk):
+    """Survey-taker submit their completed survey."""
+    try:
+        survey = Survey.objects.prefetch_related("defaultquestions_set").get(
+            pk=survey_pk, is_active=True
+        )
+    except Survey.DoesNotExist:
+        raise Http404()
+
+    try:
+        sub = survey.submission_set.get(pk=sub_pk, is_complete=False)
+    except Submission.DoesNotExist:
+        raise Http404()
+
+    if request.method == "POST":
+        form = DefaultQuestionsAnswerForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.survey = survey
+            question.save()
+            sub.is_complete = False
+            sub.save()
+            return redirect("survey-submit", survey_pk=survey.pk, sub_pk=sub.pk)
+
+    else:
+        form = DefaultQuestionsAnswerForm(request.POST)
+
+    return render(
+        request,
+        "survey/default_submit.html",
+        {"survey": survey, "form": form},
+    )
 
 
 def submit(request, survey_pk, sub_pk):

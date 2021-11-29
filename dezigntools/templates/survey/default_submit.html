@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Submit - Surveys{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="card-title bolder mt-5">Your answers to {{ survey.title }}</h1>
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {{form|crispy}}
+
+                {% if form.errors %}
+                <div class="ui message error">
+                    <div class="header">We had some issues</div>
+                    <ul class="list">
+                        {% for field in form %}
+                        {% for error in field.errors %}
+                        <li>{{ field.label_tag }} {{ error }}</li>
+                        {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+    <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
+    <div><a class="btn mb-3 mr-1 get-started" href="{% url 'home' %}" type="button">Cancel and Return Home</a></div>
+    </form>
+</div>
+
+</div>
+
+</div>
+{% endblock %}
