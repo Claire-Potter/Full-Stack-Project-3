@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}View - Surveys{% endblock %}
+
+
+
+{% block content %}
+
+<div class="container mt-5">
+
+	<div class="row">
+
+		<div class="col-md-12 text-center">
+
+			<h1 class="card-title">{{ survey.title }}</h1>
+
+			<h3 class="card-title">You have {{ num_submissions }} submissions</h3>
+
+			<h3 class="card-title"><a class="btn mb-3 mr-1 get-started" role="button" href="{{ public_url }}"
+					alt="Click this button to start the survey">Start
+
+					Survey</a></h3>
+
+			<h1 class="card-title bolder dividing">Results</h1>
+
+			{% for question in questions %}
+
+			<div class="col-md-6">
+
+				<h4 class="card">
+
+					Question {{ forloop.counter }} / {{ questions|length }}: {{ question.prompt }}
+
+				</h4>
+
+				<ul>
+
+					{% for option in question.option_set.all %}
+
+					<li>
+
+						{{ forloop.counter }}) {{option.text}}: {{ option.percent|floatformat }}%
+
+					</li>
+
+					{% endfor %}
+
+				</ul>
+
+			</div>
+
+			{% endfor %}
+
+
+
+			<div><a class="btn mb-3 mr-1 get-started" href="{{ request.META.HTTP_REFERER }}" type="button">Return</a>
+
+			</div>
+
+
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock %}
