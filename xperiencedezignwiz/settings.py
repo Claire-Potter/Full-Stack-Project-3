@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'embed_video',
     'dezignprocess',
-    'dezignsurvey',
     'dezigntools',
     'home',
 ]
