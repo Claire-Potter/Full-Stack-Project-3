@@ -22,18 +22,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='survey',
-            name='industry',
-            field=models.TextField(default=1),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='survey',
-            name='job_title',
-            field=models.TextField(default=1),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='survey',
             name='survey_image',
             field=cloudinary.models.CloudinaryField(default='placeholder', max_length=255, verbose_name='image'),
         ),

@@ -14,28 +14,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='AgeRange',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=80, unique=True)),
-                ('order_number', models.IntegerField()),
-            ],
-            options={
-                'ordering': ['order_number'],
-            },
-        ),
-        migrations.CreateModel(
-            name='Gender',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=80, unique=True)),
-                ('order_number', models.IntegerField()),
-            ],
-            options={
-                'ordering': ['order_number'],
-            },
-        ),
+    
         migrations.CreateModel(
             name='Survey',
             fields=[
@@ -45,8 +24,6 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=80)),
                 ('email', models.EmailField(max_length=254)),
                 ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('age_range', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='survey_answers', to='dezignsurvey.agerange')),
-                ('gender', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='survey_answers', to='dezignsurvey.gender')),
                 ('username', models.ForeignKey(default='1', on_delete=django.db.models.deletion.CASCADE, related_name='surveys', to=settings.AUTH_USER_MODEL)),
             ],
         ),
