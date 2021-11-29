@@ -20,7 +20,6 @@ urlpatterns = [
     path("surveys/<int:pk>/start/", views.start, name="survey-start"),
     path("surveys/<int:survey_pk>/submit/<int:sub_pk>/", views.submit, name="survey-submit"),
     path("surveys/<int:pk>/thanks/", views.thanks, name="survey-thanks"),
-    path("admin", admin.site.urls),
 ]
 
 if settings.DEBUG:
