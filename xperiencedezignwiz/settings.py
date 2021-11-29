@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'embed_video',
     'dezignprocess',
     'dezignsurvey',
+    'dezigntools',
     'home',
 ]
 
