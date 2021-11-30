@@ -1,3 +1,5 @@
+/* Base.html style */
+
 body {
     max-width: 100%;
     height: 95vh;
@@ -9,6 +11,8 @@ body {
     display: none;
 }
 
+/* Navbar*/
+
 .logo {
     font-family: 'Mochiy Pop P One', sans-serif;
     font-size: 1.4rem;
@@ -16,9 +20,26 @@ body {
     color: #031633;
 }
 
+.logo-small {
+    font-size: 2rem;
+    color: #df4c73;
+}
+
 .nav-background {
     background-color: #e2f0f9;
 }
+
+.scarlett-x {
+    color: #df4c73;
+    font-size: 2.5rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+/* Navbar for small screens*/
 
 .navbar-toggler:focus {
     border-color: #286fb4;
@@ -27,11 +48,7 @@ body {
 }
 
 
-
-.scarlett-x {
-    color: #df4c73;
-    font-size: 2.5rem;
-}
+/* Steps dropdown menu*/
 
 .dropdown {
     position: relative;
@@ -57,6 +74,7 @@ body {
 .show {
     display: block;
 }
+
 
 .steps-button {
     font-size: calc(1.325rem + .9vw) !important;
@@ -86,6 +104,8 @@ body {
     font-size: 1.4rem;
 }
 
+/* Steps searchbar and button including autocomplete*/
+
 .enter-search::content {
     border: #286fb4;
 
@@ -105,7 +125,6 @@ body {
 }
 
 .autocomplete {
-    /*the container must be positioned relative:*/
     position: relative;
     display: inline-block;
 }
@@ -116,7 +135,6 @@ body {
     border-bottom: none;
     border-top: none;
     z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
     top: 100%;
     left: 0;
     right: 0;
@@ -130,29 +148,21 @@ body {
 }
 
 .autocomplete-items div:hover {
-    /*when hovering an item:*/
     background-color: #e9e9e9;
 }
 
 .autocomplete-active {
-    /*when navigating through the items using the arrow keys:*/
     background-color: #286fb4 !important;
     color: #ffffff;
 }
 
-.logo-small {
-    font-size: 2rem;
-    color: #df4c73;
+/* Footer */
+
+.footer-background {
+    background-color: #286fb4
 }
 
-.light-bg {
-    background-color: #fff;
-}
-
-
-ul {
-    list-style-type: none;
-}
+/* Index.html Home page style */
 
 .home-image {
     width: 80%;
@@ -182,6 +192,8 @@ ul {
     box-shadow: 0 0 0 0.25rem #286fb4;
 }
 
+/* Get-started button formatting used across templates*/
+
 .get-started {
     font-size: 1.4rem;
     font-weight: bolder;
@@ -196,11 +208,11 @@ ul {
     color: #ffffff;
 }
 
-.footer-background {
-    background-color: #286fb4
-}
+
+/* First.html and Next.html styling*/
 
 .btn-direction-color {
+    /* Used across templates*/
     background-color: #286fb4;
     color: #ffffff;
     text-align: center;
