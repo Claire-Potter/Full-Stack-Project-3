@@ -20,6 +20,14 @@ body {
     background-color: #e2f0f9;
 }
 
+.navbar-toggler:focus {
+    border-color: #286fb4;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #286fb4;
+}
+
+
+
 .scarlett-x {
     color: #df4c73;
     font-size: 2.5rem;
@@ -28,22 +36,30 @@ body {
 .dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-menu {
+}
+
+.dropdown-menu {
     display: none;
     position: absolute;
     background-color: #e2f0f9;
     min-width: 160px;
     overflow: none;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-  }
+}
 
-.show {display: block;}
+.dropdown-menu:hover {
+    border-color: #286fb4;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #286fb4;
+}
+
+.show {
+    display: block;
+}
 
 .steps-button {
-    font-size: calc(1.325rem + .9vw)!important;
+    font-size: calc(1.325rem + .9vw) !important;
     border: none;
 }
 
@@ -59,7 +75,11 @@ body {
 }
 
 .dropdown-item {
-    font-size: calc(1.325rem + .9vw)!important;
+    font-size: calc(1.325rem + .9vw) !important;
+}
+
+.dropdown-item:hover {
+    background-color: #286fb4;
 }
 
 .search {
@@ -132,6 +152,12 @@ body {
 
 ul {
     list-style-type: none;
+}
+
+.home-image {
+    width: 80%;
+    border: 2px solid #73929d;
+    border-radius: 5px;
 }
 
 .accordion-button {
@@ -363,4 +389,11 @@ ul {
     width: 250px;
     border: 2px solid #73929d;
     border-radius: 5px;
+}
+
+@media (max-width: 992px) {
+
+    .steps-button {
+        padding: 0;
+    }
 }
