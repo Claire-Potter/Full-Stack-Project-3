@@ -1,4 +1,30 @@
 /* jshint esversion: 6 */
+//https://www.w3schools.com/bootstrap/bootstrap_ref_js_dropdown.asp referenced and edited for dropdown Steps menu
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+
+const dropButton = document.getElementById("dropdownMenuLink");
+
+function dropdownMenu() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.steps-button')) {
+    var dropdowns = document.getElementsByClassName("dropdown-menu");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+dropButton.addEventListener("click", dropdownMenu);
+
 // https://getbootstrap.com/docs/5.0/components/tooltips/ referenced and edited for
 // tooltips
 const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -125,6 +151,7 @@ input.addEventListener("keyup", function(event) {
    document.getElementById("submitButton").click();
   }
 });
+
 
 // set timeout function for messages as per the code institute example project.
 setTimeout(function () {

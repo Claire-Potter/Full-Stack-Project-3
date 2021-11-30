@@ -25,6 +25,43 @@ body {
     font-size: 2.5rem;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #e2f0f9;
+    min-width: 160px;
+    overflow: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+.show {display: block;}
+
+.steps-button {
+    font-size: calc(1.325rem + .9vw)!important;
+    border: none;
+}
+
+.steps-button:hover {
+    color: #ffffff;
+    border: none;
+}
+
+.steps-button:focus {
+    border-color: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.dropdown-item {
+    font-size: calc(1.325rem + .9vw)!important;
+}
+
 .search {
     font-size: 1.4rem;
 }
@@ -326,10 +363,4 @@ ul {
     width: 250px;
     border: 2px solid #73929d;
     border-radius: 5px;
-}
-
-@media (max-width: 365px) {
-    .collapse-search {
-        display: none
-    }
 }
