@@ -1,4 +1,4 @@
-/* Base.html style */
+/* Styling used across the site */
 
 body {
     max-width: 100%;
@@ -10,6 +10,63 @@ body {
 .hidden {
     display: none;
 }
+
+
+.card {
+    border: none;
+}
+
+
+.bolder {
+    font-weight: bolder;
+}
+
+.smaller-font {
+    font-size: 1.5rem;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-inner {
+    box-shadow: 0 0 10px 10px #73929d;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 5%;
+    min-width: 30%;
+    left: 2px;
+    background-color: #df4c73;
+    border: 2px solid #df4c73;
+    border-radius: 5px;
+}
+
+.step-number {
+    color: white;
+    margin: 4px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+}
+
+/* Get-started button formatting used across templates*/
+
+.get-started {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    background-color: #df4c73;
+    border: solid 1px lightgrey;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+.get-started:hover {
+    background-color: #286fb4;
+    color: #ffffff;
+}
+
+
 
 /* Navbar*/
 
@@ -162,7 +219,7 @@ ul {
     background-color: #286fb4
 }
 
-/* Index.html Home page style */
+/* Styling for Home app templates */
 
 .home-image {
     width: 80%;
@@ -192,32 +249,16 @@ ul {
     box-shadow: 0 0 0 0.25rem #286fb4;
 }
 
-/* Get-started button formatting used across templates*/
 
-.get-started {
-    font-size: 1.4rem;
-    font-weight: bolder;
-    background-color: #df4c73;
-    border: solid 1px lightgrey;
-    color: #ffffff;
-    margin-top: 10px;
-}
-
-.get-started:hover {
-    background-color: #286fb4;
-    color: #ffffff;
-}
-
-
-/* First.html and Next.html styling*/
+/* Styling for Dezignprocess app templates*/
 
 .btn-direction-color {
-    /* Used across templates*/
     background-color: #286fb4;
     color: #ffffff;
     text-align: center;
     ;
 }
+
 
 .btn-go-color {
     color: #286fb4;
@@ -234,6 +275,8 @@ ul {
     background-color: #e2f1f7;
 }
 
+/*Step_detail.html styling*/
+
 .tool-icons {
     font-size: smaller;
     color: grey;
@@ -244,52 +287,10 @@ ul {
     font-style: italic;
 }
 
-.dark-bg {
-    background-color: #445261;
-}
-
-.main-bg {
-    background-color: #F9FAFC;
-}
-
-.card {
-    border: none;
-}
-
 .card-with-background {
     background-color: #e2f1f7;
     border: 2px solid #e2f1f7;
     border-radius: 5px;
-}
-
-
-.bolder {
-    font-weight: bolder;
-}
-
-.smaller-font {
-    font-size: 1.5rem;
-}
-
-.image-container {
-    position: relative;
-}
-
-.image-overlay {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: 2px;
-    background-color: #df4c73;
-    border: 2px solid #df4c73;
-    border-radius: 5px;
-}
-
-.step-number {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-    font-size: 1.5rem;
 }
 
 .jumbotron {
@@ -314,10 +315,6 @@ ul {
     background-color: #73929d;
     padding: 5px;
 
-}
-
-.image-inner {
-    box-shadow: 0 0 10px 10px #73929d;
 }
 
 .step-image {
@@ -371,19 +368,6 @@ ul {
     text-decoration: underline;
 }
 
-.btn-like {
-    color: #df4c73;
-    border: none;
-    background: transparent;
-}
-
-.btn-like:hover,
-.btn-like:active {
-    color: #df4c73;
-    background: transparent;
-    border: none;
-}
-
 .step-information {
     display: flex;
     align-content: stretch;
@@ -397,11 +381,16 @@ ul {
     height: 260px;
 }
 
+/* Styling for Dezigntools app templates */
+
 .survey-image {
     width: 250px;
     border: 2px solid #73929d;
     border-radius: 5px;
 }
+
+
+/* Media query to remove the padding for the Steps dropdown menu for smaller screens */
 
 @media (max-width: 992px) {
 
