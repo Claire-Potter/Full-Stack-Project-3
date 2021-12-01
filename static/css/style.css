@@ -219,6 +219,15 @@ ul {
     background-color: #286fb4
 }
 
+.social-links {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.social-links:hover {
+    color: #df4c73;
+}
+
 /* Styling for Home app templates */
 
 .home-image {

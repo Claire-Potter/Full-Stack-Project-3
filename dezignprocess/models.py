@@ -26,7 +26,7 @@ class Step(models.Model):
     video_three_url = EmbedVideoField(blank=True)
     video_three_name = models.CharField(max_length=80, default='placeholder')
     added = models.DateTimeField(auto_now_add=True)
-    templates = models.IntegerField(blank=True)
+    tools = models.IntegerField(blank=True)
     list_number = models.IntegerField(
         default='1')
 
@@ -57,11 +57,10 @@ class Step(models.Model):
         return '%s' % (self.title)
 
 
-class Template(models.Model):
+class Tool(models.Model):
     """
-    Model created to store the document templates per step.
-    These are templates utilised to create the necessary
-    Design Thinking support documents per step.
+    Model created to store the design thinking recommended tools per step.
+    These are tools utilised to provide advice on help to complete each step.
     """
     title = models.CharField(max_length=80, unique=True, default='placeholder')
     slug = models.SlugField(max_length=80, default='steps_document')
@@ -69,7 +68,7 @@ class Template(models.Model):
     body = models.TextField(blank=True)
     template_image = CloudinaryField('image', default='placeholder')
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
-                             related_name="template")
+                             related_name="tool")
     order_number = models.IntegerField()
 
     class Meta:

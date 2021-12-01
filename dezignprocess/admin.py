@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Step, Comment, Template
+from .models import Step, Comment, Tool
 
 admin.site.register(Step)
-admin.site.register(Template)
+admin.site.register(Tool)
 
 
 @admin.register(Comment)

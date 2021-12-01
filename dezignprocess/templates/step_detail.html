@@ -131,8 +131,8 @@
                     <div class="card-body">
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-wrench"></i></span> {{ template_01 }} <a class="btn btn-go-color"
-                                href="{% url 'step_templates' slug=temp_slug_01 %}" role="button"
-                                aria-label="button to be clicked to view the template for the step"
+                                href="{% url 'step_tools' slug=temp_slug_01 %}" role="button"
+                                aria-label="button to be clicked to view the tool for the step"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
                                     class="fas fa-arrow-right"></i></a></p>
                     </div>
@@ -143,8 +143,8 @@
                     <div class="card-body">
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-screwdriver"></i></span> {{ template_02 }} <a class="btn btn-go-color"
-                                href="{% url 'step_templates' slug=temp_slug_02 %}" role="button"
-                                aria-label="button to be clicked to view the template for the step"
+                                href="{% url 'step_tools' slug=temp_slug_02 %}" role="button"
+                                aria-label="button to be clicked to view the tool for the step"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
                                     class="fas fa-arrow-right"></i>
                             </a></p>
@@ -156,8 +156,8 @@
                     <div class="card-body">
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-hammer"></i></span> {{ template_03}} <a class="btn btn-go-color"
-                                href="{% url 'step_templates' slug=temp_slug_03 %}" role="button"
-                                aria-label="button to be clicked to view the template for the step"
+                                href="{% url 'step_tools' slug=temp_slug_03 %}" role="button"
+                                aria-label="button to be clicked to view the tool for the step"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
                                     class="fas fa-arrow-right"></i></a></p>
                     </div>
@@ -165,12 +165,11 @@
 
                     {% if "Empathy" in step.title %}
                     <div class="card-body">
-                        <p class="card-text card-italic-smaller">Utilise the below tool to customise your own survey
-                            template.</p>
+                        <p class="card-text card-italic-smaller">Utilise the below tool to customise your own survey.</p>
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
                                 href="{% url 'survey-list' %}" role="button"
-                                aria-label="button to be clicked to view the template for the step"
+                                aria-label="button to be clicked to view the tool for the step"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
                                     class="fas fa-arrow-right"></i></a></p>
                     </div>

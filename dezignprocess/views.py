@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.contrib import messages
-from .models import Step, Template
+from .models import Step, Tool
 from .forms import CommentForm
 
 
@@ -67,10 +67,10 @@ class StepDetail(View):
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
-            template_01 = 'No Template Required'
+            template_01 = 'No Tool Required'
             template_02 = 'placeholder'
             template_03 = 'placeholder'
-            temp_slug_01 = "no-template-required"
+            temp_slug_01 = "no-tool-required"
             temp_slug_02 = ''
             temp_slug_03 = ""
         elif step.title == 'Empathy':
@@ -165,10 +165,10 @@ class StepDetail(View):
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
-            template_01 = 'No Template Required'
+            template_01 = 'How to Start'
             template_02 = 'placeholder'
             template_03 = 'placeholder'
-            temp_slug_01 = "no-template-required"
+            temp_slug_01 = "how-to-start"
             temp_slug_02 = ""
             temp_slug_03 = ""
         elif step.title == 'Empathy':
@@ -264,18 +264,18 @@ class StepDetail(View):
         )
 
 
-class TemplatesList(View):
+class ToolsList(View):
     """
     Model created to store the data required for creating
     the different Steps within the Design Thinking Process.
     Steps include: Getting Started, Empathy, Define
     """
     def get(self, request, slug,):
-        queryset = Template.objects
+        queryset = Tool.objects
         template = get_object_or_404(queryset, slug=slug)
         return render(
             request,
-            "step_templates.html",
+            "step_tools.html",
             {
                 "template": template,
             },
