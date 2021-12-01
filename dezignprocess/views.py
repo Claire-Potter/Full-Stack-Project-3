@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.contrib import messages
 from .models import Step, Tool
-from .forms import CommentForm
+from .forms import CommentForm, ProgressForm
 
 
 def search(request):
@@ -64,6 +64,7 @@ class StepDetail(View):
         temp_slug_02 = ""
         temp_slug_03 = ""
         comments = ""
+        progress = ""
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
@@ -132,6 +133,10 @@ class StepDetail(View):
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
                        name=self.request.user.username).order_by("-created_on")
+        if step.progress.filter(name=self.request.user.username).exists():
+            progress = step.progress.filter(
+                       name=self.request.user.username).latest()
+    
         return render(
             request,
             "step_detail.html",
@@ -145,6 +150,8 @@ class StepDetail(View):
                 "temp_slug_03": temp_slug_03,
                 "comments": comments,
                 "comment_form": CommentForm(),
+                "progress": progress,
+                "progress_form": ProgressForm(),
                 "step_display_prev": step_display_prev,
                 "step_display_next": step_display_next
             },
@@ -162,6 +169,7 @@ class StepDetail(View):
         temp_slug_02 = ""
         temp_slug_03 = ""
         comments = ""
+        progress = ""
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
@@ -230,6 +238,10 @@ class StepDetail(View):
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
                        name=self.request.user.username).order_by("-created_on")
+        
+        if step.progress.filter(name=self.request.user.username).exists():
+            progress = step.progress.filter(
+                       name=self.request.user.username).latest()
 
         comment_form = CommentForm(data=request.POST)
 
@@ -244,6 +256,19 @@ class StepDetail(View):
         else:
             comment_form = CommentForm()
 
+        progress_form = ProgressForm(data=request.POST)
+
+        if progress_form.is_valid():
+
+            progress_form.instance.email = request.user.email
+            progress_form.instance.name = request.user.username
+            progress = progress_form.save(commit=False)
+            progress.step = step
+            progress.save()
+            messages.success(request, 'Progress status update submission successful')
+        else:
+            progress_form = ProgressForm()
+
         return render(
             request,
             "step_detail.html",
@@ -256,7 +281,9 @@ class StepDetail(View):
                 "temp_slug_02": temp_slug_02,
                 "temp_slug_03": temp_slug_03,
                 "comments": comments,
+                "progress": progress,
                 "comment_form": CommentForm(),
+                "progress_form": ProgressForm(),
                 "step_display_prev": step_display_prev,
                 "step_display_next": step_display_next,
 

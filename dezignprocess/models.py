@@ -30,22 +30,6 @@ class Step(models.Model):
     list_number = models.IntegerField(
         default='1')
 
-    class Progress(models.TextChoices):
-        """
-        Progress class to create the text field choices for the progress
-        dropdown within the Step Model.
-        """
-        NOT_STARTED = 'Not Started', ('0')
-        IN_PROGRESS = 'In Progress', ('1')
-        COMPLETED = 'Completed', ('2')
-        REVISITING = 'Revisiting', ('3')
-
-    progress = models.CharField(
-        max_length=15,
-        choices=Progress.choices,
-        default=Progress.NOT_STARTED,
-    )
-
     class Meta:
         """
         Meta created to order the Step Model according
@@ -55,6 +39,41 @@ class Step(models.Model):
 
     def __str__(self):
         return '%s' % (self.title)
+
+
+class Progress(models.Model):
+    step = models.ForeignKey(Step, on_delete=models.CASCADE,
+                             related_name="progress")
+    username = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="progress",
+        default="1")
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    updated_on = models.DateTimeField(auto_now_add=True)
+
+    class ProgressStatus(models.TextChoices):
+        """
+        Progress class to create the text field choices for the progress
+        dropdown within the Step Model.
+        """
+        NOT_STARTED = 'Not Started', ('Not Started')
+        IN_PROGRESS = 'In Progress', ('In Progress')
+        COMPLETED = 'Completed', ('Completed')
+        REVISITING = 'Revisiting', ('Revisiting')
+
+    progress = models.CharField(max_length=15, choices=ProgressStatus.choices,
+                                default=ProgressStatus.NOT_STARTED,)
+
+    class Meta:
+        """
+        Meta created to order the Step Model according
+        to order number assigned.
+        """
+        ordering = ["-updated_on"]
+        get_latest_by = ["-updated_on"]
+
+    def __str__(self):
+        return '%s' % (self.progress)
 
 
 class Tool(models.Model):

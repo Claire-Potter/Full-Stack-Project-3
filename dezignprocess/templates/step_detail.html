@@ -8,7 +8,7 @@
                 <h1 class="step-title">{{ step.title }}</h1>
                 <!-- step author goes before the | the step's created date goes after -->
                 <p class="step-subtitle">Step Number: {{ step.order_number }} | Status:
-                    {{ step.progress }}</p>
+                    {{ progress }}</p>
             </div>
             <div class="d-none d-md-block col-md-6">
                 <!-- The featured image URL goes in the src attribute -->
@@ -74,7 +74,6 @@
             <hr>
         </div>
     </div>
-
     <div class="col-12">
         <div class="row">
             <h2 class="card-title bolder">Resources:</h2>
@@ -135,6 +134,11 @@
             {% endif %}
         </div>
     </div>
+    <div class="row g-0">
+        <div class="col=md-12  mb-4  mt-3">
+            <hr>
+        </div>
+    </div>
     <div class="col-12">
         <div class="row">
             <h2 class="card-title bolder">Design Thinking tools:</h2>
@@ -148,9 +152,8 @@
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-wrench"></i></span> {{ template_01 }} <a class="btn btn-go-color"
                                 href="{% url 'step_tools' slug=temp_slug_01 %}" role="button"
-                                aria-label="button to be clicked to view the tool for the step"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
-                                    class="fas fa-arrow-right"></i></a></p>
+                                aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></p>
                     </div>
                     {% endif %}
                     {% if "placeholder" in template_02 %}
@@ -160,9 +163,8 @@
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-screwdriver"></i></span> {{ template_02 }} <a class="btn btn-go-color"
                                 href="{% url 'step_tools' slug=temp_slug_02 %}" role="button"
-                                aria-label="button to be clicked to view the tool for the step"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
-                                    class="fas fa-arrow-right"></i>
+                                aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i>
                             </a></p>
                     </div>
                     {% endif %}
@@ -173,37 +175,70 @@
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-hammer"></i></span> {{ template_03}} <a class="btn btn-go-color"
                                 href="{% url 'step_tools' slug=temp_slug_03 %}" role="button"
-                                aria-label="button to be clicked to view the tool for the step"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
-                                    class="fas fa-arrow-right"></i></a></p>
+                                aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></p>
                     </div>
                     {% endif %}
 
                     {% if "Empathy" in step.title %}
                     <div class="card-body">
-                        <p class="card-text card-italic-smaller">Utilise the below tool to customise your own survey.</p>
+                        <p class="card-text card-italic-smaller">Utilise the below tool to customise your own survey.
+                        </p>
                         <p class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
                                     class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
                                 href="{% url 'survey-list' %}" role="button"
-                                aria-label="button to be clicked to view the tool for the step"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
-                                    class="fas fa-arrow-right"></i></a></p>
+                                aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></p>
                     </div>
                     {% else %}
                     <div class="hidden"></div>
                     {% endif %}
                 </div>
             </div>
-
         </div>
-
+    </div>
+    <div class="row g-0">
+        <div class="col=md-12  mb-4  mt-3">
+            <hr>
+            </hr>
+        </div>
     </div>
 </div>
 <div class="container">
+    <div class="row g-0">
+        <div class="col=md-12  mb-4  mt-3">
+            <h1 class="card-title bolder">Step Updates</h1>
+        </div>
+    </div>
     <div class="col-12">
         <div class="row">
-            <div class="col-md-8 card mb-4  mt-3 ">
-                <h2 class="card-title bolder">Updates:</h2>
+            <div class="col-md-4 card mb-4  mt-3 ">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h2 class="card-title bolder">Update your progress:</h2>
+                    <form method="post" style="margin-top: 1.3em;">
+                        {{ progress_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-signup btn-lg mt-3">Submit</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4 card mb-4  mt-3 ">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h2 class="card-title bolder">Create a Comment:</h2>
+                    <p class="card-italic-smaller">Posting as: {{ user.username }}</p>
+                    <form method="post" style="margin-top: 1.3em;">
+                        {{ comment_form | crispy }}
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-4 card mb-4  mt-3 ">
+                <h2 class="card-title bolder">Comments:</h2>
                 <p class="card-italic-smaller">Create your own update comments to track your progress through the Design
                     Thinking process.</p>
                 <div class="card-body">
@@ -219,19 +254,6 @@
                         {{ comment.body | linebreaks }}
                     </div>
                     {% endfor %}
-                </div>
-            </div>
-            <div class="col-md-4 card mb-4  mt-3 ">
-                <div class="card-body">
-                    {% if user.is_authenticated %}
-                    <h2 class="card-title bolder">Create an Update:</h2>
-                    <p class="card-italic-smaller">Posting as: {{ user.username }}</p>
-                    <form method="post" style="margin-top: 1.3em;">
-                        {{ comment_form | crispy }}
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-signup btn-lg">Submit</button>
-                    </form>
-                    {% endif %}
                 </div>
             </div>
         </div>
