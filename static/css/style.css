@@ -389,6 +389,11 @@ ul {
 .iframe-container {
     height: 260px;
 }
+/* Styling for step_tools.html */
+
+.return {
+    margin-left: 15px;
+}
 
 /* Styling for Dezigntools app templates */
 

@@ -18,7 +18,7 @@ class ToolAdmin(SummernoteModelAdmin):
     summernote_fields = '__all__'
     list_display = ('step', 'title', 'slug')
     search_fields = ['title', 'step']
-    list_filter = ('step', 'title')
+    list_filter = ('title', 'step')
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
 

@@ -78,18 +78,18 @@ class StepDetail(View):
             step_display_next = 'define'
             template_01 = 'Survey'
             template_02 = 'Interview Guide'
-            template_03 = 'Persona'
+            template_03 = 'placeholder'
             temp_slug_01 = "survey-details"
             temp_slug_02 = "interview-guide"
-            temp_slug_03 = "persona"
+            temp_slug_03 = ""
         elif step.title == 'Define':
             step_display_prev = 'empathy'
             step_display_next = 'ideate'
             template_01 = 'Problem Statement'
-            template_02 = 'placeholder'
+            template_02 = 'Persona'
             template_03 = 'placeholder'
             temp_slug_01 = "problem-statement"
-            temp_slug_02 = ""
+            temp_slug_02 = "persona"
             temp_slug_03 = ""
         elif step.title == 'Ideate':
             step_display_prev = 'define'
@@ -122,10 +122,10 @@ class StepDetail(View):
             step_display_prev = 'test'
             step_display_next = 'getting-started'
             template_01 = 'Storytelling'
-            template_02 = 'The Take Away'
+            template_02 = 'placeholder'
             template_03 = 'placeholder'
             temp_slug_01 = "storytelling"
-            temp_slug_02 = "the-take-away"
+            temp_slug_02 = ""
             temp_slug_03 = ""
         else:
             ""
@@ -176,18 +176,18 @@ class StepDetail(View):
             step_display_next = 'define'
             template_01 = 'Survey'
             template_02 = 'Interview Guide'
-            template_03 = 'Persona'
+            template_03 = 'placeholder'
             temp_slug_01 = "survey-details"
             temp_slug_02 = "interview-guide"
-            temp_slug_03 = "persona"
+            temp_slug_03 = ""
         elif step.title == 'Define':
             step_display_prev = 'empathy'
             step_display_next = 'ideate'
             template_01 = 'Problem Statement'
-            template_02 = 'placeholder'
+            template_02 = 'Persona'
             template_03 = 'placeholder'
             temp_slug_01 = "problem-statement"
-            temp_slug_02 = ""
+            temp_slug_02 = "persona"
             temp_slug_03 = ""
         elif step.title == 'Ideate':
             step_display_prev = 'define'
@@ -220,10 +220,10 @@ class StepDetail(View):
             step_display_prev = 'test'
             step_display_next = 'getting-started'
             template_01 = 'Storytelling'
-            template_02 = 'The Take Away'
+            template_02 = 'placeholder'
             template_03 = 'placeholder'
             temp_slug_01 = "storytelling"
-            temp_slug_02 = "the-take-away"
+            temp_slug_02 = ""
             temp_slug_03 = ""
         else:
             ""
