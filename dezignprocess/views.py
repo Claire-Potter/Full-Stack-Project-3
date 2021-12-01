@@ -67,11 +67,11 @@ class StepDetail(View):
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
-            template_01 = 'No Tool Required'
-            template_02 = 'placeholder'
+            template_01 = 'How to Start'
+            template_02 = 'The Non-Linear Nature of Design Thinking'
             template_03 = 'placeholder'
-            temp_slug_01 = "no-tool-required"
-            temp_slug_02 = ''
+            temp_slug_01 = "how-to-start"
+            temp_slug_02 = "non-linear"
             temp_slug_03 = ""
         elif step.title == 'Empathy':
             step_display_prev = 'getting-started'
@@ -94,20 +94,20 @@ class StepDetail(View):
         elif step.title == 'Ideate':
             step_display_prev = 'define'
             step_display_next = 'prototype'
-            template_01 = 'Round Robin'
-            template_02 = 'Opposite Thinking'
+            template_01 = 'Brainstorming'
+            template_02 = 'The Worst Possible Idea'
             template_03 = 'placeholder'
-            temp_slug_01 = "round-robin"
-            temp_slug_02 = "opposite-thinking"
+            temp_slug_01 = "brainstorming"
+            temp_slug_02 = "the-worst-possible-idea"
             temp_slug_03 = ""
         elif step.title == 'Prototype':
             step_display_prev = 'ideate'
             step_display_next = 'test'
             template_01 = 'Types Of Prototypes'
-            template_02 = 'placeholder'
+            template_02 = 'Which Prototype Should I Build?'
             template_03 = 'placeholder'
             temp_slug_01 = "types-of-prototypes"
-            temp_slug_02 = ""
+            temp_slug_02 = "which-prototype-should-i-build"
             temp_slug_03 = ""
         elif step.title == 'Test':
             step_display_prev = 'prototype'
@@ -121,11 +121,11 @@ class StepDetail(View):
         elif step.title == 'Finishing Off':
             step_display_prev = 'test'
             step_display_next = 'getting-started'
-            template_01 = 'The End'
-            template_02 = 'placeholder'
+            template_01 = 'Storytelling'
+            template_02 = 'The Take Away'
             template_03 = 'placeholder'
-            temp_slug_01 = "the-end"
-            temp_slug_02 = ""
+            temp_slug_01 = "storytelling"
+            temp_slug_02 = "the-take-away"
             temp_slug_03 = ""
         else:
             ""
@@ -166,10 +166,10 @@ class StepDetail(View):
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
             template_01 = 'How to Start'
-            template_02 = 'placeholder'
+            template_02 = 'The Non-Linear Nature of Design Thinking'
             template_03 = 'placeholder'
             temp_slug_01 = "how-to-start"
-            temp_slug_02 = ""
+            temp_slug_02 = "non-linear"
             temp_slug_03 = ""
         elif step.title == 'Empathy':
             step_display_prev = 'getting-started'
@@ -192,20 +192,20 @@ class StepDetail(View):
         elif step.title == 'Ideate':
             step_display_prev = 'define'
             step_display_next = 'prototype'
-            template_01 = 'Round Robin'
-            template_02 = 'Opposite Thinking'
+            template_01 = 'Brainstorming'
+            template_02 = 'The Worst Possible Idea'
             template_03 = 'placeholder'
-            temp_slug_01 = "round-robin"
-            temp_slug_02 = "opposite-thinking"
+            temp_slug_01 = "brainstorming"
+            temp_slug_02 = "the-worst-possible-idea"
             temp_slug_03 = ""
         elif step.title == 'Prototype':
             step_display_prev = 'ideate'
             step_display_next = 'test'
             template_01 = 'Types Of Prototypes'
-            template_02 = 'placeholder'
+            template_02 = 'Which Prototype Should I Build?'
             template_03 = 'placeholder'
             temp_slug_01 = "types-of-prototypes"
-            temp_slug_02 = ""
+            temp_slug_02 = "which-prototype-should-i-build"
             temp_slug_03 = ""
         elif step.title == 'Test':
             step_display_prev = 'prototype'
@@ -219,11 +219,11 @@ class StepDetail(View):
         elif step.title == 'Finishing Off':
             step_display_prev = 'test'
             step_display_next = 'getting-started'
-            template_01 = 'The End'
-            template_02 = 'placeholder'
+            template_01 = 'Storytelling'
+            template_02 = 'The Take Away'
             template_03 = 'placeholder'
-            temp_slug_01 = "the-end"
-            temp_slug_02 = ""
+            temp_slug_01 = "storytelling"
+            temp_slug_02 = "the-take-away"
             temp_slug_03 = ""
         else:
             ""
