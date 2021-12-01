@@ -24,5 +24,6 @@ urlpatterns = [
     path("", include("home.urls")),
     path("", include("dezigntools.urls"), name="dezigntools_urls"),
     path("", include("dezignprocess.urls"), name="dezignprocess_urls"),
+    path('summernote/', include('django_summernote.urls')),
     path("accounts/", include("allauth.urls")),
 ]
