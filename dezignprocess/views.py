@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.contrib import messages
-from .models import Step, Tool
+from .models import Step, Tool, Progress
 from .forms import CommentForm, ProgressForm
 
 
@@ -35,6 +35,14 @@ class StepList(generic.ListView):
     queryset = Step.objects.filter(list_number='1')
     template_name = "first.html"
     paginate_by: 3
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if Step.objects.filter(username_id=self.request.user).exists():
+            context['progress'] = Progress.objects.filter(username_id=self.request.user).latest()
+        else:
+            context['progress'] = Progress.objects.filter(progress='Not Started').latest()
+        return context
 
 
 class StepNext(generic.ListView):

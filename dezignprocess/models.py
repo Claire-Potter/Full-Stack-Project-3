@@ -27,6 +27,9 @@ class Step(models.Model):
     video_three_name = models.CharField(max_length=80, default='placeholder')
     added = models.DateTimeField(auto_now_add=True)
     tools = models.IntegerField(blank=True)
+    username_id = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="username_step",
+        default="1")
     list_number = models.IntegerField(
         default='1')
 
