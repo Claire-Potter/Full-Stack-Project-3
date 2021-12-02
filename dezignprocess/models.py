@@ -30,6 +30,7 @@ class Step(models.Model):
     username_id = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="username_step",
         default="1")
+    name = models.CharField(max_length=80, blank=True)
     list_number = models.IntegerField(
         default='1')
 
@@ -50,7 +51,7 @@ class Progress(models.Model):
     username = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="progress",
         default="1")
-    name = models.CharField(max_length=80)
+    name = models.CharField(max_length=80, default=User.username)
     email = models.EmailField()
     updated_on = models.DateTimeField(auto_now_add=True)
 
@@ -72,8 +73,8 @@ class Progress(models.Model):
         Meta created to order the Step Model according
         to order number assigned.
         """
-        ordering = ["-updated_on"]
-        get_latest_by = ["-updated_on"]
+        ordering = ["updated_on"]
+        get_latest_by = ["updated_on"]
 
     def __str__(self):
         return '%s' % (self.progress)

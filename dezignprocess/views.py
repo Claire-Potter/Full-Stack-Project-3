@@ -35,13 +35,12 @@ class StepList(generic.ListView):
     queryset = Step.objects.filter(list_number='1')
     template_name = "first.html"
     paginate_by: 3
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if Step.objects.filter(username_id=self.request.user).exists():
-            context['progress'] = Progress.objects.filter(username_id=self.request.user).latest()
-        else:
-            context['progress'] = Progress.objects.filter(progress='Not Started').latest()
+        context['progress'] = Progress.objects.filter(step="1", name=self.request.user.username).latest()
+        context['progress_02'] = Progress.objects.filter(step="2", name=self.request.user.username).latest()
+        context['progress_03'] = Progress.objects.filter(step="3", name=self.request.user.username).latest()
         return context
 
 
@@ -136,15 +135,14 @@ class StepDetail(View):
             temp_slug_01 = "storytelling"
             temp_slug_02 = ""
             temp_slug_03 = ""
-        else:
-            ""
+
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
                        name=self.request.user.username).order_by("-created_on")
         if step.progress.filter(name=self.request.user.username).exists():
             progress = step.progress.filter(
                        name=self.request.user.username).latest()
-    
+
         return render(
             request,
             "step_detail.html",
@@ -241,12 +239,11 @@ class StepDetail(View):
             temp_slug_01 = "storytelling"
             temp_slug_02 = ""
             temp_slug_03 = ""
-        else:
-            ""
+
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
                        name=self.request.user.username).order_by("-created_on")
-        
+
         if step.progress.filter(name=self.request.user.username).exists():
             progress = step.progress.filter(
                        name=self.request.user.username).latest()
@@ -273,7 +270,8 @@ class StepDetail(View):
             progress = progress_form.save(commit=False)
             progress.step = step
             progress.save()
-            messages.success(request, 'Progress status update submission successful')
+            messages.success(request,
+                             'Progress status update submission successful')
         else:
             progress_form = ProgressForm()
 

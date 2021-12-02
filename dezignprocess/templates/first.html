@@ -24,8 +24,16 @@
                     <p class="card-text smaller-font">{{ step.excerpt }}</p>
                     <hr />
                     <div class="step-information">
-                        <p class="card-text text-muted h5">Status: {{ progress }}
-                        
+                        <p class="card-text text-muted h5">Status:
+                            {% if "Getting Started" in step.title %}
+                            {{ progress }}
+                            {% elif "Empathy" in step.title %}
+                            {{ progress_02 }}
+                            {% elif "Define" in step.title %}
+                            {{ progress_03 }}
+                            {% else %}
+                            Not Started
+                            {% endif %}
                         </p>
                         <p class="card-text text-muted h5">Resources:
                             {{ step.resources }}</p>

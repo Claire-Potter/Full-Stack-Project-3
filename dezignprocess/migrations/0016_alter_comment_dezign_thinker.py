@@ -18,4 +18,10 @@ class Migration(migrations.Migration):
             name='dezign_thinker',
             field=models.ForeignKey(default='0', on_delete=django.db.models.deletion.CASCADE, related_name='steps', to=settings.AUTH_USER_MODEL),
         ),
+
+        migrations.AddField(
+            model_name='comment',
+            name='progress_status',
+            field=models.CharField(max_length=80),
+        ),       
     ]
