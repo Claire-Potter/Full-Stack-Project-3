@@ -27,12 +27,18 @@
                         <p class="card-text text-muted h5">Status:
                             {% if "Getting Started" in step.title %}
                             {{ progress }}
-                            {% elif "Empathy" in step.title %}
+                            {% else %}
+                           <div class=hidden> Not Started </div>
+                            {% endif %}
+                            {% if "Empathy" in step.title %}
                             {{ progress_02 }}
-                            {% elif "Define" in step.title %}
+                            {% else %}
+                            <div class=hidden> Not Started </div>
+                            {% endif %}
+                            {% if "Define" in step.title %}
                             {{ progress_03 }}
                             {% else %}
-                            Not Started
+                            <div class=hidden> Not Started </div>
                             {% endif %}
                         </p>
                         <p class="card-text text-muted h5">Resources:

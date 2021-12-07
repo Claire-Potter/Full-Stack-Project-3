@@ -25,7 +25,18 @@
                     <hr />
                     <div class="step-information">
                         <p class="card-text text-muted h5">Status:
-                            {{ step.progress }}</p>
+                            {% if "Ideate" in step.title %}
+                            {{ progress }}
+                            {% elif "Prototype" in step.title %}
+                            {{ progress_02 }}
+                            {% elif "Test" in step.title %}
+                            {{ progress_03 }}
+                            {% elif "Finishing Off" in step.title %}
+                            {{ progress_04 }}
+                            {% else %}
+                            Not Started
+                            {% endif %}
+                        </p>
                         <p class="card-text text-muted h5">Resources:
                             {{ step.resources }}</p>
                         <p class="card-text text-muted h5">Tools:

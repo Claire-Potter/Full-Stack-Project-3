@@ -31,17 +31,52 @@ class StepList(generic.ListView):
     Steps include: Getting Started, Empathy, Define
     """
     model = Step
+    model_two = Progress
     context_object_name = 'step_list'
     queryset = Step.objects.filter(list_number='1')
     template_name = "first.html"
     paginate_by: 3
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['progress'] = Progress.objects.filter(step="1", name=self.request.user.username).latest()
-        context['progress_02'] = Progress.objects.filter(step="2", name=self.request.user.username).latest()
-        context['progress_03'] = Progress.objects.filter(step="3", name=self.request.user.username).latest()
-        return context
+        queryset_two = Progress.objects.all()
+        if (queryset_two.filter(name=self.request.user.username).exists()
+                and queryset_two.filter(step="1").exists()):
+            context = super().get_context_data(**kwargs)
+            context['progress'] = queryset_two.filter(step="1",
+                                                      name=self.request
+                                                      .user
+                                                      .username
+                                                      ).latest()
+            return context
+        elif (queryset_two.filter(name=self.request.user.username).exists()
+                and queryset_two.filter(step="2").exists()):
+            context = super().get_context_data(**kwargs)
+            context['progress_02'] = queryset_two.filter(step="2",
+                                                         name=self.request
+                                                         .user.username
+                                                         ).latest()
+            return context
+        elif (queryset_two.filter(name=self.request.user.username).exists()
+                and queryset_two.filter(step="3").exists()):
+            context = super().get_context_data(**kwargs)
+            context['progress_03'] = queryset_two.filter(step="3",
+                                                         name=self.request
+                                                         .user.username
+                                                         ).latest()
+            return context
+
+        else:
+            context = super().get_context_data(**kwargs)
+            context['progress'] = queryset_two.filter(step="1",
+                                                      progress="Not"
+                                                      " Started").latest()
+            context['progress_02'] = queryset_two.filter(step="2",
+                                                         progress="Not"
+                                                         " Started").latest()
+            context['progress_03'] = queryset_two.filter(step="3",
+                                                         progress="Not"
+                                                         " Started").latest()
+            return context
 
 
 class StepNext(generic.ListView):
@@ -51,15 +86,56 @@ class StepNext(generic.ListView):
     Steps include: Ideate, Prototype, Test
     """
     model = Step
+    model_two = Progress
     context_object_name = 'step_next'
     queryset = Step.objects.filter(list_number='2')
     template_name = 'next.html'
     paginate_by: 3
 
+    def get_context_data(self, **kwargs):
+        queryset_two = Progress.objects.all()
+        if (queryset_two.filter(name=self.request.user.username).exists()
+                and queryset_two.exists()):
+            context = super().get_context_data(**kwargs)
+            context['progress'] = queryset_two.filter(step="4",
+                                                      name=self.request
+                                                      .user
+                                                      .username
+                                                      ).latest()
+            context['progress_02'] = queryset_two.filter(step="5",
+                                                         name=self.request
+                                                         .user.username
+                                                         ).latest()
+            context['progress_03'] = queryset_two.filter(step="6",
+                                                         name=self.request
+                                                         .user.username
+                                                         ).latest()
+            context['progress_04'] = queryset_two.filter(step="8",
+                                                         name=self.request
+                                                         .user.username
+                                                         ).latest()
+            return context
+
+        else:
+            context = super().get_context_data(**kwargs)
+            context['progress'] = queryset_two.filter(step="4",
+                                                      progress="Not"
+                                                      " Started").latest()
+            context['progress_02'] = queryset_two.filter(step="5",
+                                                         progress="Not"
+                                                         " Started").latest()
+            context['progress_03'] = queryset_two.filter(step="6",
+                                                         progress="Not"
+                                                         " Started").latest()
+            context['progress_04'] = queryset_two.filter(step="8",
+                                                         progress="Not"
+                                                         " Started").latest()
+            return context
+
 
 class StepDetail(View):
 
-    def get(self, request, slug,):
+    def get(self, request, slug):
         queryset = Step.objects.all()
         step = get_object_or_404(queryset, slug=slug)
         step_display_prev = ""
@@ -163,7 +239,7 @@ class StepDetail(View):
             },
         )
 
-    def post(self, request, slug,):
+    def post(self, request, slug):
         queryset = Step.objects
         step = get_object_or_404(queryset, slug=slug)
         step_display_prev = ""
