@@ -1,27 +1,42 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from django.contrib import messages
+from django.db.models import Q
 from .models import Step, Tool, Progress
 from .forms import CommentForm, ProgressForm
 
 
-def search(request):
-    if request.method == 'POST':
-        searched = request.POST['searched']
-        steps = Step.objects.filter(title=searched)
+class Search(View):
+    def post(self, request):
+        if request.method == 'POST':
+            searched = request.POST['searched']
+            steps = Step.objects.filter(title=searched)
+            step = get_object_or_404(steps)
+            progress = ""
+            if step.progress.filter(name=self.request.user.username).exists():
+                progress = step.progress.filter(
+                                                  Q(name=self.request
+                                                    .user
+                                                    .username) |
+                                                  Q(name="admin")).latest()
+            else:
+                progress = step.progress.filter(
+                                                 progress="Not"
+                                                 " Started").latest()
 
-        return render(
-            request, 'search.html',
-            {
-                'searched': searched,
-                'steps': steps,
-            },
-        )
-    else:
+            return render(
+                request, 'search.html',
+                {
+                    'searched': searched,
+                    'steps': steps,
+                    'progress': progress,
+                },
+            )
+        else:
 
-        return render(
-            request, 'search.html',
-            {},)
+            return render(
+                request, 'search.html',
+                {},)
 
 
 class StepList(generic.ListView):
@@ -39,32 +54,28 @@ class StepList(generic.ListView):
 
     def get_context_data(self, **kwargs):
         queryset_two = Progress.objects.all()
-        if (queryset_two.filter(name=self.request.user.username).exists()
-                and queryset_two.filter(step="1").exists()):
+        if queryset_two.filter(name=self.request.user
+                               .username).exists():
             context = super().get_context_data(**kwargs)
-            context['progress'] = queryset_two.filter(step="1",
-                                                      name=self.request
-                                                      .user
-                                                      .username
-                                                      ).latest()
+            context['progress'] = queryset_two.filter(
+                                                      Q(name=self.request
+                                                        .user
+                                                        .username) |
+                                                      Q(name="admin"),
+                                                      step="1").latest()
+            context['progress_02'] = queryset_two.filter(
+                                                      Q(name=self.request
+                                                        .user
+                                                        .username) |
+                                                      Q(name="admin"),
+                                                      step="2").latest()
+            context['progress_03'] = queryset_two.filter(
+                                                      Q(name=self.request
+                                                        .user
+                                                        .username) |
+                                                      Q(name="admin"),
+                                                      step="3").latest()
             return context
-        elif (queryset_two.filter(name=self.request.user.username).exists()
-                and queryset_two.filter(step="2").exists()):
-            context = super().get_context_data(**kwargs)
-            context['progress_02'] = queryset_two.filter(step="2",
-                                                         name=self.request
-                                                         .user.username
-                                                         ).latest()
-            return context
-        elif (queryset_two.filter(name=self.request.user.username).exists()
-                and queryset_two.filter(step="3").exists()):
-            context = super().get_context_data(**kwargs)
-            context['progress_03'] = queryset_two.filter(step="3",
-                                                         name=self.request
-                                                         .user.username
-                                                         ).latest()
-            return context
-
         else:
             context = super().get_context_data(**kwargs)
             context['progress'] = queryset_two.filter(step="1",
@@ -94,26 +105,32 @@ class StepNext(generic.ListView):
 
     def get_context_data(self, **kwargs):
         queryset_two = Progress.objects.all()
-        if (queryset_two.filter(name=self.request.user.username).exists()
-                and queryset_two.exists()):
+        if queryset_two.filter(name=self.request.user.username).exists():
             context = super().get_context_data(**kwargs)
-            context['progress'] = queryset_two.filter(step="4",
-                                                      name=self.request
-                                                      .user
-                                                      .username
-                                                      ).latest()
-            context['progress_02'] = queryset_two.filter(step="5",
-                                                         name=self.request
-                                                         .user.username
-                                                         ).latest()
-            context['progress_03'] = queryset_two.filter(step="6",
-                                                         name=self.request
-                                                         .user.username
-                                                         ).latest()
-            context['progress_04'] = queryset_two.filter(step="8",
-                                                         name=self.request
-                                                         .user.username
-                                                         ).latest()
+            context['progress'] = queryset_two.filter(
+                                                      Q(name=self.request
+                                                        .user
+                                                        .username) |
+                                                      Q(name="admin"),
+                                                      step="4").latest()
+            context['progress_02'] = queryset_two.filter(
+                                                      Q(name=self.request
+                                                        .user
+                                                        .username) |
+                                                      Q(name="admin"),
+                                                      step="5").latest()
+            context['progress_03'] = queryset_two.filter(
+                                                      Q(name=self.request
+                                                        .user
+                                                        .username) |
+                                                      Q(name="admin"),
+                                                      step="6").latest()
+            context['progress_04'] = queryset_two.filter(
+                                                         Q(name=self.request
+                                                           .user
+                                                           .username) |
+                                                         Q(name="admin"),
+                                                         step="8").latest()
             return context
 
         else:
@@ -217,7 +234,14 @@ class StepDetail(View):
                        name=self.request.user.username).order_by("-created_on")
         if step.progress.filter(name=self.request.user.username).exists():
             progress = step.progress.filter(
-                       name=self.request.user.username).latest()
+                                            Q(name=self.request
+                                              .user
+                                              .username) |
+                                            Q(name="admin")).latest()
+        else:
+            progress = step.progress.filter(
+                                            progress="Not"
+                                            " Started").latest()
 
         return render(
             request,
@@ -322,7 +346,14 @@ class StepDetail(View):
 
         if step.progress.filter(name=self.request.user.username).exists():
             progress = step.progress.filter(
-                       name=self.request.user.username).latest()
+                                            Q(name=self.request
+                                              .user
+                                              .username) |
+                                            Q(name="admin")).latest()
+        else:
+            progress = step.progress.filter(
+                                            progress="Not"
+                                            " Started").latest()
 
         comment_form = CommentForm(data=request.POST)
 

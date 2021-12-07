@@ -31,10 +31,10 @@
                                         {{ step.excerpt | safe }}
                                     </p>
                                     <p class="card-text text-center">
-                                        {{ step.progress| safe }}
+                                        {{ progress }}
                                     </p>
-                                    <div class="text-center"><a class="btn get-started mx-auto" href="{{ request.META.HTTP_REFERER }}"
-                                        type="button">Return</a></div>
+                                    <div class="text-center"><a class="btn get-started mx-auto"
+                                            href="{{ request.META.HTTP_REFERER }}" type="button">Return</a></div>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                     <li>Finishing Off</li>
                 </ul>
                 <div class="text-center"><a class="btn get-started mx-auto" href="{{ request.META.HTTP_REFERER }}"
-                    type="button">Return</a></div>
+                        type="button">Return</a></div>
                 {% endif %}
             </div>
         </div>

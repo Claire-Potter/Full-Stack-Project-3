@@ -52,7 +52,7 @@ class Progress(models.Model):
         User, on_delete=models.CASCADE, related_name="progress",
         default="1")
     name = models.CharField(max_length=80, default="username")
-    email = models.EmailField()
+    email = models.EmailField(blank=True)
     updated_on = models.DateTimeField(auto_now_add=True)
 
     class ProgressStatus(models.TextChoices):

@@ -2,6 +2,7 @@ core.Microsoft*
 core.mongo*
 core.python*
 env.py
+database.py
 __pycache__/
 *.py[cod]
 node_modules/

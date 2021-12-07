@@ -1,5 +1,5 @@
-from .models import Progress, Comment
 from django import forms
+from .models import Progress, Comment
 
 
 class CommentForm(forms.ModelForm):
