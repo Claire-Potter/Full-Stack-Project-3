@@ -105,8 +105,6 @@ Send2Trash==1.8.0
 six==1.16.0
 smmap==4.0.0
 snowballstemmer==2.1.0
-social-auth-app-django==3.1.0
-social-auth-core==4.1.0
 sql==0.4.0
 sqlparse==0.4.2
 stevedore==3.4.0

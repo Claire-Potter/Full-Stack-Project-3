@@ -1,3 +1,9 @@
+"""
+Xperiencedezignwiz dezignprocess app Model Configuration
+
+Models for the dezignprocess app to be rendered by dezignprocess/views.py
+
+"""
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
@@ -46,6 +52,11 @@ class Step(models.Model):
 
 
 class Progress(models.Model):
+    """
+    Model created to store the data required to display and
+    update the progress status per step.
+    It is rendered through the ProgressForm on the Step_Detail page.
+    """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
                              related_name="progress")
     username = models.ForeignKey(
@@ -70,8 +81,9 @@ class Progress(models.Model):
 
     class Meta:
         """
-        Meta created to order the Step Model according
-        to order number assigned.
+        Meta created to order the Progress Model according
+        to the updated_on field. It also determines the latest
+        entry per step saved to the model.
         """
         ordering = ["updated_on"]
         get_latest_by = ["updated_on"]
@@ -96,7 +108,7 @@ class Tool(models.Model):
 
     class Meta:
         """
-        Meta created to order the Step Model according
+        Meta created to order the Tools Model according
         to order number assigned.
         """
         ordering = ["order_number"]
@@ -106,6 +118,12 @@ class Tool(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Model created to store the design thinking comments
+    created by users per step.
+    These comments users add as they progress through
+    the various steps.
+    """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
                              related_name="comments")
     username = models.ForeignKey(
@@ -117,10 +135,12 @@ class Comment(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        """
+        Meta created to order the Comments Model according
+        to the created on date.
+        """
+        ordering = ["-created_on"]
 
-class Meta:
-    ordering = ["-created_on"]
-
-
-def __str__(self):
-    return f"Comment {self.body} by {self.name}"
+    def __str__(self):
+        return f"Comment {self.body} by {self.name}"

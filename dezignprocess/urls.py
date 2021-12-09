@@ -1,3 +1,9 @@
+"""
+Xperiencedezignwiz dezignprocess app URL Configuration
+
+URLs for the dezignprocess app setup according to dezignprocess/views.py
+
+"""
 from django.urls import path
 from dezignprocess import views
 

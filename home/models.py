@@ -1,19 +1,25 @@
+"""
+Xperiencedezignwiz home app URL Configuration
+
+URLs for the home app setup according to home/views.py
+home = the homepage
+the social media views are setup to authorise login via the
+various social media apps.
+"""
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class Home(models.Model):
     """
-    Model created to store the gender choices.
+    Model created to render a view for the homepage.
+    A foreignKey field is linked to store the username
+    as the related_name 'home'
     """
     username = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="home",
-        default="1"
+        User, on_delete=models.CASCADE, related_name='home',
+        default='1'
     )
-    order_number = models.IntegerField()
-    
-    class Meta:
-        ordering = ["order_number"]
 
     def __str__(self):
-        return '%s' % (self.title)
+        return '%s' % (self.username)
