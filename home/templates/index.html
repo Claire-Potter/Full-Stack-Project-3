@@ -3,6 +3,26 @@
 {% block content %}
 
 <section class="pt-5 pb-5">
+    {% block title %} User Profile {% endblock %}
+
+    <div class="row">
+        <div class="col-sm-12 mb-3">
+            <h4 class="text-center">Welcome {{ user.username }}</h4>
+        </div>
+
+        {% for ass in backends.associated %}
+        {% if ass.provider == 'facebook' %}
+        <div class="col-md-6 text-center">
+            <img src="{{ass.extra_data.picture.data.url}}" alt="" width="150" height="150" style="border-radius: 50%">
+        </div>
+        <div class="col-md-6 social-container my-2">
+            <p> You're Signed in via {{ ass.provider }} </p>
+            <p> Your Name: {{ ass.extra_data.name }} </p>
+            <p> Profile URL: <a href="{{ass.extra_data.profile_url}}">link</a></p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
     <div class="container">
         <div class="row">
             <div class="d-flex justify-content-center">
@@ -21,13 +41,18 @@
                         <div class="accordion-body">
                             <p>Welcome to Xperience DezignWiz! We aim to provide you with:</p>
                             <ul>
-                                <li> <i class="far fa-hand-point-right logo-small"></i> An overview of each Design Thinking step
+                                <li> <i class="far fa-hand-point-right logo-small"></i> An overview of each Design
+                                    Thinking step
                                 </li>
-                                <li> <i class="far fa-hand-point-right logo-small"></i> Resources to revise the step</li>
-                                <li> <i class="far fa-hand-point-right logo-small"></i> Easy to use tools to help you implement the step</li>
+                                <li> <i class="far fa-hand-point-right logo-small"></i> Resources to revise the step
+                                </li>
+                                <li> <i class="far fa-hand-point-right logo-small"></i> Easy to use tools to help you
+                                    implement the step</li>
 
-                                <li> <i class="far fa-hand-point-right logo-small"></i> A step management section to update your progress </li>
-                                <li> <i class="far fa-hand-point-right logo-small"></i> A customisable survey to assist you to gather user data</li>
+                                <li> <i class="far fa-hand-point-right logo-small"></i> A step management section to
+                                    update your progress </li>
+                                <li> <i class="far fa-hand-point-right logo-small"></i> A customisable survey to assist
+                                    you to gather user data</li>
                             </ul>
                             <p>We hope you enjoy working through the process.</p>
                         </div>
@@ -35,8 +60,8 @@
                 </div>
             </div>
             <div>
-            <a class="btn mb-3 mr-1 get-started" href="{% url 'first' %}" role="button"
-            aria-label="button to be clicked to view steps one to three">Get Started</a></div>
+                <a class="btn mb-3 mr-1 get-started" href="{% url 'first' %}" role="button"
+                    aria-label="button to be clicked to view steps one to three">Get Started</a></div>
 
         </div>
     </div>
