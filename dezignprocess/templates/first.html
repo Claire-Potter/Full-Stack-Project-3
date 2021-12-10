@@ -1,4 +1,4 @@
-{% extends "steps.html" %}
+{% extends 'steps.html' %}
 
 {% block first %}
 <div class="col-12">
@@ -7,7 +7,7 @@
         <div class="col-md-4 mb-3">
             <div class="card card-with-background">
                 <div class="image-container">
-                    {% if "placeholder" in step.featured_image.url %}
+                    {% if 'placeholder' in step.featured_image.url %}
                     <img class="card-img-top img-border"
                         src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
                     {% else %}
@@ -25,11 +25,11 @@
                     <hr />
                     <div class="step-information">
                         <p class="card-text text-muted h5">Status:
-                            {% if "Getting Started" in step.title %}
+                            {% if 'Getting Started' in step.title %}
                             {{ progress }}
-                            {% elif "Empathy" in step.title %}
+                            {% elif 'Empathy' in step.title %}
                             {{ progress_02 }}
-                            {% elif "Define" in step.title %}
+                            {% elif 'Define' in step.title %}
                             {{ progress_03 }}
                             {% else %}
                             <div > Not Started </div>

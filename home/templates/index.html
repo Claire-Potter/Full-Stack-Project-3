@@ -4,27 +4,7 @@
 {% load static %}
 
 <section class="pt-5 pb-5">
-    {% block title %} User Profile {% endblock %}
-
-    <div class="row">
-        <div class="col-sm-12 mb-3">
-            <h4 class="text-center">Welcome {{ user.username }}</h4>
-        </div>
-
-        {% for ass in backends.associated %}
-        {% if ass.provider == 'facebook' %}
-        <div class="col-md-6 text-center">
-            <img src="{{ass.extra_data.picture.data.url}}" alt="" width="150" height="150" style="border-radius: 50%">
-        </div>
-        <div class="col-md-6 social-container my-2">
-            <p> You're Signed in via {{ ass.provider }} </p>
-            <p> Your Name: {{ ass.extra_data.name }} </p>
-            <p> Profile URL: <a href="{{ass.extra_data.profile_url}}">link</a></p>
-        </div>
-        {% endif %}
-        {% endfor %}
-    </div>
-    <div class="container">
+      <div class="container">
         <div class="row">
             <div class="d-flex justify-content-center">
                 <img class="mb-5 img-border img-fluid image-inner home-image"

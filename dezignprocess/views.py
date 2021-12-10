@@ -6,8 +6,11 @@ page when a user searches for a step by name.
 The SearchList and SearchNext views are created to render the data
 required to display the different Steps within
 the Design Thinking Process.
-
-
+The Step Detail view is created to render the data required to display the
+individual Step selected within the Design Thinking Process. It includes
+the forms to update the progress status as well as to add comments.
+The ToolList view  is created to render the data required to display the
+different Tools per step within the Design Thinking Process.
 """
 
 from django.shortcuts import render, get_object_or_404
@@ -20,12 +23,25 @@ from .forms import CommentForm, ProgressForm
 
 class Search(View):
     """
-    the Search view is set up to render the search results
+    The Search view is set up to render the search results
     page when a user searches for a step by name.
     """
 
     def post(self, request):
         """
+        The post function posts the searched term i.e. the title of the
+        step, it then returns the step title, which is the link
+        to the step detail page, the step image, and the current progress
+        status, which will be the latest unique status if the user is logged
+        in and has created a progress status, otherwise it will return as
+        not started.
+
+        self: The self is used to represent the instance of the class.
+        request: The requests module allows you to send HTTP
+        requests using Python.The HTTP request returns a Response
+        Object with all the response data (content, encoding, status, etc).
+        Definition from https://www.w3schools.com/python/module_requests.asp
+
         The post function was created by following this you tube video:
         https://youtu.be/AGtae4L5BbI
         It was customised for the site.
@@ -81,12 +97,22 @@ class StepList(generic.ListView):
         """
         The get_context_data function is setup to return
         the latest progress status as created by a user and
-        stored to the Progress model per step. If a user is not logged in
-        the progress status will return as 'Not Started' for each step.
+        stored to the Progress table per step.
+
+        If a user is not logged in, the progress status will return
+        as 'Not Started' for each step.
         If a user is logged in, but has not as yet created a progress status
-        within the Progress model, the function will look for the latest
+        within the Progress table, the function will look for the latest
         progress status created by the admin user. This has been setup on the
         admin site to return 'Not Started' per step.
+
+        self: The self is used to represent the instance of the class.
+        **kwargs (Keyword Arguments):  passes variable number of keyword
+        arguments dictionary to function on which operation of a dictionary
+        can be performed.
+        Definition from:
+        https://www.programiz.com/python-programming/args-and-kwargs
+
         the get_context_data function was written by referencing
         the following article: (https://medium.com/@hassanraza/
         when-to-use-get-get-queryset-get-context-data-in-django-952df6be036a).
@@ -146,20 +172,8 @@ class StepNext(generic.ListView):
 
     def get_context_data(self, **kwargs):
         """
-        The get_context_data function is setup to return
-        the latest progress status as created by a user and
-        stored to the Progress model per step. If a user is not logged in
-        the progress status will return as 'Not Started' for each step.
-        If a user is logged in, but has not as yet created a progress status
-        within the Progress model, the function will look for the latest
-        progress status created by the admin user. This has been setup on the
-        admin site to return 'Not Started' per step.
-        the get_context_data function was written by referencing
-        the following article: (https://medium.com/@hassanraza/
-        when-to-use-get-get-queryset-get-context-data-in-django-952df6be036a).
-        Complex lookups with Q objects was referenced here:
-        https://docs.djangoproject.com/en/3.2/topics/db/queries/ to create the
-        lookups.
+        Docstring as per get_context_data above under
+        Class StepList.
         """
         queryset_two = Progress.objects.all()
         if queryset_two.filter(name=self.request.user.username).exists():
@@ -214,7 +228,7 @@ class StepDetail(View):
     The view iterates through the steps within the Step Model
     rendering the required fields. The view also references
     the Progress and the Comments models and forms in order
-    to update the fields within the models as well as return
+    to update the fields within the model tables as well as return
     the stored data.
     """
 
@@ -222,6 +236,35 @@ class StepDetail(View):
         """
         The get function retrieves the data
         to generate the step details page.
+
+        self: The self is used to represent the instance of the class.
+        request: The requests module allows you to send HTTP
+        requests using Python.The HTTP request returns a Response
+        Object with all the response data (content, encoding, status, etc).
+        Definition from https://www.w3schools.com/python/module_requests.asp
+        slug: A 'slug' is a way of generating a valid URL, generally using
+        data already obtained. It is utilised in this function to retrieve
+        the slug created within the Step table and using it to generate the
+        URL for the step detail page.
+
+        If and elif statements are utilised to set up navigation between the
+        different steps so that the user can navigate back to the previous step
+        and forward to the next step.
+
+        An If statement is used to return
+        the latest progress status as created by a user and
+        stored to the Progress model table per step.
+        If a user is logged in, but has not as yet created a progress status
+        within the Progress model table, the function will look for the latest
+        progress status created by the admin user. This has been set up on the
+        admin site to return 'Not Started' per step.
+        If a user is not logged in, the progress status will return
+        as 'Not Started' for each step.
+
+        An If statement is used to return
+        the comments created per step by a user if the user is logged in. If no
+        comments have been created, nothing will be returned.
+        If the user is not logged in, nothing will be returned.
         """
         queryset = Step.objects.all()
         step = get_object_or_404(queryset, slug=slug)
@@ -339,6 +382,21 @@ class StepDetail(View):
         captured by the user and stores the Progress
         update in the Progress table and the Comment
         update in the Comments table.
+
+        The docstring from the get function also applies
+        to the post function.
+
+        Additional functionality:
+        If the user is logged in, they can complete the comment
+        form. If the comment form is valid the user input and
+        generated fields will be saved to the Comments table,
+        this data can then be fetched to display on the step detail
+        page.
+        If the user is logged in, they can complete the progress
+        form. If the progress form is valid the user input and
+        generated fields will be saved to the Progress table,
+        this data can then be fetched to display on the step detail
+        page.
         """
         queryset = Step.objects
         step = get_object_or_404(queryset, slug=slug)
@@ -489,6 +547,16 @@ class ToolsList(View):
         """
         The get function retrieves the data
         to generate the tools details page.
+
+        self: The self is used to represent the instance of the class.
+        request: The requests module allows you to send HTTP
+        requests using Python.The HTTP request returns a Response
+        Object with all the response data (content, encoding, status, etc).
+        Definition from https://www.w3schools.com/python/module_requests.asp
+        slug: A 'slug' is a way of generating a valid URL, generally using
+        data already obtained. It is utilised in this function to retrieve
+        the slug created within the Tool table and using it to generate the
+        URL for the step tools page.
         """
         queryset = Tool.objects
         template = get_object_or_404(queryset, slug=slug)

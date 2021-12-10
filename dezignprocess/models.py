@@ -2,7 +2,6 @@
 Xperiencedezignwiz dezignprocess app Model Configuration
 
 Models for the dezignprocess app to be rendered by dezignprocess/views.py
-
 """
 from django.db import models
 from django.contrib.auth.models import User
@@ -34,8 +33,8 @@ class Step(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     tools = models.IntegerField(blank=True)
     username_id = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="username_step",
-        default="1")
+        User, on_delete=models.CASCADE, related_name='username_step',
+        default='1')
     name = models.CharField(max_length=80, blank=True)
     list_number = models.IntegerField(
         default='1')
@@ -45,7 +44,7 @@ class Step(models.Model):
         Meta created to order the Step Model according
         to order number assigned.
         """
-        ordering = ["order_number"]
+        ordering = ['order_number']
 
     def __str__(self):
         return '%s' % (self.title)
@@ -58,11 +57,11 @@ class Progress(models.Model):
     It is rendered through the ProgressForm on the Step_Detail page.
     """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
-                             related_name="progress")
+                             related_name='progress')
     username = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="progress",
-        default="1")
-    name = models.CharField(max_length=80, default="username")
+        User, on_delete=models.CASCADE, related_name='progress',
+        default='1')
+    name = models.CharField(max_length=80, default='username')
     email = models.EmailField(blank=True)
     updated_on = models.DateTimeField(auto_now_add=True)
 
@@ -85,8 +84,8 @@ class Progress(models.Model):
         to the updated_on field. It also determines the latest
         entry per step saved to the model.
         """
-        ordering = ["updated_on"]
-        get_latest_by = ["updated_on"]
+        ordering = ['updated_on']
+        get_latest_by = ['updated_on']
 
     def __str__(self):
         return '%s' % (self.progress)
@@ -103,7 +102,7 @@ class Tool(models.Model):
     body = models.TextField(blank=True)
     template_image = CloudinaryField('image', default='placeholder')
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
-                             related_name="tool")
+                             related_name='tool')
     order_number = models.IntegerField()
 
     class Meta:
@@ -111,7 +110,7 @@ class Tool(models.Model):
         Meta created to order the Tools Model according
         to order number assigned.
         """
-        ordering = ["order_number"]
+        ordering = ['order_number']
 
     def __str__(self):
         return '%s' % (self.title)
@@ -125,10 +124,10 @@ class Comment(models.Model):
     the various steps.
     """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
-                             related_name="comments")
+                             related_name='comments')
     username = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="comments",
-        default="1"
+        User, on_delete=models.CASCADE, related_name='comments',
+        default='1'
     )
     name = models.CharField(max_length=80)
     email = models.EmailField()
@@ -140,7 +139,7 @@ class Comment(models.Model):
         Meta created to order the Comments Model according
         to the created on date.
         """
-        ordering = ["-created_on"]
+        ordering = ['-created_on']
 
     def __str__(self):
-        return f"Comment {self.body} by {self.name}"
+        return f'Comment {self.body} by {self.name}'
