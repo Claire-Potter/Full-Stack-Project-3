@@ -24,7 +24,7 @@
 
                     <h4 class="ui header">
 
-                        Question {{ forloop.counter }} / {{ questions|length }}: {{ question.prompt }}
+                        Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
 
                     </h4>
 
@@ -34,7 +34,7 @@
 
                         <li>
 
-                            {{ forloop.counter }}) {{option.text}}
+                            {{ forloop.counter }}) {{option.option}}
 
                         </li>
 

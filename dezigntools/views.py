@@ -4,14 +4,16 @@ from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from .models import Survey, Question, Answer, Submission, DefaultQuestions
-from .forms import SurveyForm, QuestionForm, OptionForm, AnswerForm, BaseAnswerFormSet, DefaultQuestionsAnswerForm
+from .models import Survey, Question, Answer, Submission
+from .forms import (SurveyForm, QuestionForm, OptionForm, AnswerForm,
+                    BaseAnswerFormSet, DefaultQuestionsAnswerForm)
 
 
 @login_required
 def survey_list(request):
     """User can view all their surveys"""
-    surveys = Survey.objects.filter(creator=request.user).order_by("-created_at").all()
+    surveys = (Survey.objects
+               .filter(creator=request.user).order_by("-created_at").all())
     return render(request, "survey/list.html", {"surveys": surveys})
 
 
@@ -19,23 +21,26 @@ def survey_list(request):
 def detail(request, pk):
     """User can view an active survey"""
     try:
-        survey = Survey.objects.prefetch_related("question_set__option_set").get(
-            pk=pk, creator=request.user, is_active=True
-        )
+        survey = (Survey.objects
+                  .prefetch_related("question_set__option_set")
+                  .get(pk=pk, creator=request.user, is_active=True))
     except Survey.DoesNotExist:
         raise Http404()
 
     questions = survey.question_set.all()
 
     # Calculate the results.
-    # This is a naive implementation and it could be optimised to hit the database less.
-    # See here for more info on how you might improve this code: https://docs.djangoproject.com/en/3.1/topics/db/aggregation/
+    # This is a naive implementation and it could be optimised
+    #  to hit the database less.
+    # See here for more info on how you might improve this code:
+    #  https://docs.djangoproject.com/en/3.1/topics/db/aggregation/
     for question in questions:
         option_pks = question.option_set.values_list("pk", flat=True)
         total_answers = Answer.objects.filter(option_id__in=option_pks).count()
         for option in question.option_set.all():
             num_answers = Answer.objects.filter(option=option).count()
-            option.percent = 100.0 * num_answers / total_answers if total_answers else 0
+            option.percent = (100.0 * num_answers /
+                              total_answers if total_answers else 0)
 
     host = request.get_host()
     public_path = reverse("survey-start", args=[pk])
@@ -83,9 +88,9 @@ def delete(request, pk):
 def edit(request, pk):
     """User can add questions to a draft survey, then acitvate the survey"""
     try:
-        survey = Survey.objects.prefetch_related("question_set__option_set").get(
-            pk=pk, creator=request.user, is_active=False
-        )
+        survey = (Survey.objects
+                  .prefetch_related("question_set__option_set")
+                  .get(pk=pk, creator=request.user, is_active=False))
     except Survey.DoesNotExist:
         raise Http404()
 
@@ -95,7 +100,8 @@ def edit(request, pk):
         return redirect("survey-detail", pk=pk)
     else:
         questions = survey.question_set.all()
-        return render(request, "survey/edit.html", {"survey": survey, "questions": questions})
+        return render(request, "survey/edit.html",
+                      {"survey": survey, "questions": questions})
 
 
 @login_required
@@ -108,11 +114,13 @@ def question_create(request, pk):
             question = form.save(commit=False)
             question.survey = survey
             question.save()
-            return redirect("survey-option-create", survey_pk=pk, question_pk=question.pk)
+            return redirect("survey-option-create",
+                            survey_pk=pk, question_pk=question.pk)
     else:
         form = QuestionForm()
 
-    return render(request, "survey/question.html", {"survey": survey, "form": form})
+    return render(request, "survey/question.html",
+                  {"survey": survey, "form": form})
 
 
 @login_required
@@ -133,7 +141,8 @@ def option_create(request, survey_pk, question_pk):
     return render(
         request,
         "survey/options.html",
-        {"survey": survey, "question": question, "options": options, "form": form},
+        {"survey": survey, "question": question,
+         "options": options, "form": form},
     )
 
 
@@ -169,7 +178,8 @@ def submit_default(request, survey_pk, sub_pk):
             question.save()
             sub.is_complete = False
             sub.save()
-            return redirect("survey-submit", survey_pk=survey.pk, sub_pk=sub.pk)
+            return redirect("survey-submit",
+                            survey_pk=survey.pk, sub_pk=sub.pk)
 
     else:
         form = DefaultQuestionsAnswerForm(request.POST)
@@ -184,9 +194,9 @@ def submit_default(request, survey_pk, sub_pk):
 def submit(request, survey_pk, sub_pk):
     """Survey-taker submit their completed survey."""
     try:
-        survey = Survey.objects.prefetch_related("question_set__option_set").get(
-            pk=survey_pk, is_active=True
-        )
+        survey = (Survey.objects
+                  .prefetch_related("question_set__option_set")
+                  .get(pk=survey_pk, is_active=True))
     except Survey.DoesNotExist:
         raise Http404()
 
@@ -198,15 +208,16 @@ def submit(request, survey_pk, sub_pk):
     questions = survey.question_set.all()
     options = [q.option_set.all() for q in questions]
     form_kwargs = {"empty_permitted": False, "options": options}
-    AnswerFormSet = formset_factory(AnswerForm, extra=len(questions), formset=BaseAnswerFormSet)
+    AnswerFormSet = (formset_factory(AnswerForm,
+                     extra=len(questions), formset=BaseAnswerFormSet))
     if request.method == "POST":
         formset = AnswerFormSet(request.POST, form_kwargs=form_kwargs)
         if formset.is_valid():
             with transaction.atomic():
                 for form in formset:
-                    Answer.objects.create(
-                        option_id=form.cleaned_data["option"], submission_id=sub_pk,
-                    )
+                    (Answer.objects
+                     .create(option_id=form.cleaned_data["option"],
+                             submission_id=sub_pk,))
 
                 sub.is_complete = True
                 sub.save()
@@ -219,7 +230,8 @@ def submit(request, survey_pk, sub_pk):
     return render(
         request,
         "survey/submit.html",
-        {"survey": survey, "question_forms": question_forms, "formset": formset},
+        {"survey": survey, "question_forms": question_forms,
+         "formset": formset},
     )
 
 

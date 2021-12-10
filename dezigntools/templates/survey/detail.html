@@ -29,7 +29,7 @@
 
 				<h4 class="card">
 
-					Question {{ forloop.counter }} / {{ questions|length }}: {{ question.prompt }}
+					Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
 
 				</h4>
 
@@ -39,7 +39,7 @@
 
 					<li>
 
-						{{ forloop.counter }}) {{option.text}}: {{ option.percent|floatformat }}%
+						{{ forloop.counter }}) {{option.option}}: {{ option.percent|floatformat }}%
 
 					</li>
 

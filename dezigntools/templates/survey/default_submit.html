@@ -11,21 +11,6 @@
                 {% csrf_token %}
                 {{form|crispy}}
 
-                {% if form.errors %}
-                <div class="ui message error">
-                    <div class="header">We had some issues</div>
-                    <ul class="list">
-                        {% for field in form %}
-                        {% for error in field.errors %}
-                        <li>{{ field.label_tag }} {{ error }}</li>
-                        {% endfor %}
-                        {% endfor %}
-                        {% for error in form.non_field_errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% endif %}
         </div>
     </div>
     <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>

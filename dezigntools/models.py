@@ -45,10 +45,16 @@ class AgeRange(models.Model):
 class DefaultQuestions(models.Model):
     """Add default questions to a survey"""
 
-    survey = models.ForeignKey(Survey, on_delete=models.CASCADE, related_name="defaultquestions_set")
+    survey = models.ForeignKey(Survey,
+                               on_delete=models.CASCADE,
+                               related_name="defaultquestions_set")
     name = models.CharField(max_length=128)
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE, related_name="survey_answers", null=True)
-    age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE, related_name="survey_answers", null=True)
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE,
+                               related_name="survey_answers",
+                               null=True)
+    age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE,
+                                  related_name="survey_answers",
+                                  null=True)
     job_title = models.CharField(max_length=128, null=True)
     industry = models.CharField(max_length=128, null=True)
 
@@ -57,14 +63,14 @@ class Question(models.Model):
     """A question in a survey"""
 
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
-    prompt = models.CharField(max_length=128)
+    question = models.CharField(max_length=128)
 
 
 class Option(models.Model):
     """A multi-choice option available as a part of a survey question."""
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    text = models.CharField(max_length=128)
+    option = models.CharField(max_length=128)
 
 
 class Submission(models.Model):
