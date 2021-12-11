@@ -9,7 +9,7 @@ https://django-rest-auth.readthedocs.io/en/latest/installation.html
 """
 
 from django.shortcuts import render
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from rest_auth.registration.views import SocialLoginView
 from rest_auth.social_serializers import TwitterLoginSerializer
@@ -59,6 +59,7 @@ def send_email(request):
 
     # create a variable to keep track of the form
     message_sent = False
+    recipient_list = ""
 
     # check if form has been submitted
     if request.method == 'POST':
@@ -69,11 +70,19 @@ def send_email(request):
         if form.is_valid():
             c_d = form.cleaned_data
             subject = c_d['subject']
-            message = c_d['message']
+            text_content = c_d['message']
+            recipient_list = c_d['recipients']
 
             # send the email to the recipent
-            send_mail(subject, message,
-                      settings.DEFAULT_FROM_EMAIL, [c_d['recipient']])
+            msg = EmailMultiAlternatives(from_email=settings.DEFAULT_FROM_EMAIL,
+                                         reply_to=['xperiencedezignwiz@gmail.com'],
+                                         to=['xperiencedezignwiz@gmail.com'],
+                                         bcc=recipient_list,
+                                         subject=subject,
+                                         body=text_content)
+            msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
+            msg.dynamic_template_data = {"message": text_content, "subject": subject}
+            msg.send(fail_silently=False)
 
             # set the variable initially created to True
             message_sent = True
@@ -85,5 +94,6 @@ def send_email(request):
 
         'form': form,
         'message_sent': message_sent,
+        'recipient_list': recipient_list,
 
     })

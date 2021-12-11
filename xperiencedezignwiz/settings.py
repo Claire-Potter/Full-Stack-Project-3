@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
     'django_summernote',
+    'multi_email_field',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -210,3 +211,5 @@ EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = 'xperiencedezignwiz@gmail.com'
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+SENDGRID_ECHO_TO_STDOUT = True
