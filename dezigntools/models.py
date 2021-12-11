@@ -49,6 +49,7 @@ class DefaultQuestions(models.Model):
                                on_delete=models.CASCADE,
                                related_name="defaultquestions_set")
     name = models.CharField(max_length=128)
+    email = models.EmailField()
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE,
                                related_name="survey_answers",
                                null=True)

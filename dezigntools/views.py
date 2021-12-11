@@ -1,4 +1,6 @@
 from django.db import transaction
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
@@ -6,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .models import Survey, Question, Answer, Submission
 from .forms import (SurveyForm, QuestionForm, OptionForm, AnswerForm,
-                    BaseAnswerFormSet, DefaultQuestionsAnswerForm)
+                    BaseAnswerFormSet, DefaultQuestionsAnswerForm, EmailForm)
 
 
 @login_required
@@ -59,6 +61,78 @@ def detail(request, pk):
 
 
 @login_required
+def send_email(request, pk):
+    try:
+        survey = (Survey.objects
+                  .prefetch_related("question_set__option_set")
+                  .get(pk=pk, creator=request.user, is_active=True))
+    except Survey.DoesNotExist:
+        raise Http404()
+
+    host = request.get_host()
+    public_path = reverse("survey-start", args=[pk])
+    public_url = f"{request.scheme}://{host}{public_path}"
+
+    # create a variable to keep track of the form
+    message_sent = False
+    recipient_list = ""
+
+    # check if form has been submitted
+    if request.method == 'POST':
+
+        form = EmailForm(request.POST)
+
+        # check if data from the form is clean
+        if form.is_valid():
+            quiz_link = public_url
+            c_d = form.cleaned_data
+            subject = c_d['subject']
+            message = c_d['message']
+            recipient_list = c_d['recipients']
+
+            # send the email to the recipent
+            msg = EmailMultiAlternatives(from_email=settings
+                                         .DEFAULT_FROM_EMAIL,
+                                         reply_to=['xperience'
+                                                   'dezignwiz@gmail.com'],
+                                         to=['xperiencedezignwiz@gmail.com'],
+                                         bcc=recipient_list,
+                                         body=message,
+                                         subject=subject)
+            msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
+            msg.dynamic_template_data = {"body": message,
+                                         "body_two": quiz_link,
+                                         "subject": subject}
+            msg.send(fail_silently=False)
+
+            # Unsubscribe groups
+            # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
+            msg.asm = {'group_id': 138000, 'groups_to_display': [
+                       'XperienceDezignWiz']}
+
+            # set the variable initially created to True
+            message_sent = True
+
+    else:
+        form = EmailForm(initial={'subject': 'XperienceDezignWiz'
+                                             ' Survey',
+                                             'message': 'You have been sent'
+                                             ' a survey to complete.'
+                                             ' Please follow this link'
+                                             ' to access the survey:'})
+
+    return render(request, 'survey/email.html', {
+
+        'form': form,
+        'message_sent': message_sent,
+        'recipient_list': recipient_list,
+        "survey": survey,
+        "public_url": public_url,
+
+    })
+
+
+@login_required
 def create(request):
     """User can create a new survey"""
     if request.method == "POST":
@@ -97,7 +171,7 @@ def edit(request, pk):
     if request.method == "POST":
         survey.is_active = True
         survey.save()
-        return redirect("survey-detail", pk=pk)
+        return redirect("send-survey-email", pk=pk)
     else:
         questions = survey.question_set.all()
         return render(request, "survey/edit.html",
@@ -173,6 +247,8 @@ def submit_default(request, survey_pk, sub_pk):
     if request.method == "POST":
         form = DefaultQuestionsAnswerForm(request.POST)
         if form.is_valid():
+            form.instance.email = request.user.email
+            form.instance.name = request.user.username
             question = form.save(commit=False)
             question.survey = survey
             question.save()

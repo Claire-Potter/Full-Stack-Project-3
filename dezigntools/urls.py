@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
-
-from . import views
+from dezigntools import views
 
 urlpatterns = [
 
     path("surveys/", views.survey_list, name="survey-list"),
+    path('surveys/<int:pk>/email', views.send_email, name='send-survey-email'),
     path("surveys/<int:pk>/", views.detail, name="survey-detail"),
     path("surveys/create/", views.create, name="survey-create"),
     path("surveys/<int:pk>/delete/", views.delete, name="survey-delete"),
