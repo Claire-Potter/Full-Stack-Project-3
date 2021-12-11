@@ -74,15 +74,22 @@ def send_email(request):
             recipient_list = c_d['recipients']
 
             # send the email to the recipent
-            msg = EmailMultiAlternatives(from_email=settings.DEFAULT_FROM_EMAIL,
-                                         reply_to=['xperiencedezignwiz@gmail.com'],
+            msg = EmailMultiAlternatives(from_email=settings
+                                         .DEFAULT_FROM_EMAIL,
+                                         reply_to=['xperience'
+                                                   'dezignwiz@gmail.com'],
                                          to=['xperiencedezignwiz@gmail.com'],
-                                         bcc=recipient_list,
-                                         subject=subject,
-                                         body=text_content)
+                                         bcc=recipient_list, body=text_content,
+                                         subject=subject)
             msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
-            msg.dynamic_template_data = {"message": text_content, "subject": subject}
+            msg.dynamic_template_data = {"body": text_content,
+                                         "subject": subject}
             msg.send(fail_silently=False)
+
+            # Unsubscribe groups
+            # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
+            msg.asm = {'group_id': 138000, 'groups_to_display': [
+                       'XperienceDezignWiz']}
 
             # set the variable initially created to True
             message_sent = True
