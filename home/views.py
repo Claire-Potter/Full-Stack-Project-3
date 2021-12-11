@@ -9,12 +9,15 @@ https://django-rest-auth.readthedocs.io/en/latest/installation.html
 """
 
 from django.shortcuts import render
+from django.core.mail import send_mail
+from django.conf import settings
 from rest_auth.registration.views import SocialLoginView
 from rest_auth.social_serializers import TwitterLoginSerializer
 from allauth.socialaccount.providers.facebook.views import (
     FacebookOAuth2Adapter)
 from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
 from .models import Home, Verification
+from .forms import EmailForm
 
 
 def index(request):
@@ -50,3 +53,37 @@ class TwitterLogin(SocialLoginView):
     """ A view to authorise login via Twitter """
     serializer_class = TwitterLoginSerializer
     adapter_class = TwitterOAuthAdapter
+
+
+def send_email(request):
+
+    # create a variable to keep track of the form
+    message_sent = False
+
+    # check if form has been submitted
+    if request.method == 'POST':
+
+        form = EmailForm(request.POST)
+
+        # check if data from the form is clean
+        if form.is_valid():
+            c_d = form.cleaned_data
+            subject = c_d['subject']
+            message = c_d['message']
+
+            # send the email to the recipent
+            send_mail(subject, message,
+                      settings.DEFAULT_FROM_EMAIL, [c_d['recipient']])
+
+            # set the variable initially created to True
+            message_sent = True
+
+    else:
+        form = EmailForm()
+
+    return render(request, 'email.html', {
+
+        'form': form,
+        'message_sent': message_sent,
+
+    })

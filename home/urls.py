@@ -20,4 +20,5 @@ urlpatterns = [
     path('rest-auth/twitter/',
          views.TwitterLogin.as_view(),
          name='twitter_login'),
+    path('email/', views.send_email, name='send_email'),
 ]
