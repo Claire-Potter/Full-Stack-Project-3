@@ -14,7 +14,7 @@ from rest_auth.social_serializers import TwitterLoginSerializer
 from allauth.socialaccount.providers.facebook.views import (
     FacebookOAuth2Adapter)
 from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
-from .models import Home
+from .models import Home, Verification
 
 
 def index(request):
@@ -26,6 +26,19 @@ def index(request):
     }
 
     return render(request, 'index.html', context)
+
+
+def verification(request):
+    """ A view to return the google verification page """
+    verification_id = (Verification.objects
+                       .filter(verification="google50b8ec44e2d448c8.html")
+                       .latest())
+
+    context = {
+        'verification_id': verification_id,
+    }
+
+    return render(request, 'google50b8ec44e2d448c8.html', context)
 
 
 class FacebookLogin(SocialLoginView):

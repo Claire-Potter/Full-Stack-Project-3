@@ -23,3 +23,24 @@ class Home(models.Model):
 
     def __str__(self):
         return '%s' % (self.username)
+
+
+class Verification(models.Model):
+    """
+    Model created to render a view for the google verification.
+    A characterfield is linked to store the google verification.
+    """
+    verification = models.CharField(max_length=250)
+    updated_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        """
+        Meta created to order the Verification Model according
+        to the updated_on field. It also determines the latest
+        entry saved to the model.
+        """
+        ordering = ['updated_on']
+        get_latest_by = ['updated_on']
+
+    def __str__(self):
+        return '%s' % (self.verification)
