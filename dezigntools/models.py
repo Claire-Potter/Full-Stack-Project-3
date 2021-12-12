@@ -42,7 +42,20 @@ class AgeRange(models.Model):
         return '%s' % (self.title)
 
 
-class DefaultQuestions(models.Model):
+class Industry(models.Model):
+    """
+    Model created to store the Industry choices.
+    """
+    title = models.CharField(max_length=250, unique=True)
+
+    class Meta:
+        ordering = ["title"]
+
+    def __str__(self):
+        return '%s' % (self.title)
+
+
+class DefaultQuestion(models.Model):
     """Add default questions to a survey"""
 
     survey = models.ForeignKey(Survey,
@@ -51,13 +64,15 @@ class DefaultQuestions(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField()
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE,
-                               related_name="survey_answers",
+                               related_name="gender_set",
                                null=True)
     age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE,
-                                  related_name="survey_answers",
+                                  related_name="age_range_set",
                                   null=True)
-    job_title = models.CharField(max_length=128, null=True)
-    industry = models.CharField(max_length=128, null=True)
+ 
+    industry = models.ForeignKey(Industry, on_delete=models.CASCADE,
+                                 related_name="industry_set",
+                                 null=True)
 
 
 class Question(models.Model):

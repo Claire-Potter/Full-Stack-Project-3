@@ -22,34 +22,69 @@
 					Survey</a></h3>
 
 			<h1 class="card-title bolder dividing">Results</h1>
+			<div class="text-center">
 
-			{% for question in questions %}
-
-			<div class="col-md-6">
-
-				<h4 class="card">
-
-					Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
-
-				</h4>
-
+				<h2 class="card">
+					Age Range:
+				</h2>
+				{% for age in age_range %}
 				<ul>
-
-					{% for option in question.option_set.all %}
-
+					{% if 0 in age.percent %}
 					<li>
+						{{ forloop.counter }}) {{ age }}: 0.00%
+					</li>
+					{% else %}
+					<li>
+						{{ forloop.counter }}) {{ age }}: {{ age.percent|floatformat }}%
+					</li>
+					{% endif %}
+				</ul>
+				{% endfor %}
 
+				<h2 class="card">
+					Gender:
+				</h2>
+				{% for gender in gender_range %}
+				<ul>
+					{% if '0' in gender.percent %}
+					<li>
+						{{ forloop.counter }}) {{ gender }}: 0.00%
+					</li>
+					{% else %}
+					<li>
+						{{ forloop.counter }}) {{ gender }}: {{ gender.percent|floatformat }}%
+					</li>
+					{% endif %}
+				</ul>
+				{% endfor %}
+
+				<h2 class="card">
+					Industry:
+				</h2>
+				{% for industry in industry_range %}
+				<ul>
+					<li>
+						{{ forloop.counter }}) {{ industry }}: {{ industry.percent|floatformat }}%
+					</li>
+				</ul>
+				{% endfor %}
+
+				{% for question in questions %}
+				<h2 class="card">
+					Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
+				</h2>
+				<ul>
+					{% for option in question.option_set.all %}
+					<li>
 						{{ forloop.counter }}) {{option.option}}: {{ option.percent|floatformat }}%
-
 					</li>
 
 					{% endfor %}
-
 				</ul>
-
+				{% endfor %}
 			</div>
 
-			{% endfor %}
+
 
 
 

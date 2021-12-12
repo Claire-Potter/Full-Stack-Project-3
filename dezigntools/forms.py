@@ -1,6 +1,6 @@
 from django import forms
 from multi_email_field.forms import MultiEmailField
-from .models import Survey, DefaultQuestions, Question, Option
+from .models import Survey, DefaultQuestion, Question, Option
 
 
 class SurveyForm(forms.ModelForm):
@@ -36,8 +36,8 @@ class AnswerForm(forms.Form):
 
 class DefaultQuestionsAnswerForm(forms.ModelForm):
     class Meta:
-        model = DefaultQuestions
-        fields = ['gender', 'age_range', 'job_title', 'industry']
+        model = DefaultQuestion
+        fields = ['gender', 'age_range', 'industry']
 
 
 class BaseAnswerFormSet(forms.BaseFormSet):
@@ -48,10 +48,6 @@ class BaseAnswerFormSet(forms.BaseFormSet):
 
 
 class EmailForm(forms.Form):
-    subject = forms.CharField(label="Please enter the Subject of your email",)
-    recipients = MultiEmailField(label="Please enter the email addresses of"
-                                       " all recipients. A space separation"
-                                       " is required.",)
-    message = forms.CharField(widget=forms.Textarea, label="Please complete"
-                                                           " your email"
-                                                           " content here.")
+    subject = forms.CharField()
+    recipients = MultiEmailField()
+    message = forms.CharField(widget=forms.Textarea)

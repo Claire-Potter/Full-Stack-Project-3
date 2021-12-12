@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.forms.formsets import formset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from .models import Survey, Question, Answer, Submission
+from .models import (Survey, Question, Answer, Submission,
+                     DefaultQuestion, AgeRange, Gender, Industry)
 from .forms import (SurveyForm, QuestionForm, OptionForm, AnswerForm,
                     BaseAnswerFormSet, DefaultQuestionsAnswerForm, EmailForm)
 
@@ -19,6 +20,10 @@ def survey_list(request):
     return render(request, "survey/list.html", {"surveys": surveys})
 
 
+def jls_extract_def(date_dict):
+    return date_dict
+
+
 @login_required
 def detail(request, pk):
     """User can view an active survey"""
@@ -29,25 +34,66 @@ def detail(request, pk):
     except Survey.DoesNotExist:
         raise Http404()
 
-    questions = survey.question_set.all()
+    default_questions = DefaultQuestion.objects.filter(survey=pk)
+    total_answers = default_questions.count()
+    age_range = AgeRange.objects.all()
+    for question in default_questions:
+        answer_age_range = question.age_range
+        for age in age_range:
+            if age == answer_age_range:
+                n_o = int(1)
+                number_sum = 0
+                for num in range(0, n_o+1, 1):
+                    sum_total = number_sum+num
+                    total_age_number = sum_total
+                    age.percent = float(100.0 * total_age_number /
+                                        total_answers if total_answers else 0)
+
+    gender_range = Gender.objects.all()
+    for question in default_questions:
+        answer_gender = question.gender
+        for gender in gender_range:
+            if gender == answer_gender:
+                n_o = int(1)
+                number_sum = 0
+                for num in range(0, n_o+1, 1):
+                    sum_total = number_sum+num
+                    total_gender_number = sum_total
+                    gender.percent = float(100.0 * total_gender_number /
+                                           total_answers if total_answers else 0)
+    
+    industry_range = Industry.objects.all()
+    for question in default_questions:
+        answer_industry = question.industry
+        for industry in industry_range:
+            if industry == answer_industry:
+                n_o = int(1)
+                number_sum = 0
+                for num in range(0, n_o+1, 1):
+                    sum_total = number_sum+num
+                    total_industry_number = sum_total
+                    industry.percent = float(100.0 * total_industry_number /
+                                             total_answers if total_answers else 0)
 
     # Calculate the results.
     # This is a naive implementation and it could be optimised
     #  to hit the database less.
     # See here for more info on how you might improve this code:
     #  https://docs.djangoproject.com/en/3.1/topics/db/aggregation/
+    questions = survey.question_set.all()
     for question in questions:
         option_pks = question.option_set.values_list("pk", flat=True)
-        total_answers = Answer.objects.filter(option_id__in=option_pks).count()
+        total_answers_q = Answer.objects.filter(option_id__in=option_pks).count()
         for option in question.option_set.all():
             num_answers = Answer.objects.filter(option=option).count()
             option.percent = (100.0 * num_answers /
-                              total_answers if total_answers else 0)
+                              total_answers_q if total_answers_q else 0)
 
     host = request.get_host()
     public_path = reverse("survey-start", args=[pk])
     public_url = f"{request.scheme}://{host}{public_path}"
     num_submissions = survey.submission_set.filter(is_complete=True).count()
+
     return render(
         request,
         "survey/detail.html",
@@ -56,6 +102,11 @@ def detail(request, pk):
             "public_url": public_url,
             "questions": questions,
             "num_submissions": num_submissions,
+            'default_questions': default_questions,
+            'total_answers': total_answers,
+            'age_range': age_range,
+            'gender_range': gender_range,
+            'industry_range': industry_range,
         },
     )
 
@@ -135,8 +186,10 @@ def send_email(request, pk):
 @login_required
 def create(request):
     """User can create a new survey"""
+    context = dict(form=SurveyForm())
     if request.method == "POST":
-        form = SurveyForm(request.POST)
+        form = SurveyForm(request.POST, request.FILES)
+        context['posted'] = form.instance
         if form.is_valid():
             survey = form.save(commit=False)
             survey.creator = request.user
@@ -145,7 +198,7 @@ def create(request):
     else:
         form = SurveyForm()
 
-    return render(request, "survey/create.html", {"form": form})
+    return render(request, "survey/create.html", context)
 
 
 @login_required
