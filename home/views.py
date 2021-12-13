@@ -11,13 +11,14 @@ https://django-rest-auth.readthedocs.io/en/latest/installation.html
 from django.shortcuts import render
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
+from django.views import  View
 from rest_auth.registration.views import SocialLoginView
 from rest_auth.social_serializers import TwitterLoginSerializer
 from allauth.socialaccount.providers.facebook.views import (
     FacebookOAuth2Adapter)
 from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
-from .models import Home, Verification
-from .forms import EmailForm
+from .models import Home, User
+from .forms import EmailForm, ContactForm
 
 
 def index(request):
@@ -29,19 +30,6 @@ def index(request):
     }
 
     return render(request, 'index.html', context)
-
-
-def verification(request):
-    """ A view to return the google verification page """
-    verification_id = (Verification.objects
-                       .filter(verification="google50b8ec44e2d448c8.html")
-                       .latest())
-
-    context = {
-        'verification_id': verification_id,
-    }
-
-    return render(request, 'google50b8ec44e2d448c8.html', context)
 
 
 class FacebookLogin(SocialLoginView):
@@ -104,3 +92,82 @@ def send_email(request):
         'recipient_list': recipient_list,
 
     })
+
+
+class Contact(View):
+    """
+    View created to render the Contact page.
+    The view also references the Contact model
+    and form in order to update the fields within
+    the model tables
+    """
+
+    def get(self, request):
+        """
+        The get function retrieves the data
+        to generate the step details page.
+
+        self: The self is used to represent the instance of the class.
+        request: The requests module allows you to send HTTP
+        requests using Python.The HTTP request returns a Response
+        Object with all the response data (content, encoding, status, etc).
+        Definition from https://www.w3schools.com/python/module_requests.asp
+
+        If and else statement utilised to determine whether the user
+        is logged in or not, if they are logged in, their name and email
+        address will be derived from their user profile.
+        """
+        contact_form = ContactForm()
+        if User.objects.filter(username=self.request.user.username).exists():
+            contact_form.instance.email = request.user.email
+            contact_form.instance.name = request.user.username
+        else:
+            contact_form = CommentForm()
+
+
+        return render(
+            request,
+            'contact.html',
+            {
+                'contact_form': ContactForm(),
+            },
+        )
+
+    def post(self, request):
+        """
+
+        self: The self is used to represent the instance of the class.
+        request: The requests module allows you to send HTTP
+        requests using Python.The HTTP request returns a Response
+        Object with all the response data (content, encoding, status, etc).
+        Definition from https://www.w3schools.com/python/module_requests.asp
+
+        If and else statement utilised to determine whether the user
+        is logged in or not, if they are logged in, their name and email
+        address will be derived from their user profile.
+        """
+        if Contact.objects.filter(username=self.request.user.username).exists():
+            contact_form = ContactForm(data=request.POST)
+            contact_form.instance.email = request.user.email
+            contact_form.instance.name = request.user.username
+        else:
+            contact_form = ContactForm(data=request.POST)
+        if contact_form.is_valid():
+            contact_form.instance.email = request.user.email
+            contact_form.instance.name = request.user.username
+            body = body_form.save(commit=False)
+            body.save()
+            messages.success(request, 'Request submitted successfully')
+        else:
+            contac_form = ContactForm()
+
+        progress_form = ProgressForm(data=request.POST)
+
+        return render(
+            request,
+            'contact.html',
+            {
+                'contact_form': ContactForm(),
+            },
+        )
+

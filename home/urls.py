@@ -12,8 +12,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('google50b8ec44e2d448c8.html/',
-         views.verification, name='google_verification'),
     path('rest-auth/facebook/',
          views.FacebookLogin.as_view(),
          name='fb_login'),
@@ -21,4 +19,6 @@ urlpatterns = [
          views.TwitterLogin.as_view(),
          name='twitter_login'),
     path('email/', views.send_email, name='send_email'),
+    path('contact/', views. Contact.as_view(), name='contact'),
+
 ]

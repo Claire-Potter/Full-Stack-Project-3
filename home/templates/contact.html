@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<section class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1 class="card-title bolder text-center">Require assistance?</h1>
+            <h2 class="card-title text-center">Please get in touch!</h2>
+
+            <div class="center-form">
+                <form method="post" style="margin-top: 1.3em;">
+                    {{ progress_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-signup btn-lg mt-3">Submit</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+{% endblock %}

@@ -25,22 +25,29 @@ class Home(models.Model):
         return '%s' % (self.username)
 
 
-class Verification(models.Model):
+class Contact(models.Model):
     """
-    Model created to render a view for the google verification.
-    A characterfield is linked to store the google verification.
+    Model created to render the contact page.
+    A foreignKey field is linked to store the username
+    as the related_name 'contact'
     """
-    verification = models.CharField(max_length=250)
-    updated_on = models.DateTimeField(auto_now_add=True)
+    username = models.ForeignKey(
+               User, on_delete=models.CASCADE, related_name='contact',
+               default='1', blank=True)
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         """
-        Meta created to order the Verification Model according
-        to the updated_on field. It also determines the latest
-        entry saved to the model.
+        Meta created to order the Contact Model according
+        to the created on date.
         """
-        ordering = ['updated_on']
-        get_latest_by = ['updated_on']
+        ordering = ['-created_on']
 
     def __str__(self):
-        return '%s' % (self.verification)
+        return f'Contact request {self.body} by {self.name}'
+
+    def __str__(self):
+        return '%s' % (self.username)
