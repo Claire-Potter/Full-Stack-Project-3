@@ -2,7 +2,7 @@
 Django settings for xperiencedezignwiz project.
 
 The Xperiencedezignwiz project was initially setup by
-watching the Code Institute I Think Therefore I Blog 
+watching the Code Institute I Think Therefore I Blog
 project videos and creating the setup and files alongside
 the video. It was then customised and additional functionality
 added to ensure that the purpose of the site was fulfilled.
@@ -60,9 +60,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.instagram',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
+    'social_django',
     'rest_auth.registration',
     'crispy_forms',
     'embed_video',
@@ -93,6 +93,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'xperiencedezignwiz.urls'
@@ -108,6 +109,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
               ],
         },
     },
@@ -201,15 +204,26 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
+
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = (os.environ.get
+                                   ("SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY"))
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = (os.environ.get
+                                      ("SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET"))
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-]
+    'social_core.backends.github.GithubOAuth2',
+    'social.backends.linkedin.LinkedinOAuth2',
+    ]
 
 # Twilio SendGrid
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = 'xperiencedezignwiz@gmail.com'
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+# echo to stdout or any other file-like object that is
+# passed to the backend via the stream kwarg.
 SENDGRID_ECHO_TO_STDOUT = True

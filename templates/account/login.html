@@ -22,19 +22,17 @@
         {% if socialaccount_providers %}
         <p>{% blocktrans with site.name as XperienceDezignWiz %}Please sign in with one
           of your existing third party accounts or sign in below:{% endblocktrans %}</p>
-
         <div class="socialaccount_ballot">
-
           <ul class="socialaccount_providers step-link">
             {% include "socialaccount/snippets/provider_list.html" with process="login" %}
           </ul>
-
-          <div class="login-or">{% trans 'or' %}</div>
-
         </div>
-
         {% include "socialaccount/snippets/login_extra.html" %}
-
+        <ul class='step-link'>
+          <li><a href="{% url 'social:begin' 'github' %}"> GitHub</a></li>
+          <li><a href="{% url 'social:begin' backend='linkedin-oauth2' %}">Linkedin</a></li>
+        </ul>
+        <div class="login-or">{% trans 'or' %}</div>
         {% else %}
         <p>{% blocktrans %}If you have not created an account yet, then please
           <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
@@ -47,7 +45,8 @@
           {% endif %}
           <button class="btn btn-signup right mb-5" type="submit">{% trans "Sign In" %}</button>
         </form>
-        <p>If you have forgotten your password <a class="step-link" href="{% url 'account_reset_password' %}">click here</a> to reset it.
+        <p>If you have forgotten your password <a class="step-link" href="{% url 'account_reset_password' %}">click
+            here</a> to reset it.
         </p>
       </div>
     </div>
