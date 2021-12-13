@@ -62,7 +62,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
-    'social_django',
+    'allauth.socialaccount.providers.linkedin',
+    'allauth.socialaccount.providers.github',
     'rest_auth.registration',
     'crispy_forms',
     'embed_video',
@@ -93,7 +94,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'xperiencedezignwiz.urls'
@@ -109,8 +109,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
               ],
         },
     },
