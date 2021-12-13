@@ -3,8 +3,163 @@
 {% block title %}View - Surveys{% endblock %}
 
 
-
 {% block content %}
+<script>
+// jquery function
+$(document).ready(function(){
+	    var ctx = $(".myChart2")[0].getContext('2d');
+        var className = ctx.className;
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: { 
+                labels: [{% for age in age_range %} '{{age}}', {%endfor%}], //loop through queryset, 
+                datasets: [{ 
+                    label: '% per age', 
+                    data: [{% for age in age_range %} {{ age.percent|floatformat }}, {%endfor%}], 
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+				plugins: {
+                    legend: {
+						    display: false
+                        }
+			        }
+		 }
+});
+    });
+
+	$(document).ready(function(){
+	    var ctx = $(".myChart")[0].getContext('2d');
+        var className = ctx.className;
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: { 
+                labels: [{% for gender in gender_range %} '{{gender}}', {%endfor%}], //loop through queryset, 
+                datasets: [{ 
+                    label: '% per age', 
+                    data: [{% for gender in gender_range %} {{ gender.percent|floatformat }}, {%endfor%}], 
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+				plugins: {
+                    legend: {
+						    display: false
+                    }
+			    }
+			}
+});
+    });
+
+	$(document).ready(function(){
+	    var ctx = $(".myChart3")[0].getContext('2d');
+        var className = ctx.className;
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: { 
+                labels: [{% for industry in industry_range %} '{{industry}}', {%endfor%}], //loop through queryset, 
+                datasets: [{ 
+                    label: '% per age', 
+                    data: [{% for industry in industry_range %} {{ industry.percent|floatformat }}, {%endfor%}], 
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', 
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+				plugins: {
+                    legend: {
+						    display: false
+                }
+			  }
+			}
+});
+    });
+
+	var resizeId;
+        $(window).resize(function() {
+            clearTimeout(resizeId);
+            resizeId = setTimeout(afterResizing, 100);
+        });
+
+
+        function afterResizing(){
+            var canvasheight= $(".chart-size")[0].height;
+			var className = canvasheight.className;
+            if(canvasheight <=250)
+            {
+                Chart.overrides['doughnut'].plugins.legend.title.display=false;
+            }
+            else
+            {
+                Chart.overrides['doughnut'].plugins.legend.title.display=true;
+            }
+            window.chart1.update();
+        }
+
+</script>
 
 <div class="container mt-5">
 
@@ -12,7 +167,7 @@
 
 		<div class="col-md-12 text-center">
 
-			<h1 class="card-title">{{ survey.title }}</h1>
+			<h1 class="card-title bolder">{{ survey.title }}</h1>
 
 			<h3 class="card-title">You have {{ num_submissions }} submissions</h3>
 
@@ -21,56 +176,30 @@
 
 					Survey</a></h3>
 
-			<h1 class="card-title bolder dividing">Results</h1>
+			<h1 class="card-title bolder dividing">Answers</h1>
 			<div class="text-center">
-
-				<h2 class="card">
-					Age Range:
+				<div class="mt-5 mb-5">
+				<h2 class="card bolder">
+					% per Age Range:
 				</h2>
-				{% for age in age_range %}
-				<ul>
-					{% if 0 in age.percent %}
-					<li>
-						{{ forloop.counter }}) {{ age }}: 0.00%
-					</li>
-					{% else %}
-					<li>
-						{{ forloop.counter }}) {{ age }}: {{ age.percent|floatformat }}%
-					</li>
-					{% endif %}
-				</ul>
-				{% endfor %}
-
-				<h2 class="card">
-					Gender:
+				<canvas class="myChart2 chart-size" width="400" height="100"></canvas>
+				</div>
+				<div class="mt-5  mb-5">
+				<h2 class="card bolder">
+					% per Gender:
 				</h2>
-				{% for gender in gender_range %}
-				<ul>
-					{% if '0' in gender.percent %}
-					<li>
-						{{ forloop.counter }}) {{ gender }}: 0.00%
-					</li>
-					{% else %}
-					<li>
-						{{ forloop.counter }}) {{ gender }}: {{ gender.percent|floatformat }}%
-					</li>
-					{% endif %}
-				</ul>
-				{% endfor %}
-
-				<h2 class="card">
-					Industry:
+				<canvas class="myChart chart-size" width="400" height="100"></canvas>
+				</div>
+				<div class="mt-5  mb-5">
+				<h2 class="card bolder">
+					% per Industry:
 				</h2>
-				{% for industry in industry_range %}
-				<ul>
-					<li>
-						{{ forloop.counter }}) {{ industry }}: {{ industry.percent|floatformat }}%
-					</li>
-				</ul>
-				{% endfor %}
+				<canvas class="myChart3 chart-size" width="400" height="100"></canvas>
+				</div>
 
 				{% for question in questions %}
-				<h2 class="card">
+				<div class="mt-5  mb-5">
+				<h2 class="card bolder">
 					Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
 				</h2>
 				<ul>
@@ -82,6 +211,7 @@
 					{% endfor %}
 				</ul>
 				{% endfor %}
+			</div>
 			</div>
 
 

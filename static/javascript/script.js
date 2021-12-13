@@ -10,7 +10,7 @@ function dropdownMenu() {
 }
 
 // Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
+window.onclick = function (event) {
   if (!event.target.matches('.steps-button')) {
     var dropdowns = document.getElementsByClassName("dropdown-menu");
     var i;
@@ -138,17 +138,17 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var steps = ["Getting Started", "Empathy", "Define", "Ideate", "Prototype", "Test", "Finishing Off" ];
+var steps = ["Getting Started", "Empathy", "Define", "Ideate", "Prototype", "Test", "Finishing Off"];
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the steps array as possible autocomplete values:*/
 autocomplete(document.getElementById("myInput"), steps);
 
 //added the below code to allow the submission of the autokey search with the enter key
 var input = document.getElementById("myInput");
-input.addEventListener("keyup", function(event) {
+input.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById("submitButton").click();
+    event.preventDefault();
+    document.getElementById("submitButton").click();
   }
 });
 
@@ -159,3 +159,4 @@ setTimeout(function () {
   let alert = new bootstrap.Alert(messages);
   alert.close(messages);
 }, 2000);
+
