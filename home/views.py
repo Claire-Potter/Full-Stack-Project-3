@@ -11,13 +11,13 @@ https://django-rest-auth.readthedocs.io/en/latest/installation.html
 from django.shortcuts import render
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
-from django.views import  View
+from django.views import View
 from rest_auth.registration.views import SocialLoginView
 from rest_auth.social_serializers import TwitterLoginSerializer
 from allauth.socialaccount.providers.facebook.views import (
     FacebookOAuth2Adapter)
 from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
-from .models import Home, User
+from .models import Home, User, Verification
 from .forms import EmailForm, ContactForm
 
 
@@ -117,19 +117,16 @@ class Contact(View):
         is logged in or not, if they are logged in, their name and email
         address will be derived from their user profile.
         """
-        contact_form = ContactForm()
         if User.objects.filter(username=self.request.user.username).exists():
-            contact_form.instance.email = request.user.email
-            contact_form.instance.name = request.user.username
+            contact_form = ContactForm(initial={'name': request.user.username,
+                                                'email': request.user.email})
         else:
-            contact_form = CommentForm()
-
-
+            contact_form = ContactForm()
         return render(
             request,
             'contact.html',
             {
-                'contact_form': ContactForm(),
+                'contact_form': contact_form,
             },
         )
 
@@ -146,28 +143,66 @@ class Contact(View):
         is logged in or not, if they are logged in, their name and email
         address will be derived from their user profile.
         """
-        if Contact.objects.filter(username=self.request.user.username).exists():
-            contact_form = ContactForm(data=request.POST)
-            contact_form.instance.email = request.user.email
-            contact_form.instance.name = request.user.username
-        else:
-            contact_form = ContactForm(data=request.POST)
-        if contact_form.is_valid():
-            contact_form.instance.email = request.user.email
-            contact_form.instance.name = request.user.username
-            body = body_form.save(commit=False)
-            body.save()
-            messages.success(request, 'Request submitted successfully')
-        else:
-            contac_form = ContactForm()
+        # create a variable to keep track of the form
+        message_sent = False
 
-        progress_form = ProgressForm(data=request.POST)
+        # check if form has been submitted
+        if request.method == 'POST':
+            # check if data from the form is clean
+            contact_form = ContactForm(request.POST)
+            if contact_form.is_valid():
+                contact = contact_form.save(commit=False)
+                contact.save()
+                c_d = contact_form.cleaned_data
+                subject = 'A new Request has been submitted'
+                text_content = c_d['body']
+                client_name = c_d['name']
+                client_email = c_d['email']
+
+                # send the email to the recipent
+                msg = EmailMultiAlternatives(from_email=settings
+                                             .DEFAULT_FROM_EMAIL,
+                                             to=['xperience'
+                                                 'dezignwiz@gmail.com'],
+                                             cc=['clairepotter019@gmail.com'],
+                                             body=text_content,
+                                             subject=subject)
+                msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
+                msg.dynamic_template_data = {"body": text_content,
+                                             "body_two": client_name,
+                                             "body_three": client_email,
+                                             "subject": subject}
+                msg.send(fail_silently=False)
+
+                # Unsubscribe groups
+                # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
+                msg.asm = {'group_id': 138000, 'groups_to_display': [
+                           'XperienceDezignWiz']}
+
+                # set the variable initially created to True
+                message_sent = True
+            else:
+                contact_form = ContactForm()
 
         return render(
             request,
             'contact.html',
             {
-                'contact_form': ContactForm(),
+                'contact_form': contact_form,
+                'message_sent': message_sent,
+
             },
         )
 
+
+def verification(request):
+    """ A view to return the google verification page """
+    verification_id = (Verification.objects
+                       .filter(verification="google50b8ec44e2d448c8.html")
+                       .latest())
+
+    context = {
+        'verification_id': verification_id,
+    }
+
+    return render(request, 'google50b8ec44e2d448c8.html', context)

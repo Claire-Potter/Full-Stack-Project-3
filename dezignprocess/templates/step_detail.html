@@ -216,7 +216,7 @@
                 <div class="card-body">
                     {% if user.is_authenticated %}
                     <h2 class="card-title bolder">Update your progress:</h2>
-                    <form method="post" style="margin-top: 1.3em;">
+                    <form method="post" class="mt-5">
                         {{ progress_form | crispy }}
                         {% csrf_token %}
                         <button type="submit" class="btn btn-signup btn-lg mt-3">Submit</button>
@@ -229,7 +229,7 @@
                     {% if user.is_authenticated %}
                     <h2 class="card-title bolder">Create a Comment:</h2>
                     <p class="card-italic-smaller">Posting as: {{ user.username }}</p>
-                    <form method="post" style="margin-top: 1.3em;">
+                    <form method="post" class="mt-5">
                         {{ comment_form | crispy }}
                         {% csrf_token %}
                         <button type="submit" class="btn btn-signup btn-lg">Submit</button>
@@ -244,7 +244,7 @@
                 <div class="card-body">
                     <!-- We want a for loop inside the empty control tags to iterate through each comment in comments -->
                     {% for comment in comments %}
-                    <div class="comments" style="padding: 10px;">
+                    <div class="comments pt-5">
                         <p class="card-title bolder">
                             {{ comment.name }}
                             <span class="card-text text-muted h5">

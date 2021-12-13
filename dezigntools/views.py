@@ -139,7 +139,7 @@ def send_email(request, pk):
             c_d = form.cleaned_data
             subject = c_d['subject']
             message = c_d['message']
-            recipient_list = c_d['recipients']
+            recipient_list = c_d['recipients'] 
 
             # send the email to the recipent
             msg = EmailMultiAlternatives(from_email=settings
@@ -151,8 +151,11 @@ def send_email(request, pk):
                                          body=message,
                                          subject=subject)
             msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
-            msg.dynamic_template_data = {"body": message,
-                                         "body_two": quiz_link,
+            msg.dynamic_template_data = {"body": text_content,
+                                         "body_two": "Please follow"
+                                         " the link to complete the"
+                                         " survey:",
+                                         "body_three": quiz_link,
                                          "subject": subject}
             msg.send(fail_silently=False)
 

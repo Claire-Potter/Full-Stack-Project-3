@@ -2,9 +2,9 @@
 
 {% block content %}
 {% if message_sent %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-md-12 mt-5">
             <h1 class="card-title bolder">Email successfully sent</h1>
             <p class="card-title">Your message was successfully sent to {{ recipient_list }}</p>
             <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Return</a></div>
@@ -12,10 +12,11 @@
     </div>
 </div>
 {% else %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-md-12 mt-5">
             <h1 class="card-title bolder mt-3">Send E-mail</h1>
+            <div class="col-md-6 mx-auto card-with-background mb-5 px-5">
                 <form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}">
                     {% csrf_token %}
                     <p class="card-title">Please enter the Subject of your email:</p>
@@ -24,18 +25,20 @@
                     <p class="card-title">Please enter the email addresses of all recipients separated by a space.</p>
                     <div>{{ form.recipients }}</div>
                     <br />
-                    <p class="card-title">Please complete your email content here. The survey link will be added at the end of the email body automatically.</p>
+                    <p class="card-title">Please complete your email content here. The survey link will be added at the
+                        end of the email body automatically.</p>
                     <div>{{ form.message }}</div>
                     <br />
                     <input type="submit" class="btn mb-3 mr-1 get-started" value="Send Email" />
                 </form>
-                <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
+            </div>
+            <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
 
-                <div>
+            <div>
 
-                    <p>Click cancel to return to your list of surveys.</p>
+                <p>Click cancel to return to your list of surveys.</p>
 
-                </div>
+            </div>
         </div>
     </div>
 </div>

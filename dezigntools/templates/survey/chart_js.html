@@ -1,0 +1,225 @@
+<script>
+    // jquery function
+    $(document).ready(function(){
+            var ctx = $(".myChart2")[0].getContext('2d');
+            var className = ctx.className;
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: { 
+                    labels: [{% for age in age_range %} '{{age}}', {%endfor%}],
+                     //loop through queryset, 
+                    datasets: [{ 
+                        label: '% per age', 
+                        data: [{% for age in age_range %}
+                        {{ age.percent|floatformat }}, {%endfor%}], 
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', 
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(201, 94, 125, 0.2)',
+                            'rgba(94, 201, 189, 0.2)',
+                            'rgba(194, 87, 203, 0.2)',
+                            'rgba(97, 203, 87, 0.2)',
+                            'rgba(203, 202, 87, 0.2)',
+                            'rgba(203, 93, 87, 0.2)',
+                            'rgba(87, 134, 203, 0.2)',
+                            'rgba(37, 67, 116, 0.2)',
+                            'rgba(203, 226, 54, 0.2)',
+                            'rgba(139, 204, 238, 0.2)',
+                            'rgba(238, 139, 202, 0.2)',
+                            'rgba(80, 37, 49, 0.2)',
+                            'rgba(50, 91, 26, 0.2)',
+                            'rgba(26, 91, 87, 0.2)',
+                            'rgba(91, 26, 26, 0.2)',
+                            'rgba(136, 210, 221, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(201, 94, 125, 1)',
+                            'rgba(94, 201, 189, 1)',
+                            'rgba(194, 87, 203, 1)',
+                            'rgba(97, 203, 87, 1)',
+                            'rgba(203, 202, 87, 1)',
+                            'rgba(203, 93, 87, 1)',
+                            'rgba(87, 134, 203, 1)',
+                            'rgba(37, 67, 116, 1)',
+                            'rgba(203, 226, 54, 1)',
+                            'rgba(139, 204, 238, 1)',
+                            'rgba(238, 139, 202, 1)',
+                            'rgba(80, 37, 49, 1)',
+                            'rgba(50, 91, 26, 1)',
+                            'rgba(26, 91, 87, 1)',
+                            'rgba(91, 26, 26, 1)',
+                            'rgba(136, 210, 221, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+             }
+    });
+        });
+    
+    
+        $(document).ready(function(){
+            var ctx = $(".myChart")[0].getContext('2d');
+            var className = ctx.className;
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: { 
+                    labels: [{% for gender in gender_range %} '{{gender}}',
+                    {%endfor%}], //loop through queryset, 
+                    datasets: [{ 
+                        label: '% per age', 
+                        data: [{% for gender in gender_range %}
+                        {{ gender.percent|floatformat }}, {%endfor%}], 
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', 
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(201, 94, 125, 0.2)',
+                            'rgba(94, 201, 189, 0.2)',
+                            'rgba(194, 87, 203, 0.2)',
+                            'rgba(97, 203, 87, 0.2)',
+                            'rgba(203, 202, 87, 0.2)',
+                            'rgba(203, 93, 87, 0.2)',
+                            'rgba(87, 134, 203, 0.2)',
+                            'rgba(37, 67, 116, 0.2)',
+                            'rgba(203, 226, 54, 0.2)',
+                            'rgba(139, 204, 238, 0.2)',
+                            'rgba(238, 139, 202, 0.2)',
+                            'rgba(80, 37, 49, 0.2)',
+                            'rgba(50, 91, 26, 0.2)',
+                            'rgba(26, 91, 87, 0.2)',
+                            'rgba(91, 26, 26, 0.2)',
+                            'rgba(136, 210, 221, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(201, 94, 125, 1)',
+                            'rgba(94, 201, 189, 1)',
+                            'rgba(194, 87, 203, 1)',
+                            'rgba(97, 203, 87, 1)',
+                            'rgba(203, 202, 87, 1)',
+                            'rgba(203, 93, 87, 1)',
+                            'rgba(87, 134, 203, 1)',
+                            'rgba(37, 67, 116, 1)',
+                            'rgba(203, 226, 54, 1)',
+                            'rgba(139, 204, 238, 1)',
+                            'rgba(238, 139, 202, 1)',
+                            'rgba(80, 37, 49, 1)',
+                            'rgba(50, 91, 26, 1)',
+                            'rgba(26, 91, 87, 1)',
+                            'rgba(91, 26, 26, 1)',
+                            'rgba(136, 210, 221, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+    });
+        });
+    
+        $(document).ready(function(){
+            var ctx = $(".myChart3")[0].getContext('2d');
+            var className = ctx.className;
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: { 
+                    labels: [{% for industry in industry_range %} '{{industry}}',
+                     {%endfor%}], //loop through queryset, 
+                    datasets: [{ 
+                        label: '% per age', 
+                        data: [{% for industry in industry_range %}
+                        {{ industry.percent|floatformat }}, {%endfor%}], 
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', 
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(201, 94, 125, 0.2)',
+                            'rgba(94, 201, 189, 0.2)',
+                            'rgba(194, 87, 203, 0.2)',
+                            'rgba(97, 203, 87, 0.2)',
+                            'rgba(203, 202, 87, 0.2)',
+                            'rgba(203, 93, 87, 0.2)',
+                            'rgba(87, 134, 203, 0.2)',
+                            'rgba(37, 67, 116, 0.2)',
+                            'rgba(203, 226, 54, 0.2)',
+                            'rgba(139, 204, 238, 0.2)',
+                            'rgba(238, 139, 202, 0.2)',
+                            'rgba(80, 37, 49, 0.2)',
+                            'rgba(50, 91, 26, 0.2)',
+                            'rgba(26, 91, 87, 0.2)',
+                            'rgba(91, 26, 26, 0.2)',
+                            'rgba(136, 210, 221, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(201, 94, 125, 1)',
+                            'rgba(94, 201, 189, 1)',
+                            'rgba(194, 87, 203, 1)',
+                            'rgba(97, 203, 87, 1)',
+                            'rgba(203, 202, 87, 1)',
+                            'rgba(203, 93, 87, 1)',
+                            'rgba(87, 134, 203, 1)',
+                            'rgba(37, 67, 116, 1)',
+                            'rgba(203, 226, 54, 1)',
+                            'rgba(139, 204, 238, 1)',
+                            'rgba(238, 139, 202, 1)',
+                            'rgba(80, 37, 49, 1)',
+                            'rgba(50, 91, 26, 1)',
+                            'rgba(26, 91, 87, 1)',
+                            'rgba(91, 26, 26, 1)',
+                            'rgba(136, 210, 221, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                }
+    });
+        });
+    
+    Chart.defaults.global.legend.display = false;
+    
+</script>

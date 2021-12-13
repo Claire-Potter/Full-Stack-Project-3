@@ -20,5 +20,7 @@ urlpatterns = [
          name='twitter_login'),
     path('email/', views.send_email, name='send_email'),
     path('contact/', views. Contact.as_view(), name='contact'),
+    path('google50b8ec44e2d448c8.html/',
+         views.verification, name='google_verification'),
 
 ]
