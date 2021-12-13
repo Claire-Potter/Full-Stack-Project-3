@@ -28,10 +28,6 @@
           </ul>
         </div>
         {% include "socialaccount/snippets/login_extra.html" %}
-        <ul class='step-link'>
-          <li><a href="{% url 'social:begin' 'github' %}"> GitHub</a></li>
-          <li><a href="{% url 'social:begin' backend='linkedin-oauth2' %}">Linkedin</a></li>
-        </ul>
         <div class="login-or">{% trans 'or' %}</div>
         {% else %}
         <p>{% blocktrans %}If you have not created an account yet, then please

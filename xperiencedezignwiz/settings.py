@@ -62,8 +62,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.linkedin',
-    'allauth.socialaccount.providers.github',
     'rest_auth.registration',
     'crispy_forms',
     'embed_video',
@@ -203,18 +201,9 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY')
-SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET')
-SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = (os.environ.get
-                                   ("SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY"))
-SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = (os.environ.get
-                                      ("SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET"))
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-    'social_core.backends.github.GithubOAuth2',
-    'social.backends.linkedin.LinkedinOAuth2',
     ]
 
 # Twilio SendGrid
