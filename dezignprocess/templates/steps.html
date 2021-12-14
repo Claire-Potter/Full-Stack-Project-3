@@ -1,28 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="pt-5 pb-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 pt-4">
-                <h2>Design Thinking Steps</h2>
-            </div>
-            {% block first %}
-            {% endblock %}
-            {% block next %}
-            {% endblock %}
-            <div class="col-12 text-end">
-                <a class="btn btn-direction-color mb-3 mr-1" href="{% url 'first' %}" role="button"
-                    aria-label="button to be clicked to view steps one to three" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Previous">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="btn btn-direction-color mb-3" href="{% url 'next' %}" role="button"
-                    aria-label="button to be clicked to view steps four to six" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-    </div>
+   <div class="container">
+      <div class="row">
+         <div class="col-12 pt-4">
+            <h1>Design Thinking Steps</h1>
+         </div>
+         {% block first %}
+         {% endblock %}
+         {% block next %}
+         {% endblock %}
+         <!-- https://getbootstrap.com/docs/5.0/components/tooltips/ referenced and edited for
+            tooltips-->
+         <div class="col-12 text-end">
+            <a class="btn btn-direction-color mb-3 mr-1" href="{% url 'first' %}" role="button"
+               aria-label="button to be clicked to view steps one to three" data-bs-toggle="tooltip"
+               data-bs-placement="top" title="Previous">
+            <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="btn btn-direction-color mb-3" href="{% url 'next' %}" role="button"
+               aria-label="button to be clicked to view steps four to six" data-bs-toggle="tooltip"
+               data-bs-placement="top" title="Next">
+            <i class="fa fa-arrow-right"></i>
+            </a>
+         </div>
+      </div>
+   </div>
 </section>
 {% endblock %}

@@ -1,49 +1,53 @@
 {% extends 'steps.html' %}
-
 {% block first %}
 <div class="col-12">
-    <div class="row">
-        {% for step in step_list %}
-        <div class="col-md-4 mb-3">
-            <div class="card card-with-background">
-                <div class="image-container">
-                    {% if 'placeholder' in step.featured_image.url %}
-                    <img class="card-img-top img-border"
-                        src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
-                    {% else %}
-                    <img class="card-img-top img-border" src=" {{ step.featured_image.url }} ">
-                    {% endif %}
-                    <div class="image-overlay">
-                        <p class="step-number">Step Number: {{ step.order_number }} </p>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <a href="{% url 'step_detail' step.slug %}" class="step-link">
-                        <h2 class="card-title bolder">{{ step.title }}</h2>
-                    </a>
-                    <p class="card-text smaller-font">{{ step.excerpt }}</p>
-                    <hr />
-                    <div class="step-information">
-                        <p class="card-text text-muted h5">Status:
-                            {% if 'Getting Started' in step.title %}
-                            {{ progress }}
-                            {% elif 'Empathy' in step.title %}
-                            {{ progress_02 }}
-                            {% elif 'Define' in step.title %}
-                            {{ progress_03 }}
-                            {% else %}
-                            <div > Not Started </div>
-                            {% endif %}
-                        </p>
-                        <p class="card-text text-muted h5">Resources:
-                            {{ step.resources }}</p>
-                        <p class="card-text text-muted h5">Tools:
-                            {{ step.tools }}</p>
-                    </div>
-                </div>
+   <div class="row">
+      {% for step in step_list %}
+      <div class="col-md-4 mb-3">
+        <!-- Card created as per Code Institute 'I Think Therefore I Blog' and fully customised for site -->
+         <div class="card card-with-background">
+            <div class="image-container">
+               {% if 'placeholder' in step.featured_image.url %}
+               <img class="card-img-top img-border" alt="placeholder image of a bright light" 
+               aria-label="placeholder image of a bright light"
+                  src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
+               {% else %}
+               <img class="card-img-top img-border" alt="image related to the purpose of the design thinking step"
+                aria-label="image related to the purpose of the design thinking step" src=" {{ step.featured_image.url }} ">
+               {% endif %}
+               <div class="image-overlay" aria-label="image overlay containing the step number">
+                  <h2 class="step-number">Step Number: {{ step.order_number }} </h2>
+               </div>
             </div>
-        </div>
-        {% endfor %}
-    </div>
+            <div class="card-body">
+               <a href="{% url 'step_detail' step.slug %}" class="step-link">
+                  <h2 class="card-title bolder">{{ step.title }}</h2>
+               </a>
+               <h3 class="card-text">{{ step.excerpt }}</h3>
+               <hr />
+               <div class="step-information">
+                  <p class="card-text h5">Status:
+                     {% if 'Getting Started' in step.title %}
+                     {{ progress }}
+                     {% elif 'Empathy' in step.title %}
+                     {{ progress_02 }}
+                     {% elif 'Define' in step.title %}
+                     {{ progress_03 }}
+                  </p>
+                  {% else %}
+                  <p> Not Started </p>
+                  {% endif %}
+                  <p class="card-text h5">Resources:
+                     {{ step.resources }}
+                  </p>
+                  <p class="card-text h5">Tools:
+                     {{ step.tools }}
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
 </div>
 {% endblock %}

@@ -1,151 +1,153 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="Description" content="A step by step walkthrough of the Design Thinking process with templates" />
-    <title>Xperience DezignWiz</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Mochiy+Pop+P+One&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--Chart js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-        integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
-    <!--Chart js-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
-        integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body class="d-flex flex-column h-100 main fs-2">
-    <header>
-        <!-- Navigation -->
-
-        <nav class="navbar navbar-expand-lg navbar-light nav-background sticky-top">
+   <head>
+      <!--Code Institute Template - meta included-->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!--Meta Description-->
+      <meta name="description" content="A step by step walkthrough of the Design Thinking process" />
+      <!--Keywords-->
+      <meta name="keywords" content="design thinking, design, empathy, ideate, define,
+         prototype, test, ux design, user first, client centric design">
+      <title>Xperience DezignWiz</title>
+      <!--Bootstrap-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+      <!--Google Fonts-->
+      <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Mochiy+Pop+P+One&display=swap"
+         rel="stylesheet">
+      <!--FontAwesome-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <link rel="stylesheet" type="text/css"
+         href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--Chart js-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+         integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+         integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <!--Link to Stylesheet-->
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   </head>
+   <body class="d-flex flex-column h-100 main fs-2">
+      <!--Header-->
+      <header>
+         <!-- Navigation created as per Code Institute 'I Think Therefore I Blog' and fully customised for site' -->
+         <nav class="navbar navbar-expand-lg navbar-light nav-background sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}"><span class="logo scarlett-x"><i
-                            class="fab fa-xing-square"></i></span><span class="logo">perience</span><span
-                        class="logo-small"> DezignWiz</span></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li class="dropdown m-0 p-0 ">
-                            <button class="btn steps-button" role="button" id="dropdownMenuLink" aria-haspopup="true"
-                                aria-expanded="false">
-                                Steps
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="myDropdown">
-                                <a class="dropdown-item" href="{% url 'first' %}">Steps 1-3</a>
-                                <a class="dropdown-item" href="{% url 'next' %}">Steps 4-7</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'survey-list' %}">Surveys</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Contact Us</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                        </li>
-                        {% endif %}
-
-                    </ul>
-                    <form class="d-flex collapse-search" autocomplete="off" method=POST action="{% url 'search' %}">
-                        {% csrf_token %}
-                        <div class="autocomplete">
-                            <input id="myInput" class="form-control me-2 search enter-search collapse-search"
-                                type="search" placeholder="Search Steps by name"
-                                aria-label="Search Design Thinking Steps" name="searched">
-                        </div>
-                        <input id="submitButton" class="btn btn-outline search collapse-search" type="submit"
-                            value="Search">
-                    </form>
-                </div>
-
-            </div>
-        </nav>
-    </header>
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8-offset-md-2">
-                    {% for message in messages %}
-                    <div class="alert-{{ message.tags }} alert-dismissible fade show alert" role="alert" id="msg">
-                        {{ message | safe }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+               <a class="navbar-brand" href="{% url 'home' %}"><span class="logo scarlett-x"><i
+                  class="fab fa-xing-square"></i></span><span class="logo">perience</span><span
+                  class="logo-small"> DezignWiz</span></a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                  aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarText">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                     </li>
+                     <li class="dropdown m-0 p-0 ">
+                        <button class="btn steps-button" id="dropdownMenuLink" aria-haspopup="true"
+                           aria-expanded="false">
+                        Steps
                         </button>
-                    </div>
-                    {% endfor %}
-
-                </div>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="myDropdown">
+                           <a class="dropdown-item" href="{% url 'first' %}">Steps 1-3</a>
+                           <a class="dropdown-item" href="{% url 'next' %}">Steps 4-7</a>
+                        </div>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'survey-list' %}">Surveys</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'contact' %}">Contact Us</a>
+                     </li>
+                     {% if user.is_authenticated %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                     </li>
+                     {% else %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                     </li>
+                     {% endif %}
+                  </ul>
+                  <!--
+                     Search form created to enable a user to search by Design Thinking step title
+                     -->
+                  <form class="d-flex collapse-search" autocomplete="off" method=POST action="{% url 'search' %}">
+                     {% csrf_token %}
+                     <div class="autocomplete">
+                        <input id="myInput" class="form-control me-2 search enter-search collapse-search"
+                           type="search" placeholder="Search Steps by name"
+                           aria-label="Search Design Thinking Steps" name="searched">
+                     </div>
+                     <input id="submitButton" class="btn btn-outline search collapse-search" type="submit"
+                        value="Search">
+                  </form>
+               </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <main class="flex-shrink-0 bg-body">
+         </nav>
+      </header>
+      <section>
+         <!--Alert messages created as per Code Institute 'I Think Therefore I Blog'-->
+         <div class="container">
+            <div class="row">
+               <div class="col-md-8-offset-md-2">
+                  {% for message in messages %}
+                  <div class="alert-{{ message.tags }} alert-dismissible fade show alert" role="alert" id="msg">
+                     <h4>{{ message | safe }}</h4>
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </section>
+      <section>
+         <main class="flex-shrink-0 bg-body">
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
-        </main>
-    </section>
-    <!-- Footer -->
-    <footer class="footer mt-auto py-3 footer-background">
-        <p class="m-0 text-center text-white">Copyright@ClairePotter2021</p>
-        <p class="m-0 text-center text-white">Follow us:
-            <a class="social-links" href="https://www.facebook.com" target="_blank" aria-label="Link to Facebook"
-                alt="Link to Facebook"><i class="fab fa-facebook-square ms-3"></i></a>
-            <a class="social-links" href="https://www.twitter.com" target="_blank" aria-label="Link to Twitter"
-                alt="Link to Twitter"><i class="fab fa-twitter-square ms-3"></i></a>
-            <a class="social-links" href="https://www.instagram.com" target="_blank" aria-label="Link to Instagram"
-                alt="Link to Instagram"><i class="fab fa-instagram-square ms-3"></i></a>
-        </p>
-    </footer>
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous">
-    </script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous">
-    </script>
-    <script src="{% static 'javascript/script.js' %}"></script>
-</body>
-
+         </main>
+      </section>
+      <!-- Footer -->
+      <footer class="footer mt-auto py-3 footer-background">
+         <h3 class="m-0 text-center text-white">ClairePotterDesign2021</h3>
+         <!-- Social Media Links -->
+         <p class="m-0 text-center text-white">Follow us:
+            <a class="social-links" href="https://www.facebook.com" target="_blank" aria-label="Link to Facebook"><i
+               class="fab fa-facebook-square ms-3"></i></a>
+            <a class="social-links" href="https://www.twitter.com" target="_blank" aria-label="Link to Twitter"><i
+               class="fab fa-twitter-square ms-3"></i></a>
+            <a class="social-links" href="https://www.instagram.com" target="_blank" aria-label="Link to Instagram"><i
+               class="fab fa-instagram-square ms-3"></i></a>
+         </p>
+      </footer>
+      <!-- JavaScript Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+      <!-- jQuery CDN - Slim version (=without AJAX) -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <!-- Popper.JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+      <!-- Bootstrap JS -->
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+      <!-- Javascript custom file -->
+      <script src="{% static 'javascript/script.js' %}"></script>
+   </body>
 </html>
