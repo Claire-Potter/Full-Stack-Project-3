@@ -1,44 +1,50 @@
 {% extends 'base.html' %} {% block content %}
 <div class="col-12">
+    <!--Created as per elements from step detail page and customised-->
     <div class="row-fluid mx-auto">
-        <div class="col-md-6 mb-3 mt-3 mx-auto">
-            <div class="card card-with-background">
-                <div class="image-container">
-                    {% if 'placeholder' in template.image.url %}
-                    <img class="card-img-top img-border"
-                        src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
-                    {% else %}
-                    <img class="card-img-top img-border" src=" {{ template.template_image.url }} ">
-                    {% endif %}
-                    <div class="image-overlay">
-                        <p class="step-number">{{ template.title }} </p>
-                    </div>
+       <div class="col-md-6 mb-3 mt-3 mx-auto">
+          <div class="card card-with-background">
+             <div class="image-container">
+                {% if 'placeholder' in template.image.url %}
+                <img class="card-img-top img-border" alt="placeholder image of a bright light"
+                   aria-label="placeholder image of a bright light"
+                   src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
+                {% else %}
+                <img class="card-img-top img-border" alt="image related to the purpose of the design thinking tool"
+                   aria-label="image related to the purpose of the design thinking tool" src=" {{ template.template_image.url }} ">
+                {% endif %}
+                <div class="image-overlay">
+                   <h1 class="step-number">{{ template.title }} </h1>
                 </div>
-                <div class="card-body">
-                    <div class="accordion">
-                        <div class="accordion-item">
-                            <h1 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    {{ template.excerpt }}
-                                </button>
-                            </h1>
-                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body table">
-                                    {{ template.body | safe }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+             </div>
+             <div class="card-body">
+                <!--
+                   Bootstrap documentation utilised to understand and set up accordion display
+                   Accordion chosen to enable user to minimise content, particularly for smaller screens
+                   to improve ability to access items below the content
+                   -->
+                <div class="accordion">
+                   <div class="accordion-item">
+                      <h1 class="accordion-header">
+                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                         {{ template.excerpt }}
+                         </button>
+                      </h1>
+                      <div id="collapseOne" class="accordion-collapse collapse show"
+                         data-bs-parent="#accordionExample">
+                         <div class="accordion-body table">
+                            {{ template.body | safe }}
+                         </div>
+                      </div>
+                   </div>
                 </div>
-                <div class="col-md-3">
-                    <a class="btn mb-3 get-started return" href="{{ request.META.HTTP_REFERER }}" type="button">Return</a>
-                </div>
-            </div>
-
-        </div>
-
+             </div>
+             <div class="col-md-3">
+                <a class="btn mb-3 get-started return" href="{{ request.META.HTTP_REFERER }}">Return</a>
+             </div>
+          </div>
+       </div>
     </div>
-</div>
+ </div>
 {% endblock %}

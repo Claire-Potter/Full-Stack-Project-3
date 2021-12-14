@@ -4,9 +4,9 @@ from .models import Contact
 
 
 class EmailForm(forms.Form):
-    subject = forms.CharField()
-    recipients = MultiEmailField()
-    message = forms.CharField(widget=forms.Textarea)
+    subject = forms.CharField(required=True)
+    recipients = MultiEmailField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)
 
 
 class ContactForm(forms.ModelForm):

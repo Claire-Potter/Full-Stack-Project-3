@@ -45,7 +45,7 @@ body {
 }
 
 .text-small {
-	font-size: calc(0.5rem + .9vw) !important;
+	font-size: 1.8rem;
 }
 
 
@@ -104,7 +104,6 @@ a[data-toggle="collapse"] {
 #sidebar .sidebar-header {
 	padding: 10px;
 	background: #df4c73;
-	font-size: calc(1.325rem + .9vw) !important;
 	;
 }
 
@@ -115,7 +114,6 @@ a[data-toggle="collapse"] {
 
 #sidebar ul li a {
 	padding: 10px;
-	font-size: calc(1.325rem + .9vw) !important;
 	display: block;
 }
 
@@ -133,11 +131,15 @@ a[aria-expanded="true"] {
 }
 
 ul ul a {
-	font-size: 0.9em !important;
 	padding-left: 30px !important;
 	background: #df4c73;
 	;
 }
+
+.side-text textarea {
+	font-size: 1rem;
+}
+
 
 
 /* Get-started button formatting used across templates*/
@@ -222,12 +224,13 @@ ul {
 }
 
 .steps-button {
-	font-size: calc(0.8rem + .9vw) !important;
 	border: 0;
+	padding: 0;
+	background-color: transparent;
 }
 
 .steps-button:hover {
-	color: #ffffff;
+	color: #286fb4;
 	border: 0;
 }
 
@@ -346,6 +349,17 @@ ul {
 	border-color: #286fb4;
 	outline: 0;
 	box-shadow: 0 0 0 0.25rem #286fb4;
+}
+
+.text-form {
+	font-size: 1.5rem;
+	font-family: 'Dongle', sans-serif;
+}
+
+.text-form input,
+.text-form textarea {
+	font-size: 1.5rem;
+	font-family: 'Dongle', sans-serif;
 }
 
 

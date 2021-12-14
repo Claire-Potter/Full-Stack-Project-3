@@ -1,52 +1,47 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% load account socialaccount %}
-
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
-
+{% block head_title %}{% trans 'Sign In' %}{% endblock %}
 {% block content %}
 {{ block.super }}
-{% include "account/base.html" %}
-
+{% include 'account/base.html' %}
+<!--Change the standard html to extend base.html and then included the original account/base
+   which has been set up as a side menu-->
 <div class="container-fluid">
-  <div class="row align-items-center">
-    <div class="col-md-12 mt-5">
-      <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-
-
-
-        <h3 class="bolder">{% trans "Sign In" %}</h3>
-
-        {% get_providers as socialaccount_providers %}
-
-        {% if socialaccount_providers %}
-        <p>{% blocktrans with site.name as XperienceDezignWiz %}Please sign in with one
-          of your existing third party accounts or sign in below:{% endblocktrans %}</p>
-        <div class="socialaccount_ballot">
-          <ul class="socialaccount_providers step-link">
-            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-          </ul>
-        </div>
-        {% include "socialaccount/snippets/login_extra.html" %}
-        <div class="login-or">{% trans 'or' %}</div>
-        {% else %}
-        <p>{% blocktrans %}If you have not created an account yet, then please
-          <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-        {% endif %}
-        <form class="login" method="POST" action="{% url 'account_login' %}">
-          {% csrf_token %}
-          {{ form.as_p }}
-          {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-          {% endif %}
-          <button class="btn btn-signup right mb-5" type="submit">{% trans "Sign In" %}</button>
-        </form>
-        <p>If you have forgotten your password <a class="step-link" href="{% url 'account_reset_password' %}">click
-            here</a> to reset it.
-        </p>
+   <div class="row align-items-center">
+      <div class="col-md-12 mt-5">
+         <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+            <h1 class="bolder">{% trans 'Sign In' %}</h1>
+            {% get_providers as socialaccount_providers %}
+            {% if socialaccount_providers %}
+            <p>{% blocktrans with site.name as XperienceDezignWiz %}Please sign in with one
+               of your existing third party accounts or sign in below:{% endblocktrans %}
+            </p>
+            <div class="socialaccount_ballot">
+               <ul class="socialaccount_providers step-link">
+                  {% include 'socialaccount/snippets/provider_list.html' with process='login' %}
+               </ul>
+            </div>
+            {% include 'socialaccount/snippets/login_extra.html' %}
+            <div class="login-or">{% trans 'or' %}</div>
+            {% else %}
+            <p>{% blocktrans %}If you have not created an account yet, then please
+               <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+            </p>
+            {% endif %}
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+               {% csrf_token %}
+               {{ form.as_p }}
+               {% if redirect_field_value %}
+               <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+               {% endif %}
+               <button class="btn get-started mt-3 right mb-5" type="submit">{% trans 'Sign In' %}</button>
+            </form>
+            <p>If you have forgotten your password <a class="step-link" href="{% url 'account_reset_password' %}">click
+               here</a> to reset it.
+            </p>
+         </div>
       </div>
-    </div>
-  </div>
-
+   </div>
 </div>
 {% endblock %}

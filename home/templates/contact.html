@@ -1,31 +1,40 @@
 {% extends 'base.html' %}
-
 {% block content %}
 {% load crispy_forms_tags %}
 <section class="container-fluid">
-    {% if message_sent %}
-    <div class="row align-items-center">
-        <div class="col-md-12 mt-5">
-            <h3><strong>Email successfully sent</strong></h3>
-            <p>Your request was successfully sent to us!</p>
-        </div>
-    </div>
-    {% else %}
-    <div class="row align-items-center">
-        <div class="col-md-12">
-            <h1 class="card-title bolder text-center mt-5">Require assistance?</h1>
-            <h2 class="card-title text-center">Please get in touch!</h2>
-
-            <div class="col-md-6 mx-auto card-with-background mb-5 px-5">
-                <form method="post" class="mt-5">
-                    {{ contact_form | crispy }}
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-signup btn-lg mt-3 mb-3">Send</button>
-                </form>
-            </div>
-
-        </div>
-    </div>
+   {% if message_sent %}
+   <div class="row align-items-center">
+      <div class="col-md-12 mt-5">
+         <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+            <h1 class="bolder">Email successfully sent</h1>
+            <h2>Your request was successfully sent to us!</h2>
+         </div>
+      </div>
+   </div>
+   {% else %}
+   <div class="row align-items-center">
+      <div class="col-md-12">
+         <h1 class="card-title bolder text-center mt-5">Require assistance?</h1>
+         <h2 class="card-title text-center">Please get in touch!</h2>
+         <div class="col-md-6 mx-auto card-with-background mb-5 px-5">
+            <form method="post" class="mt-5">
+               {% csrf_token %}
+               <div class="form-row">
+                  <div class="form-group col-md-6 mb-0 text-form bolder">
+                     {{ contact_form.name|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0 text-form bolder">
+                     {{ contact_form.email|as_crispy_field }}
+                  </div>
+               </div>
+               <div class="text-form bolder">
+                  {{ contact_form.body|as_crispy_field }}
+               </div>
+               <button type="submit" class="btn get-started mt-3 mb-3">Send</button>
+            </form>
+         </div>
+      </div>
+   </div>
 </section>
 {% endif %}
 {% endblock %}

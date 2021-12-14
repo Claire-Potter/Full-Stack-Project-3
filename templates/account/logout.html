@@ -1,30 +1,29 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+{% block head_title %}{% trans 'Sign Out' %}{% endblock %}
 
 {% block content %}
 {{ block.super }}
-{% include "account/base.html" %}
+{% include 'account/base.html' %}
+ <!--Change the standard html to extend base.html and then included the original account/base
+which has been set up as a side menu-->
 <div class="container-fluid">
     <div class="row align-items-center">
-        <div class="col-md-12 mt-5">
-            <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-                <h3 class="bolder">{% trans "Sign Out" %}</h3>
-
-                <p>{% trans 'Are you sure you want to sign out?' %}</p>
-
-                <form method="post" action="{% url 'account_logout' %}" class="mb-3">
-                    {% csrf_token %}
-                    {% if redirect_field_value %}
-                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                    {% endif %}
-                    <button class="btn btn-signup right" type="submit">{% trans 'Sign Out' %}</button>
-                </form>
-            </div>
-        </div>
+       <div class="col-md-12 mt-5">
+          <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+             <h1 class="bolder">{% trans 'Sign Out' %}</h1>
+             <h2>{% trans 'Are you sure you want to sign out?' %}</h2>
+             <form method="post" action="{% url 'account_logout' %}" class="mb-3">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn get-started mt-3 mb-3 right" type="submit">{% trans 'Sign Out' %}</button>
+             </form>
+          </div>
+       </div>
     </div>
-</div>
-
+ </div>
 {% endblock %}
