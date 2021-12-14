@@ -1,13 +1,5 @@
 /* jshint esversion: 6 */
 
-// set timeout function for messages as per the code institute example project.
-setTimeout(function () {
-  let messages = document.getElementById('alertMessage');
-  let alert = new bootstrap.Alert(messages);
-  alert.close(messages);
-}, 2000);
-
-
 //https://www.w3schools.com/bootstrap/bootstrap_ref_js_dropdown.asp referenced and edited for dropdown Steps menu
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -170,4 +162,11 @@ $(document).ready(function () {
   });
 
 });
+
+// set timeout function for messages as per the code institute example project.
+setTimeout(function () {
+  let messages = document.getElementById('msg');
+  let alert = new bootstrap.Alert(messages);
+  alert.close(messages);
+}, 2000);
 

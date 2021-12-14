@@ -400,6 +400,7 @@ ul {
     display: inline-block;
     height: 35vh;
     width: 100%;
+    background-color: white;
 }
 
 .jumbotron-text {

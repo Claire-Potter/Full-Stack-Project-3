@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.twitter',
     'rest_auth.registration',
     'crispy_forms',
     'embed_video',
