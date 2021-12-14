@@ -2,7 +2,7 @@
 
 // set timeout function for messages as per the code institute example project.
 setTimeout(function () {
-  let messages = document.getElementById('msg');
+  let messages = document.getElementById('alertMessage');
   let alert = new bootstrap.Alert(messages);
   alert.close(messages);
 }, 2000);
@@ -30,7 +30,7 @@ window.onclick = function (event) {
       }
     }
   }
-}
+};
 
 dropButton.addEventListener("click", dropdownMenu);
 
@@ -144,7 +144,7 @@ function autocomplete(inp, arr) {
   document.addEventListener("click", function (e) {
     closeAllLists(e.target);
   });
-}
+};
 
 /*An array containing all the country names in the world:*/
 var steps = ["Getting Started", "Empathy", "Define", "Ideate", "Prototype", "Test", "Finishing Off"];

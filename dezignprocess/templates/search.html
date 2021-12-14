@@ -8,7 +8,10 @@
         <div class="row">
             <div class="col-12 mb-5 ">
                 {% if searched %}
-                <h1>You Searched for {{ searched }}</h1>
+                <div class="col-6 mx-auto text-center mb-5 ">
+                    <h1>You Searched for {{ searched }}</h1>
+                    <p>{{ click }}</p>
+                </div>
                 <hr />
                 {% for step in steps %}
                 <div class="container">
@@ -42,22 +45,25 @@
                 </div>
                 {% endfor %}
                 {% else %}
-                <h1>You forgot to enter any search criteria.</h1>
-                <p class="card-text text-center">
-                    This search is setup to return the pages for the steps within the Design Thinking process.
-                    Please search for one of the steps:
-                </p>
-                <ul>
-                    <li>Getting Started</li>
-                    <li>Empathy</li>
-                    <li>Define</li>
-                    <li>Ideate</li>
-                    <li>Prototype</li>
-                    <li>Test</li>
-                    <li>Finishing Off</li>
-                </ul>
-                <div class="text-center"><a class="btn get-started mx-auto" href="{{ request.META.HTTP_REFERER }}"
-                        type="button">Return</a></div>
+                <div class="col-6 mx-auto text-center mb-5 ">
+                    <h1>You forgot to enter any search criteria.</h1>
+                    <p class="card-text text-center">
+                        This search is set up to return the pages for the steps within the Design Thinking process.
+                        Please search for one of the steps:
+                    </p>
+                    <ul>
+                        <li>Getting Started</li>
+                        <li>Empathy</li>
+                        <li>Define</li>
+                        <li>Ideate</li>
+                        <li>Prototype</li>
+                        <li>Test</li>
+                        <li>Finishing Off</li>
+                        <li>The search field is case sensitive.</li>
+                    </ul>
+                    <div class="text-center"><a class="btn get-started mx-auto" href="{{ request.META.HTTP_REFERER }}"
+                            type="button">Return</a></div>
+                </div>
                 {% endif %}
             </div>
         </div>

@@ -62,21 +62,21 @@ def send_email(request):
             recipient_list = c_d['recipients']
 
             # send the email to the recipent
-            msg = EmailMultiAlternatives(from_email=settings
-                                         .DEFAULT_FROM_EMAIL,
-                                         reply_to=['xperience'
-                                                   'dezignwiz@gmail.com'],
-                                         to=['xperiencedezignwiz@gmail.com'],
-                                         bcc=recipient_list, body=text_content,
-                                         subject=subject)
-            msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
-            msg.dynamic_template_data = {"body": text_content,
-                                         "subject": subject}
-            msg.send(fail_silently=False)
+            email_message = EmailMultiAlternatives(from_email=settings
+                                                   .DEFAULT_FROM_EMAIL,
+                                                   reply_to=['xperience'
+                                                             'dezignwiz@gmail.com'],
+                                                   to=['xperiencedezignwiz@gmail.com'],
+                                                   bcc=recipient_list, body=text_content,
+                                                   subject=subject)
+            email_message.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
+            email_message.dynamic_template_data = {"body": text_content,
+                                                   "subject": subject}
+            email_message.send(fail_silently=False)
 
             # Unsubscribe groups
             # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
-            msg.asm = {'group_id': 138000, 'groups_to_display': [
+            email_message.asm = {'group_id': 138000, 'groups_to_display': [
                        'XperienceDezignWiz']}
 
             # set the variable initially created to True
@@ -160,23 +160,23 @@ class Contact(View):
                 client_email = c_d['email']
 
                 # send the email to the recipent
-                msg = EmailMultiAlternatives(from_email=settings
-                                             .DEFAULT_FROM_EMAIL,
-                                             to=['xperience'
-                                                 'dezignwiz@gmail.com'],
-                                             cc=['clairepotter019@gmail.com'],
-                                             body=text_content,
-                                             subject=subject)
-                msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
-                msg.dynamic_template_data = {"body": text_content,
-                                             "body_two": client_name,
-                                             "body_three": client_email,
-                                             "subject": subject}
-                msg.send(fail_silently=False)
+                email_message = EmailMultiAlternatives(from_email=settings
+                                                       .DEFAULT_FROM_EMAIL,
+                                                       to=['xperience'
+                                                           'dezignwiz@gmail.com'],
+                                                       cc=['clairepotter019@gmail.com'],
+                                                       body=text_content,
+                                                       subject=subject)
+                email_message.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
+                email_message.dynamic_template_data = {"body": text_content,
+                                                       "body_two": client_name,
+                                                       "body_three": client_email,
+                                                       "subject": subject}
+                email_message.send(fail_silently=False)
 
                 # Unsubscribe groups
                 # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
-                msg.asm = {'group_id': 138000, 'groups_to_display': [
+                email_message.asm = {'group_id': 138000, 'groups_to_display': [
                            'XperienceDezignWiz']}
 
                 # set the variable initially created to True

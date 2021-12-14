@@ -21,63 +21,74 @@ from .models import Step, Tool, Progress
 from .forms import CommentForm, ProgressForm
 
 
-class Search(View):
+def search(request):
     """
-    The Search view is set up to render the search results
-    page when a user searches for a step by name.
+    The post function posts the searched term i.e. the title of the
+    step, it then returns the step title, which is the link
+    to the step detail page, the step image, and the current progress
+    status, which will be the latest unique status if the user is logged
+    in and has created a progress status, otherwise it will return as
+    not started.
+
+    self: The self is used to represent the instance of the class.
+    request: The requests module allows you to send HTTP
+    requests using Python.The HTTP request returns a Response
+    Object with all the response data (content, encoding, status, etc).
+    Definition from https://www.w3schools.com/python/module_requests.asp
+
+    The post function was created by following this you tube video:
+    https://youtu.be/AGtae4L5BbI
+    It was customised for the site.
+    Complex lookups with Q objects was referenced here:
+    https://docs.djangoproject.com/en/3.2/topics/db/queries/ to create the
+    lookups.
     """
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        steps = Step.objects.filter(title=searched)
+        if searched == 'Getting Started':
+            click = 'Click the step name: Getting Started to be directed to the step.'
+        elif searched == 'Empathy':
+            click = 'Click the step name: Empathy to be directed to the step.'
+        elif searched == 'Define':
+            click = 'Click the step name: Define to be directed to the step.'
+        elif searched == 'Ideate':
+            click = 'Click the step name: Ideate to be directed to the step.'
+        elif searched == 'Prototype':
+            click = 'Click the step name: Prototype to be directed to the step.'
+        elif searched == 'Test':
+            click = 'Click the step name: Test to be directed to the step.'
+        elif searched == 'Finishing Off':
+            click = 'Click the step name: Finishing Off to be directed to the step.'
+        
+        else:
+            click = ('You searched for an incorrect term.'
+                     ' This search is set up to return the'
+                     ' pages for the steps within the'
+                     ' Design Thinking process.'
+                     ' Please search for one of the steps:'
+                     ' Getting Started,'
+                     ' Empathy,'
+                     ' Define,'
+                     ' Ideate,'
+                     ' Prototype,'
+                     ' Test or'
+                     ' Finishing Off.'
+                     ' The search field is case sensitive.')
 
-    def post(self, request):
-        """
-        The post function posts the searched term i.e. the title of the
-        step, it then returns the step title, which is the link
-        to the step detail page, the step image, and the current progress
-        status, which will be the latest unique status if the user is logged
-        in and has created a progress status, otherwise it will return as
-        not started.
-
-        self: The self is used to represent the instance of the class.
-        request: The requests module allows you to send HTTP
-        requests using Python.The HTTP request returns a Response
-        Object with all the response data (content, encoding, status, etc).
-        Definition from https://www.w3schools.com/python/module_requests.asp
-
-        The post function was created by following this you tube video:
-        https://youtu.be/AGtae4L5BbI
-        It was customised for the site.
-        Complex lookups with Q objects was referenced here:
-        https://docs.djangoproject.com/en/3.2/topics/db/queries/ to create the
-        lookups.
-        """
-        if request.method == 'POST':
-            searched = request.POST['searched']
-            steps = Step.objects.filter(title=searched)
-            step = get_object_or_404(steps)
-            progress = ''
-            if step.progress.filter(name=self.request.user.username).exists():
-                progress = step.progress.filter(
-                                                  Q(name=self.request
-                                                    .user
-                                                    .username) |
-                                                  Q(name='admin')).latest()
-            else:
-                progress = step.progress.filter(
-                                                 progress='Not'
-                                                 ' Started').latest()
-
-            return render(
-                request, 'search.html',
-                {
+        return render(
+            request, 'search.html',
+            {
                     'searched': searched,
                     'steps': steps,
-                    'progress': progress,
+                    'click': click,
                 },
             )
-        else:
+    else:
 
-            return render(
-                request, 'search.html',
-                {},)
+        return render(
+                      request, 'search.html',
+                      {},)
 
 
 class StepList(generic.ListView):

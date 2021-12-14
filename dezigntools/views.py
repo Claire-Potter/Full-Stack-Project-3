@@ -142,26 +142,26 @@ def send_email(request, pk):
             recipient_list = c_d['recipients'] 
 
             # send the email to the recipent
-            msg = EmailMultiAlternatives(from_email=settings
-                                         .DEFAULT_FROM_EMAIL,
-                                         reply_to=['xperience'
-                                                   'dezignwiz@gmail.com'],
-                                         to=['xperiencedezignwiz@gmail.com'],
-                                         bcc=recipient_list,
-                                         body=message,
-                                         subject=subject)
-            msg.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
-            msg.dynamic_template_data = {"body": text_content,
-                                         "body_two": "Please follow"
-                                         " the link to complete the"
-                                         " survey:",
-                                         "body_three": quiz_link,
-                                         "subject": subject}
-            msg.send(fail_silently=False)
+            email_message = EmailMultiAlternatives(from_email=settings
+                                                   .DEFAULT_FROM_EMAIL,
+                                                   reply_to=['xperience'
+                                                             'dezignwiz@gmail.com'],
+                                                   to=['xperiencedezignwiz@gmail.com'],
+                                                   bcc=recipient_list,
+                                                   body=message,
+                                                   subject=subject)
+            email_message.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
+            email_message.dynamic_template_data = {"body": message,
+                                                   "body_two": "Please follow"
+                                                   " the link to complete the"
+                                                   " survey:",
+                                                   "body_three": quiz_link,
+                                                   "subject": subject}
+            email_message.send(fail_silently=False)
 
             # Unsubscribe groups
             # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
-            msg.asm = {'group_id': 138000, 'groups_to_display': [
+            email_message.asm = {'group_id': 138000, 'groups_to_display': [
                        'XperienceDezignWiz']}
 
             # set the variable initially created to True
