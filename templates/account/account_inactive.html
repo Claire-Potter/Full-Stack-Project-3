@@ -1,22 +1,22 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+{% block head_title %}{% trans 'Account Inactive' %}{% endblock %}
 
 {% block content %}
 {{ block.super }}
-{% include "account/base.html" %}
-
-<div class="container-fluid">
+{% include 'account/base.html' %}
+<!--Changed the standard html to extend base.html and then included the original account/base
+   which has been set up as a side menu-->
+   <div class="container-fluid">
     <div class="row align-items-center">
-        <div class="col-md-12 mt-5">
-            <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-                <h1 class="bolder">{% trans "Account Inactive" %}</h1>
-
-                <p>{% trans "This account is inactive." %}</p>
-            </div>
-        </div>
+       <div class="col-md-12 mt-5">
+          <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+             <h1 class="bolder">{% trans 'Account Inactive' %}</h1>
+             <p>{% trans 'This account is inactive.' %}</p>
+          </div>
+       </div>
     </div>
-</div>
+ </div>
 {% endblock %}

@@ -1,21 +1,23 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
+{% block head_title %}{% trans 'Verify Your E-mail Address' %}{% endblock %}
 
 {% block content %}
 {{ block.super }}
-{% include "account/base.html" %}
-<div class="row align-items-center">
+{% include 'account/base.html' %}
+<!--Changed the standard html to extend base.html and then included the original account/base
+   which has been set up as a side menu-->
+   <div class="row align-items-center">
     <div class="col-md-12 mt-5">
-        <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-            <h1 class="bolder">{% trans "Verify Your E-mail Address" %}</h1>
-
-            <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the
-                signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
-        </div>
+       <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+          <h1 class="bolder">{% trans 'Verify Your E-mail Address' %}</h1>
+          <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the
+             signup process. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}
+          </p>
+       </div>
     </div>
-</div>
-</div>
+ </div>
+ </div>
 {% endblock %}
