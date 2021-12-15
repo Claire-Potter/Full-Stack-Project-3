@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Contact, Verification
+from .models import Home, Contact, Verification
+
 
 
 @admin.register(Contact)
@@ -12,5 +13,5 @@ class ContactAdmin(admin.ModelAdmin):
     list_filter = ('created_on', 'name',)
     search_fields = ('name', 'email',)
 
-
+admin.site.register(Home)
 admin.site.register(Verification)

@@ -22,7 +22,8 @@ progress statuses should be captured by the admin user.
 """
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Step, Comment, Tool, Progress
+from embed_video.admin import AdminVideoMixin
+from .models import Step, Comment, Tool, Progress, Resource, Images
 
 
 @admin.register(Step)
@@ -37,7 +38,7 @@ class StepAdmin(SummernoteModelAdmin):
     Cloudinary storage is utilised to store the images.
     """
     summernote_fields = '__all__'
-    list_display = ('title', 'slug', 'added',)
+    list_display = ('title', 'slug', 'added')
     search_fields = ['title', 'excerpt']
     list_filter = ('added',)
     prepopulated_fields = {'slug': ('title',)}
@@ -48,16 +49,15 @@ class StepAdmin(SummernoteModelAdmin):
 class ToolAdmin(SummernoteModelAdmin):
     """
     The Tool admin set up reads the Tool model and allows
-    the admin user to create a new step by adding the
+    the admin user to create a new tool by adding the
     required fields. Admin can also edit and delete.
     Django summernote is included to allow the admin user
     to style the body field.
     Cloudinary storage is utilised to store the images.
     """
     summernote_fields = '__all__'
-    list_display = ('step', 'title', 'slug',)
-    search_fields = ['title', 'step', ]
-    list_filter = ('title', 'step',)
+    list_display = ('title', 'slug',)
+    search_fields = ['title']
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
 
@@ -88,3 +88,31 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'body', 'step', 'created_on',)
     list_filter = ('created_on', 'step',)
     search_fields = ('name', 'email', 'body',)
+
+
+@admin.register(Resource)
+class ResourceAdmin(AdminVideoMixin, admin.ModelAdmin):
+    """
+    The Resource admin set up reads the Resource model and allows
+    the admin user to create a new Resource by adding the
+    required fields. Admin can also edit and delete.
+    AdminVideoMixin creates a preview od the video
+    Embed video is utilised to store the video.
+    """
+    list_display = ('video_name', 'video_url')
+    search_fields = ['video_name']
+    list_filter = ('video_name', 'video_url')
+
+
+@admin.register(Images)
+class ImageAdmin(AdminVideoMixin, admin.ModelAdmin):
+    """
+    The Resource admin set up reads the Resource model and allows
+    the admin user to create a new Resource by adding the
+    required fields. Admin can also edit and delete.
+    AdminVideoMixin creates a preview od the video
+    Embed video is utilised to store the video.
+    """
+    list_display = ('category', 'title', 'name')
+    search_fields = ['title', 'name']
+    list_filter = ('category', 'title')

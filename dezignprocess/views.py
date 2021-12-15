@@ -47,7 +47,8 @@ def search(request):
         searched = request.POST['searched']
         steps = Step.objects.filter(title=searched)
         if searched == 'Getting Started':
-            click = 'Click the step name: Getting Started to be directed to the step.'
+            click = ('Click the step name:'
+                     ' Getting Started to be directed to the step.')
         elif searched == 'Empathy':
             click = 'Click the step name: Empathy to be directed to the step.'
         elif searched == 'Define':
@@ -55,12 +56,14 @@ def search(request):
         elif searched == 'Ideate':
             click = 'Click the step name: Ideate to be directed to the step.'
         elif searched == 'Prototype':
-            click = 'Click the step name: Prototype to be directed to the step.'
+            click = ('Click the step name:'
+                     ' Prototype to be directed to the step.')
         elif searched == 'Test':
             click = 'Click the step name: Test to be directed to the step.'
         elif searched == 'Finishing Off':
-            click = 'Click the step name: Finishing Off to be directed to the step.'
-        
+            click = ('Click the step name:'
+                     ' Finishing Off to be directed to the step.')
+
         else:
             click = ('You searched for an incorrect term.'
                      ' This search is set up to return the'
@@ -279,79 +282,34 @@ class StepDetail(View):
         """
         queryset = Step.objects.all()
         step = get_object_or_404(queryset, slug=slug)
+        resources = step.resources.all()
+        tools = step.tools.all()
+        image = step.steps_image
         step_display_prev = ''
         step_display_next = ''
-        template_01 = ''
-        template_02 = ''
-        template_03 = ''
-        temp_slug_01 = ''
-        temp_slug_02 = ''
-        temp_slug_03 = ''
         comments = ''
         progress = ''
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
-            template_01 = 'How to Start'
-            template_02 = 'The Non-Linear Nature of Design Thinking'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'how-to-start'
-            temp_slug_02 = 'non-linear'
-            temp_slug_03 = ''
         elif step.title == 'Empathy':
             step_display_prev = 'getting-started'
             step_display_next = 'define'
-            template_01 = 'Survey'
-            template_02 = 'Interview Guide'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'survey-details'
-            temp_slug_02 = 'interview-guide'
-            temp_slug_03 = ''
         elif step.title == 'Define':
             step_display_prev = 'empathy'
             step_display_next = 'ideate'
-            template_01 = 'Problem Statement'
-            template_02 = 'Persona'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'problem-statement'
-            temp_slug_02 = 'persona'
-            temp_slug_03 = ''
         elif step.title == 'Ideate':
             step_display_prev = 'define'
             step_display_next = 'prototype'
-            template_01 = 'Brainstorming'
-            template_02 = 'The Worst Possible Idea'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'brainstorming'
-            temp_slug_02 = 'the-worst-possible-idea'
-            temp_slug_03 = ''
         elif step.title == 'Prototype':
             step_display_prev = 'ideate'
             step_display_next = 'test'
-            template_01 = 'Types Of Prototypes'
-            template_02 = 'Which Prototype Should I Build?'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'types-of-prototypes'
-            temp_slug_02 = 'which-prototype-should-i-build'
-            temp_slug_03 = ''
         elif step.title == 'Test':
             step_display_prev = 'prototype'
             step_display_next = 'finishing-off'
-            template_01 = 'How To Conduct a User Test'
-            template_02 = 'placeholder'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'conduct-user-test'
-            temp_slug_02 = ''
-            temp_slug_03 = ''
         elif step.title == 'Finishing Off':
             step_display_prev = 'test'
             step_display_next = 'getting-started'
-            template_01 = 'Storytelling'
-            template_02 = 'placeholder'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'storytelling'
-            temp_slug_02 = ''
-            temp_slug_03 = ''
 
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
@@ -372,12 +330,9 @@ class StepDetail(View):
             'step_detail.html',
             {
                 'step': step,
-                'template_01': template_01,
-                'template_02': template_02,
-                'template_03': template_03,
-                'temp_slug_01': temp_slug_01,
-                'temp_slug_02': temp_slug_02,
-                'temp_slug_03': temp_slug_03,
+                'resources': resources,
+                'tools': tools,
+                'image': image,
                 'comments': comments,
                 'comment_form': CommentForm(),
                 'progress': progress,
@@ -411,79 +366,34 @@ class StepDetail(View):
         """
         queryset = Step.objects
         step = get_object_or_404(queryset, slug=slug)
+        resources = step.resources.all()
+        tools = step.tools.all()
+        image = step.steps_image
         step_display_prev = ''
         step_display_next = ''
-        template_01 = ''
-        template_02 = ''
-        template_03 = ''
-        temp_slug_01 = ''
-        temp_slug_02 = ''
-        temp_slug_03 = ''
         comments = ''
         progress = ''
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
-            template_01 = 'How to Start'
-            template_02 = 'The Non-Linear Nature of Design Thinking'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'how-to-start'
-            temp_slug_02 = 'non-linear'
-            temp_slug_03 = ''
         elif step.title == 'Empathy':
             step_display_prev = 'getting-started'
             step_display_next = 'define'
-            template_01 = 'Survey'
-            template_02 = 'Interview Guide'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'survey-details'
-            temp_slug_02 = 'interview-guide'
-            temp_slug_03 = ''
         elif step.title == 'Define':
             step_display_prev = 'empathy'
             step_display_next = 'ideate'
-            template_01 = 'Problem Statement'
-            template_02 = 'Persona'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'problem-statement'
-            temp_slug_02 = 'persona'
-            temp_slug_03 = ''
         elif step.title == 'Ideate':
             step_display_prev = 'define'
             step_display_next = 'prototype'
-            template_01 = 'Brainstorming'
-            template_02 = 'The Worst Possible Idea'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'brainstorming'
-            temp_slug_02 = 'the-worst-possible-idea'
-            temp_slug_03 = ''
         elif step.title == 'Prototype':
             step_display_prev = 'ideate'
             step_display_next = 'test'
-            template_01 = 'Types Of Prototypes'
-            template_02 = 'Which Prototype Should I Build?'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'types-of-prototypes'
-            temp_slug_02 = 'which-prototype-should-i-build'
-            temp_slug_03 = ''
         elif step.title == 'Test':
             step_display_prev = 'prototype'
             step_display_next = 'finishing-off'
-            template_01 = 'How To Conduct a User Test'
-            template_02 = 'placeholder'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'conduct-user-test'
-            temp_slug_02 = ''
-            temp_slug_03 = ''
         elif step.title == 'Finishing Off':
             step_display_prev = 'test'
             step_display_next = 'getting-started'
-            template_01 = 'Storytelling'
-            template_02 = 'placeholder'
-            template_03 = 'placeholder'
-            temp_slug_01 = 'storytelling'
-            temp_slug_02 = ''
-            temp_slug_03 = ''
 
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
@@ -532,12 +442,9 @@ class StepDetail(View):
             'step_detail.html',
             {
                 'step': step,
-                'template_01': template_01,
-                'template_02': template_02,
-                'template_03': template_03,
-                'temp_slug_01': temp_slug_01,
-                'temp_slug_02': temp_slug_02,
-                'temp_slug_03': temp_slug_03,
+                'resources': resources,
+                'tools': tools,
+                'image': image,
                 'comments': comments,
                 'progress': progress,
                 'comment_form': CommentForm(),
@@ -571,10 +478,12 @@ class ToolsList(View):
         """
         queryset = Tool.objects
         template = get_object_or_404(queryset, slug=slug)
+        image = template.image
         return render(
             request,
             'step_tools.html',
             {
                 'template': template,
+                'image': image,
             },
         )

@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load cloudinary %}
+{% cloudinary survey_instance.survey_image crop='scale' fetch_format='auto' width='100%' height='100%' %}
 {% block title %}Start - Surveys{% endblock %}
 
 {% block content %}
@@ -9,10 +11,10 @@
                 {% if 'placeholder' in survey.survey_image.url %}
                 <div class="step-image mt-3"><img
                         src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                        class="card-img-top img-fluid image-inner" alt="Responsive image"></div>
+                        class="card-img-top img-fluid image-inner" alt="Placeholder image of a bright light" aria-label="Placeholder image of a bright light"></div>
                 {% else %}
                 <div class="step-image"><img src=" {{ survey.survey_image.url }}" class="card-img-top img-fluid image-inner"
-                        alt="Responsive image"></div>
+                        alt="Image added to survey bu the user" aria-label="Image added for survey by the individual user">></div>
                 {% endif %}
                 <div class="card-body text-center">
                     <h2 class="card-title bolder mt-5">{{ survey.title }}</h2>

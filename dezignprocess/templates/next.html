@@ -1,4 +1,6 @@
 {% extends 'steps.html' %}
+{% load cloudinary %}
+{% cloudinary step_instance.image crop='scale' fetch_format='auto' width='100%' height='100%' %}
 {% block next %}
 <div id="next" class="col-12">
    <div class="row">
@@ -12,8 +14,8 @@
                   aria-label="placeholder image of a bright light"
                   src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
                {% else %}
-               <img class="card-img-top img-border"  alt="image related to the purpose of the design thinking step"
-                  aria-label="image related to the purpose of the design thinking step" src=" {{ step.featured_image.url }} ">
+               <img class="card-img-top img-border"  alt="{{ step.feature_image.name }}"
+                  aria-label="{{ step.feature_image.name }}" src=" {{ step.feature_image.image.url }} ">
                {% endif %}
                <div class="image-overlay" aria-label="image overlay containing the step number">
                   <h2 class="step-number">Step Number: {{ step.order_number }} </h2>
@@ -40,10 +42,10 @@
                      {% endif %}
                   </p>
                   <p class="card-text h5">Resources:
-                     {{ step.resources }}
+                     {{ step.number_of_resources }}
                   </p>
                   <p class="card-text h5">Tools:
-                     {{ step.tools }}
+                     {{ step.number_of_tools }}
                   </p>
                </div>
             </div>

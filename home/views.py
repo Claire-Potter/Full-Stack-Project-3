@@ -8,7 +8,7 @@ documentation:
 https://django-rest-auth.readthedocs.io/en/latest/installation.html
 """
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.views import View
@@ -23,7 +23,8 @@ from .forms import EmailForm, ContactForm
 
 def index(request):
     """ A view to return the index page """
-    home = Home
+    queryset = Home.objects.all()
+    home = get_object_or_404(queryset)
 
     context = {
         'home': home,

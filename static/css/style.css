@@ -432,7 +432,7 @@ ul {
 
 .step-image {
 	width: 350px;
-	border: 10px solid #73929d;
+	border: 5px solid #73929d;
 	border-radius: 5px;
 }
 
@@ -503,6 +503,22 @@ ul {
 	margin-left: 15px;
 }
 
+.step-tool {
+	width: 500px;
+
+}
+
+.image-tool-overlay {
+	position: absolute;
+	bottom: 15%;
+	min-width: 30%;
+	left: 2px;
+	background-color: #df4c73;
+	border: 2px solid #df4c73;
+	border-radius: 5px;
+}
+
+
 
 /* Styling for Dezigntools app templates */
 
@@ -526,6 +542,13 @@ ul {
 	.text-small {
 		font-size: calc(1.325rem + .9vw) !important;
 	}
+
+	.image-tool-overlay {
+		position: absolute;
+		bottom: 20%;
+		font-size: calc(1.325rem + .9vw) !important;
+	}
+	
 }
 
 
