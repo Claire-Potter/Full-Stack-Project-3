@@ -362,6 +362,12 @@ ul {
 	font-family: 'Dongle', sans-serif;
 }
 
+[type="file"] {
+	font-size: 1.4rem;
+	font-weight: bolder;
+	margin-top: 10px;
+}
+
 
 /* Styling for Dezignprocess app templates*/
 
@@ -526,6 +532,28 @@ ul {
 	width: 250px;
 	border: 2px solid #73929d;
 	border-radius: 5px;
+}
+
+
+#error_1_id_gender,
+#error_1_id_age_range,
+#error_1_id_industry
+{
+	display: none;
+}
+
+#id_gender,
+#id_age_range,
+#id_industry {
+border-color: grey;
+background-image: none;
+box-shadow: none;
+font-size: 1.6rem}
+
+.text-form input,
+.text-form textarea {
+	font-size: 1.5rem;
+	font-family: 'Dongle', sans-serif;
 }
 
 

@@ -4,42 +4,48 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="card-title bolder mt-3">Create a new question</h2>
-            <div class="ui container left aligned">
-                <form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}"
-                    novalidate>
-                    {% csrf_token %}
-                    {{form|crispy}}
-                    <div><button class="btn mb-3 mr-1 get-started" type="submit">Create question</button></div>
-                    <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-edit' survey.pk %}"
-                            role="button">Cancel</a></div>
+    <div class="row align-items-center">
+        <div class="col-md-12 mt-5">
+            <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+                <h1 class="card-title bolder mt-3">Create a new question</h1>
+                <div class="ui container left aligned">
+                    <form method="post" enctype="multipart/form-data"
+                        class="ui form {% if form.errors %}error{% endif %}" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group col-md-6 mb-0 text-form bolder">
+                            {{ form.question|as_crispy_field }}
+                         </div>
+                        <div><button class="btn mb-3 ml-3 get-started" type="submit">Create question</button></div>
+                        <div><a class="btn mb-3 ml-3 get-started" href="{% url 'survey-edit' survey.pk %}"
+                                role="button">Cancel</a></div>
+                        <div>
+                            <p class="font-italic ml-3 text-form bolder">Click cancel to return to the previous page.</p>
+                        </div>
+                        {% if form.errors %}
+                        <div class="ui message error">
+                            <div class="header">We had some issues</div>
+                            <ul class="list">
+                                {% for field in form %}
+                                {% for error in field.errors %}
+                                <li>{{ field.label_tag }} {{ error }}</li>
+                                {% endfor %}
+                                {% endfor %}
+                                {% for error in form.non_field_errors %}
+                                <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </form>
+                    <div><a class="btn mb-3 ml-3 get-started" href="{{ request.META.HTTP_REFERER }}"
+                            type="button">Return</a>
+                    </div>
                     <div>
-                        <p>Click cancel to return to the previous page.</p>
+                        <p class="font-italic ml-3 text-form bolder">Click Return to return to your list of surveys.</p>
                     </div>
-                    {% if form.errors %}
-                    <div class="ui message error">
-                        <div class="header">We had some issues</div>
-                        <ul class="list">
-                            {% for field in form %}
-                            {% for error in field.errors %}
-                            <li>{{ field.label_tag }} {{ error }}</li>
-                            {% endfor %}
-                            {% endfor %}
-                            {% for error in form.non_field_errors %}
-                            <li>{{ error }}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    {% endif %}
-                </form>
-                <div><a class="btn mb-3 mr-1 get-started" href="{{ request.META.HTTP_REFERER }}"
-                        type="button">Return</a>
-                </div>
-                <div>
-                    <p>Click Return to return to your list of surveys.</p>
                 </div>
             </div>
         </div>
-        {% endblock %}
+    </div>
+</div>
+{% endblock %}

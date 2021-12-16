@@ -2,76 +2,62 @@
 {% block title %}Create - Surveys{% endblock %}
 {% block content %}
 {% load cloudinary %}
+{% load crispy_forms_tags %}
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<h2 class="card-title bolder mt-3">Customise your own Design Thinking Survey</h2>
-			<div>
-				<h2 class="card-title bolder mt-5">The following questions will be included by default in your survey:
-				</h2>
-				<ul class="card-title">
-					<li>
-						<b>gender</b> - user will select their gender choice (male, female, unknown or would rather not
-						disclose)
-					</li>
-					<li><b>age range</b> - user will select their age range (from under 18 up to 65 + options provided)
-					</li>
-					<li><b>industry </b>- user will select their industry (from a generic United Kingdom list of
-						industries)</li>
-				</ul>
+	<div class="row align-items-center">
+		<div class="col-md-12 mt-5">
+			<div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+				<h1 class="card-title bolder mt-3">Customise your own Design Thinking Survey</h1>
+				<div>
+					<h2 class="card-title bolder mt-5">The following questions will be included by default in your
+						survey:
+					</h2>
+					<ul class="card-title">
+						<li>
+							<b>gender</b> - user will select their gender choice (male, female, unknown or would rather
+							not
+							disclose)
+						</li>
+						<li><b>age range</b> - user will select their age range (from under 18 up to 65 + options
+							provided)
+						</li>
+						<li><b>industry </b>- user will select their industry (from a generic United Kingdom list of
+							industries)</li>
+					</ul>
+				</div>
+				<form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}">
+					<form method="post" class="mt-5 text-form">
+						{% csrf_token %}
+                  <div class="form-group col-md-6 mb-0 text-form bolder">
+                     {{ form.title|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6 mb-0 text-form bolder">
+                     {{ form.survey_image|as_crispy_field }}
+                  </div>
+						<button type="submit" class="btn mb-3 ml-3 get-started">Create</button>
+					 </form>
+				<div><a class="btn mb-3 ml-3 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
+				<div>
+					<p class="font-italic ml-3 text-form bolder">Click cancel to return to your list of surveys.</p>
+				</div>
+				{% if form.errors %}
+				<div class="ui message error">
+					<div class="header">We had some issues</div>
+					<ul class="list">
+						{% for field in form %}
+						{% for error in field.errors %}
+						<li>{{ field.label_tag }} {{ error }}</li>
+						{% endfor %}
+						{% endfor %}
+						{% for error in form.non_field_errors %}
+						<li>{{ error }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+				{% endif %}
+				</form>
 			</div>
-			<form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}">
-				{% csrf_token %}
-				<h2 class="card-title bolder mt-3">Survey Input:</h2>
-				<p class="card-title">Survey Title: {{ form.title }}</p>
-				<br />
-				<p class="card-title">Upload image: {{ form.survey_image}}</p>
-				<br />
-				<input type="submit" class="btn mb-3 mr-1 get-started" value="Create" />
-			</form>
-
-			<div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
-
-			<div>
-				<p>Click cancel to return to your list of surveys.</p>
-			</div>
-
-			{% if form.errors %}
-
-			<div class="ui message error">
-
-				<div class="header">We had some issues</div>
-
-				<ul class="list">
-
-					{% for field in form %}
-
-					{% for error in field.errors %}
-
-					<li>{{ field.label_tag }} {{ error }}</li>
-
-					{% endfor %}
-
-					{% endfor %}
-
-					{% for error in form.non_field_errors %}
-
-					<li>{{ error }}</li>
-
-					{% endfor %}
-
-				</ul>
-
-			</div>
-
-			{% endif %}
-
-			</form>
-
 		</div>
 	</div>
 </div>
-
-
-
 {% endblock %}

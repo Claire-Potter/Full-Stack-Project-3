@@ -8,7 +8,8 @@ class Survey(models.Model):
     """A survey created by a user."""
 
     title = models.CharField(max_length=64)
-    survey_image = CloudinaryField('image', default='placeholder')
+    survey_image = CloudinaryField('image', default='placeholder', blank=True,
+                                   null=True)
     is_active = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
@@ -18,7 +19,7 @@ class Gender(models.Model):
     """
     Model created to store the gender choices.
     """
-    title = models.CharField(max_length=80, unique=True)
+    title = models.CharField(max_length=80)
     order_number = models.IntegerField()
 
     class Meta:
@@ -32,7 +33,7 @@ class AgeRange(models.Model):
     """
     Model created to store the age_range choices.
     """
-    title = models.CharField(max_length=80, unique=True)
+    title = models.CharField(max_length=80)
     order_number = models.IntegerField()
 
     class Meta:
@@ -46,7 +47,7 @@ class Industry(models.Model):
     """
     Model created to store the Industry choices.
     """
-    title = models.CharField(max_length=250, unique=True)
+    title = models.CharField(max_length=250)
 
     class Meta:
         ordering = ["title"]
@@ -64,15 +65,12 @@ class DefaultQuestion(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField()
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE,
-                               related_name="gender_set",
-                               null=True)
+                               related_name="gender_set")
     age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE,
-                                  related_name="age_range_set",
-                                  null=True)
- 
+                                  related_name="age_range_set")
+
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE,
-                                 related_name="industry_set",
-                                 null=True)
+                                 related_name="industry_set")
 
 
 class Question(models.Model):

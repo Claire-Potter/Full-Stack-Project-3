@@ -191,7 +191,10 @@ def create(request):
     """User can create a new survey"""
     context = dict(form=SurveyForm())
     if request.method == "POST":
-        form = SurveyForm(request.POST, request.FILES)
+        form = SurveyForm(request.POST, request.FILES,
+                          initial={'title': 'Add a'
+                                   ' Survey Title',
+                                   'survey_image': 'Upload an image'})
         context['posted'] = form.instance
         if form.is_valid():
             survey = form.save(commit=False)
@@ -199,9 +202,13 @@ def create(request):
             survey.save()
             return redirect("survey-edit", pk=survey.id)
     else:
-        form = SurveyForm()
+        form = SurveyForm(initial={'title': 'Add a'
+                                   ' Survey Title',
+                                   'survey_image': 'Upload an'
+                                   ' image'})
 
-    return render(request, "survey/create.html", context)
+    return render(request, "survey/create.html",
+                  {'form': form})
 
 
 @login_required

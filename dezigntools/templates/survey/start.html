@@ -5,17 +5,23 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card align-items-center mt-3">
-                {% if 'placeholder' in survey.survey_image.url %}
-                <div class="step-image mt-3"><img
-                        src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                        class="card-img-top img-fluid image-inner" alt="Placeholder image of a bright light" aria-label="Placeholder image of a bright light"></div>
-                {% else %}
-                <div class="step-image"><img src=" {{ survey.survey_image.url }}" class="card-img-top img-fluid image-inner"
-                        alt="Image added to survey bu the user" aria-label="Image added for survey by the individual user">></div>
-                {% endif %}
+    <div class="row-fluid align-items-center">
+        <div class="col-md-12 mt-5">
+            <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+                <div class="image-container">
+                    {% if 'placeholder' in survey.survey_image.url %}
+                    <div class="mx-auto">
+                        <img src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                            class="step-tool img-fluid" alt="Placeholder image of a bright light"
+                            aria-label="Placeholder image of a bright light">
+                    </div>
+                    {% else %}
+                    <div class=" mx-auto"><img src=" {{ survey.survey_image.url }}"
+                            class="step-tool img-fluid" alt="Image added to survey bu the user"
+                            aria-label="Image added for survey by the individual user">
+                    </div>
+                    {% endif %}
+                </div>
                 <div class="card-body text-center">
                     <h2 class="card-title bolder mt-5">{{ survey.title }}</h2>
                     <div class="card-title ">You have been invited to take this survey</div>
@@ -23,14 +29,15 @@
                         <form method="post" action="{% url 'survey-start' survey.pk %}">
                             {% csrf_token %}
                             <div><button class="btn mb-3 mr-1 get-started" type="submit">Start Survey</button></div>
-                            <div><a class="btn mb-3 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel and
+                            <div><a class="btn mb-3 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel
+                                    and
                                     Return Home</a></div>
                             <div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

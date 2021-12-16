@@ -77,7 +77,7 @@ def send_email(request):
 
             # Unsubscribe groups
             # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
-            email_message.asm = {'group_id': 138000, 'groups_to_display': [
+            email_message.asm = {'group_id': 163668, 'groups_to_display': [
                        'XperienceDezignWiz']}
 
             # set the variable initially created to True

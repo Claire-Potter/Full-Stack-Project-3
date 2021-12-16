@@ -1,107 +1,61 @@
 {% extends "base.html" %}
 
 {% block title %}Question - Surveys{% endblock %}
-
-
-
 {% block content %}
-
 {% load crispy_forms_tags %}
-
 <div class="container">
-
-	<div class="row">
-
-		<div class="col-md-12">
-
-			<h2 class="card-title bolder mt-3">Add options to question</h2>
-
-			<div class="ui container left aligned">
-
-				<h3 class="card-title">
-
-					Question: {{ question.question }}
-
-				</h3>
-
-				<ul>
-
-					{% for option in options %}
-
-					<li>
-
-						{{ forloop.counter }}) {{option.option}}
-
-					</li>
-
-					{% endfor %}
-
-				</ul>
-
-				<form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}"
-					novalidate>
-
-					{% csrf_token %}
-
-					{{form|crispy}}
-
-					<div><button class="btn mb-3 mr-1 get-started" type="submit">Add new option</button></div>
-
-					<div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-edit' survey.pk %}"
-							role="button">Cancel</a></div>
-
-					<div>
-
-						<p>Click cancel to return to the previous page.</p>
-
-					</div>
-
-					{% if form.errors %}
-
-					<div class="ui message error">
-
-						<div class="header">We had some issues</div>
-
-						<ul class="list">
-
-							{% for field in form %}
-
-							{% for error in field.errors %}
-
-							<li>{{ field.label_tag }} {{ error }}</li>
-
-							{% endfor %}
-
-							{% endfor %}
-
-							{% for error in form.non_field_errors %}
-
-							<li>{{ error }}</li>
-
-							{% endfor %}
-
-						</ul>
-
-					</div>
-
+	<div class="row align-items-center">
+		<div class="col-md-12 mt-5">
+			<div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+				<h1 class="card-title bolder mt-3">Add options to question</h1>
+				<div class="ui container left aligned">
+					<h3 class="card-title">
+						Question: {{ question.question }}
+					</h3>
+					<ul>
+						{% for option in options %}
+						<li>
+							{{ forloop.counter }}) {{option.option}}
+						</li>
+						{% endfor %}
+					</ul>
+					<form method="post" enctype="multipart/form-data"
+						class="ui form {% if form.errors %}error{% endif %}" novalidate>
+						{% csrf_token %}
+						<div class="form-group col-md-6 mb-0 text-form bolder">
+							{{ form.option|as_crispy_field }}
+						</div>
+						<div><button class="btn mb-3 mr-1 get-started ml-3" type="submit">Add new option</button></div>
+						<div><a class="btn mb-3 mr-1 get-started ml-3" href="{% url 'survey-edit' survey.pk %}"
+								role="button">Cancel</a></div>
+						<div>
+							<p class="font-italic ml-3 text-form bolder">Click cancel to return to the previous page.</p>
+						</div>
+						{% if form.errors %}
+						<div class="ui message error">
+							<div class="header">We had some issues</div>
+							<ul class="list">
+								{% for field in form %}
+								{% for error in field.errors %}
+								<li>{{ field.label_tag }} {{ error }}</li>
+								{% endfor %}
+								{% endfor %}
+								{% for error in form.non_field_errors %}
+								<li>{{ error }}</li>
+								{% endfor %}
+							</ul>
+						</div>
+						{% endif %}
+					</form>
+					{% if options|length >= 0 %}
+					<div class="ui divider"></div>
+					<a class="btn mb-5 mr-1 get-started ml-3" href="{% url 'survey-edit' survey.pk %}" role="button">
+						<div class="ui button">Done adding options</div>
+					</a>
 					{% endif %}
-
-				</form>
-
-				{% if options|length >= 0 %}
-
-				<div class="ui divider"></div>
-
-				<a class="btn mb-3 mr-1 get-started" href="{% url 'survey-edit' survey.pk %}" role="button">
-
-					<div class="ui button">Done adding options</div>
-
-				</a>
-
-				{% endif %}
-
+				</div>
 			</div>
-
 		</div>
-
-		{% endblock %}
+	</div>
+</div>
+{% endblock %}

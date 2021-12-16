@@ -2,90 +2,49 @@
 
 {% block title %}Create - Surveys{% endblock %}
 
-
-
 {% block content %}
 
 <div class="container">
-
-    <div class="row">
-
-        <div class="col-md-12">
-
-            <h2 class="card-title bolder mt-5">Add questions to {{survey.title}}:</h2>
-
-
-
-            <div class="ui container left aligned">
-
-                {% for question in questions %}
-
-                <div class="ui basic padded segment">
-
-                    <h4 class="ui header">
-
-                        Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
-
-                    </h4>
-
-                    <ul>
-
-                        {% for option in question.option_set.all %}
-
-                        <li>
-
-                            {{ forloop.counter }}) {{option.option}}
-
-                        </li>
-
-                        {% endfor %}
-
-                    </ul>
-
+    <div class="row align-items-center">
+        <div class="col-md-12 mt-5">
+            <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+                <h2 class="card-title bolder mt-5">Add questions to {{survey.title}}:</h2>
+                <div class="ui container left aligned">
+                    {% for question in questions %}
+                    <div class="ui basic padded segment">
+                        <h3 class="ui header">
+                            Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
+                        </h3>
+                        <ul>
+                            {% for option in question.option_set.all %}
+                            <li>
+                                {{ forloop.counter }}) {{option.option}}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                    <a class="btn mb-3 mr-1 get-started" type="button"
+                        href="{% url 'survey-question-create' survey.pk %}">Add a question
+                    </a>
+                    <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a>
+                    </div>
+                    <div>
+                        <p class="font-italic ml-3 text-form bolder">Click cancel to return to your list of surveys.</p>
+                    </div>
+                    {% if questions|length > 0 %}
+                    <div class="ui divider"></div>
+                    <form style="display: inline-block;" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn mb-5 mr-1 get-started">Activate survey</button>
+                    </form>
+                    <a href="{% url 'survey-list' %}">
+                        <div class="btn mb-5 mr-1 get-started">Return</div>
+                    </a>
+                    {% endif %}
                 </div>
-
-                {% endfor %}
-
-                <a class="btn mb-3 mr-1 get-started" type="button"
-                    href="{% url 'survey-question-create' survey.pk %}">Add a question
-
-                </a>
-
-                <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
-
-                <div>
-
-                    <p>Click cancel to return to your list of surveys.</p>
-
-                </div>
-
-                {% if questions|length > 0 %}
-
-                <div class="ui divider"></div>
-
-                <form style="display: inline-block;" method="post">
-
-                    {% csrf_token %}
-
-                    <button type="submit" class="btn mb-3 mr-1 get-started">Activate survey</button>
-
-                </form>
-                
-
-                <a href="{% url 'survey-list' %}">
-
-                    <div class="btn mb-3 mr-1 get-started">Return</div>
-
-                </a>
-
-                {% endif %}
-
             </div>
-
         </div>
-
     </div>
-
 </div>
-
 {% endblock %}

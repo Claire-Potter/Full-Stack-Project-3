@@ -38,6 +38,7 @@ class DefaultQuestionsAnswerForm(forms.ModelForm):
     class Meta:
         model = DefaultQuestion
         fields = ['gender', 'age_range', 'industry']
+        error_text_inline = False
 
 
 class BaseAnswerFormSet(forms.BaseFormSet):
