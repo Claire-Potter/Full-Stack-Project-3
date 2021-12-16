@@ -3,6 +3,10 @@
 {% block title %}Question - Surveys{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
+<!--The following site provided a Django project blueprint to build a survey app. This was
+followed alongside the git hub page. I then customised the HTML and CSS to align with my
+site's design and functionality. https://mattsegal.dev/django-survey-project.html. All forms
+are formatted and validated through crispy forms.-->
 <div class="container">
 	<div class="row align-items-center">
 		<div class="col-md-12 mt-5">
@@ -10,8 +14,10 @@
 				<h1 class="card-title bolder mt-3">Add options to question</h1>
 				<div class="ui container left aligned">
 					<h3 class="card-title">
+					<!--The question the user has just created is delivered back and displated -->
 						Question: {{ question.question }}
 					</h3>
+					<!--A for loop return and displays all options already created. The forloop.counter adds a number-->
 					<ul>
 						{% for option in options %}
 						<li>
@@ -21,16 +27,21 @@
 					</ul>
 					<form method="post" enctype="multipart/form-data"
 						class="ui form {% if form.errors %}error{% endif %}" novalidate>
+						<!--The option form is utilised to capture each new option -->
 						{% csrf_token %}
 						<div class="form-group col-md-6 mb-0 text-form bolder">
 							{{ form.option|as_crispy_field }}
 						</div>
 						<div><button class="btn mb-3 mr-1 get-started ml-3" type="submit">Add new option</button></div>
+						<!--Cancel links styled as buttons were added to all pages, to always allow the user
+						to return to the previous page-->
 						<div><a class="btn mb-3 mr-1 get-started ml-3" href="{% url 'survey-edit' survey.pk %}"
 								role="button">Cancel</a></div>
 						<div>
 							<p class="font-italic ml-3 text-form bolder">Click cancel to return to the previous page.</p>
 						</div>
+                        <!--An if statement and two for statements are utilised to provide an  error message per field and non-fields only if any 
+					    errors occur.-->
 						{% if form.errors %}
 						<div class="ui message error">
 							<div class="header">We had some issues</div>
@@ -47,6 +58,8 @@
 						</div>
 						{% endif %}
 					</form>
+					    <!--Once at least one option is added , the user can select that they are done adding options. They will then
+						    be returned to create another question if required.-->
 					{% if options|length >= 0 %}
 					<div class="ui divider"></div>
 					<a class="btn mb-5 mr-1 get-started ml-3" href="{% url 'survey-edit' survey.pk %}" role="button">

@@ -3,10 +3,20 @@
 {% block content %}
 {% load cloudinary %}
 {% load crispy_forms_tags %}
+<!--The following site provided a Django project blueprint to build a survey app. This was
+followed alongside the git hub page. I then customised the HTML and CSS to align with my
+site's design and functionality. https://mattsegal.dev/django-survey-project.html. All forms
+are formatted and validated through crispy forms.-->
 <div class="container">
 	<div class="row align-items-center">
 		<div class="col-md-12 mt-5">
 			<div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+				<!--I customised the survey design by adding in some default questions. As a model
+				and DefaultQuestions form.
+				All surveys will by default include the following: select gender, select age and
+			    select Indusstry of work. This information is necessary in the Design Thinking process
+			    as it can be analysed to create Personas. The user's email and username are added to the
+			    DefaultQuestion model automatically-->
 				<h1 class="card-title bolder mt-3">Customise your own Design Thinking Survey</h1>
 				<div>
 					<h2 class="card-title bolder mt-5">The following questions will be included by default in your
@@ -25,6 +35,8 @@
 							industries)</li>
 					</ul>
 				</div>
+				<!--The below form references the SurveyForm and allows the user to add a survey title (required),
+					and a survey image (not required).-->
 				<form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}">
 					<form method="post" class="mt-5 text-form">
 						{% csrf_token %}
@@ -36,10 +48,14 @@
                   </div>
 						<button type="submit" class="btn mb-3 ml-3 get-started">Create</button>
 					 </form>
+					 <!--Cancel links styled as buttons were added to all pages, to always allow the user
+						to exit the survey creation and return to their survey-list.-->
 				<div><a class="btn mb-3 ml-3 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>
 				<div>
 					<p class="font-italic ml-3 text-form bolder">Click cancel to return to your list of surveys.</p>
 				</div>
+				<!--An if statement and two for statements are utilised to provide an  error message per field and non-fields only if any 
+					errors occur.-->
 				{% if form.errors %}
 				<div class="ui message error">
 					<div class="header">We had some issues</div>
