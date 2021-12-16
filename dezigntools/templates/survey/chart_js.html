@@ -1,91 +1,34 @@
 <script>
     // jquery function
+    // The jquery function utilised to generate the chart-js 
+    // charts in the survey detail page. 
+    // The following tutorial was utilised to create
+    // the chart-js code and customised for the site 
+    // https://www.section.io/engineering-education/integrating-chart-js-in-django
+    // The script utilises django template tags and is required 
+    // to be saved within an html file type.
+    // As it is a script the various template tags 
+    // do reflect as problems.
+    // It is very sensitive as the where the lines are split so
+    // some lines might be slightly longer.
     $(document).ready(function(){
+        //The chart element is referenced through the class name
             var ctx = $(".myChart2")[0].getContext('2d');
             var className = ctx.className;
+            //the chart is set up as a doughnut type and 
+            // the data is added thereafter
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: { 
                     labels: [{% for age in age_range %} '{{age}}', {%endfor%}],
-                     //loop through queryset, 
+                     //for loop through queryset created 
+                     // and for ever age range option:
+                     // the percent per age range is shown as a float number
                     datasets: [{ 
                         label: '% per age', 
                         data: [{% for age in age_range %}
-                        {{ age.percent|floatformat }}, {%endfor%}], 
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)', 
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)',
-                            'rgba(201, 94, 125, 0.2)',
-                            'rgba(94, 201, 189, 0.2)',
-                            'rgba(194, 87, 203, 0.2)',
-                            'rgba(97, 203, 87, 0.2)',
-                            'rgba(203, 202, 87, 0.2)',
-                            'rgba(203, 93, 87, 0.2)',
-                            'rgba(87, 134, 203, 0.2)',
-                            'rgba(37, 67, 116, 0.2)',
-                            'rgba(203, 226, 54, 0.2)',
-                            'rgba(139, 204, 238, 0.2)',
-                            'rgba(238, 139, 202, 0.2)',
-                            'rgba(80, 37, 49, 0.2)',
-                            'rgba(50, 91, 26, 0.2)',
-                            'rgba(26, 91, 87, 0.2)',
-                            'rgba(91, 26, 26, 0.2)',
-                            'rgba(136, 210, 221, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(201, 94, 125, 1)',
-                            'rgba(94, 201, 189, 1)',
-                            'rgba(194, 87, 203, 1)',
-                            'rgba(97, 203, 87, 1)',
-                            'rgba(203, 202, 87, 1)',
-                            'rgba(203, 93, 87, 1)',
-                            'rgba(87, 134, 203, 1)',
-                            'rgba(37, 67, 116, 1)',
-                            'rgba(203, 226, 54, 1)',
-                            'rgba(139, 204, 238, 1)',
-                            'rgba(238, 139, 202, 1)',
-                            'rgba(80, 37, 49, 1)',
-                            'rgba(50, 91, 26, 1)',
-                            'rgba(26, 91, 87, 1)',
-                            'rgba(91, 26, 26, 1)',
-                            'rgba(136, 210, 221, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-             }
-    });
-        });
-    
-    
-        $(document).ready(function(){
-            var ctx = $(".myChart")[0].getContext('2d');
-            var className = ctx.className;
-            var myChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: { 
-                    labels: [{% for gender in gender_range %} '{{gender}}',
-                    {%endfor%}], //loop through queryset, 
-                    datasets: [{ 
-                        label: '% per age', 
-                        data: [{% for gender in gender_range %}
-                        {{ gender.percent|floatformat }}, {%endfor%}], 
+                        {{ age.percent|floatformat }}, {%endfor%}],
+                        // chart styling
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)', 
                             'rgba(54, 162, 235, 0.2)',
@@ -144,21 +87,109 @@
                         }
                     }
                 }
-    });
+            });
+        });
+    
+    
+        $(document).ready(function(){
+            //The chart element is referenced through the class name
+            var ctx = $(".myChart")[0].getContext('2d');
+            var className = ctx.className;
+            var myChart = new Chart(ctx, {
+                //the chart is set up as a doughnut type and the 
+                // data is added thereafter
+                type: 'doughnut',
+                data: { 
+                    labels: [{% for gender in gender_range %} '{{gender}}',
+                    {%endfor%}], 
+                    //for loop through queryset created and 
+                    // for every gender option:
+                     // the percent per gender is shown as a float number
+                    datasets: [{ 
+                        label: '% per age', 
+                        data: [{% for gender in gender_range %}
+                        {{ gender.percent|floatformat }}, {%endfor%}],
+                        // chart styling
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', 
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(201, 94, 125, 0.2)',
+                            'rgba(94, 201, 189, 0.2)',
+                            'rgba(194, 87, 203, 0.2)',
+                            'rgba(97, 203, 87, 0.2)',
+                            'rgba(203, 202, 87, 0.2)',
+                            'rgba(203, 93, 87, 0.2)',
+                            'rgba(87, 134, 203, 0.2)',
+                            'rgba(37, 67, 116, 0.2)',
+                            'rgba(203, 226, 54, 0.2)',
+                            'rgba(139, 204, 238, 0.2)',
+                            'rgba(238, 139, 202, 0.2)',
+                            'rgba(80, 37, 49, 0.2)',
+                            'rgba(50, 91, 26, 0.2)',
+                            'rgba(26, 91, 87, 0.2)',
+                            'rgba(91, 26, 26, 0.2)',
+                            'rgba(136, 210, 221, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(201, 94, 125, 1)',
+                            'rgba(94, 201, 189, 1)',
+                            'rgba(194, 87, 203, 1)',
+                            'rgba(97, 203, 87, 1)',
+                            'rgba(203, 202, 87, 1)',
+                            'rgba(203, 93, 87, 1)',
+                            'rgba(87, 134, 203, 1)',
+                            'rgba(37, 67, 116, 1)',
+                            'rgba(203, 226, 54, 1)',
+                            'rgba(139, 204, 238, 1)',
+                            'rgba(238, 139, 202, 1)',
+                            'rgba(80, 37, 49, 1)',
+                            'rgba(50, 91, 26, 1)',
+                            'rgba(26, 91, 87, 1)',
+                            'rgba(91, 26, 26, 1)',
+                            'rgba(136, 210, 221, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         });
     
         $(document).ready(function(){
+            //The chart element is referenced through the class name
             var ctx = $(".myChart3")[0].getContext('2d');
             var className = ctx.className;
             var myChart = new Chart(ctx, {
+                 //the chart is set up as a doughnut type and the
+                 // data is added thereafter
                 type: 'doughnut',
                 data: { 
                     labels: [{% for industry in industry_range %} '{{industry}}',
-                     {%endfor%}], //loop through queryset, 
+                     {%endfor%}], 
+                     //for loop through queryset created and 
+                     // for every Industry option:
+                     // the percent per Industry is shown as a float number
                     datasets: [{ 
                         label: '% per age', 
                         data: [{% for industry in industry_range %}
-                        {{ industry.percent|floatformat }}, {%endfor%}], 
+                        {{ industry.percent|floatformat }}, {%endfor%}],
+                        // chart styling 
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)', 
                             'rgba(54, 162, 235, 0.2)',
@@ -217,9 +248,11 @@
                         }
                     },
                 }
-    });
+            });
         });
-    
+    //global legend for all charts, display was removed as
+    // it was bulky, did not look good and generated very poorly
+    // on small screels
     Chart.defaults.global.legend.display = false;
     
 </script>

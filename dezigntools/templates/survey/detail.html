@@ -9,41 +9,45 @@
 followed alongside the git hub page. I then customised the HTML and CSS to align with my
 site's design and functionality. https://mattsegal.dev/django-survey-project.html. Once the survey
 has been completed, a thank you message is displayed and the user can return to the home page.
-The chart-js library was utilised to return the charts for the default questions-->
+The chart-js library was utilised to return the charts for the default questions The following
+tutorial was utilised to create the chart-js code and customised for the site 
+https://www.section.io/engineering-education/integrating-chart-js-in-django/-->
 <div class="container mt-5">
-
 	<div class="row">
-
 		<div class="col-md-12 text-center">
-
+            <!--The Survey title reflects and below that, the number of survey submissions-->
 			<h1 class="card-title bolder">{{ survey.title }}</h1>
-
 			<h3 class="card-title">You have {{ num_submissions }} submissions</h3>
-
+             <!--A link styled as a button provides a link to the survey start page-->
 			<h3 class="card-title"><a class="btn mb-3 mr-1 get-started" role="button" href="{{ public_url }}"
 					alt="Click this button to start the survey">Start
-
 					Survey</a></h3>
-
 			<h1 class="card-title bolder dividing">Answers</h1>
             <div class="row">
+                <!--The default question results are each displayed in a chart-js chart. The jquery script
+                for the charts is saved in chart_js.html-->
                 <div class="col-sm text-center mt-5 mb-5">
+                    <!--The different age range options and percentage each age range was chosen-->
                     <h2 class="card bolder">
                         % per Age Range:
                     </h2>
                     <canvas class="myChart2 chart-size" width="400" height="100"></canvas>
                 </div>
                 <div class="col-sm text-center mt-5 mb-5">
+                    <!--The different gender options and percentage each gender was chosen-->
                     <h2 class="card bolder">
                         % per Gender:
 				    </h2>
 				   <canvas class="myChart chart-size" width="400" height="100"></canvas>
                 </div>
                 <div class="col-sm text-center mt-5 mb-5"><h2 class="card bolder">
+                    <!--The different Industry options and percentage each Industry was chosen-->
 					% per Industry:
 				   </h2>
 				   <canvas class="myChart3 chart-size" width="400" height="100"></canvas>
                  </div>
+                 <!--A for loop is utilised to return each question and a second for loop with its option set.
+                The percentage each option was chosen reflects-->
                 <div class="col-sm text-center mt-5 mb-5">
                     {% for question in questions %}
                     <h2 class="card bolder">
@@ -59,13 +63,11 @@ The chart-js library was utilised to return the charts for the default questions
                     </ul>
                     {% endfor %}
                 </div>
-
+                <!--A Return link styled as a button to return to the survey-link page -->
 			<div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" type="button">
                 Return</a>
-
 			</div>
 		</div>
 	</div>
 </div>
-
 {% endblock %}

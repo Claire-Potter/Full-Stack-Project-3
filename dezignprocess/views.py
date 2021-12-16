@@ -45,16 +45,21 @@ def search(request):
     """
     if request.method == 'POST':
         searched = request.POST['searched']
-        steps = Step.objects.filter(title=searched)
+        queryset = Step.objects.all()
+        step = get_object_or_404(queryset, title=searched)
+        image = step.steps_image
         if searched == 'Getting Started':
             click = ('Click the step name:'
                      ' Getting Started to be directed to the step.')
         elif searched == 'Empathy':
-            click = 'Click the step name: Empathy to be directed to the step.'
+            click = ('Click the step name: Empathy'
+                     ' to be directed to the step.')
         elif searched == 'Define':
-            click = 'Click the step name: Define to be directed to the step.'
+            click = ('Click the step name: Define to be'
+                     ' directed to the step.')
         elif searched == 'Ideate':
-            click = 'Click the step name: Ideate to be directed to the step.'
+            click = ('Click the step name: Ideate to be'
+                     ' directed to the step.')
         elif searched == 'Prototype':
             click = ('Click the step name:'
                      ' Prototype to be directed to the step.')
@@ -83,8 +88,9 @@ def search(request):
             request, 'search.html',
             {
                     'searched': searched,
-                    'steps': steps,
+                    'step': step,
                     'click': click,
+                    'image': image,
                 },
             )
     else:
