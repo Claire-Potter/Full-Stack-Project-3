@@ -7,6 +7,7 @@
    <div class="container">
       <div class="row">
          <div class="col-12 mb-5 ">
+            <!-- if a search term was included generate the below div-->
             {% if searched %}
             <div class="col-6 mx-auto text-center mb-5 ">
                <h1>You Searched for {{ searched }}</h1>
@@ -16,6 +17,8 @@
             <div class="container">
                <div class="row g-0">
                   <div class="col-md-12 card mb-3">
+                     <!-- The same html and css code from the step_detail page is used to return the step 
+                     excluding the accordion body content.-->
                      <div class="card align-items-center">
                         {% if 'placeholder' in image.image.url %}
                         <div class="step-image"><img
@@ -28,15 +31,17 @@
                                aria-label="{{ image.name }}"></div>
                         {% endif %}
                         <div class="card-body align-items-center">
+                           {% if 'None' in step.title %}
+                           <h2 class="card-title bolder text-center">{{ step.title }}</h2>
+                           {% else %}
                            <a href="{% url 'step_detail' step.slug %}" class="step-link text-center">
                               <h2 class="card-title bolder">{{ step.title }}</h2>
                            </a>
+                           {% endif %}
                            <p class="card-text text-center">
                               {{ step.excerpt | safe }}
                            </p>
-                           <p class="card-text text-center">
-                              {{ progress }}
-                           </p>
+                            <!-- The Return button will direct the user back to the previous screen-->
                            <div class="text-center"><a class="btn get-started mx-auto"
                                  href="{{ request.META.HTTP_REFERER }}">Return</a></div>
                         </div>
@@ -45,6 +50,7 @@
                </div>
             </div>
             {% else %}
+            <!-- If an empty search was completed the below content will be returned-->
             <div class="col-6 mx-auto text-center mb-5 ">
                <h1>You forgot to enter any search criteria.</h1>
                <p class="card-text text-center">
@@ -61,6 +67,7 @@
                   <li>Finishing Off</li>
                   <li>The search field is case sensitive.</li>
                </ul>
+               <!-- The Return button will direct the user back to the previous screen-->
                <div class="text-center"><a class="btn get-started mx-auto"
                      href="{{ request.META.HTTP_REFERER }}">Return</a></div>
             </div>

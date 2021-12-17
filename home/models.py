@@ -17,14 +17,20 @@ class Home(models.Model):
     A foreignKey field is linked to store the username
     as the related_name 'home'
     """
-    username = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='home',
-        default='1'
-    )
+    name = models.CharField(max_length=80)
     home_image = CloudinaryField('image', default='placeholder')
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        """
+        Meta created to order the Contact Model according
+        to the created on date.
+        """
+        ordering = ['-created_on']
+        verbose_name_plural = "Home"
 
     def __str__(self):
-        return '%s' % (self.username)
+        return '%s' % (self.name)
 
 
 class Contact(models.Model):
@@ -47,6 +53,7 @@ class Contact(models.Model):
         to the created on date.
         """
         ordering = ['-created_on']
+        verbose_name_plural = "Contact Requests"
 
     def __str__(self):
         return f'Contact request {self.body} by {self.name}'
@@ -68,6 +75,7 @@ class Verification(models.Model):
         """
         ordering = ['updated_on']
         get_latest_by = ['updated_on']
+        verbose_name_plural = "Verification Id"
 
     def __str__(self):
         return '%s' % (self.verification)

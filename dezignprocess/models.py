@@ -45,7 +45,7 @@ class Images(models.Model):
 
 
 class Resource(models.Model):
-    video_name = models.CharField(max_length=200, blank=True,
+    video_name = models.CharField(max_length=100, blank=True,
                                   default='placeholder')
     video_url = EmbedVideoField(blank=True)
     added = models.DateTimeField(auto_now_add=True)
@@ -107,9 +107,6 @@ class Step(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     tools = models.ManyToManyField(
         Tool, related_name='tool', blank=True)
-    username_id = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='username_step',
-        default='1')
     list_number = models.IntegerField(
         default='1')
 

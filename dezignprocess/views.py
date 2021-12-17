@@ -25,51 +25,66 @@ def search(request):
     """
     The post function posts the searched term i.e. the title of the
     step, it then returns the step title, which is the link
-    to the step detail page, the step image, and the current progress
-    status, which will be the latest unique status if the user is logged
-    in and has created a progress status, otherwise it will return as
-    not started.
+    to the step detail page, the step image,and the step
+    excerpt.
 
-    self: The self is used to represent the instance of the class.
     request: The requests module allows you to send HTTP
     requests using Python.The HTTP request returns a Response
     Object with all the response data (content, encoding, status, etc).
     Definition from https://www.w3schools.com/python/module_requests.asp
 
-    The post function was created by following this you tube video:
+    The search function was created by following this you tube video:
     https://youtu.be/AGtae4L5BbI
     It was customised for the site.
-    Complex lookups with Q objects was referenced here:
-    https://docs.djangoproject.com/en/3.2/topics/db/queries/ to create the
-    lookups.
     """
+    # The first if statement will check if the user has posted a search term
     if request.method == 'POST':
         searched = request.POST['searched']
+        # The objects member will be added when the page is rendered
         queryset = Step.objects.all()
-        step = get_object_or_404(queryset, title=searched)
-        image = step.steps_image
+        # The step object uses get_object_or_404 to determine if the
+        # title of the search term matches a step title, i.e. the step
+        # exists in the Step model
+        # image is set up to return the step_mage from the step model
+
         if searched == 'Getting Started':
+            step = get_object_or_404(queryset, title=searched)
+            image = step.steps_image
             click = ('Click the step name:'
                      ' Getting Started to be directed to the step.')
         elif searched == 'Empathy':
+            step = get_object_or_404(queryset, title=searched)
+            image = step.steps_image
             click = ('Click the step name: Empathy'
                      ' to be directed to the step.')
         elif searched == 'Define':
+            step = get_object_or_404(queryset, title=searched)
+            image = step.steps_image
             click = ('Click the step name: Define to be'
-                     ' directed to the step.')
+                     ' directed to the step.')          
         elif searched == 'Ideate':
+            step = get_object_or_404(queryset, title=searched)
+            image = step.steps_image
             click = ('Click the step name: Ideate to be'
-                     ' directed to the step.')
+                     ' directed to the step.')         
         elif searched == 'Prototype':
+            step = get_object_or_404(queryset, title=searched)
+            image = step.steps_image
             click = ('Click the step name:'
                      ' Prototype to be directed to the step.')
         elif searched == 'Test':
+            step = get_object_or_404(queryset, title=searched)
+            image = step.steps_image
             click = 'Click the step name: Test to be directed to the step.'
         elif searched == 'Finishing Off':
+            step = get_object_or_404(queryset, title=searched)
+            image = step.steps_image
             click = ('Click the step name:'
                      ' Finishing Off to be directed to the step.')
-
-        else:
+            image = step.steps_image
+        elif searched != Step.objects.filter(title=searched):
+            step = get_object_or_404(queryset, title='None')
+            image = step.steps_image
             click = ('You searched for an incorrect term.'
                      ' This search is set up to return the'
                      ' pages for the steps within the'
