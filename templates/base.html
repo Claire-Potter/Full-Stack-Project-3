@@ -2,7 +2,7 @@
 {% load cloudinary_static %}
  <!--The original template set up was completed using the 'I Think Therefore I Blog'
  Code Institute project. The template has been fully customised to align with
-project requirements-->
+project-->
 <!DOCTYPE html>
 <html lang="en" class="h-100">
    <head>
@@ -41,6 +41,7 @@ project requirements-->
          <!-- Navigation created as per Code Institute 'I Think Therefore I Blog' and fully customised for site -->
          <nav class="navbar navbar-expand-lg navbar-light nav-background sticky-top">
             <div class="container-fluid">
+               <h2 class="hidden">Xperience DezignWiz</h2>
                <a class="navbar-brand" href="{% url 'home' %}"><span class="logo scarlett-x"><i
                   class="fab fa-xing-square"></i></span><span class="logo">perience</span><span
                   class="logo-small"> DezignWiz</span></a>
@@ -49,6 +50,7 @@ project requirements-->
                <span class="navbar-toggler-icon"></span>
                </button>
                <div class="collapse navbar-collapse" id="navbarText">
+                  <h2 class="hidden">Xperience DezignWiz</h2>
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
@@ -105,6 +107,7 @@ project requirements-->
       <section>
          <!--Alert messages created as per Code Institute 'I Think Therefore I Blog'-->
          <div class="container">
+            <h2 class="hidden">Xperience DezignWiz</h2>
             <div class="row">
                <div class="col-md-8-offset-md-2">
                   {% for message in messages %}
@@ -120,6 +123,7 @@ project requirements-->
          </div>
       </section>
       <section>
+         <h2 class="hidden">Xperience DezignWiz</h2>
          <main class="flex-shrink-0 bg-body">
             {% block content %}
             <!-- Content Goes here -->

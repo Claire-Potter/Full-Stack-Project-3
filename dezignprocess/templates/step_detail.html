@@ -1,18 +1,19 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
 {% load cloudinary %}
 {% cloudinary step_instance.image crop='scale' fetch_format='auto' width='100%' height='100%' %}
 {% load crispy_forms_tags %}
- <!--The original template set up was completed using the 'I Think Therefore I Blog'
+{% block content %}
+<!--The original template set up was completed using the 'I Think Therefore I Blog'
  Code Institute project. The template has been fully customised to align with
 project requirements-->
 <section>
-    <!--The jumbotron is a default bootstrap class which creates a styled section
+   <!--The jumbotron is a default bootstrap class which creates a styled section
         which looks great at the top of the page-->
    <div class="jumbotron">
       <div class="container">
          <div class="row g-0">
             <div class="col-md-6 jumbotron-text">
-               <h1 class="step-title">{{ step.title }}</h1>
+               <h2 class="step-title bolder">{{ step.title }}</h2>
                <h2 class="step-subtitle">Step Number: {{ step.order_number }} | Status:
                   {{ progress }}
                </h2>
@@ -60,12 +61,12 @@ project requirements-->
          <div class="col-md-12 card mb-3">
             <div class="accordion">
                <div class="accordion-item">
-                  <h1 class="accordion-header">
+                  <h2 class="accordion-header">
                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         Step Details
                      </button>
-                  </h1>
+                  </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                      <div class="accordion-body">
                         {{ step.body | safe }}
@@ -106,7 +107,7 @@ project requirements-->
                 videos were added. These are the property of Code Institute, and have only been utilised for
                 student project purposes.
                  -->
-            <h1 class="card-title bolder">Resources:</h1>
+            <h2 class="card-title bolder">Resources:</h2>
             {% for resource in resources %}
             {% if 'placeholder' in resource %}
             <div>
@@ -121,7 +122,6 @@ project requirements-->
                   <div class="iframe-container">
                      <iframe class="embed-responsive-item iframe" src="{{ resource.video_url }}"
                         title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                   </div>
                </div>
@@ -133,6 +133,9 @@ project requirements-->
                   <hr>
                </div>
             </div>
+         </div>
+      </div>
+
    </section>
    <section>
       <div class="col-12">
@@ -142,7 +145,7 @@ project requirements-->
                 Design Thinking step. A for loop returns all tools selected for the step and creates a card with the
                 link to the tool page.
                  -->
-            <h1 class="card-title bolder">Design Thinking tools:</h1>
+            <h2 class="card-title bolder">Design Thinking tools:</h2>
             <p class="card-text card-italic-smaller">Follow the below links to access some helpful information to
                assist you to implement this step.
             </p>
@@ -165,7 +168,7 @@ project requirements-->
             </div>
             {% endif %}
             {% endfor %}
-                     <!--
+            <!--
                       If the step title is Empathy the user will receive the link to access the survey tool as it fits
                       into the process here. Surveys can also be accessed from the main menu as it makes navigation for maintennace of
                       surveys by the user easier.
@@ -201,7 +204,7 @@ project requirements-->
    <div class="container">
       <div class="row g-0">
          <div class="col=md-12  mb-4  mt-3">
-            <h1 class="card-title bolder">Step Updates</h1>
+            <h2 class="card-title bolder">Step Updates</h2>
          </div>
       </div>
       <div class="col-12">
@@ -262,5 +265,4 @@ project requirements-->
       </div>
    </div>
 </section>
-</div>
 {% endblock content %}

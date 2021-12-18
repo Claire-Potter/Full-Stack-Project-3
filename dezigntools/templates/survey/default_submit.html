@@ -14,8 +14,8 @@ are formatted and validated through crispy forms.-->
             These are picklist options and are required.-->
             <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
                 <h2 class="card-title bolder mt-1">Your answers to {{ survey.title }}</h2>
-                <form method="post" enctype="multipart/form-data"
-                class="ui form {% if form.errors %}error{% endif %}" novalidate>
+                <form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}"
+                    novalidate>
                     {% csrf_token %}
                     <div class="form-group col-md-6 mb-0 text-form bolder">
                         {{ form.gender|as_crispy_field }}
@@ -26,29 +26,13 @@ are formatted and validated through crispy forms.-->
                     <div class="form-group col-md-6 mb-0 text-form bolder">
                         {{ form.industry|as_crispy_field }}
                     </div>
-                    <!--An if statement and two for statements are utilised to provide an  error message per field and non-fields only if any 
-					errors occur.-->
-                    {% if form.errors %}
-                            <div class="ui message error">
-                                <div class="header">We had some issues</div>
-                                <ul class="list">
-                                    {% for field in form %}
-                                    {% for error in field.errors %}
-                                    <li>{{ field.label_tag }} {{ error }}</li>
-                                    {% endfor %}
-                                    {% endfor %}
-                                    {% for error in form.non_field_errors %}
-                                    <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            {% endif %}
                     <button type="submit" class="btn mb-5 mr-1 get-started">Submit</button>
                     <!--The Cancel button will return the user to the site's home page-->
-                    <a class="btn mb-5 mr-1 get-started" href="{% url 'home' %}" type="button">Cancel and Return
+                    <a class="btn mb-5 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel and Return
                         Home</a>
                 </form>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

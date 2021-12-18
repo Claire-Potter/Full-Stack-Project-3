@@ -1,18 +1,18 @@
+"""
+Forms created for the Xperience DezignWiz
+Home application.
+"""
 from django import forms
-from multi_email_field.forms import MultiEmailField
 from .models import Contact
-
-
-class EmailForm(forms.Form):
-    subject = forms.CharField(required=True)
-    recipients = MultiEmailField(required=True)
-    message = forms.CharField(widget=forms.Textarea, required=True)
 
 
 class ContactForm(forms.ModelForm):
     """
      Form set up to enable a user to create
-     a contact message and save it on the step detail page.
+     a contact message and save it. It will
+     be sent to the admin account and save
+     to the Contact model. It can be accessed
+     via the admin pane.
     """
     class Meta:
         """

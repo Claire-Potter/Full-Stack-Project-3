@@ -37,7 +37,6 @@ are formatted and validated through crispy forms.-->
 				</div>
 				<!--The below form references the SurveyForm and allows the user to add a survey title (required),
 					and a survey image (not required).-->
-				<form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}">
 					<form method="post" class="mt-5 text-form">
 						{% csrf_token %}
                   <div class="form-group col-md-6 mb-0 text-form bolder">
@@ -47,7 +46,6 @@ are formatted and validated through crispy forms.-->
                      {{ form.survey_image|as_crispy_field }}
                   </div>
 						<button type="submit" class="btn mb-3 ml-3 get-started">Create</button>
-					 </form>
 					 <!--Cancel links styled as buttons were added to all pages, to always allow the user
 						to exit the survey creation and return to their survey-list.-->
 				<div><a class="btn mb-3 ml-3 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a></div>

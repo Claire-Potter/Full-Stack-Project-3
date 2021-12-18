@@ -13,16 +13,16 @@ The chart-js library was utilised to return the charts for the default questions
 tutorial was utilised to create the chart-js code and customised for the site 
 https://www.section.io/engineering-education/integrating-chart-js-in-django/-->
 <div class="container mt-5">
-	<div class="row">
-		<div class="col-md-12 text-center">
+    <div class="row">
+        <div class="col-md-12 text-center">
             <!--The Survey title reflects and below that, the number of survey submissions-->
-			<h1 class="card-title bolder">{{ survey.title }}</h1>
-			<h3 class="card-title">You have {{ num_submissions }} submissions</h3>
-             <!--A link styled as a button provides a link to the survey start page-->
-			<h3 class="card-title"><a class="btn mb-3 mr-1 get-started" role="button" href="{{ public_url }}"
-					alt="Click this button to start the survey">Start
-					Survey</a></h3>
-			<h1 class="card-title bolder dividing">Answers</h1>
+            <h1 class="card-title bolder">{{ survey.title }}</h1>
+            <h3 class="card-title">You have {{ num_submissions }} submissions</h3>
+            <!--A link styled as a button provides a link to the survey start page-->
+            <h3 class="card-title"><a class="btn mb-3 mr-1 get-started" role="button" href="{{ public_url }}"
+                    aria-label="Click this button to start the survey">Start
+                    Survey</a></h3>
+            <h1 class="card-title bolder dividing">Answers</h1>
             <div class="row">
                 <!--The default question results are each displayed in a chart-js chart. The jquery script
                 for the charts is saved in chart_js.html-->
@@ -37,16 +37,17 @@ https://www.section.io/engineering-education/integrating-chart-js-in-django/-->
                     <!--The different gender options and percentage each gender was chosen-->
                     <h2 class="card bolder">
                         % per Gender:
-				    </h2>
-				   <canvas class="myChart chart-size" width="400" height="100"></canvas>
+                    </h2>
+                    <canvas class="myChart chart-size" width="400" height="100"></canvas>
                 </div>
-                <div class="col-sm text-center mt-5 mb-5"><h2 class="card bolder">
-                    <!--The different Industry options and percentage each Industry was chosen-->
-					% per Industry:
-				   </h2>
-				   <canvas class="myChart3 chart-size" width="400" height="100"></canvas>
-                 </div>
-                 <!--A for loop is utilised to return each question and a second for loop with its option set.
+                <div class="col-sm text-center mt-5 mb-5">
+                    <h2 class="card bolder">
+                        <!--The different Industry options and percentage each Industry was chosen-->
+                        % per Industry:
+                    </h2>
+                    <canvas class="myChart3 chart-size" width="400" height="100"></canvas>
+                </div>
+                <!--A for loop is utilised to return each question and a second for loop with its option set.
                 The percentage each option was chosen reflects-->
                 <div class="col-sm text-center mt-5 mb-5">
                     {% for question in questions %}
@@ -58,16 +59,17 @@ https://www.section.io/engineering-education/integrating-chart-js-in-django/-->
                         <li>
                             {{ forloop.counter }}) {{option.option}}: {{ option.percent|floatformat }}%
                         </li>
-    
+
                         {% endfor %}
                     </ul>
                     {% endfor %}
                 </div>
                 <!--A Return link styled as a button to return to the survey-link page -->
-			<div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" type="button">
-                Return</a>
-			</div>
-		</div>
-	</div>
+                <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">
+                        Return</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

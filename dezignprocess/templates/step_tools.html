@@ -1,10 +1,11 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
 {% load cloudinary %}
-{% cloudinary tool_instance.image crop='scale' fetch_format='auto' width='100%' height='100%' %}
+{% cloudinary step_instance.image crop='scale' fetch_format='auto' width='100%' height='100%' %}
+{% block content %}
  <!--The original template set up was completed using the 'I Think Therefore I Blog'
  Code Institute project. The template has been fully customised to align with
 project requirements-->
-<div class="container">
+<div class="container mt-5">
    <!--Created as per elements from step detail page and customised-->
    <div class="row g-0">
       <div class="col-md-12 card mb-3 card-with-background align-items-center ">

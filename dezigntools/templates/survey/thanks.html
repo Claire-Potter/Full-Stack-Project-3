@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block title %}Thanks - Surveys{% endblock %}
-
 {% block content %}
 <div class="container">
     <div class="row-fluid align-items-center">
@@ -10,8 +9,12 @@
         has been completed, a thank you message is displayed and the user can return to the home page.-->
         <div class="col-md-12 mt-3">
             <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-            <h2 class="card-title bolder mt-5">Thank you for taking this survey: {{ survey.title }}</h2>
-            <p class="card-title">We appreciate your feedback</p>
-         <a class="btn mb-5 mr-1 get-started" href="{% url 'home' %}" type="button">Return Home</a>
+                <h2 class="card-title bolder mt-5">Thank you for taking this survey: {{ survey.title }}</h2>
+                <p class="card-title">We appreciate your feedback</p>
+                <a class="btn mb-5 mr-1 get-started" href="{% url 'home' %}" role="button">Return Home</a>
+            </div>
         </div>
-        {% endblock %}
+    </div>
+</div>
+
+{% endblock %}

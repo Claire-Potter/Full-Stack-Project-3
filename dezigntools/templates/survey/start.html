@@ -12,7 +12,7 @@ are formatted and validated through crispy forms.-->
     <div class="row-fluid align-items-center">
         <div class="col-md-12 mt-5">
             <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-            <!--The user will be required to register or login to be able to take the survey. Once logged in,
+                <!--The user will be required to register or login to be able to take the survey. Once logged in,
             they will see either the placeholder image or the unique image uploaded by the creator of the survey-->
                 <div class="image-container">
                     {% if 'placeholder' in survey.survey_image.url %}
@@ -22,25 +22,28 @@ are formatted and validated through crispy forms.-->
                             aria-label="Placeholder image of a bright light">
                     </div>
                     {% else %}
-                    <div class=" mx-auto"><img src=" {{ survey.survey_image.url }}"
-                            class="step-tool img-fluid" alt="Image added to survey bu the user"
+                    <div class=" mx-auto"><img src=" {{ survey.survey_image.url }}" class="step-tool img-fluid"
+                            alt="Image added to survey bu the user"
                             aria-label="Image added for survey by the individual user">
                     </div>
                     {% endif %}
                 </div>
                 <div class="card-body text-center">
-                     <!--The survey title will be presented and the user will receive a form to start the survey-->
+                    <!--The survey title will be presented and the user will receive a form to start the survey-->
                     <h2 class="card-title bolder mt-5">{{ survey.title }}</h2>
                     <div class="card-title ">You have been invited to take this survey</div>
                     <div class="ui container">
                         <form method="post" action="{% url 'survey-start' survey.pk %}">
                             {% csrf_token %}
-                            <div><button class="btn mb-3 mr-1 get-started" type="submit">Start Survey</button></div>
+                            <div><button class="btn mb-3 mr-1 get-started" type="submit">Start Survey</button>
+                            </div>
                             <!--The Cancel button will return the user to the site's home page-->
                             <div><a class="btn mb-3 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel
                                     and
-                                    Return Home</a></div>
-                            <div>
+                                    Return Home
+                                </a>
+                            </div>
+
                         </form>
                     </div>
                 </div>

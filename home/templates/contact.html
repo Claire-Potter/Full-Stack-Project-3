@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-<section class="container-fluid">
+<div class="container-fluid">
    {% if message_sent %}
    <div class="row align-items-center">
       <div class="col-md-12 mt-5">
          <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-            <h1 class="bolder">Email successfully sent</h1>
+            <h2 class="bolder">Email successfully sent</h2>
             <h2>Your request was successfully sent to us!</h2>
          </div>
       </div>
@@ -14,7 +14,7 @@
    {% else %}
    <div class="row align-items-center">
       <div class="col-md-12">
-         <h1 class="card-title bolder text-center mt-5">Require assistance?</h1>
+         <h2 class="card-title bolder text-center mt-5">Require assistance?</h2>
          <h2 class="card-title text-center">Please get in touch!</h2>
          <div class="col-md-6 mx-auto card-with-background mb-5 px-5">
             <form method="post" class="mt-5">
@@ -35,6 +35,6 @@
          </div>
       </div>
    </div>
-</section>
+</div>
 {% endif %}
 {% endblock %}

@@ -1,10 +1,15 @@
 """
-Xperiencedezignwiz home app URL Configuration
+Xperiencedezignwiz home app model Configuration
 
-URLs for the home app setup according to home/views.py
-home = the homepage
-the social media views are setup to authorise login via the
-various social media apps.
+Home model created to render a view for the homepage.
+It stores the home page image and title.
+Contact model created to render the contact page
+and to store all contact requests submitted by users.
+Admin can access this via the admin pane.
+Verification model created to render a view for
+the google verification and store the verification
+code - which is not a secret field.
+
 """
 from django.db import models
 from django.contrib.auth.models import User

@@ -18,7 +18,7 @@ from allauth.socialaccount.providers.facebook.views import (
     FacebookOAuth2Adapter)
 from allauth.socialaccount.providers.twitter.views import TwitterOAuthAdapter
 from .models import Home, User, Verification
-from .forms import EmailForm, ContactForm
+from .forms import ContactForm
 
 
 def index(request):
@@ -42,57 +42,6 @@ class TwitterLogin(SocialLoginView):
     """ A view to authorise login via Twitter """
     serializer_class = TwitterLoginSerializer
     adapter_class = TwitterOAuthAdapter
-
-
-def send_email(request):
-
-    # create a variable to keep track of the form
-    message_sent = False
-    recipient_list = ""
-
-    # check if form has been submitted
-    if request.method == 'POST':
-
-        form = EmailForm(request.POST)
-
-        # check if data from the form is clean
-        if form.is_valid():
-            c_d = form.cleaned_data
-            subject = c_d['subject']
-            text_content = c_d['message']
-            recipient_list = c_d['recipients']
-
-            # send the email to the recipent
-            email_message = EmailMultiAlternatives(from_email=settings
-                                                   .DEFAULT_FROM_EMAIL,
-                                                   reply_to=['xperience'
-                                                             'dezignwiz@gmail.com'],
-                                                   to=['xperiencedezignwiz@gmail.com'],
-                                                   bcc=recipient_list, body=text_content,
-                                                   subject=subject)
-            email_message.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
-            email_message.dynamic_template_data = {"body": text_content,
-                                                   "subject": subject}
-            email_message.send(fail_silently=False)
-
-            # Unsubscribe groups
-            # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
-            email_message.asm = {'group_id': 163668, 'groups_to_display': [
-                       'XperienceDezignWiz']}
-
-            # set the variable initially created to True
-            message_sent = True
-
-    else:
-        form = EmailForm()
-
-    return render(request, 'email.html', {
-
-        'form': form,
-        'message_sent': message_sent,
-        'recipient_list': recipient_list,
-
-    })
 
 
 class Contact(View):
@@ -133,7 +82,6 @@ class Contact(View):
 
     def post(self, request):
         """
-
         self: The self is used to represent the instance of the class.
         request: The requests module allows you to send HTTP
         requests using Python.The HTTP request returns a Response
@@ -160,25 +108,24 @@ class Contact(View):
                 client_name = c_d['name']
                 client_email = c_d['email']
 
-                # send the email to the recipent
+                # send the email to the recipient
                 email_message = EmailMultiAlternatives(from_email=settings
                                                        .DEFAULT_FROM_EMAIL,
                                                        to=['xperience'
-                                                           'dezignwiz@gmail.com'],
-                                                       cc=['clairepotter019@gmail.com'],
+                                                           'dezignwiz'
+                                                           '@gmail.com'],
+                                                       cc=['clairepotter'
+                                                           '019@gmail.com'],
                                                        body=text_content,
                                                        subject=subject)
-                email_message.template_id = "d-9430602ecd0f411f8caa22367da72cbd"
+                email_message.template_id = ('d-9430602ecd'
+                                             '0f411f8caa22367da72cbd')
                 email_message.dynamic_template_data = {"body": text_content,
                                                        "body_two": client_name,
-                                                       "body_three": client_email,
+                                                       "body_three":
+                                                       client_email,
                                                        "subject": subject}
                 email_message.send(fail_silently=False)
-
-                # Unsubscribe groups
-                # https://sendgrid.com/docs/ui/sending-email/unsubscribe-groups/
-                email_message.asm = {'group_id': 138000, 'groups_to_display': [
-                           'XperienceDezignWiz']}
 
                 # set the variable initially created to True
                 message_sent = True

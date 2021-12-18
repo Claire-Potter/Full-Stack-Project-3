@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django_extensions',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sites',
@@ -73,6 +74,8 @@ SITE_ID = 3
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# Message tags for alert messages
+
 MESSAGES_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -91,7 +94,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'htmlvalidator.middleware.HTMLValidator',
+    # django-html-validator installed
 ]
+
+# django-html-validator enablement.
+# Html validator added as middleware,
+# when set as true, will reun with runserver,
+# Debug needs to be set to true.
+HTMLVALIDATOR_ENABLED = False
+HTMLVALIDATOR_FAILFAST = False
 
 ROOT_URLCONF = 'xperiencedezignwiz.urls'
 
@@ -151,6 +163,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Default account authentication set up
+
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -186,6 +200,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Social account set up for google
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

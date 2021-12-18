@@ -11,7 +11,7 @@
             {% if searched %}
             <div class="col-6 mx-auto text-center mb-5 ">
                <!-- searched returns the searched for term, click returns an instructional statement per step -->
-               <h1>You Searched for {{ searched }}</h1>
+               <h2>You Searched for {{ searched }}</h2>
                <p>{{ click }}</p>
             </div>
             <hr />
@@ -58,7 +58,7 @@
             {% else %}
             <!-- If an empty search was completed the below content will be returned-->
             <div class="col-6 mx-auto text-center mb-5 ">
-               <h1>You forgot to enter any search criteria.</h1>
+               <h2>You forgot to enter any search criteria.</h2>
                <p class="card-text text-center">
                   This search is set up to return the pages for the steps within the Design Thinking process.
                   Please search for one of the steps:
