@@ -2,8 +2,12 @@
 {% load cloudinary %}
 {% cloudinary step_instance.image crop='scale' fetch_format='auto' width='100%' height='100%' %}
 {% load crispy_forms_tags %}
-<!--Created as per Code Institute 'I think therefore I blog' and fully customised-->
+ <!--The original template set up was completed using the 'I Think Therefore I Blog'
+ Code Institute project. The template has been fully customised to align with
+project requirements-->
 <section>
+    <!--The jumbotron is a default bootstrap class which creates a styled section
+        which looks great at the top of the page-->
    <div class="jumbotron">
       <div class="container">
          <div class="row g-0">
@@ -23,6 +27,9 @@
       <div class="row g-0">
          <div class="col-md-12 card mb-3">
             <div class="card align-items-center">
+               <!-- The if statement checks if the title placeholder exists in the image url
+               if it does the placeholder image is displayed, if not the unique feature image
+               per step is displayed.-->
                {% if 'placeholder' in image.image.url %}
                <div class="step-image"><img
                      src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
@@ -95,8 +102,9 @@
             <!--
                 Resource videos stored in Steps model as video one, video two or video three. They are Embed Video fields
                 which store the url. The iframe is created below into which the link is rendered as the default embed link
-                fro you tube does not have the correct iframe set up for rendering. The Code Institute Design Thinking
-                videos were linked to. These are the property of Code Institute, and have only been utilised for  studentvproject purposes.
+                from you tube does not have the correct iframe set up for rendering. The Code Institute Design Thinking
+                videos were added. These are the property of Code Institute, and have only been utilised for
+                student project purposes.
                  -->
             <h1 class="card-title bolder">Resources:</h1>
             {% for resource in resources %}
@@ -131,7 +139,8 @@
          <div class="row">
             <!--
                 The Design Thinking tools contain useful and practical information to assist with the implementation of the
-                Design Thinking step.
+                Design Thinking step. A for loop returns all tools selected for the step and creates a card with the
+                link to the tool page.
                  -->
             <h1 class="card-title bolder">Design Thinking tools:</h1>
             <p class="card-text card-italic-smaller">Follow the below links to access some helpful information to
@@ -156,7 +165,7 @@
             </div>
             {% endif %}
             {% endfor %}
-            <!--
+                     <!--
                       If the step title is Empathy the user will receive the link to access the survey tool as it fits
                       into the process here. Surveys can also be accessed from the main menu as it makes navigation for maintennace of
                       surveys by the user easier.
@@ -200,8 +209,8 @@
             <div class="col-md-4 card mb-4  mt-3 ">
                <div class="card-body">
                   <!--
-                         The progress update section is a modified version of the comment update, as created in the Code Institute project.
-                         -->
+                  The progress update section is a modified version of the comment update, as created in the Code Institute project.
+                  -->
                   {% if user.is_authenticated %}
                   <h2 class="card-title bolder">Update your progress:</h2>
                   <form method="post" class="mt-5">
@@ -214,6 +223,9 @@
             </div>
             <div class="col-md-4 card mb-4  mt-3 ">
                <div class="card-body">
+                  <!--
+                  The comment section is a slightly modified version of the comment update, as created in the Code Institute project.
+                  -->
                   {% if user.is_authenticated %}
                   <h2 class="card-title bolder">Create a Comment:</h2>
                   <p class="card-italic-smaller">Posting as: {{ user.username }}</p>

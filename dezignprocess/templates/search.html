@@ -10,6 +10,7 @@
             <!-- if a search term was included generate the below div-->
             {% if searched %}
             <div class="col-6 mx-auto text-center mb-5 ">
+               <!-- searched returns the searched for term, click returns an instructional statement per step -->
                <h1>You Searched for {{ searched }}</h1>
                <p>{{ click }}</p>
             </div>
@@ -20,6 +21,9 @@
                      <!-- The same html and css code from the step_detail page is used to return the step 
                      excluding the accordion body content.-->
                      <div class="card align-items-center">
+                        <!-- The if statement checks if the title placeholder exists in the image url
+                        if it does the placeholder image is displayed, if not the unique feature image
+                        per step is displayed.-->
                         {% if 'placeholder' in image.image.url %}
                         <div class="step-image"><img
                               src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
@@ -31,6 +35,8 @@
                                aria-label="{{ image.name }}"></div>
                         {% endif %}
                         <div class="card-body align-items-center">
+                           <!-- For any search that does not match a step, the 'None' step is returned
+                           this does not contain a page link to follow-->
                            {% if 'None' in step.title %}
                            <h2 class="card-title bolder text-center">{{ step.title }}</h2>
                            {% else %}

@@ -2,13 +2,20 @@
 {% load cloudinary %}
 {% cloudinary step_instance.image crop='scale' fetch_format='auto' width='100%' height='100%' %}
 {% block first %}
+ <!--The original template set up was completed using the 'I Think Therefore I Blog'
+ Code Institute project. The template has been fully customised to align with
+project requirements-->
 <div class="col-12">
    <div class="row">
+      <!--The for statement loops through the Step model and returns each step as a card-->
       {% for step in step_list %}
       <div class="col-md-4 mb-3">
         <!-- Card created as per Code Institute 'I Think Therefore I Blog' and fully customised for site -->
          <div class="card card-with-background">
             <div class="image-container">
+               <!-- The if statement checks if the title placeholder exists in the image url
+               if it does the placeholder image is displayed, if not the unique feature image
+            per step is displayed.-->
                {% if 'placeholder' in step.feature_image.url %}
                <img class="card-img-top img-border" alt="placeholder image of a bright light" 
                aria-label="placeholder image of a bright light"
@@ -28,6 +35,9 @@
                <h3 class="card-text">{{ step.excerpt }}</h3>
                <hr />
                <div class="step-information">
+                  <!--The if and elif statements are utilised to return the correct progress
+                  status per step depending on whether a user is logged in or not and if the
+               user has updated their status per step-->
                   <p class="card-text h5">Status:
                      {% if 'Getting Started' in step.title %}
                      {{ progress }}
@@ -39,9 +49,11 @@
                   {% else %}
                   <p> Not Started </p>
                   {% endif %}
+                  <!--The count of resources selected per step is returned-->
                   <p class="card-text h5">Resources:
                      {{ step.number_of_resources }}
                   </p>
+                  <!--The count of tools selected per step is returned-->
                   <p class="card-text h5">Tools:
                      {{ step.number_of_tools }}
                   </p>
