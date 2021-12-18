@@ -18,9 +18,6 @@
          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-      <!--Google Fonts-->
-      <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Mochiy+Pop+P+One&display=swap"
-         rel="stylesheet">
       <!--FontAwesome-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
       <link rel="stylesheet" type="text/css"
@@ -53,6 +50,8 @@
                      <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
                      </li>
+                     <!--https://www.w3schools.com/bootstrap/bootstrap_ref_js_dropdown.asp
+                         referenced and edited for dropdownMenu -->
                      <li class="dropdown m-0 p-0 ">
                         <button class="steps-button mt-2" id="dropdownMenuLink" aria-haspopup="true"
                            aria-expanded="false">
@@ -83,7 +82,8 @@
                      {% endif %}
                   </ul>
                   <!--
-                     Search form created to enable a user to search by Design Thinking step title
+                     Search form created to enable a user to search by Design Thinking step title. Javascript
+                     autoscript included to provide search prompts therefore default autocomplete deactivated
                      -->
                   <form class="d-flex collapse-search" autocomplete="off" method=POST action="{% url 'search' %}">
                      {% csrf_token %}

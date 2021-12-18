@@ -4,111 +4,108 @@
 {% load crispy_forms_tags %}
 <!--Created as per Code Institute 'I think therefore I blog' and fully customised-->
 <section>
-    <div class="jumbotron">
-       <div class="container">
-          <div class="row g-0">
-             <div class="col-md-6 jumbotron-text">
-                <h1 class="step-title">{{ step.title }}</h1>
-                <h2 class="step-subtitle">Step Number: {{ step.order_number }} | Status:
-                   {{ progress }}
-                </h2>
-             </div>
-             <div class="d-none d-md-block col-md-6">
-                <div class="steps-icon"><i class="fas fa-cogs"></i></div>
-             </div>
-          </div>
-       </div>
-    </div>
-    <div class="container">
-       <div class="row g-0">
-          <div class="col-md-12 card mb-3">
-             <div class="card align-items-center">
-                {% if 'placeholder' in image.image.url %}
-                <div class="step-image"><img
-                   src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                   class="card-img-top img-fluid image-inner" alt="placeholder image of a bright light"
-                   aria-label="placeholder image of a bright light"></div>
-                {% else %}
-                <div class="step-image"><img src=" {{ image.image.url}}"
-                   class="card-img-top img-fluid image-inner"
-                   alt=" {{ image.name}}"
-                   aria-label=" {{ image.name }}"></div>
-                {% endif %}
-                <div class="card-body">
-                   <h2 class="card-text text-center">
-                      {{ step.excerpt | safe }}
-                   </h2>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
- </section>
- <section>
-    <!--
+   <div class="jumbotron">
+      <div class="container">
+         <div class="row g-0">
+            <div class="col-md-6 jumbotron-text">
+               <h1 class="step-title">{{ step.title }}</h1>
+               <h2 class="step-subtitle">Step Number: {{ step.order_number }} | Status:
+                  {{ progress }}
+               </h2>
+            </div>
+            <div class="d-none d-md-block col-md-6">
+               <div class="steps-icon"><i class="fas fa-cogs"></i></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="container">
+      <div class="row g-0">
+         <div class="col-md-12 card mb-3">
+            <div class="card align-items-center">
+               {% if 'placeholder' in image.image.url %}
+               <div class="step-image"><img
+                     src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                     class="card-img-top img-fluid image-inner" alt="placeholder image of a bright light"
+                     aria-label="placeholder image of a bright light"></div>
+               {% else %}
+               <div class="step-image"><img src=" {{ image.image.url}}" class="card-img-top img-fluid image-inner"
+                     alt=" {{ image.name}}" aria-label=" {{ image.name }}"></div>
+               {% endif %}
+               <div class="card-body">
+                  <h2 class="card-text text-center">
+                     {{ step.excerpt | safe }}
+                  </h2>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<section>
+   <!--
        Bootstrap documentation utilised to understand and set up accordion display
        Accordion chosen to enable user to minimise content, particularly for smaller screens
        to improve ability to access items below the content
        -->
-    <div class="container">
-       <div class="row g-0">
-          <div class="col-md-12 card mb-3">
-             <div class="accordion">
-                <div class="accordion-item">
-                   <h1 class="accordion-header">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                         data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Step Details
-                      </button>
-                   </h1>
-                   <div id="collapseOne" class="accordion-collapse collapse show"
-                      data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                         {{ step.body | safe }}
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div class="col-12 text-end">
-             <!--Tooltip code from W3 school tutorial and adapted for site 
+   <div class="container">
+      <div class="row g-0">
+         <div class="col-md-12 card mb-3">
+            <div class="accordion">
+               <div class="accordion-item">
+                  <h1 class="accordion-header">
+                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Step Details
+                     </button>
+                  </h1>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                     <div class="accordion-body">
+                        {{ step.body | safe }}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-12 text-end">
+            <!--Tooltip code from W3 school tutorial and adapted for site 
                 https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
                 -->
-             <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
-                href="{% url 'step_detail' slug=step_display_prev %}" role="button"
-                aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Previous"><i class="fa fa-arrow-left"></i></a>
-             <a id="next-button" class="btn btn-direction-color  mb-3"
-                href="{% url 'step_detail' slug=step_display_next %}" role="button"
-                aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Next"><i class="fa fa-arrow-right"></i></a>
-          </div>
-       </div>
-    </div>
- </section>
- <div class="container">
-    <section>
-       <div class="row g-0">
-          <div class="col=md-12  mb-4  mt-3">
-             <hr>
-          </div>
-       </div>
-       <div class="col-12">
-          <div class="row">
-             <!--
+            <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
+               href="{% url 'step_detail' slug=step_display_prev %}" role="button"
+               aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
+               data-bs-placement="top" title="Previous"><i class="fa fa-arrow-left"></i></a>
+            <a id="next-button" class="btn btn-direction-color  mb-3"
+               href="{% url 'step_detail' slug=step_display_next %}" role="button"
+               aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip" data-bs-placement="top"
+               title="Next"><i class="fa fa-arrow-right"></i></a>
+         </div>
+      </div>
+   </div>
+</section>
+<div class="container">
+   <section>
+      <div class="row g-0">
+         <div class="col=md-12  mb-4  mt-3">
+            <hr>
+         </div>
+      </div>
+      <div class="col-12">
+         <div class="row">
+            <!--
                 Resource videos stored in Steps model as video one, video two or video three. They are Embed Video fields
                 which store the url. The iframe is created below into which the link is rendered as the default embed link
                 fro you tube does not have the correct iframe set up for rendering. The Code Institute Design Thinking
                 videos were linked to. These are the property of Code Institute, and have only been utilised for  studentvproject purposes.
                  -->
-             <h1 class="card-title bolder">Resources:</h1>
-             {% for resource in resources %}
-             {% if 'placeholder' in resource %}
-             <div>
-                <p>No videos have been added for this step.</p>
-             </div>
-             {% else %}
-             <div class="col-md-4 mb-3">
+            <h1 class="card-title bolder">Resources:</h1>
+            {% for resource in resources %}
+            {% if 'placeholder' in resource %}
+            <div>
+               <p>No videos have been added for this step.</p>
+            </div>
+            {% else %}
+            <div class="col-md-4 mb-3">
                <div class="card card-with-background">
                   <div class="card-body">
                      <h2 class="card-title bolder">{{ resource }}</h2>
@@ -122,133 +119,136 @@
                </div>
             </div>
             {% endif %}
-             {% endfor %}
-       <div class="row g-0">
-          <div class="col=md-12  mb-4  mt-3">
-             <hr>
-          </div>
-       </div>
-    </section>
-    <section>
-       <div class="col-12">
-          <div class="row">
-             <!--
+            {% endfor %}
+            <div class="row g-0">
+               <div class="col=md-12  mb-4  mt-3">
+                  <hr>
+               </div>
+            </div>
+   </section>
+   <section>
+      <div class="col-12">
+         <div class="row">
+            <!--
                 The Design Thinking tools contain useful and practical information to assist with the implementation of the
                 Design Thinking step.
                  -->
-             <h1 class="card-title bolder">Design Thinking tools:</h1>
-             <p class="card-text card-italic-smaller">Follow the below links to access some helpful information to
-                assist you to implement this step.
-             </p>
-             <div class="col-md-4 mb-3 ">
-               {% for tool in tools %}
-               {% if 'placeholder' in tool.title %}
-               <div>
-                  <p>No tools have been added for this step.</p>
+            <h1 class="card-title bolder">Design Thinking tools:</h1>
+            <p class="card-text card-italic-smaller">Follow the below links to access some helpful information to
+               assist you to implement this step.
+            </p>
+            {% for tool in tools %}
+            {% if 'placeholder' in tool.title %}
+            <div>
+               <p>No tools have been added for this step.</p>
+            </div>
+            {% else %}
+            <div class="col-md-4 mb-3">
+               <div class="card card-with-background">
+                  <div class="card-body">
+                     <h2 class="card-title mx-auto bolder text-center"><span class="card-text tool-icons mr-3"><i
+                              class="fas fa-wrench"></i></span> {{ tool.title }} <a class="btn btn-go-color"
+                           href="{% url 'step_tools' slug=tool.slug %}" role="button"
+                           aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
+                  </div>
                </div>
-               {% else %}
-                <div class="card">
-                   <div class="card-body">
-                      <h2 class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
-                         class="fas fa-wrench"></i></span> {{ tool.title }} <a class="btn btn-go-color"
-                         href="{% url 'step_tools' slug=tool.slug %}" role="button"
-                         aria-label="button to be clicked to view the tool for the step"
-                         data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
-                         class="fas fa-arrow-right"></i></a></h2>
-                   </div>
-                   {% endif %}
-                   {% endfor %}
-                   <!--
+            </div>
+            {% endif %}
+            {% endfor %}
+            <!--
                       If the step title is Empathy the user will receive the link to access the survey tool as it fits
                       into the process here. Surveys can also be accessed from the main menu as it makes navigation for maintennace of
                       surveys by the user easier.
                       -->
-                   {% if 'Empathy' in step.title %}
-                   <div class="card-body">
-                      <p class="card-text card-italic-smaller">Utilise the below tool to customise your own
-                         survey.
-                      </p>
-                      <h2 class="card-title mx-auto"><span class="card-text tool-icons mr-5"><i
-                         class="fas fa-tools"></i></span> Design Thinking Surveys <a
-                         class="btn btn-go-color" href="{% url 'survey-list' %}" role="button"
-                         aria-label="button to be clicked to view the tool for the step"
-                         data-bs-toggle="tooltip" data-bs-placement="top" title="Go"><i
-                         class="fas fa-arrow-right"></i></a></h2>
-                   </div>
-                   {% else %}
-                   <div class="hidden"></div>
-                   {% endif %}
-                </div>
-             </div>
-          </div>
-       </div>
-       <div class="row g-0">
-          <div class="col=md-12  mb-4  mt-3">
-             <hr>
-          </div>
-       </div>
-    </section>
-    <section>
-       <div class="container">
-          <div class="row g-0">
-             <div class="col=md-12  mb-4  mt-3">
-                <h1 class="card-title bolder">Step Updates</h1>
-             </div>
-          </div>
-          <div class="col-12">
-             <div class="row">
-                <div class="col-md-4 card mb-4  mt-3 ">
-                   <div class="card-body">
-                      <!--
+            {% if 'Empathy' in step.title %}
+            <div class="col-md-4 mb-3">
+               <div class="card card-with-background">
+                  <div class="card-body">
+                     <p class="card-text card-italic-smaller text-center">Utilise the below tool to customise your own
+                        survey.
+                     </p>
+                     <h2 class="card-title mx-auto bolder text-center"><span class="card-text tool-icons mr-3"><i
+                              class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
+                           href="{% url 'survey-list' %}" role="button"
+                           aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
+                  </div>
+               </div>
+            </div>
+            {% else %}
+            <div class="hidden"></div>
+            {% endif %}
+         </div>
+      </div>
+      <div class="row g-0">
+         <div class="col=md-12  mb-4  mt-3">
+            <hr>
+         </div>
+      </div>
+   </section>
+</div>
+<section>
+   <div class="container">
+      <div class="row g-0">
+         <div class="col=md-12  mb-4  mt-3">
+            <h1 class="card-title bolder">Step Updates</h1>
+         </div>
+      </div>
+      <div class="col-12">
+         <div class="row">
+            <div class="col-md-4 card mb-4  mt-3 ">
+               <div class="card-body">
+                  <!--
                          The progress update section is a modified version of the comment update, as created in the Code Institute project.
                          -->
-                      {% if user.is_authenticated %}
-                      <h2 class="card-title bolder">Update your progress:</h2>
-                      <form method="post" class="mt-5">
-                         {{ progress_form | crispy }}
-                         {% csrf_token %}
-                         <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
-                      </form>
-                      {% endif %}
-                   </div>
-                </div>
-                <div class="col-md-4 card mb-4  mt-3 ">
-                   <div class="card-body">
-                      {% if user.is_authenticated %}
-                      <h2 class="card-title bolder">Create a Comment:</h2>
-                      <p class="card-italic-smaller">Posting as: {{ user.username }}</p>
-                      <form method="post" class="mt-5">
-                         {{ comment_form | crispy }}
-                         {% csrf_token %}
-                         <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
-                      </form>
-                      {% endif %}
-                   </div>
-                </div>
-                <div class="col-md-4 card mb-4  mt-3 ">
-                   <h2 class="card-title bolder">Comments:</h2>
-                   <p class="card-italic-smaller">Create your own update comments to track your progress through
-                      the
-                      Design
-                      Thinking process.
-                   </p>
-                   <div class="card-body">
-                      {% for comment in comments %}
-                      <div class="comments pt-5">
-                         <p class="card-title bolder">
-                            {{ comment.name }}
-                            <span class="card-text text-muted h5">
-                            {{ comment.created_on }}
-                            </span> wrote:
-                         </p>
-                         {{ comment.body | linebreaks }}
-                      </div>
-                      {% endfor %}
-                   </div>
-                </div>
-             </div>
-          </div>
-       </div>
-    </section>
- </div>
+                  {% if user.is_authenticated %}
+                  <h2 class="card-title bolder">Update your progress:</h2>
+                  <form method="post" class="mt-5">
+                     {{ progress_form | crispy }}
+                     {% csrf_token %}
+                     <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
+                  </form>
+                  {% endif %}
+               </div>
+            </div>
+            <div class="col-md-4 card mb-4  mt-3 ">
+               <div class="card-body">
+                  {% if user.is_authenticated %}
+                  <h2 class="card-title bolder">Create a Comment:</h2>
+                  <p class="card-italic-smaller">Posting as: {{ user.username }}</p>
+                  <form method="post" class="mt-5">
+                     {{ comment_form | crispy }}
+                     {% csrf_token %}
+                     <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
+                  </form>
+                  {% endif %}
+               </div>
+            </div>
+            <div class="col-md-4 card mb-4  mt-3 ">
+               <h2 class="card-title bolder">Comments:</h2>
+               <p class="card-italic-smaller">Create your own update comments to track your progress through
+                  the
+                  Design
+                  Thinking process.
+               </p>
+               <div class="card-body">
+                  {% for comment in comments %}
+                  <div class="comments pt-5">
+                     <p class="card-title bolder">
+                        {{ comment.name }}
+                        <span class="card-text text-muted h5">
+                           {{ comment.created_on }}
+                        </span> wrote:
+                     </p>
+                     {{ comment.body | linebreaks }}
+                  </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+</div>
 {% endblock content %}

@@ -11,6 +11,14 @@ individual Step selected within the Design Thinking Process. It includes
 the forms to update the progress status as well as to add comments.
 The ToolList view  is created to render the data required to display the
 different Tools per step within the Design Thinking Process.
+
+After correcting any pylint issues, I was still left with the issue
+"class has no objects member", the object is only added when the screen
+is  rendered in the browser, so the issue is not valid. I followed
+the steps available for the following stack overflow:
+https://stackoverflow.com/questions/45135263/class-has-no-objects-member
+and created the .pylintrc file to customise the pylint settings to
+prevent this error from displaying.
 """
 
 from django.shortcuts import render, get_object_or_404
@@ -23,7 +31,7 @@ from .forms import CommentForm, ProgressForm
 
 def search(request):
     """
-    The post function posts the searched term i.e. the title of the
+    The search function posts the searched term i.e. the title of the
     step, it then returns the step title, which is the link
     to the step detail page, the step image,and the step
     excerpt.
@@ -45,8 +53,21 @@ def search(request):
         # The step object uses get_object_or_404 to determine if the
         # title of the search term matches a step title, i.e. the step
         # exists in the Step model
-        # image is set up to return the step_mage from the step model
-
+        # image is set up to return the step_image from the step model
+        # the different Steps have been broken down into different if/elif
+        # statements to be able to return the specific image and sub-text per
+        # step. This also allows the user to receive the step with the title
+        # 'None', for any other search term, as well as return the
+        # 'blank' search else from the template.
+        # The step and image objects had to be
+        # included per if/elif statement, if they
+        # were outside of the if/elif statements,
+        # the get_object_or_404 function would
+        # mean that if the user searched for
+        # an incorrect term or a blank search,
+        # they would receive the 404 error,
+        # instead of the None available step or
+        # blank search text that has been created.
         if searched == 'Getting Started':
             step = get_object_or_404(queryset, title=searched)
             image = step.steps_image
@@ -61,12 +82,12 @@ def search(request):
             step = get_object_or_404(queryset, title=searched)
             image = step.steps_image
             click = ('Click the step name: Define to be'
-                     ' directed to the step.')          
+                     ' directed to the step.')
         elif searched == 'Ideate':
             step = get_object_or_404(queryset, title=searched)
             image = step.steps_image
             click = ('Click the step name: Ideate to be'
-                     ' directed to the step.')         
+                     ' directed to the step.')
         elif searched == 'Prototype':
             step = get_object_or_404(queryset, title=searched)
             image = step.steps_image
@@ -124,13 +145,16 @@ class StepList(generic.ListView):
     model = Step
     model_two = Progress
     context_object_name = 'step_list'
+    # the list number was added to the Step model
+    # to be able to return the steps in two pages
+    # as well as to prevent the step 'None' from
+    # displaying
     queryset = Step.objects.filter(list_number='1')
     template_name = 'first.html'
-    paginate_by: 3
 
     def get_context_data(self, **kwargs):
         """
-        The get_context_data function is setup to return
+        The get_context_data function is set up to return
         the latest progress status as created by a user and
         stored to the Progress table per step.
 
@@ -138,7 +162,7 @@ class StepList(generic.ListView):
         as 'Not Started' for each step.
         If a user is logged in, but has not as yet created a progress status
         within the Progress table, the function will look for the latest
-        progress status created by the admin user. This has been setup on the
+        progress status created by the admin user. This has been set up on the
         admin site to return 'Not Started' per step.
 
         self: The self is used to represent the instance of the class.
@@ -156,9 +180,18 @@ class StepList(generic.ListView):
         lookups.
         """
         queryset_two = Progress.objects.all()
+        # the filter below checks for all progress
+        # statuses, created by the logged in user
         if queryset_two.filter(name=self.request.user
                                .username).exists():
             context = super().get_context_data(**kwargs)
+            # if there is a progress status created by the
+            # logged in user, the most recent (latest) status
+            # will be returned, if not, the most recent (latest)
+            # status for the step created by the admin user as a default
+            # status would be returned
+            # As three different steps are displayed on this page, three
+            # different progress status references were required.
             context['progress'] = queryset_two.filter(
                                                       Q(name=self.request
                                                         .user
@@ -179,6 +212,8 @@ class StepList(generic.ListView):
                                                       step='3').latest()
             return context
         else:
+            # if the page is being viewed by a user who is not logged in,
+            # all statuses will reflect as Not Started
             context = super().get_context_data(**kwargs)
             context['progress'] = queryset_two.filter(step='1',
                                                       progress='Not'
@@ -196,11 +231,16 @@ class StepNext(generic.ListView):
     """
     View created to render the data required to display the
     different Steps within the Design Thinking Process.
-    Steps include: Ideate, Prototype, Test
+    Steps include: Ideate, Prototype, Test and
+    Finishing Off
     """
     model = Step
     model_two = Progress
     context_object_name = 'step_next'
+    # the list number was added to the Step model
+    # to be able to return the steps in two pages
+    # as well as to prevent the step 'None' from
+    # displaying
     queryset = Step.objects.filter(list_number='2')
     template_name = 'next.html'
     paginate_by: 3
@@ -211,8 +251,17 @@ class StepNext(generic.ListView):
         Class StepList.
         """
         queryset_two = Progress.objects.all()
+        # the filter below checks for all progress
+        # statuses, created by the logged in user
         if queryset_two.filter(name=self.request.user.username).exists():
             context = super().get_context_data(**kwargs)
+            # if there is a progress status created by the
+            # logged in user, the most recent (latest) status
+            # will be returned, if not, the most recent (latest)
+            # status for the step created by the admin user as a default
+            # status would be returned
+            # As four different steps are displayed on this page, four
+            # different progress status references were required.
             context['progress'] = queryset_two.filter(
                                                       Q(name=self.request
                                                         .user
@@ -240,6 +289,8 @@ class StepNext(generic.ListView):
             return context
 
         else:
+            # if the page is being viewed by a user who is not logged in,
+            # all statuses will reflect as Not Started
             context = super().get_context_data(**kwargs)
             context['progress'] = queryset_two.filter(step='4',
                                                       progress='Not'
@@ -302,14 +353,36 @@ class StepDetail(View):
         If the user is not logged in, nothing will be returned.
         """
         queryset = Step.objects.all()
+        # the get_object_or_404 function would
+        # mean that only steps that exist in the
+        # Step model will be returned
         step = get_object_or_404(queryset, slug=slug)
+        # the resources field is a many to many relationship
+        # between the Step model and the Resource model
         resources = step.resources.all()
+        # the tools field is a many to many relationship
+        # between the Step model and the Tool model
         tools = step.tools.all()
+        # All images are saved to the Image model,
+        # step_image is a foreignkey relationship
+        # between the Step model and the Image model
         image = step.steps_image
+        # the below are set up to generate
+        # the if and elif statements, comments and
+        # progress status
         step_display_prev = ''
         step_display_next = ''
         comments = ''
         progress = ''
+        # the if/elif satements will check if the
+        # current step title field matches the given
+        # step title. If it does, the step_display_prev
+        # will reference the step slug that comes bofore
+        # the step_display_next will reference the step slug
+        # that comes next. 'Getting Started references 'finishing-off'
+        # slug as step_display_prev and Finishing Off references the
+        # 'getting-started' slug to create a circular loop between
+        # the steps
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
@@ -331,10 +404,20 @@ class StepDetail(View):
         elif step.title == 'Finishing Off':
             step_display_prev = 'test'
             step_display_next = 'getting-started'
-
+        # the step.comments if statement is set up according to the Think
+        # Therefore I Blog project, however if filters the step comments
+        # to display comments created by the logged in user only. If the
+        # user is not logged in, no comments will reflect
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
                        name=self.request.user.username).order_by('-created_on')
+        # if there is a progress status created by the
+        # logged in user, the most recent (latest) status
+        # will be returned, if not, the most recent (latest)
+        # status for the step created by the admin user as a default
+        # status would be returned
+        # if the page is being viewed by a user who is not logged in,
+        # athe status will reflect as Not Started
         if step.progress.filter(name=self.request.user.username).exists():
             progress = step.progress.filter(
                                             Q(name=self.request
@@ -386,14 +469,36 @@ class StepDetail(View):
         page.
         """
         queryset = Step.objects
+        # the get_object_or_404 function would
+        # mean that only steps that exist in the
+        # Step model will be returned
         step = get_object_or_404(queryset, slug=slug)
+        # the resources field is a many to many relationship
+        # between the Step model and the Resource model
         resources = step.resources.all()
+        # the tools field is a many to many relationship
+        # between the Step model and the Tool model
         tools = step.tools.all()
+        # All images are saved to the Image model,
+        # step_image is a foreignkey relationship
+        # between the Step model and the Image model
         image = step.steps_image
+        # the below are set up to generate
+        # the if and elif statements, comments and
+        # progress status
         step_display_prev = ''
         step_display_next = ''
         comments = ''
         progress = ''
+        # the if/elif satements will check if the
+        # current step title field matches the given
+        # step title. If it does, the step_display_prev
+        # will reference the step slug that comes bofore
+        # the step_display_next will reference the step slug
+        # that comes next. 'Getting Started references 'finishing-off'
+        # slug as step_display_prev and Finishing Off references the
+        # 'getting-started' slug to create a circular loop between
+        # the steps
         if step.title == 'Getting Started':
             step_display_prev = 'finishing-off'
             step_display_next = 'empathy'
@@ -415,11 +520,20 @@ class StepDetail(View):
         elif step.title == 'Finishing Off':
             step_display_prev = 'test'
             step_display_next = 'getting-started'
-
+        # the step.comments if statement is set up according to the Think
+        # Therefore I Blog project, however if filters the step comments
+        # to display comments created by the logged in user only. If the
+        # user is not logged in, no comments will reflect
         if step.comments.filter(name=self.request.user.username).exists():
             comments = step.comments.filter(
                        name=self.request.user.username).order_by('-created_on')
-
+        # if there is a progress status created by the
+        # logged in user, the most recent (latest) status
+        # will be returned, if not, the most recent (latest)
+        # status for the step created by the admin user as a default
+        # status would be returned
+        # if the page is being viewed by a user who is not logged in,
+        # athe status will reflect as Not Started
         if step.progress.filter(name=self.request.user.username).exists():
             progress = step.progress.filter(
                                             Q(name=self.request
@@ -430,7 +544,12 @@ class StepDetail(View):
             progress = step.progress.filter(
                                             progress='Not'
                                             ' Started').latest()
-
+        # The logged in user can complete and save the comment_form
+        # if the data is validated, the comment_form email and name
+        # will be generated as per the user email and username, the
+        # comment_form step will be the current step, and the comment_form
+        # body field added by the user will be saved as per capture. The
+        # messages success message will display.
         comment_form = CommentForm(data=request.POST)
 
         if comment_form.is_valid():
@@ -443,7 +562,12 @@ class StepDetail(View):
             messages.success(request, 'Comment submission successful')
         else:
             comment_form = CommentForm()
-
+        # The logged in user can complete and save the progress_form
+        # if the data is validated, the progress_form email and name
+        # will be generated as per the user email and username, the
+        # progress_form step will be the current step, and the progress_form
+        # status field added by the user will be saved as per capture. The
+        # messages success message will display.
         progress_form = ProgressForm(data=request.POST)
 
         if progress_form.is_valid():
@@ -498,6 +622,9 @@ class ToolsList(View):
         URL for the step tools page.
         """
         queryset = Tool.objects
+        # the get_object_or_404 function would
+        # mean that only tool templates that exist in the
+        # Tool model will be returned
         template = get_object_or_404(queryset, slug=slug)
         image = template.image
         return render(
