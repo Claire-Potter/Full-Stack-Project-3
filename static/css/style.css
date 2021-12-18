@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Mochiy+Pop+One&display=swap');
+
 /* Styling used across the site */
 
 body {
@@ -140,7 +141,6 @@ ul ul a {
 .side-text textarea {
 	font-size: 1rem;
 }
-
 
 
 /* Get-started button formatting used across templates*/
@@ -473,7 +473,6 @@ ul {
 	margin-bottom: 15px;
 }
 
-
 .link {
 	color: #df4c73;
 	text-decoration: none;
@@ -504,6 +503,7 @@ ul {
 	border: 0;
 }
 
+
 /* Styling for step_tools.html */
 
 .return {
@@ -512,7 +512,6 @@ ul {
 
 .step-tool {
 	width: 500px;
-
 }
 
 .image-tool-overlay {
@@ -526,7 +525,6 @@ ul {
 }
 
 
-
 /* Styling for Dezigntools app templates */
 
 .survey-image {
@@ -535,21 +533,20 @@ ul {
 	border-radius: 5px;
 }
 
-
 #error_1_id_gender,
 #error_1_id_age_range,
-#error_1_id_industry
-{
+#error_1_id_industry {
 	display: none;
 }
 
 #id_gender,
 #id_age_range,
 #id_industry {
-border-color: grey;
-background-image: none;
-box-shadow: none;
-font-size: 1.6rem}
+	border-color: grey;
+	background-image: none;
+	box-shadow: none;
+	font-size: 1.6rem
+}
 
 .text-form input,
 .text-form textarea {
@@ -559,6 +556,12 @@ font-size: 1.6rem}
 
 
 /* Media query to remove the padding for the Steps dropdown menu and earch bar for smaller screens */
+
+@media only screen and (max-width: 10000px) and (min-width: 1800px) {
+	.jumbotron {
+		height: auto;
+	}
+}
 
 @media (max-width: 992px) {
 	.steps-button {
@@ -571,17 +574,14 @@ font-size: 1.6rem}
 	.text-small {
 		font-size: calc(1.325rem + .9vw) !important;
 	}
-
 	.image-tool-overlay {
 		position: absolute;
 		bottom: 20%;
 		font-size: calc(1.325rem + .9vw) !important;
 	}
-
 	.image-inner {
 		box-shadow: none;
 	}
-	
 }
 
 
