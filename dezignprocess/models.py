@@ -65,12 +65,12 @@ class Images(models.Model):
         """
         ordering = ['order_number']
         get_latest_by = ['added']
-        verbose_name_plural = "Images"
+        verbose_name_plural = 'Images'
 
     # The string is set to return as the Image title field
     # if it exists, else a blank title
     def __str__(self):
-        return '%s' % (self.title) if self.title else " "
+        return '%s' % (self.title) if self.title else ' '
 
 
 class Resource(models.Model):
@@ -98,7 +98,7 @@ class Resource(models.Model):
     # The string is set to return the Video Name field if it exists
     #  else a blank string
     def __str__(self):
-        return str(self.video_name) if self.video_name else " "
+        return str(self.video_name) if self.video_name else ' '
 
 
 class Tool(models.Model):
@@ -130,7 +130,7 @@ class Tool(models.Model):
     # The string is set to return the Title field if it exists
     #  else a blank string
     def __str__(self):
-        return '%s' % (self.title) if self.title else " "
+        return '%s' % (self.title) if self.title else ' '
 
 
 class Step(models.Model):
@@ -180,7 +180,7 @@ class Step(models.Model):
     # The string is set to return the Title field if it exists
     #  else a blank string
     def __str__(self):
-        return '%s' % (self.title) if self.title else " "
+        return '%s' % (self.title) if self.title else ' '
 
     def number_of_tools(self):
         """
@@ -248,12 +248,12 @@ class Progress(models.Model):
         """
         ordering = ['updated_on']
         get_latest_by = ['updated_on']
-        verbose_name_plural = "Progress"
+        verbose_name_plural = 'Progress'
 
     # The string is set to return the Progress field if it exists
     #  else a blank string
     def __str__(self):
-        return '%s' % (self.progress) if self.progress else " "
+        return '%s' % (self.progress) if self.progress else ' '
 
 
 class Comment(models.Model):
@@ -293,4 +293,4 @@ class Comment(models.Model):
     #  else a blank string
     def __str__(self):
         return (f'Comment {self.body} by {self.name}'
-                if self.body and self.name else " ")
+                if self.body and self.name else ' ')

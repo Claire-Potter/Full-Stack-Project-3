@@ -1,7 +1,16 @@
 """
 Xperiencedezignwiz dezignprocess app Forms Configuration
 
+The CommentForm was created according to the
+Code Institute 'I Think Therefore I Blog' project but fully
+customised for purpose.
+The CommentForm is created to refer to the Comment model, display
+the body field and capture new content.
+The ProgressForm is created to refer to the Progress model,
+display the progress field and select a progress status.
+
 Forms for the dezignprocess app to be rendered by dezignprocess/views.py
+through the step_detail template.
 """
 from django import forms
 from .models import Progress, Comment

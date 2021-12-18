@@ -13,7 +13,7 @@ The ToolList view  is created to render the data required to display the
 different Tools per step within the Design Thinking Process.
 
 After correcting any pylint issues, I was still left with the issue
-"class has no objects member", the object is only added when the screen
+'class has no objects member', the object is only added when the screen
 is  rendered in the browser, so the issue is not valid. I followed
 the steps available for the following stack overflow:
 https://stackoverflow.com/questions/45135263/class-has-no-objects-member
