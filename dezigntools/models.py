@@ -60,7 +60,7 @@ class Survey(models.Model):
     """
 
     title = models.CharField(max_length=64)
-    survey_image = CloudinaryField('image', default=' efeeyko4svga74cweezl',
+    survey_image = CloudinaryField('image', default='efeeyko4svga74cweezl',
                                    blank=True,
                                    null=True)
     is_active = models.BooleanField(default=False)

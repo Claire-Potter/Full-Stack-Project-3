@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% load cloudinary %}
 {% cloudinary step_instance.image crop='scale' fetch_format='auto' %}
@@ -8,49 +8,59 @@
 <div class="container mt-5">
    <!--Created as per elements from step detail page and customised-->
    <div class="row g-0">
-      <div class="col-md-12 card mb-3 card-with-background align-items-center ">
-         <div class="image-container">
-            <!-- The if statement checks if the title placeholder exists in the image url
+      <div class="col-md-12 card mb-3">
+         <div class="card card-with-background align-items-center">
+            <div class="image-container">
+               <!-- The if statement checks if the title placeholder exists in the image url
                if it does the placeholder image is displayed, if not the unique feature image
                per step is displayed.-->
-            {% if 'placeholder' in image.image.url %}
-            <img class="step-tool mt-5 mb-5 img-fluid" alt="placeholder image of a bright light"
-               aria-label="placeholder image of a bright light"
-               src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
-            {% else %}
-            <img class="step-tool mt-5 mb-5 img-fluid" alt="{{ image.name }}" aria-label="{{ image.name }}"
-               src="{{ image.image.url }}">
-            {% endif %}
-            <div class="image-tool-overlay">
-               <h1 class="step-number">{{ template.title }} </h1>
+               {% if 'placeholder' in image.image.url %}
+               <img class="step-tool mt-5 mb-5 img-fluid" alt="placeholder image of a bright light"
+                  aria-label="placeholder image of a bright light"
+                  src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
+               {% else %}
+               <img class="step-tool mt-5 mb-5 img-fluid" alt="{{ image.name }}" aria-label="{{ image.name }}"
+                  src="{{ image.image.url }}">
+               {% endif %}
+               <div class="image-tool-overlay">
+                  <h1 class="step-number">{{ template.title }} </h1>
+               </div>
             </div>
          </div>
-         <div class="card-body">
-            <!--
-               Bootstrap documentation utilised to understand and set up accordion display
-               Accordion chosen to enable user to minimise content, particularly for smaller screens
-               to improve ability to access items below the content
-               -->
-            <div class="accordion">
-               <div class="accordion-item">
-                  <h1 class="accordion-header">
-                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="# collapse-one" aria-expanded="true" aria-controls=" collapse-one">
+      </div>
+   </div>
+</div>
+<!--
+Bootstrap documentation utilised to understand and set up accordion display
+Accordion chosen to enable user to minimise content, particularly for smaller screens
+to improve ability to access items below the content
+-->
+<div class="container">
+   <div class="row g-0">
+      <div class="col-md-12 card mb-3">
+         <div class="accordion">
+            <div class="accordion-item">
+               <h1 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                     data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
                      {{ template.excerpt }}
-                     </button>
-                  </h1>
-                  <div id=" collapse-one" class="accordion-collapse collapse show" data-bs-parent="#accordion-example">
-                     <div class="accordion-body">
-                        {{ template.body | safe }}
-                     </div>
+                  </button>
+               </h1>
+               <div id="collapse-one" class="accordion-collapse collapse show" data-bs-parent="#accordion-example">
+                  <div class="accordion-body">
+                     {{ template.body | safe }}
                   </div>
                </div>
             </div>
          </div>
-         <div class="col-md-12">
-            <!--The return button returns the user to the previous page which should be the step detail page-->
-            <a class="btn mb-3 get-started return" href="{{ request.META.HTTP_REFERER }}">Return</a>
-         </div>
+      </div>
+   </div>
+</div>
+<div class="container">
+   <div class="row g-0">
+      <div class="col-md-12">
+         <!--The return button returns the user to the previous page which should be the step detail page-->
+         <a class="btn mb-3 get-started return" href="{{ request.META.HTTP_REFERER }}">Return</a>
       </div>
    </div>
 </div>
