@@ -3,7 +3,9 @@
 
 // Create constants for html input.
 const dropButton = document.getElementById("dropdownMenuLink");
+const dropDown = document.getElementById("myDropdown");
 const dropdowns = document.getElementsByClassName("dropdown-menu");
+const navBar = document.getElementsByClassName("navbar");
 var i;
 const openDropdown = dropdowns[i];
 
@@ -16,11 +18,11 @@ const openDropdown = dropdowns[i];
  */
 
 function dropdownMenu() {
-  document.getElementById("myDropdown").classList.toggle("show");
+  dropDown.classList.toggle("show");
 }
 
 // Close the dropdown menu if the user clicks outside of it
-window.onclick = function (event) {
+navBar.onclick = function (event) {
   if (!event.target.matches(".steps-button")) {
       for (i = 0; i < dropdowns.length; i++) {
       if (openDropdown.classList.contains("show")) {
