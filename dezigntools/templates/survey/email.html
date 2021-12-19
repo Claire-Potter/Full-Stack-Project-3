@@ -1,60 +1,62 @@
 {% extends 'base.html' %}
-
 {% block content %}
 {% if message_sent %}
 {% load crispy_forms_tags %}
 <div class="container-fluid">
-            <!--The original survey blueprint did not include an option to send the survey link out via email.
-            Once I had set up the API with Sendgrid, I created the below template as part of the survey process,
-            to send the survey out via email. -->
-    <div class="row align-items-center">
-        <div class="col-md-12 mt-5 card-with-background">
-            <!--Once the survey has been sent, the below message will display.-->
-            <h1 class="card-title bolder">Email successfully sent</h1>
-            <p class="card-title">Your message was successfully sent to {{ recipient_list }}</p>
-            <!--The return link takes the user back to their survey-list page.-->
-            <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Return</a></div>
-        </div>
-    </div>
+   <!--The original survey blueprint did not include an option to send the survey link out via email.
+      Once I had set up the API with Sendgrid, I created the below template as part of the survey process,
+      to send the survey out via email. -->
+   <div class="row align-items-center">
+      <div class="col-md-12 mt-5 card-with-background">
+         <!--Once the survey has been sent, the below message will display.-->
+         <h1 class="card-title bolder">Email successfully sent</h1>
+         <p class="card-title">Your message was successfully sent to {{ recipient_list }}</p>
+         <!--The return link takes the user back to their survey-list page.-->
+         <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Return</a></div>
+      </div>
+   </div>
 </div>
 {% else %}
 <div class="container-fluid">
-    <div class="row align-items-center">
-        <div class="col-md-12 mt-5">
-            <div class="col-md-6 mx-auto card-with-background mb-5 px-5">
-                <!--An email model, view and form were utilised to create the below feature. It allows the user
-                to capture the subject, email adderesses and body of the email. Instructions are provided alongside
-                the input fields. -->
-                <h1 class="card-title bolder mt-3">Send E-mail</h1>
-                <form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}">
-                    {% csrf_token %}
-                    <div class="form-group col-md-6 mb-0 text-form bolder">
-                        {{ form.subject|as_crispy_field }}</div>
-                    <br />
-
-                    <div class="form-group col-md-6 mb-0 text-form bolder">
-                        {{ form.recipients|as_crispy_field }}
-                        <p class="card-title font-italic ml-3">Enter the email addresses of all recipients separated by a
-                            space.</p>
-                    </div>
-                    <br />
-                    <div class="form-group col-md-6 mb-0 text-form bolder">
-                        {{ form.message|as_crispy_field }}
-                        <p class="card-title font-italic ml-3">Complete your email content here. The survey link will be
-                            added at the
-                            end of the email body automatically.</p>
-                    </div>
-                    <br />
-                    <input type="submit" class="btn mb-3 ml-3 get-started" value="Send Email" />
-                </form>
-                         <!--Cancel links styled as buttons were added to all pages, to always allow the user
-						to return to the previous page or survey-list-->
-                <div><a class="btn mb-3 ml-3 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a>
-                    <p class="font-italic ml-3 text-form bolder">Click cancel to return to your list of surveys.</p>
-                </div>
+   <div class="row align-items-center">
+      <div class="col-md-12 mt-5">
+         <div class="col-md-6 mx-auto card-with-background mb-5 px-5">
+            <!--An email model, view and form were utilised to create the below feature. It allows the user
+               to capture the subject, email adderesses and body of the email. Instructions are provided alongside
+               the input fields. -->
+            <h1 class="card-title bolder mt-3">Send E-mail</h1>
+            <form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}">
+               {% csrf_token %}
+               <div class="form-group col-md-6 mb-0 text-form bolder">
+                  {{ form.subject|as_crispy_field }}
+               </div>
+               <br />
+               <div class="form-group col-md-6 mb-0 text-form bolder">
+                  {{ form.recipients|as_crispy_field }}
+                  <p class="card-title font-italic ml-3">Enter the email addresses of all recipients separated by a
+                     space.
+                  </p>
+               </div>
+               <br />
+               <div class="form-group col-md-6 mb-0 text-form bolder">
+                  {{ form.message|as_crispy_field }}
+                  <p class="card-title font-italic ml-3">Complete your email content here. The survey link will be
+                     added at the
+                     end of the email body automatically.
+                  </p>
+               </div>
+               <br />
+               <input type="submit" class="btn mb-3 ml-3 get-started" value="Send Email" />
+            </form>
+            <!--Cancel links styled as buttons were added to all pages, to always allow the user
+               to return to the previous page or survey-list-->
+            <div>
+               <a class="btn mb-3 ml-3 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a>
+               <p class="font-italic ml-3 text-form bolder">Click cancel to return to your list of surveys.</p>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </div>
 {% endif %}
 {% endblock %}

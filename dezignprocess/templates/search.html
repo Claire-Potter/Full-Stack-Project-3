@@ -19,24 +19,24 @@
                <div class="row g-0">
                   <div class="col-md-12 card mb-3">
                      <!-- The same html and css code from the step_detail page is used to return the step 
-                     excluding the accordion body content.-->
+                        excluding the accordion body content.-->
                      <div class="card align-items-center">
                         <!-- The if statement checks if the title placeholder exists in the image url
-                        if it does the placeholder image is displayed, if not the unique feature image
-                        per step is displayed.-->
+                           if it does the placeholder image is displayed, if not the unique feature image
+                           per step is displayed.-->
                         {% if 'placeholder' in image.image.url %}
                         <div class="step-image"><img
-                              src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                              class="card-img-top img-fluid image-inner" alt="Placeholder image of a bright light"
-                              aria-label="Placeholder image of a bright light"></div>
+                           src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                           class="card-img-top img-fluid image-inner" alt="Placeholder image of a bright light"
+                           aria-label="Placeholder image of a bright light"></div>
                         {% else %}
                         <div class="step-image"><img src=" {{ image.image.url }}"
-                              class="card-img-top img-fluid image-inner" alt="{{ image.name }}"
-                               aria-label="{{ image.name }}"></div>
+                           class="card-img-top img-fluid image-inner" alt="{{ image.name }}"
+                           aria-label="{{ image.name }}"></div>
                         {% endif %}
                         <div class="card-body align-items-center">
                            <!-- For any search that does not match a step, the 'None' step is returned
-                           this does not contain a page link to follow-->
+                              this does not contain a page link to follow-->
                            {% if 'None' in step.title %}
                            <h2 class="card-title bolder text-center">{{ step.title }}</h2>
                            {% else %}
@@ -47,9 +47,9 @@
                            <p class="card-text text-center">
                               {{ step.excerpt | safe }}
                            </p>
-                            <!-- The Return button will direct the user back to the previous screen-->
+                           <!-- The Return button will direct the user back to the previous screen-->
                            <div class="text-center"><a class="btn get-started mx-auto"
-                                 href="{{ request.META.HTTP_REFERER }}">Return</a></div>
+                              href="{{ request.META.HTTP_REFERER }}">Return</a></div>
                         </div>
                      </div>
                   </div>
@@ -75,7 +75,7 @@
                </ul>
                <!-- The Return button will direct the user back to the previous screen-->
                <div class="text-center"><a class="btn get-started mx-auto"
-                     href="{{ request.META.HTTP_REFERER }}">Return</a></div>
+                  href="{{ request.META.HTTP_REFERER }}">Return</a></div>
             </div>
             {% endif %}
          </div>

@@ -4,11 +4,11 @@
 {% cloudinary step_instance.image crop='scale' fetch_format='auto' %}
 {% load crispy_forms_tags %}
 <!--The original template set up was completed using the 'I Think Therefore I Blog'
- Code Institute project. The template has been fully customised to align with
-project requirements-->
+   Code Institute project. The template has been fully customised to align with
+   project requirements-->
 <section>
    <!--The jumbotron is a default bootstrap class which creates a styled section
-        which looks great at the top of the page-->
+      which looks great at the top of the page-->
    <div class="jumbotron">
       <div class="container">
          <div class="row g-0">
@@ -29,16 +29,16 @@ project requirements-->
          <div class="col-md-12 card mb-3">
             <div class="card align-items-center">
                <!-- The if statement checks if the title placeholder exists in the image url
-               if it does the placeholder image is displayed, if not the unique feature image
-               per step is displayed.-->
+                  if it does the placeholder image is displayed, if not the unique feature image
+                  per step is displayed.-->
                {% if 'placeholder' in image.image.url %}
                <div class="step-image"><img
-                     src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                     class="card-img-top img-fluid image-inner" alt="placeholder image of a bright light"
-                     aria-label="placeholder image of a bright light"></div>
+                  src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                  class="card-img-top img-fluid image-inner" alt="placeholder image of a bright light"
+                  aria-label="placeholder image of a bright light"></div>
                {% else %}
-               <div class="step-image"><img src=" {{ image.image.url}}" class="card-img-top img-fluid image-inner"
-                     alt=" {{ image.name}}" aria-label=" {{ image.name }}"></div>
+               <div class="step-image"><img src="{{ image.image.url}}" class="card-img-top img-fluid image-inner"
+                  alt="{{ image.name}}" aria-label="{{ image.name }}"></div>
                {% endif %}
                <div class="card-body">
                   <h2 class="card-text text-center">
@@ -52,10 +52,10 @@ project requirements-->
 </section>
 <section>
    <!--
-       Bootstrap documentation utilised to understand and set up accordion display
-       Accordion chosen to enable user to minimise content, particularly for smaller screens
-       to improve ability to access items below the content
-       -->
+      Bootstrap documentation utilised to understand and set up accordion display
+      Accordion chosen to enable user to minimise content, particularly for smaller screens
+      to improve ability to access items below the content
+      -->
    <div class="container">
       <div class="row g-0">
          <div class="col-md-12 card mb-3">
@@ -63,11 +63,11 @@ project requirements-->
                <div class="accordion-item">
                   <h2 class="accordion-header">
                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        Step Details
+                        data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
+                     Step Details
                      </button>
                   </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                  <div id="collapse-one" class="accordion-collapse collapse show" data-bs-parent="#accordion-example">
                      <div class="accordion-body">
                         {{ step.body | safe }}
                      </div>
@@ -77,13 +77,13 @@ project requirements-->
          </div>
          <div class="col-12 text-end">
             <!--Tooltip code from W3 school tutorial and adapted for site 
-                https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
-                -->
+               https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip_arrow_bottom
+               -->
             <a id="prev-button" class="btn btn-direction-color mb-3 mr-1"
                href="{% url 'step_detail' slug=step_display_prev %}" role="button"
                aria-label="button to be clicked to view the previous step" data-bs-toggle="tooltip"
                data-bs-placement="top" title="Previous"><i class="fa fa-arrow-left"></i></a>
-            <a id="next-button" class="btn btn-direction-color  mb-3"
+            <a id="next-button" class="btn btn-direction-color mb-3"
                href="{% url 'step_detail' slug=step_display_next %}" role="button"
                aria-label="button to be clicked to view the next step" data-bs-toggle="tooltip" data-bs-placement="top"
                title="Next"><i class="fa fa-arrow-right"></i></a>
@@ -94,19 +94,19 @@ project requirements-->
 <div class="container">
    <section>
       <div class="row g-0">
-         <div class="col=md-12  mb-4  mt-3">
+         <div class="col=md-12 mb-4 mt-3">
             <hr>
          </div>
       </div>
       <div class="col-12">
          <div class="row">
             <!--
-                Resource videos stored in Steps model as video one, video two or video three. They are Embed Video fields
-                which store the url. The iframe is created below into which the link is rendered as the default embed link
-                from you tube does not have the correct iframe set up for rendering. The Code Institute Design Thinking
-                videos were added. These are the property of Code Institute, and have only been utilised for
-                student project purposes.
-                 -->
+               Resource videos stored in Steps model as video one, video two or video three. They are Embed Video fields
+               which store the url. The iframe is created below into which the link is rendered as the default embed link
+               from you tube does not have the correct iframe set up for rendering. The Code Institute Design Thinking
+               videos were added. These are the property of Code Institute, and have only been utilised for
+               student project purposes.
+                -->
             <h2 class="card-title bolder">Resources:</h2>
             {% for resource in resources %}
             {% if 'placeholder' in resource %}
@@ -129,22 +129,21 @@ project requirements-->
             {% endif %}
             {% endfor %}
             <div class="row g-0">
-               <div class="col=md-12  mb-4  mt-3">
+               <div class="col=md-12 mb-4 mt-3">
                   <hr>
                </div>
             </div>
          </div>
       </div>
-
    </section>
    <section>
       <div class="col-12">
          <div class="row">
             <!--
-                The Design Thinking tools contain useful and practical information to assist with the implementation of the
-                Design Thinking step. A for loop returns all tools selected for the step and creates a card with the
-                link to the tool page.
-                 -->
+               The Design Thinking tools contain useful and practical information to assist with the implementation of the
+               Design Thinking step. A for loop returns all tools selected for the step and creates a card with the
+               link to the tool page.
+                -->
             <h2 class="card-title bolder">Design Thinking tools:</h2>
             <p class="card-text card-italic-smaller">Follow the below links to access some helpful information to
                assist you to implement this step.
@@ -159,20 +158,20 @@ project requirements-->
                <div class="card card-with-background">
                   <div class="card-body">
                      <h2 class="card-title mx-auto bolder text-center"><span class="card-text tool-icons mr-3"><i
-                              class="fas fa-wrench"></i></span> {{ tool.title }} <a class="btn btn-go-color"
-                           href="{% url 'step_tools' slug=tool.slug %}" role="button"
-                           aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
-                           data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
+                        class="fas fa-wrench"></i></span> {{ tool.title }} <a class="btn btn-go-color"
+                        href="{% url 'step_tools' slug=tool.slug %}" role="button"
+                        aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
                   </div>
                </div>
             </div>
             {% endif %}
             {% endfor %}
             <!--
-                      If the step title is Empathy the user will receive the link to access the survey tool as it fits
-                      into the process here. Surveys can also be accessed from the main menu as it makes navigation for maintennace of
-                      surveys by the user easier.
-                      -->
+               If the step title is Empathy the user will receive the link to access the survey tool as it fits
+               into the process here. Surveys can also be accessed from the main menu as it makes navigation for maintennace of
+               surveys by the user easier.
+               -->
             {% if 'Empathy' in step.title %}
             <div class="col-md-4 mb-3">
                <div class="card card-with-background">
@@ -181,10 +180,10 @@ project requirements-->
                         survey.
                      </p>
                      <h2 class="card-title mx-auto bolder text-center"><span class="card-text tool-icons mr-3"><i
-                              class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
-                           href="{% url 'survey-list' %}" role="button"
-                           aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
-                           data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
+                        class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
+                        href="{% url 'survey-list' %}" role="button"
+                        aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
                   </div>
                </div>
             </div>
@@ -194,7 +193,7 @@ project requirements-->
          </div>
       </div>
       <div class="row g-0">
-         <div class="col=md-12  mb-4  mt-3">
+         <div class="col=md-12 mb-4 mt-3">
             <hr>
          </div>
       </div>
@@ -203,17 +202,17 @@ project requirements-->
 <section>
    <div class="container">
       <div class="row g-0">
-         <div class="col=md-12  mb-4  mt-3">
+         <div class="col=md-12 mb-4 mt-3">
             <h2 class="card-title bolder">Step Updates</h2>
          </div>
       </div>
       <div class="col-12">
          <div class="row">
-            <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="col-md-4 card mb-4 mt-3 ">
                <div class="card-body">
                   <!--
-                  The progress update section is a modified version of the comment update, as created in the Code Institute project.
-                  -->
+                     The progress update section is a modified version of the comment update, as created in the Code Institute project.
+                     -->
                   {% if user.is_authenticated %}
                   <h2 class="card-title bolder">Update your progress:</h2>
                   <form method="post" class="mt-5">
@@ -224,11 +223,11 @@ project requirements-->
                   {% endif %}
                </div>
             </div>
-            <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="col-md-4 card mb-4 mt-3 ">
                <div class="card-body">
                   <!--
-                  The comment section is a slightly modified version of the comment update, as created in the Code Institute project.
-                  -->
+                     The comment section is a slightly modified version of the comment update, as created in the Code Institute project.
+                     -->
                   {% if user.is_authenticated %}
                   <h2 class="card-title bolder">Create a Comment:</h2>
                   <p class="card-italic-smaller">Posting as: {{ user.username }}</p>
@@ -240,7 +239,7 @@ project requirements-->
                   {% endif %}
                </div>
             </div>
-            <div class="col-md-4 card mb-4  mt-3 ">
+            <div class="col-md-4 card mb-4 mt-3 ">
                <h2 class="card-title bolder">Comments:</h2>
                <p class="card-italic-smaller">Create your own update comments to track your progress through
                   the
@@ -253,7 +252,7 @@ project requirements-->
                      <p class="card-title bolder">
                         {{ comment.name }}
                         <span class="card-text text-muted h5">
-                           {{ comment.created_on }}
+                        {{ comment.created_on }}
                         </span> wrote:
                      </p>
                      {{ comment.body | linebreaks }}

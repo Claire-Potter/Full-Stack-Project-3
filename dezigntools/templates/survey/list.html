@@ -4,81 +4,80 @@
 {% block title %}List - Surveys{% endblock %}
 {% block content %}
 <!--The following site provided a Django project blueprint to build a survey app. This was
-followed alongside the git hub page. I then customised the HTML and CSS to align with my
-site's design and functionality. https://mattsegal.dev/django-survey-project.html-->
+   followed alongside the git hub page. I then customised the HTML and CSS to align with my
+   site's design and functionality. https://mattsegal.dev/django-survey-project.html-->
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<!--Login is required to access all survey pages. User name is referenced within the welcome.-->
-			<h1 class="card-title bolder mt-3">Welcome {{ request.user.username }}</h1>
-			<!--A link to the create page, styled as a button is provided to the user to create a new survey.-->
-			<a class="btn mb-3 mr-1 get-started survey-button" href="{% url 'survey-create' %}"
-				aria-label="button to be clicked to create a new survey" role="button">Create a new survey</a>
-		</div>
-		<div class="col-md-12">
-			<!--An if statement is used to check if the logged in user has already created any surveys.
-		If they have, the survey/s are returned.-->
-			{% if surveys %}
-			<h2 class="card-title bolder">Your surveys</h2>
-			<div class="table-responsive">
-				<table class="table">
-					<caption>List of Surveys created</caption>
-					<thead>
-						<tr>
-							<th class="col">Title</th>
-							<th class="col">Created At</th>
-							<th class="col">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!--For each survey a for loop is used. An if statement is used,
-					either the placeholder image or a unique image uploaded by the user is returned.
-				The survey title and creation date are returned. If the survey is active,
-			    the user is presented with buttons to view or edit the survey. A delete button
-			    is included for all surveys. -->
-						{% for survey in surveys %}
-						<tr>
-							<td class="align-middle">{{ survey.title }}</td>
-							<td class="align-middle">{{ survey.created_at }}</td>
-							<td class="align-middle">
-								{% if survey.is_active %}
-								<div>
-									<a class="btn get-started survey-button"
-										href="{% url 'survey-detail' survey.pk %}" role="button">view
-
-									</a>
-								</div>
-								{% else %}
-								<div>
-									<a class="btn get-started survey-button" href="{% url 'survey-edit' survey.pk %}" role="button">
-										edit
-									</a>
-								</div>
-								{% endif %}
-								<div>
-									<form method="post" action="{% url 'survey-delete' survey.pk %}"
-										style="display: inline-block;">
-										{% csrf_token %}
-										<button class="btn get-started survey-button">delete</button>
-									</form>
-								</div>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			{% else %}
-			<!--If the user has not created any surveys, the below message will show. -->
-			<h2 class="card-title bolder">Your surveys
-			</h2>
-			<div class="card-title">
-				<p>You don't have any surveys yet, try creating one first.</p>
-			</div>
-			{% endif %}
-			<div><a class="btn mb-3 mr-1 get-started" href="{%  url 'home' %}" role="button">Return Home</a>
-			</div>
-		</div>
-	</div>
+   <div class="row">
+      <div class="col-md-12">
+         <!--Login is required to access all survey pages. User name is referenced within the welcome.-->
+         <h1 class="card-title bolder mt-3">Welcome {{ request.user.username }}</h1>
+         <!--A link to the create page, styled as a button is provided to the user to create a new survey.-->
+         <a class="btn mb-3 mr-1 get-started survey-button" href="{% url 'survey-create' %}"
+            aria-label="button to be clicked to create a new survey" role="button">Create a new survey</a>
+      </div>
+      <div class="col-md-12">
+         <!--An if statement is used to check if the logged in user has already created any surveys.
+            If they have, the survey/s are returned.-->
+         {% if surveys %}
+         <h2 class="card-title bolder">Your surveys</h2>
+         <div class="table-responsive">
+            <table class="table">
+               <caption>List of Surveys created</caption>
+               <thead>
+                  <tr>
+                     <th class="col">Title</th>
+                     <th class="col">Created At</th>
+                     <th class="col">Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <!--For each survey a for loop is used. An if statement is used,
+                     either the placeholder image or a unique image uploaded by the user is returned.
+                     The survey title and creation date are returned. If the survey is active,
+                       the user is presented with buttons to view or edit the survey. A delete button
+                       is included for all surveys. -->
+                  {% for survey in surveys %}
+                  <tr>
+                     <td class="align-middle">{{ survey.title }}</td>
+                     <td class="align-middle">{{ survey.created_at }}</td>
+                     <td class="align-middle">
+                        {% if survey.is_active %}
+                        <div>
+                           <a class="btn get-started survey-button"
+                              href="{% url 'survey-detail' survey.pk %}" role="button">view
+                           </a>
+                        </div>
+                        {% else %}
+                        <div>
+                           <a class="btn get-started survey-button" href="{% url 'survey-edit' survey.pk %}" role="button">
+                           edit
+                           </a>
+                        </div>
+                        {% endif %}
+                        <div>
+                           <form method="post" action="{% url 'survey-delete' survey.pk %}"
+                              style="display: inline-block;">
+                              {% csrf_token %}
+                              <button class="btn get-started survey-button">delete</button>
+                           </form>
+                        </div>
+                     </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+         {% else %}
+         <!--If the user has not created any surveys, the below message will show. -->
+         <h2 class="card-title bolder">Your surveys
+         </h2>
+         <div class="card-title">
+            <p>You don't have any surveys yet, try creating one first.</p>
+         </div>
+         {% endif %}
+         <div><a class="btn mb-3 mr-1 get-started" href="{%  url 'home' %}" role="button">Return Home</a>
+         </div>
+      </div>
+   </div>
 </div>
 {% endblock %}

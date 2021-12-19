@@ -4,42 +4,41 @@
 {% load cloudinary %}
 {% cloudinary survey_instance.survey_image crop='scale' fetch_format='auto'%}
 <!--The following site provided a Django project blueprint to build a survey app. This was
-followed alongside the git hub page. I then customised the HTML and CSS to align with my
-site's design and functionality. https://mattsegal.dev/django-survey-project.html. All forms
-are formatted and validated through crispy forms.-->
+   followed alongside the git hub page. I then customised the HTML and CSS to align with my
+   site's design and functionality. https://mattsegal.dev/django-survey-project.html. All forms
+   are formatted and validated through crispy forms.-->
 <div class="container">
-    <div class="row-fluid align-items-center">
-        <div class="col-md-12 mt-5">
-            <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-                <!--The user will be required to register or login to be able to take the survey. Once logged in,
-            they will see either the placeholder image or the unique image uploaded by the creator of the survey-->
-                <div class="image-container">
-                    <div class=" mx-auto"><img class="survey-image img-fluid" src=" {{ survey.survey_image.url }} " alt="An image of three users talking about a survey and pointing at 
-                        a laptop screen" aria-label="An image of three users talking about a survey and pointing at 
-                        a laptop screen">
-                    </div>
-                </div>
-                <div class="card-body text-center">
-                    <!--The survey title will be presented and the user will receive a form to start the survey-->
-                    <h2 class="card-title bolder mt-5">{{ survey.title }}</h2>
-                    <div class="card-title ">You have been invited to take this survey</div>
-                    <div class="ui container">
-                        <form method="post" action="{% url 'survey-start' survey.pk %}">
-                            {% csrf_token %}
-                            <div><button class="btn mb-3 mr-1 get-started" type="submit">Start Survey</button>
-                            </div>
-                            <!--The Cancel button will return the user to the site's home page-->
-                            <div><a class="btn mb-3 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel
-                                    and
-                                    Return Home
-                                </a>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
+   <div class="row-fluid align-items-center">
+      <div class="col-md-12 mt-5">
+         <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
+            <!--The user will be required to register or login to be able to take the survey. Once logged in,
+               they will see either the placeholder image or the unique image uploaded by the creator of the survey-->
+            <div class="image-container">
+               <div class=" mx-auto"><img class="survey-image img-fluid" src=" {{ survey.survey_image.url }} " alt="An image of three users talking about a survey and pointing at 
+                  a laptop screen" aria-label="An image of three users talking about a survey and pointing at 
+                  a laptop screen">
+               </div>
             </div>
-        </div>
-    </div>
+            <div class="card-body text-center">
+               <!--The survey title will be presented and the user will receive a form to start the survey-->
+               <h2 class="card-title bolder mt-5">{{ survey.title }}</h2>
+               <div class="card-title ">You have been invited to take this survey</div>
+               <div class="ui container">
+                  <form method="post" action="{% url 'survey-start' survey.pk %}">
+                     {% csrf_token %}
+                     <div><button class="btn mb-3 mr-1 get-started" type="submit">Start Survey</button>
+                     </div>
+                     <!--The Cancel button will return the user to the site's home page-->
+                     <div><a class="btn mb-3 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel
+                        and
+                        Return Home
+                        </a>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
 {% endblock %}

@@ -1,41 +1,41 @@
 <div class="wrapper">
-  <div id="content">
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-           <button type="button" id="sidebarCollapse" class="btn btn-account side-text">
-           <i class="fas fa-align-left"></i>  Account
-           </button>
-        </div>
-     </nav>
-  </div>
-  <!-- Sidebar set up by following this tutorial 
-    https://bootstrapious.com/p/bootstrap-sidebar and customised for site -->
-  <nav id="sidebar">
-     <ul class="list-unstyled components">
-        <li class="active">
-           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-           class="dropdown-toggle step-link side-text">Account Options</a>
-           <ul class="collapse list-unstyled step-link side-text" id="homeSubmenu">
-              {% if user.is_authenticated %}
-              <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-              <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-              {% else %}
-              <li><a href="{% url 'account_login' %}">Sign In</a></li>
-              <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-              {% endif %}
-           </ul>
-        </li>
-        {% if messages %}
-        <li>
-           <a href="#messageSubmenu" data-toggle="collapse" 
-           aria-expanded="false" class="dropdown-toggle side-text">Messages</a>
-           <ul class="collapse list-unstyled side-text" id="messageSubmenu">
-              {% for message in messages %}
-              <li>{{message}}</li>
-              {% endfor %}
-           </ul>
-        </li>
-        {% endif %}
-     </ul>
-  </nav>
+   <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-account side-text">
+            <i class="fas fa-align-left"></i>  Account
+            </button>
+         </div>
+      </nav>
+   </div>
+   <!-- Sidebar set up by following this tutorial 
+      https://bootstrapious.com/p/bootstrap-sidebar and customised for site -->
+   <nav id="sidebar">
+      <ul class="list-unstyled components">
+         <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+               class="dropdown-toggle step-link side-text">Account Options</a>
+            <ul class="collapse list-unstyled step-link side-text" id="homeSubmenu">
+               {% if user.is_authenticated %}
+               <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+               <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+               {% else %}
+               <li><a href="{% url 'account_login' %}">Sign In</a></li>
+               <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+               {% endif %}
+            </ul>
+         </li>
+         {% if messages %}
+         <li>
+            <a href="#messageSubmenu" data-toggle="collapse" 
+               aria-expanded="false" class="dropdown-toggle side-text">Messages</a>
+            <ul class="collapse list-unstyled side-text" id="messageSubmenu">
+               {% for message in messages %}
+               <li>{{message}}</li>
+               {% endfor %}
+            </ul>
+         </li>
+         {% endif %}
+      </ul>
+   </nav>
 </div>

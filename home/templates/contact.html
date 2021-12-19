@@ -2,6 +2,7 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container-fluid">
+   <!--The if statement checks if the email message has already been sent, if it has the below message will display-->
    {% if message_sent %}
    <div class="row align-items-center">
       <div class="col-md-12 mt-5">
@@ -12,6 +13,7 @@
       </div>
    </div>
    {% else %}
+   <!--If it has not the form will be displayed for the user to complete and submit-->
    <div class="row align-items-center">
       <div class="col-md-12">
          <h2 class="card-title bolder text-center mt-5">Require assistance?</h2>
@@ -21,13 +23,16 @@
                {% csrf_token %}
                <div class="form-row">
                   <div class="form-group col-md-6 mb-0 text-form bolder">
+                     <!--if the user is logged in the name will be auto-completed from the username-->
                      {{ contact_form.name|as_crispy_field }}
                   </div>
                   <div class="form-group col-md-6 mb-0 text-form bolder">
+                     <!--if the user is logged in the email will be auto-completed from the user email-->
                      {{ contact_form.email|as_crispy_field }}
                   </div>
                </div>
                <div class="text-form bolder">
+                  <!--The user will complete their message in the body field-->
                   {{ contact_form.body|as_crispy_field }}
                </div>
                <button type="submit" class="btn get-started mt-3 mb-3">Send</button>
