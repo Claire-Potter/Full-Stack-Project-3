@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load cloudinary %}
-{% cloudinary home_instance.home_image.name crop="scale" fetch_format="auto" %}
+{% cloudinary home_instance.home_image crop="scale" fetch_format="auto" %}
 <div class="container pt-5 pb-5">
     <div class="row">
        <div class="d-flex justify-content-center">
