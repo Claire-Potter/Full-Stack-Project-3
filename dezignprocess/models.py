@@ -28,7 +28,9 @@ class Images(models.Model):
     an image title using the title field, keep track of the date that
     the image was added and provide an order_number so that when images
     are selected within the Step Model and the Tool Model, the list of
-    images is organised.
+    images is organised. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     name = models.CharField(max_length=100, blank=True)
     image = CloudinaryField('image', default='placeholder',
@@ -36,6 +38,7 @@ class Images(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, blank=True)
     order_number = models.IntegerField()
+    do_not_delete = models.BooleanField(default=True)
 
     class ImageCategory(models.TextChoices):
         """
@@ -80,13 +83,16 @@ class Resource(models.Model):
     is used to capture the video titile, video_url to store the
     you tube url for the video, added to store the added date and
     order_number, to order the videos accordingly. The django-embed-video
-    library is utilsied to store the videos.
+    library is utilsied to store the videos. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     video_name = models.CharField(max_length=100, blank=True,
                                   default='placeholder')
     video_url = EmbedVideoField(blank=True)
     added = models.DateTimeField(auto_now_add=True)
     order_number = models.IntegerField()
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
@@ -110,6 +116,9 @@ class Tool(models.Model):
     contains the content and uses django-summernote to style the content.
     The image field is where the image from the Images
     model is selected and the order_number is to order the Tool model by.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     title = models.CharField(max_length=80, unique=True, default='placeholder')
     slug = models.SlugField(max_length=80, default='steps_document')
@@ -119,6 +128,7 @@ class Tool(models.Model):
                               related_name='tool_image',
                               default='1')
     order_number = models.IntegerField()
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
@@ -149,7 +159,9 @@ class Step(models.Model):
     videos per step, tools is used to select the relevant tools per step,
     added records the added on date and time and list number is used to
     determine whether the step appears on the first step page or the next
-    step page.
+    step page. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     title = models.CharField(max_length=80, unique=True)
     slug = models.SlugField(max_length=80, unique=True)
@@ -169,6 +181,7 @@ class Step(models.Model):
         Tool, related_name='tool', blank=True)
     list_number = models.IntegerField(
         default='1')
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
@@ -213,7 +226,9 @@ class Progress(models.Model):
     the progress status. The name field is used to display the username  and
     the email field is used to display the user email. Updated on reflects
     the date that the progress status was updated, and progress is the field
-    used to select the actual progress status.
+    used to select the actual progress status. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
                              related_name='progress')
@@ -223,6 +238,7 @@ class Progress(models.Model):
     name = models.CharField(max_length=80, default='username')
     email = models.EmailField(blank=True)
     updated_on = models.DateTimeField(auto_now_add=True)
+    do_not_delete = models.BooleanField(default=False)
 
     class ProgressStatus(models.TextChoices):
         """
@@ -268,7 +284,9 @@ class Comment(models.Model):
     the comment. The name field is used to display the username  and
     the email field is used to display the user email. Created on reflects
     the date that the comment was created, and body is the field
-    used to create the content.
+    used to create the content. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
                              related_name='comments')
@@ -280,6 +298,7 @@ class Comment(models.Model):
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    do_not_delete = models.BooleanField(default=False)
 
     class Meta:
         """

@@ -33,7 +33,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["xperience-dezignwiz.herokuapp.com", "localhost",
                  "localhost:8000"]
@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django_extensions',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.sites',
@@ -94,16 +93,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'htmlvalidator.middleware.HTMLValidator',
-    # django-html-validator installed
 ]
 
-# django-html-validator enablement.
-# Html validator added as middleware,
-# when set as true, will reun with runserver,
-# Debug needs to be set to true.
-HTMLVALIDATOR_ENABLED = False
-HTMLVALIDATOR_FAILFAST = False
 
 ROOT_URLCONF = 'xperiencedezignwiz.urls'
 

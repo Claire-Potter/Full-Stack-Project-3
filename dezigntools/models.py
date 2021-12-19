@@ -54,14 +54,17 @@ class Survey(models.Model):
     indicates true if the survey has been activated,
     otherwise false. The creator is a forreignkey field
     which returns the username. Created_at will be the date
-    and time that the survey was created.
+    and time that the survey was created. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
 
     title = models.CharField(max_length=64)
-    survey_image = CloudinaryField('image', default='l99appihvpsotfmk575l',
+    survey_image = CloudinaryField('image', default=' efeeyko4svga74cweezl',
                                    blank=True,
                                    null=True)
     is_active = models.BooleanField(default=False)
+    do_not_delete = models.BooleanField(default=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
 
@@ -77,10 +80,13 @@ class Gender(models.Model):
     This is chosen as part of the survey within the default
     questions section. The title contains the gender choice
     and the order_number is used to determine the order to
-    sort the gender choices by.
+    sort the gender choices by. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     title = models.CharField(max_length=80)
     order_number = models.IntegerField()
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
@@ -101,10 +107,13 @@ class AgeRange(models.Model):
     This is chosen as part of the survey within the default
     questions section. The title contains the age range choice
     and the order_number is used to determine the order to
-    sort the age ranges by choices by.
+    sort the age ranges by choices by. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     title = models.CharField(max_length=80)
     order_number = models.IntegerField()
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
@@ -124,9 +133,12 @@ class Industry(models.Model):
     The Industry model is created to store the Industry choices.
     This is chosen as part of the survey within the default
     questions section. The title field stores the Industry
-    choice and is used to sorder the model by.
+    choice and is used to sorder the model by. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     title = models.CharField(max_length=250)
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
@@ -168,6 +180,7 @@ class DefaultQuestion(models.Model):
 
     industry = models.ForeignKey(Industry, on_delete=models.CASCADE,
                                  related_name="industry_set")
+    do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the Survey field
     # if it exists, else a blank field
@@ -185,6 +198,7 @@ class Question(models.Model):
 
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     question = models.CharField(max_length=128)
+    do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the question field
     # if it exists, else a blank field
@@ -202,6 +216,7 @@ class Option(models.Model):
 
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     option = models.CharField(max_length=128)
+    do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the option field
     # if it exists, else a blank field
@@ -221,6 +236,7 @@ class Submission(models.Model):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     is_complete = models.BooleanField(default=False)
+    do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the Survey field
     # if it exists, else a blank field
@@ -238,6 +254,7 @@ class Answer(models.Model):
 
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
     option = models.ForeignKey(Option, on_delete=models.CASCADE)
+    do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the Option field
     # if it exists, else a blank field

@@ -20,11 +20,14 @@ class Home(models.Model):
     """
     Model created to render a view for the homepage.
     A foreignKey field is linked to store the username
-    as the related_name 'home'
+    as the related_name 'home'. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     name = models.CharField(max_length=80)
     home_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
@@ -42,7 +45,9 @@ class Contact(models.Model):
     """
     Model created to render the contact page.
     A foreignKey field is linked to store the username
-    as the related_name 'contact'
+    as the related_name 'contact'. Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     username = models.ForeignKey(
                User, on_delete=models.CASCADE, related_name='contact',
@@ -51,6 +56,7 @@ class Contact(models.Model):
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
+    do_not_delete = models.BooleanField(default=False)
 
     class Meta:
         """
@@ -68,9 +74,13 @@ class Verification(models.Model):
     """
     Model created to render a view for the google verification.
     A characterfield is linked to store the google verification.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
     verification = models.CharField(max_length=250)
     updated_on = models.DateTimeField(auto_now_add=True)
+    do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """

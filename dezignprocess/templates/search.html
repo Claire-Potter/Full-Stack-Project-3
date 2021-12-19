@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% load cloudinary %}
-{% cloudinary step_instance.image crop='scale' fetch_format='auto' width='100%' height='100%' %}
 {% block content %}
+{% load cloudinary %}
+{% cloudinary step_instance.image crop='scale' fetch_format='auto' %}
 <!-- https://www.youtube.com/watch?v=AGtae4L5BbI referenced to build the search functionality and fully customised -->
 <section class="pt-5 pb-5">
    <div class="container">

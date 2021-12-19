@@ -42,11 +42,13 @@ class StepAdmin(SummernoteModelAdmin):
     to style the body field.
     Django embed video is utilised to store video links.
     Cloudinary storage is utilised to store the images.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
-    summernote_fields = '__all__'
-    list_display = ('title', 'slug', 'added')
-    search_fields = ['title', 'excerpt']
-    list_filter = ('added',)
+    list_display = ('title', 'slug', 'do_not_delete')
+    search_fields = ['title', 'excerpt', 'do_not_delete']
+    list_filter = ('do_not_delete',)
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
 
@@ -60,12 +62,15 @@ class ToolAdmin(SummernoteModelAdmin):
     Django summernote is included to allow the admin user
     to style the body field.
     Cloudinary storage is utilised to store the images.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
-    summernote_fields = '__all__'
-    list_display = ('title', 'slug',)
-    search_fields = ['title']
+    list_display = ('title', 'slug', 'do_not_delete')
+    search_fields = ['title', 'do_not_delete']
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
+    list_filter = ('do_not_delete',)
 
 
 @admin.register(Progress)
@@ -77,10 +82,14 @@ class ProgressAdmin(admin.ModelAdmin):
     user themself. The default 'Not Started' progress status was
     captured by the admin user from this screen. No additional
     progress statuses should be captured by the admin user.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
-    list_display = ('progress', 'step', 'updated_on', 'name',)
-    list_filter = ('updated_on', 'step',)
-    search_fields = ('name', 'email', 'progress',)
+    list_display = ('progress', 'step', 'updated_on', 'name',
+                    'do_not_delete')
+    list_filter = ('updated_on', 'step', 'do_not_delete')
+    search_fields = ('name', 'email', 'progress', 'do_not_delete')
 
 
 @admin.register(Comment)
@@ -90,10 +99,14 @@ class CommentAdmin(admin.ModelAdmin):
     the admin user to delete comments. No approval of comments
     is required as user comments will only display to the
     user themself. Admin should not capture comments.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
-    list_display = ('name', 'body', 'step', 'created_on',)
-    list_filter = ('created_on', 'step',)
-    search_fields = ('name', 'email', 'body',)
+    list_display = ('name', 'body', 'step', 'created_on',
+                    'do_not_delete')
+    list_filter = ('created_on', 'step', 'do_not_delete')
+    search_fields = ('name', 'email', 'body', 'do_not_delete')
 
 
 @admin.register(Resource)
@@ -104,10 +117,13 @@ class ResourceAdmin(AdminVideoMixin, admin.ModelAdmin):
     required fields. Admin can also edit and delete.
     AdminVideoMixin creates a preview od the video
     Embed video is utilised to store the video.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
-    list_display = ('video_name', 'video_url')
-    search_fields = ['video_name']
-    list_filter = ('video_name', 'video_url')
+    list_display = ('video_name', 'video_url', 'do_not_delete')
+    search_fields = ['video_name', 'do_not_delete']
+    list_filter = ('video_name', 'video_url', 'do_not_delete')
 
 
 @admin.register(Images)
@@ -116,7 +132,10 @@ class ImageAdmin(AdminVideoMixin, admin.ModelAdmin):
     The Images admin set up reads the Images model and allows
     the admin user to create a new Image by adding the
     required fields. Admin can also edit and delete.
+    Do not delete
+    field is added to indicate that the saved data
+    should not be deleted if set to True.
     """
-    list_display = ('category', 'title', 'name')
-    search_fields = ['title', 'name']
-    list_filter = ('category', 'title')
+    list_display = ('category', 'title', 'name', 'do_not_delete')
+    search_fields = ['title', 'name', 'do_not_delete']
+    list_filter = ('category', 'title', 'do_not_delete')
