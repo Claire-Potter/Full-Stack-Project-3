@@ -15,18 +15,10 @@ are formatted and validated through crispy forms.-->
                 <!--The user will be required to register or login to be able to take the survey. Once logged in,
             they will see either the placeholder image or the unique image uploaded by the creator of the survey-->
                 <div class="image-container">
-                    {% if 'placeholder' in survey.survey_image.url %}
-                    <div class="mx-auto">
-                        <img src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                            class="step-tool img-fluid" alt="Placeholder image of a bright light"
-                            aria-label="Placeholder image of a bright light">
+                    <div class=" mx-auto"><img class="survey-image img-fluid" src=" {{ survey.survey_image.url }} " alt="An image of three users talking about a survey and pointing at 
+                        a laptop screen" aria-label="An image of three users talking about a survey and pointing at 
+                        a laptop screenr">
                     </div>
-                    {% else %}
-                    <div class=" mx-auto"><img src=" {{ survey.survey_image.url }}" class="step-tool img-fluid"
-                            alt="Image added to survey bu the user"
-                            aria-label="Image added for survey by the individual user">
-                    </div>
-                    {% endif %}
                 </div>
                 <div class="card-body text-center">
                     <!--The survey title will be presented and the user will receive a form to start the survey-->

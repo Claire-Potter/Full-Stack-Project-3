@@ -6,7 +6,7 @@ from .models import Survey, DefaultQuestion, Question, Option
 class SurveyForm(forms.ModelForm):
     class Meta:
         model = Survey
-        fields = ['title', 'survey_image']
+        fields = ['title']
 
 
 class QuestionForm(forms.ModelForm):

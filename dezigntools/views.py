@@ -1,3 +1,15 @@
+"""
+Xperiencedezignwiz dezigntools app  views
+
+The following site provided a Django project
+blueprint to build a survey app. This was
+followed alongside the git hub page. I then customised
+the views to align with my
+site's design and functionality.
+https://mattsegal.dev/django-survey-project.html.
+
+"""
+
 from django.db import transaction
 from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
@@ -12,6 +24,9 @@ from .forms import (SurveyForm, QuestionForm, OptionForm, AnswerForm,
                     BaseAnswerFormSet, DefaultQuestionsAnswerForm, EmailForm)
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
 def survey_list(request):
     """User can view all their surveys"""
@@ -21,20 +36,29 @@ def survey_list(request):
 
 
 def jls_extract_def(date_dict):
+    """
+    jls
+    """
     return date_dict
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
-def detail(request, pk):
+def detail(request, p_k):
     """User can view an active survey"""
     try:
         survey = (Survey.objects
                   .prefetch_related("question_set__option_set")
-                  .get(pk=pk, creator=request.user, is_active=True))
-    except Survey.DoesNotExist:
-        raise Http404()
+                  .get(pk=p_k, creator=request.user, is_active=True))
+    # warning Consider explicitly re-raising using the 'from' keyword
+    # was occurring stack overflow solution added to all cases to resolve:
+    # https://stackoverflow.com/questions/63738900/pylint-raise-missing-from
+    except Survey.DoesNotExist as survey_no_exist:
+        raise Http404() from survey_no_exist
 
-    default_questions = DefaultQuestion.objects.filter(survey=pk)
+    default_questions = DefaultQuestion.objects.filter(survey=p_k)
     total_answers = default_questions.count()
     age_range = AgeRange.objects.all()
     for question in default_questions:
@@ -60,8 +84,8 @@ def detail(request, pk):
                     sum_total = number_sum+num
                     total_gender_number = sum_total
                     gender.percent = float(100.0 * total_gender_number /
-                                           total_answers if total_answers else 0)
-    
+                                           total_answers
+                                           if total_answers else 0)
     industry_range = Industry.objects.all()
     for question in default_questions:
         answer_industry = question.industry
@@ -73,24 +97,22 @@ def detail(request, pk):
                     sum_total = number_sum+num
                     total_industry_number = sum_total
                     industry.percent = float(100.0 * total_industry_number /
-                                             total_answers if total_answers else 0)
+                                             total_answers
+                                             if total_answers else 0)
 
     # Calculate the results.
-    # This is a naive implementation and it could be optimised
-    #  to hit the database less.
-    # See here for more info on how you might improve this code:
-    #  https://docs.djangoproject.com/en/3.1/topics/db/aggregation/
     questions = survey.question_set.all()
     for question in questions:
         option_pks = question.option_set.values_list("pk", flat=True)
-        total_answers_q = Answer.objects.filter(option_id__in=option_pks).count()
+        total_answers_q = (Answer.objects.
+                           filter(option_id__in=option_pks).count())
         for option in question.option_set.all():
             num_answers = Answer.objects.filter(option=option).count()
             option.percent = (100.0 * num_answers /
                               total_answers_q if total_answers_q else 0)
 
     host = request.get_host()
-    public_path = reverse("survey-start", args=[pk])
+    public_path = reverse("survey-start", args=[p_k])
     public_url = f"{request.scheme}://{host}{public_path}"
     num_submissions = survey.submission_set.filter(is_complete=True).count()
 
@@ -111,17 +133,23 @@ def detail(request, pk):
     )
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
-def send_email(request, pk):
+def send_email(request, p_k):
+    """
+    docustring
+    """
     try:
         survey = (Survey.objects
                   .prefetch_related("question_set__option_set")
-                  .get(pk=pk, creator=request.user, is_active=True))
-    except Survey.DoesNotExist:
-        raise Http404()
+                  .get(pk=p_k, creator=request.user, is_active=True))
+    except Survey.DoesNotExist as survey_no_exist:
+        raise Http404() from survey_no_exist
 
     host = request.get_host()
-    public_path = reverse("survey-start", args=[pk])
+    public_path = reverse("survey-start", args=[p_k])
     public_url = f"{request.scheme}://{host}{public_path}"
 
     # create a variable to keep track of the form
@@ -139,14 +167,16 @@ def send_email(request, pk):
             c_d = form.cleaned_data
             subject = c_d['subject']
             message = c_d['message']
-            recipient_list = c_d['recipients'] 
+            recipient_list = c_d['recipients']
 
             # send the email to the recipent
             email_message = EmailMultiAlternatives(from_email=settings
                                                    .DEFAULT_FROM_EMAIL,
                                                    reply_to=['xperience'
-                                                             'dezignwiz@gmail.com'],
-                                                   to=['xperiencedezignwiz@gmail.com'],
+                                                             'dezignwiz'
+                                                             '@gmail.com'],
+                                                   to=['xperiencedezignwiz'
+                                                       '@gmail.com'],
                                                    bcc=recipient_list,
                                                    body=message,
                                                    subject=subject)
@@ -186,6 +216,9 @@ def send_email(request, pk):
     })
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
 def create(request):
     """User can create a new survey"""
@@ -200,7 +233,7 @@ def create(request):
             survey = form.save(commit=False)
             survey.creator = request.user
             survey.save()
-            return redirect("survey-edit", pk=survey.id)
+            return redirect("survey-edit", p_k=survey.id)
     else:
         form = SurveyForm(initial={'title': 'Add a'
                                    ' Survey Title',
@@ -211,40 +244,49 @@ def create(request):
                   {'form': form})
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
-def delete(request, pk):
+def delete(request, p_k):
     """User can delete an existing survey"""
-    survey = get_object_or_404(Survey, pk=pk, creator=request.user)
+    survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
     if request.method == "POST":
         survey.delete()
 
     return redirect("survey-list")
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
-def edit(request, pk):
+def edit(request, p_k):
     """User can add questions to a draft survey, then acitvate the survey"""
     try:
         survey = (Survey.objects
                   .prefetch_related("question_set__option_set")
-                  .get(pk=pk, creator=request.user, is_active=False))
-    except Survey.DoesNotExist:
-        raise Http404()
+                  .get(pk=p_k, creator=request.user, is_active=False))
+    except Survey.DoesNotExist as survey_no_exist:
+        raise Http404() from survey_no_exist
 
     if request.method == "POST":
         survey.is_active = True
         survey.save()
-        return redirect("send-survey-email", pk=pk)
+        return redirect("send-survey-email", p_k=p_k)
     else:
         questions = survey.question_set.all()
         return render(request, "survey/edit.html",
                       {"survey": survey, "questions": questions})
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
-def question_create(request, pk):
+def question_create(request, p_k):
     """User can add a question to a draft survey"""
-    survey = get_object_or_404(Survey, pk=pk, creator=request.user)
+    survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
@@ -252,7 +294,7 @@ def question_create(request, pk):
             question.survey = survey
             question.save()
             return redirect("survey-option-create",
-                            survey_pk=pk, question_pk=question.pk)
+                            survey_pk=p_k, question_pk=question.pk)
     else:
         form = QuestionForm()
 
@@ -260,6 +302,9 @@ def question_create(request, pk):
                   {"survey": survey, "form": form})
 
 
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
 @login_required
 def option_create(request, survey_pk, question_pk):
     """User can add options to a survey question"""
@@ -283,12 +328,12 @@ def option_create(request, survey_pk, question_pk):
     )
 
 
-def start(request, pk):
+def start(request, p_k):
     """Survey-taker can start a survey"""
-    survey = get_object_or_404(Survey, pk=pk, is_active=True)
+    survey = get_object_or_404(Survey, pk=p_k, is_active=True)
     if request.method == "POST":
         sub = Submission.objects.create(survey=survey)
-        return redirect("submit-default", survey_pk=pk, sub_pk=sub.pk)
+        return redirect("submit-default", survey_pk=p_k, sub_pk=sub.pk)
 
     return render(request, "survey/start.html", {"survey": survey})
 
@@ -299,13 +344,13 @@ def submit_default(request, survey_pk, sub_pk):
         survey = Survey.objects.prefetch_related("defaultquestions_set").get(
             pk=survey_pk, is_active=True
         )
-    except Survey.DoesNotExist:
-        raise Http404()
+    except Survey.DoesNotExist as survey_no_exist:
+        raise Http404() from survey_no_exist
 
     try:
         sub = survey.submission_set.get(pk=sub_pk, is_complete=False)
-    except Submission.DoesNotExist:
-        raise Http404()
+    except Survey.DoesNotExist as survey_no_exist:
+        raise Http404() from survey_no_exist
 
     if request.method == "POST":
         form = DefaultQuestionsAnswerForm(request.POST)
@@ -336,13 +381,13 @@ def submit(request, survey_pk, sub_pk):
         survey = (Survey.objects
                   .prefetch_related("question_set__option_set")
                   .get(pk=survey_pk, is_active=True))
-    except Survey.DoesNotExist:
-        raise Http404()
+    except Survey.DoesNotExist as survey_no_exist:
+        raise Http404() from survey_no_exist
 
     try:
         sub = survey.submission_set.get(pk=sub_pk, is_complete=False)
-    except Submission.DoesNotExist:
-        raise Http404()
+    except Survey.DoesNotExist as survey_no_exist:
+        raise Http404() from survey_no_exist
 
     questions = survey.question_set.all()
     options = [q.option_set.all() for q in questions]
@@ -360,7 +405,7 @@ def submit(request, survey_pk, sub_pk):
 
                 sub.is_complete = True
                 sub.save()
-            return redirect("survey-thanks", pk=survey_pk)
+            return redirect("survey-thanks", p_k=survey_pk)
 
     else:
         formset = AnswerFormSet(form_kwargs=form_kwargs)
@@ -374,7 +419,7 @@ def submit(request, survey_pk, sub_pk):
     )
 
 
-def thanks(request, pk):
+def thanks(request, p_k):
     """Survey-taker receives a thank-you message."""
-    survey = get_object_or_404(Survey, pk=pk, is_active=True)
+    survey = get_object_or_404(Survey, pk=p_k, is_active=True)
     return render(request, "survey/thanks.html", {"survey": survey})

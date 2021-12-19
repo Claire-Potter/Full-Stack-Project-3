@@ -25,7 +25,6 @@ site's design and functionality. https://mattsegal.dev/django-survey-project.htm
 					<caption>List of Surveys created</caption>
 					<thead>
 						<tr>
-							<th class="col">Image</th>
 							<th class="col">Title</th>
 							<th class="col">Created At</th>
 							<th class="col">Actions</th>
@@ -39,16 +38,6 @@ site's design and functionality. https://mattsegal.dev/django-survey-project.htm
 			    is included for all surveys. -->
 						{% for survey in surveys %}
 						<tr>
-							{% if 'placeholder' in survey.survey_image.url %}
-							<td class="align-middle"><img
-									src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-									class="survey-image img-fluid" alt="The placeholder image of a bright light"
-									aria-label="Placeholder image of a bright light"></td>
-							{% else %}
-							<td><img class="survey-image img-fluid" src=" {{ survey.survey_image.url }} "
-									alt="Image added for survey by the individual user"
-									aria-label="Image added for survey by the individual user"></td>
-							{% endif %}
 							<td class="align-middle">{{ survey.title }}</td>
 							<td class="align-middle">{{ survey.created_at }}</td>
 							<td class="align-middle">
