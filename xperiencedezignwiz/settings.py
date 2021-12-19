@@ -213,6 +213,7 @@ AUTHENTICATION_BACKENDS = [
     ]
 
 # Twilio SendGrid
+# https://docs.sendgrid.com/for-developers/sending-email/django
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = 'xperiencedezignwiz@gmail.com'

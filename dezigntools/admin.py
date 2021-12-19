@@ -1,5 +1,34 @@
-from django.contrib import admin
+"""
+The Survey model is created to store the data for the
+survey created by a user. Admin can also edit and delete.
 
+The Gender model created to store the gender choices.
+Admin can also edit and delete.
+
+AgeRange model created to store the age range choices.
+Admin can also edit and delete.
+
+Industry model created to store the age range choices.
+Admin can also edit and delete.
+
+DefaultQuestions model created to store the
+default questions answers.
+Admin can also edit and delete.
+
+Questions model created to store the questions created
+by the users.
+Admin can also edit and delete.
+
+Option model created to store the option answers.
+Admin can also edit and delete.
+
+Submission model created to store the submissions.
+Admin can also edit and delete.
+
+Answer model created to store the answers.
+Admin can also edit and delete.
+"""
+from django.contrib import admin
 from .models import (Survey, Question, Option, Submission, Answer,
                      DefaultQuestion, AgeRange, Gender, Industry)
 

@@ -573,9 +573,9 @@ ul {
 	}
 
 	.dropdown-item {
-		font-size: calc(1.325rem + .9vw) !important;
+		font-size: calc(0.5rem + .9vw) !important;
 	}
-
+	
 	.text-small {
 		font-size: calc(1.325rem + .9vw) !important;
 	}

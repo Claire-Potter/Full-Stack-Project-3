@@ -3,12 +3,15 @@ XperienceDezignWiz dezignprocess app views configuration
 
 The Search view is set up to render the search results
 page when a user searches for a step by name.
+
 The SearchList and SearchNext views are created to render the data
 required to display the different Steps within
 the Design Thinking Process.
+
 The Step Detail view is created to render the data required to display the
 individual Step selected within the Design Thinking Process. It includes
 the forms to update the progress status as well as to add comments.
+
 The ToolList view  is created to render the data required to display the
 different Tools per step within the Design Thinking Process.
 

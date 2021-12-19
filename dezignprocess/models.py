@@ -1,18 +1,25 @@
 """
 Xperiencedezignwiz dezignprocess app Model Configuration
+
 The Step and Comment models were created according to the
 Code Institute 'I Think Therefore I Blog' project but fully
 customised for purpose.
+
 The Images model is created to house all of the images
 utilised by thw dezignprocess app.
+
 The Resource Model is created to house the videos displayed
 on the step_detail page.
+
 The Tool Model is created to house the tools per step, which are
 linked to from the step_detail page.
+
 The Step Model is created to store the data required for creating
 the different Steps within the Design Thinking Process.
+
 The Progress Model is created to create and store a progress status.
 The Comment Model is created to create and store a comment.
+
 Models for the dezignprocess app to be rendered by dezignprocess/views.py
 """
 from django.db import models

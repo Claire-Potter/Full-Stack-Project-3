@@ -2,8 +2,8 @@
 /*jslint browser:true */
 
 // Create constants for html input.
-const dropButton = document.getElementById("dropdownMenuLink");
-const dropDown = document.getElementById("myDropdown");
+const dropButton = document.getElementById("dropdown-menu-link");
+const dropDown = document.getElementById("my-dropdown");
 const dropdowns = document.getElementsByClassName("dropdown-menu");
 const navBar = document.getElementsByClassName("navbar");
 var i;
@@ -51,7 +51,7 @@ const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 
 const steps = ["Getting Started", "Empathy", "Define", "Ideate",
                "Prototype", "Test", "Finishing Off"];
-const input = document.getElementById("myInput");
+const input = document.getElementById("my-input");
 var currentFocus;
 
 function autocomplete(inp, arr) {
@@ -164,16 +164,16 @@ function autocomplete(inp, arr) {
   });
 }
 
-/*initiate the autocomplete function on the "myInput" element,
+/*initiate the autocomplete function on the "my-input" element,
 and pass along the steps array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), steps);
+autocomplete(document.getElementById("my-input"), steps);
 
 //added the below code to allow the submission of the autokey
 // search with the enter key
 input.addEventListener("keyup", function (event) {
   if (event.keyCode === 13) {
     event.preventDefault();
-    document.getElementById("submitButton").click();
+    document.getElementById("submit-button").click();
   }
 });
 

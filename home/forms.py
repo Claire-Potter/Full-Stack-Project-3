@@ -1,6 +1,12 @@
 """
 Forms created for the Xperience DezignWiz
 Home application.
+
+ContactForm set up to enable a user to create
+a contact message and save it. It will
+be sent to the admin account and saved
+to the Contact model.
+
 """
 from django import forms
 from .models import Contact
@@ -10,7 +16,7 @@ class ContactForm(forms.ModelForm):
     """
      Form set up to enable a user to create
      a contact message and save it. It will
-     be sent to the admin account and save
+     be sent to the admin account and saved
      to the Contact model. It can be accessed
      via the admin pane.
     """

@@ -3,13 +3,14 @@ Xperiencedezignwiz home app model Configuration
 
 Home model created to render a view for the homepage.
 It stores the home page image and title.
+
 Contact model created to render the contact page
 and to store all contact requests submitted by users.
 Admin can access this via the admin pane.
+
 Verification model created to render a view for
 the google verification and store the verification
 code - which is not a secret field.
-
 """
 from django.db import models
 from django.contrib.auth.models import User

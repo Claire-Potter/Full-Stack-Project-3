@@ -1,11 +1,18 @@
 """
 Xperiencedezignwiz home app views configuration
 
-the index view is setup to display the homepage.
-the social media views are setup to authorise login via the
+the index view is set up to display the homepage.
+
+the social media views are set up to authorise login via the
 various social media apps. This was completed as per the django
 documentation:
 https://django-rest-auth.readthedocs.io/en/latest/installation.html
+
+Contact View created to render the Contact page.
+The view also references the Contact model
+and form in order to update the fields within
+the model tables
+
 """
 
 from django.shortcuts import render, get_object_or_404
@@ -55,7 +62,7 @@ class Contact(View):
     def get(self, request):
         """
         The get function retrieves the data
-        to generate the step details page.
+        to generate the contact page.
 
         self: The self is used to represent the instance of the class.
         request: The requests module allows you to send HTTP
@@ -91,6 +98,10 @@ class Contact(View):
         If and else statement utilised to determine whether the user
         is logged in or not, if they are logged in, their name and email
         address will be derived from their user profile.
+
+        Set up according to django EmailMultiAlternatives
+        https://docs.djangoproject.com/en/4.0/topics/email/
+        and include Sendgrid email template
         """
         # create a variable to keep track of the form
         message_sent = False
@@ -108,7 +119,8 @@ class Contact(View):
                 client_name = c_d['name']
                 client_email = c_d['email']
 
-                # send the email to the recipient
+                # send the email to the recipent using the Sendgrid template
+                # set up for xperiencedezignwiz
                 email_message = EmailMultiAlternatives(from_email=settings
                                                        .DEFAULT_FROM_EMAIL,
                                                        to=['xperience'

@@ -45,11 +45,11 @@
                <a class="navbar-brand" href="{% url 'home' %}"><span class="logo scarlett-x"><i
                   class="fab fa-xing-square"></i></span><span class="logo">perience</span><span
                   class="logo-small"> DezignWiz</span></a>
-               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                  aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-text"
+                  aria-controls="navbar-text" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
                </button>
-               <div class="collapse navbar-collapse" id="navbarText">
+               <div class="collapse navbar-collapse" id="navbar-text">
                   <h2 class="hidden">Xperience DezignWiz</h2>
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      <li class="nav-item">
@@ -58,11 +58,11 @@
                      <!--https://www.w3schools.com/bootstrap/bootstrap_ref_js_dropdown.asp
                         referenced and edited for dropdownMenu -->
                      <li class="dropdown m-0 p-0 ">
-                        <button class="steps-button mt-2" id="dropdownMenuLink" aria-haspopup="true"
+                        <button class="steps-button mt-2" id="dropdown-menu-link" aria-haspopup="true"
                            aria-expanded="false">
                         Steps
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="myDropdown">
+                        <div class="dropdown-menu" aria-labelledby="dropdown-menu-link" id="my-dropdown">
                            <a class="dropdown-item" href="{% url 'first' %}">Steps 1-3</a>
                            <a class="dropdown-item" href="{% url 'next' %}">Steps 4-7</a>
                         </div>
@@ -93,11 +93,11 @@
                   <form class="d-flex collapse-search" autocomplete="off" method=POST action="{% url 'search' %}">
                      {% csrf_token %}
                      <div class="autocomplete">
-                        <input id="myInput" class="form-control me-2 search enter-search collapse-search"
+                        <input id="my-input" class="form-control me-2 search enter-search collapse-search"
                            type="search" placeholder="Search Steps by name"
                            aria-label="Search Design Thinking Steps" name="searched">
                      </div>
-                     <input id="submitButton" class="btn btn-outline search collapse-search" type="submit"
+                     <input id="submit-button" class="btn btn-outline search collapse-search" type="submit"
                         value="Search">
                   </form>
                </div>

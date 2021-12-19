@@ -1,3 +1,23 @@
+"""
+Xperiencedezignwiz dezigntools app URL Configuration
+
+URLs for the dezigntools app setup according to dezigntools/views.py
+URLs configured for the following pages:
+
+Survey-list -summary of user's created surveys
+Survey-edit - add questions to a survey
+Send-survey-email - send out the survey via email
+Survey-detail - view the details of survey submissions
+and view answers as percentages
+Survey-create - create a new survey
+Survey-delete - delete a survey
+Survey-question-create - create a new question
+Survey-option-create - create options for a question
+Survey-start - start answering the survey
+Submit-default - submit default questions answers
+Survey-submit - submit option selections
+Survey-thanks- thank you for taking the survey
+"""
 from django.conf import settings
 from django.urls import include, path
 from dezigntools import views
