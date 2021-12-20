@@ -22,9 +22,6 @@
                <img class="step-tool mt-5 mb-5 img-fluid" alt="{{ image.name }}" aria-label="{{ image.name }}"
                   src="{{ image.image.url }}">
                {% endif %}
-               <div class="image-tool-overlay">
-                  <h1 class="step-number">{{ template.title }} </h1>
-               </div>
             </div>
          </div>
       </div>
@@ -43,7 +40,8 @@ to improve ability to access items below the content
                <h1 class="accordion-header">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse"
                      data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
-                     {{ template.excerpt }}
+                     {{ template.title }} :
+                      {{ template.excerpt }}
                   </button>
                </h1>
                <div id="collapse-one" class="accordion-collapse collapse show" data-bs-parent="#accordion-example">

@@ -31,6 +31,7 @@
                   % per Age Range:
                </h2>
                <canvas class="myChart2 chart-size" width="400" height="100"></canvas>
+
             </div>
             <div class="col-sm text-center mt-5 mb-5">
                <!--The different gender options and percentage each gender was chosen-->
@@ -48,7 +49,7 @@
             </div>
             <!--A for loop is utilised to return each question and a second for loop with its option set.
                The percentage each option was chosen reflects-->
-            <div class="col-sm text-center mt-5 mb-5">
+            <div class="col-12 col-sm text-center mt-5 mb-5">
                {% for question in questions %}
                <h2 class="card bolder">
                   Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}

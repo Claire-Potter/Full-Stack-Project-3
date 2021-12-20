@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% load cloudinary %}
 {% cloudinary step_instance.image crop='scale' fetch_format='auto' %}
@@ -33,12 +33,12 @@
                   per step is displayed.-->
                {% if 'placeholder' in image.image.url %}
                <div class="step-image"><img
-                  src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                  class="card-img-top img-fluid image-inner" alt="placeholder image of a bright light"
-                  aria-label="placeholder image of a bright light"></div>
+                     src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                     class="card-img-top img-fluid image-inner" alt="placeholder image of a bright light"
+                     aria-label="placeholder image of a bright light"></div>
                {% else %}
                <div class="step-image"><img src="{{ image.image.url}}" class="card-img-top img-fluid image-inner"
-                  alt="{{ image.name}}" aria-label="{{ image.name }}"></div>
+                     alt="{{ image.name}}" aria-label="{{ image.name }}"></div>
                {% endif %}
                <div class="card-body">
                   <h2 class="card-text text-center">
@@ -64,7 +64,7 @@
                   <h2 class="accordion-header">
                      <button class="accordion-button" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapse-one" aria-expanded="true" aria-controls="collapse-one">
-                     Step Details
+                        Step Details
                      </button>
                   </h2>
                   <div id="collapse-one" class="accordion-collapse collapse show" data-bs-parent="#accordion-example">
@@ -121,8 +121,7 @@
                   </div>
                   <div class="iframe-container">
                      <iframe class="embed-responsive-item iframe" src="{{ resource.video_url }}"
-                        title="YouTube video player"
-                        allowfullscreen></iframe>
+                        title="YouTube video player" allowfullscreen></iframe>
                   </div>
                </div>
             </div>
@@ -158,10 +157,10 @@
                <div class="card card-with-background">
                   <div class="card-body">
                      <h2 class="card-title mx-auto bolder text-center"><span class="card-text tool-icons mr-3"><i
-                        class="fas fa-wrench"></i></span> {{ tool.title }} <a class="btn btn-go-color"
-                        href="{% url 'step_tools' slug=tool.slug %}" role="button"
-                        aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
-                        data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
+                              class="fas fa-wrench"></i></span> {{ tool.title }} <a class="btn btn-go-color"
+                           href="{% url 'step_tools' slug=tool.slug %}" role="button"
+                           aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
                   </div>
                </div>
             </div>
@@ -180,10 +179,10 @@
                         survey.
                      </p>
                      <h2 class="card-title mx-auto bolder text-center"><span class="card-text tool-icons mr-3"><i
-                        class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
-                        href="{% url 'survey-list' %}" role="button"
-                        aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
-                        data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
+                              class="fas fa-tools"></i></span> Design Thinking Surveys <a class="btn btn-go-color"
+                           href="{% url 'survey-list' %}" role="button"
+                           aria-label="button to be clicked to view the tool for the step" data-bs-toggle="tooltip"
+                           data-bs-placement="top" title="Go"><i class="fas fa-arrow-right"></i></a></h2>
                   </div>
                </div>
             </div>
@@ -202,10 +201,11 @@
 <section>
    <div class="container">
       <div class="row g-0">
-         <div class="col=md-12 mb-4 mt-3">
+         <div class="col-md-12 mb-2 mt-3">
             <h2 class="card-title bolder">Step Updates</h2>
          </div>
       </div>
+      {% if user.is_authenticated %}
       <div class="col-12">
          <div class="row">
             <div class="col-md-4 card mb-4 mt-3 ">
@@ -213,13 +213,15 @@
                   <!--
                      The progress update section is a modified version of the comment update, as created in the Code Institute project.
                      -->
-                  {% if user.is_authenticated %}
                   <h2 class="card-title bolder">Update your progress:</h2>
                   <form method="post" class="mt-5">
                      {{ progress_form | crispy }}
                      {% csrf_token %}
                      <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
                   </form>
+                  {% else %}
+                  <h2 class="card-italic-smaller mt-0">Please login or register an account to use the Step Updates section.
+                  </h2>
                   {% endif %}
                </div>
             </div>
@@ -236,7 +238,6 @@
                      {% csrf_token %}
                      <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
                   </form>
-                  {% endif %}
                </div>
             </div>
             <div class="col-md-4 card mb-4 mt-3 ">
@@ -252,7 +253,7 @@
                      <p class="card-title bolder">
                         {{ comment.name }}
                         <span class="card-text text-muted h5">
-                        {{ comment.created_on }}
+                           {{ comment.created_on }}
                         </span> wrote:
                      </p>
                      {{ comment.body | linebreaks }}
@@ -264,4 +265,5 @@
       </div>
    </div>
 </section>
+{% endif %}
 {% endblock content %}

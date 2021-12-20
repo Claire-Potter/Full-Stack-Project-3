@@ -9,12 +9,22 @@
          <div class="col-12 mb-5 ">
             <!-- if a search term was included generate the below div-->
             {% if searched %}
-            <div class="col-6 mx-auto text-center mb-5 ">
+            {% if 'None' in step.title %}
+            <div class="col-12 col-md-6 mx-auto card-with-background mb-5">
                <!-- searched returns the searched for term, click returns an instructional statement per step -->
-               <h2>You Searched for {{ searched }}</h2>
+               <h2 class="bolder mx-md-5 mt-5">You Searched for {{ searched }}</h2>
+               <p class="mx-md-5 mb-5">{{ click }}</p>
+            </div>
+            {% else %}
+            <div class="col-12 col-md-6 mx-auto text-center mb-5 ">
+               <!-- searched returns the searched for term, click returns an instructional statement per step -->
+               <h2 class="bolder mx-md-5 mt-5">You Searched for {{ searched }}</h2>
                <p>{{ click }}</p>
             </div>
-            <hr />
+            {% endif %}
+            <div class="col-12 col-md-6 mx-auto mb-5">
+               <hr />
+            </div>
             <div class="container">
                <div class="row g-0">
                   <div class="col-md-12 card mb-3">
@@ -26,13 +36,13 @@
                            per step is displayed.-->
                         {% if 'placeholder' in image.image.url %}
                         <div class="step-image"><img
-                           src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
-                           class="card-img-top img-fluid image-inner" alt="Placeholder image of a bright light"
-                           aria-label="Placeholder image of a bright light"></div>
+                              src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                              class="card-img-top img-fluid image-inner" alt="Placeholder image of a bright light"
+                              aria-label="Placeholder image of a bright light"></div>
                         {% else %}
                         <div class="step-image"><img src=" {{ image.image.url }}"
-                           class="card-img-top img-fluid image-inner" alt="{{ image.name }}"
-                           aria-label="{{ image.name }}"></div>
+                              class="card-img-top img-fluid image-inner" alt="{{ image.name }}"
+                              aria-label="{{ image.name }}"></div>
                         {% endif %}
                         <div class="card-body align-items-center">
                            <!-- For any search that does not match a step, the 'None' step is returned
@@ -49,7 +59,7 @@
                            </p>
                            <!-- The Return button will direct the user back to the previous screen-->
                            <div class="text-center"><a class="btn get-started mx-auto"
-                              href="{{ request.META.HTTP_REFERER }}">Return</a></div>
+                                 href="{{ request.META.HTTP_REFERER }}">Return</a></div>
                         </div>
                      </div>
                   </div>
@@ -57,9 +67,9 @@
             </div>
             {% else %}
             <!-- If an empty search was completed the below content will be returned-->
-            <div class="col-6 mx-auto text-center mb-5 ">
-               <h2>You forgot to enter any search criteria.</h2>
-               <p class="card-text text-center">
+            <div class="col-12 col-md-6 mx-auto mb-5 card card-with-background">
+               <h2 class="mt-5 bolder">You forgot to enter any search criteria.</h2>
+               <p class="card-text">
                   This search is set up to return the pages for the steps within the Design Thinking process.
                   Please search for one of the steps:
                </p>
@@ -74,8 +84,8 @@
                   <li>The search field is case sensitive.</li>
                </ul>
                <!-- The Return button will direct the user back to the previous screen-->
-               <div class="text-center"><a class="btn get-started mx-auto"
-                  href="{{ request.META.HTTP_REFERER }}">Return</a></div>
+               <div class="ml-1 mb-5">
+                  <a class="btn get-started" href="{{ request.META.HTTP_REFERER }}">Return</a> </div>
             </div>
             {% endif %}
          </div>

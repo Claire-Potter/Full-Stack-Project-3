@@ -17,21 +17,23 @@
                   if it does the placeholder image is displayed, if not the unique feature image
                   per step is displayed.-->
                {% if 'placeholder' in step.featured_image.url %}
-               <img class="card-img-top img-border" alt="placeholder image of a bright light" 
+               <img class="card-img-top img-border" alt="placeholder image of a bright light"
                   aria-label="placeholder image of a bright light"
                   src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg">
                {% else %}
-               <img class="card-img-top img-border"  alt="{{ step.feature_image.name }}"
+               <img class="card-img-top img-border" alt="{{ step.feature_image.name }}"
                   aria-label="{{ step.feature_image.name }}" src=" {{ step.feature_image.image.url }} ">
                {% endif %}
                <div class="image-overlay" aria-label="image overlay containing the step number">
-                  <h2 class="step-number">Step Number: {{ step.order_number }} </h2>
+                  <a href="{% url 'step_detail' step.slug %}" class="step-detail-link bolder" role="button"
+                     aria-label="button to be clicked to view the step" data-bs-toggle="tooltip" data-bs-placement="top"
+                     title="Click here to view {{ step.title }}">
+                     <h2 class="step-number">Step Number: {{ step.order_number }} </h2>
+                  </a>
                </div>
             </div>
             <div class="card-body">
-               <a href="{% url 'step_detail' step.slug %}" class="step-link">
-                  <h2 class="card-title bolder">{{ step.title }}</h2>
-               </a>
+               <h2 class="card-title bolder">{{ step.title }}</h2>
                <h3 class="card-text ">{{ step.excerpt }}</h3>
                <hr />
                <div class="step-information">

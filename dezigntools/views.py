@@ -241,6 +241,7 @@ def detail(request, p_k):
             'age_range': age_range,
             'gender_range': gender_range,
             'industry_range': industry_range,
+            'answer_age_range': answer_age_range,
         },
     )
 
@@ -331,9 +332,7 @@ def send_email(request, p_k):
         form = EmailForm(initial={'subject': 'XperienceDezignWiz'
                                              ' Survey',
                                              'message': 'You have been sent'
-                                             ' a survey to complete.'
-                                             ' Please follow this link'
-                                             ' to access the survey:'})
+                                             ' a survey to complete.'})
 
     return render(request, 'survey/email.html', {
 
