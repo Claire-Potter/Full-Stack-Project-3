@@ -20,13 +20,13 @@
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: { 
-                    labels: [{% for age in age_range %} '{{age}}', {%endfor%}],
+                    labels: [{% for age in age_ranges %} '{{age}}', {%endfor%}],
                      //for loop through queryset created 
                      // and for ever age range option:
                      // the percent per age range is shown as a float number
                     datasets: [{ 
                         label: '% per age', 
-                        data: [{% for age in age_range %}
+                        data: [{% for age in age_ranges %}
                         {{ age.percent|floatformat }}, {%endfor%}],
                         // chart styling
                         backgroundColor: [
@@ -100,14 +100,14 @@
                 // data is added thereafter
                 type: 'doughnut',
                 data: { 
-                    labels: [{% for gender in gender_range %} '{{gender}}',
+                    labels: [{% for gender in genders %} '{{gender}}',
                     {%endfor%}], 
                     //for loop through queryset created and 
                     // for every gender option:
                      // the percent per gender is shown as a float number
                     datasets: [{ 
-                        label: '% per age', 
-                        data: [{% for gender in gender_range %}
+                        label: '% per gender', 
+                        data: [{% for gender in genders %}
                         {{ gender.percent|floatformat }}, {%endfor%}],
                         // chart styling
                         backgroundColor: [
@@ -180,14 +180,14 @@
                  // data is added thereafter
                 type: 'doughnut',
                 data: { 
-                    labels: [{% for industry in industry_range %} '{{industry}}',
+                    labels: [{% for industry in industries %} '{{industry}}',
                      {%endfor%}], 
                      //for loop through queryset created and 
                      // for every Industry option:
                      // the percent per Industry is shown as a float number
                     datasets: [{ 
-                        label: '% per age', 
-                        data: [{% for industry in industry_range %}
+                        label: '% per industry', 
+                        data: [{% for industry in industries %}
                         {{ industry.percent|floatformat }}, {%endfor%}],
                         // chart styling 
                         backgroundColor: [

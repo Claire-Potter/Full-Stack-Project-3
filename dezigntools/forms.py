@@ -33,7 +33,8 @@ Forms for the dezigntools app to be rendered by dezigntools/views.py
 """
 from django import forms
 from multi_email_field.forms import MultiEmailField
-from .models import Survey, DefaultQuestion, Question, Option
+from .models import (Survey, Question, Option, AgeQuestion,
+                     GenderQuestion, IndustryQuestion)
 
 
 class SurveyForm(forms.ModelForm):
@@ -64,6 +65,54 @@ class QuestionForm(forms.ModelForm):
 
         model = Question
         fields = ['question']
+
+
+class AgeForm(forms.ModelForm):
+    """
+    The QuestionForm is created to refer to the Question model,
+    display the question field to allow the user
+    to capture their own questions.
+    """
+    class Meta:
+        """
+        The Question model is referenced and
+        the question field is included in the form
+        """
+
+        model = AgeQuestion
+        fields = ['age_question']
+
+
+class GenderForm(forms.ModelForm):
+    """
+    The QuestionForm is created to refer to the Question model,
+    display the question field to allow the user
+    to capture their own questions.
+    """
+    class Meta:
+        """
+        The Question model is referenced and
+        the question field is included in the form
+        """
+
+        model = GenderQuestion
+        fields = ['gender_question']
+
+
+class IndustryForm(forms.ModelForm):
+    """
+    The QuestionForm is created to refer to the Question model,
+    display the question field to allow the user
+    to capture their own questions.
+    """
+    class Meta:
+        """
+        The Question model is referenced and
+        the question field is included in the form
+        """
+
+        model = IndustryQuestion
+        fields = ['industry_question']
 
 
 class OptionForm(forms.ModelForm):
@@ -97,30 +146,33 @@ class AnswerForm(forms.Form):
         options = kwargs.pop('options')
         # Options must be a list of Option objects
         choices = {(o.pk, o.option) for o in options}
+        age_ranges = kwargs.pop('age_ranges')
+        choices = {(a.pk, a.age_range) for a in age_ranges}
+        genders = kwargs.pop('genders')
+        choices = {(g.pk, g.gender) for g in genders}
+        industries = kwargs.pop('industries')
+        choices = {(i.pk, i.industry) for i in industries}
         super().__init__(*args, **kwargs)
         option_field = forms.ChoiceField(
                                          choices=choices,
                                          widget=forms.RadioSelect,
                                          required=True)
         self.fields['option'] = option_field
-
-
-class DefaultQuestionsAnswerForm(forms.ModelForm):
-    """
-    The DefaultQuestionForm is created to refer to the
-    DefaultQuestion model,
-    it holds the user's gender, age range
-    and industry choices.
-    """
-    class Meta:
-        """
-        The form references the DefaultQuestion
-        model and displays the fields gender,
-        age range and industry.
-        """
-        model = DefaultQuestion
-        fields = ['gender', 'age_range', 'industry']
-        error_text_inline = False
+        age_range_field = forms.ChoiceField(
+                                           choices=choices,
+                                           widget=forms.RadioSelect,
+                                           required=True)
+        self.fields['age_range'] = age_range_field
+        gender_field = forms.ChoiceField(
+                                           choices=choices,
+                                           widget=forms.RadioSelect,
+                                           required=True)
+        self.fields['gender'] = gender_field
+        industry_field = forms.ChoiceField(
+                                           choices=choices,
+                                           widget=forms.RadioSelect,
+                                           required=True)
+        self.fields['industry'] = industry_field
 
 
 class BaseAnswerFormSet(forms.BaseFormSet):
@@ -135,6 +187,9 @@ class BaseAnswerFormSet(forms.BaseFormSet):
         """
         kwargs = super().get_form_kwargs(index)
         kwargs['options'] = kwargs['options'][index]
+        kwargs['age_ranges'] = kwargs['age_ranges'][index]
+        kwargs['genders'] = kwargs['genders'][index]
+        kwargs['industries'] = kwargs['industries'][index]
         return kwargs
 
 

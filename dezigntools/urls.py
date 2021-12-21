@@ -14,7 +14,6 @@ Survey-delete - delete a survey
 Survey-question-create - create a new question
 Survey-option-create - create options for a question
 Survey-start - start answering the survey
-Submit-default - submit default questions answers
 Survey-submit - submit option selections
 Survey-thanks- thank you for taking the survey
 """
@@ -38,8 +37,6 @@ urlpatterns = [
         name="survey-option-create",
     ),
     path("surveys/<int:p_k>/start/", views.start, name="survey-start"),
-    path("surveys/<int:survey_pk>/submit_default/<int:sub_pk>/",
-         views.submit_default, name="submit-default"),
     path("surveys/<int:survey_pk>/submit/<int:sub_pk>/", views.submit,
          name="survey-submit"),
     path("surveys/<int:p_k>/thanks/", views.thanks, name="survey-thanks"),
