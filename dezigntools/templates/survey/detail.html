@@ -30,45 +30,33 @@
                <h2 class="card bolder">
                   % per Age Range:
                </h2>
+               <!--The below div was used to determine the correct age range ids, to pull the
+                     correct title and data from the model. unhide to display for admin use, values
+                     were copied and added to calculations in views.py. Unfortunately, all manually
+                     done for this iteration, as I ran out of time to re-work how I pull the Default
+                     Answers data. The same applies for the below Gender and Industry hidden divs-->
+               <div class="hidden">
+                  {% for age in age_ranges %}
+                  {{age.title}} {{age.id}}
+                  {% endfor %} </div>
                <div class="mb-5"><canvas class="myChart2 chart-size" width="400" height="100"></canvas></div>
-               
                <div class="table-responsive">
                   <table class="table">
                      <thead>
-                        <tr class='age_data'>
-                           <th class="col age_label">Age Range</th>
-                           <th class="col age_percentage">Percentage</th>
+                        <tr>
+                           <th scope="col">#</th>
+                           <th class="col">Age Range</th>
+                           <th class="col">Percentage</th>
                         </tr>
                      </thead>
                      <tbody>
-                        <tr class='age_data'>
-                           <td class="align-middle age_label">Under 18:</td>
-                           <td class="align-middle age_percentage">{{ under_18_age_range_percentage |floatformat }} %</td>
+                        {% for age, percent in age_range_data  %}
+                        <tr>
+                           <th scope="row">{{ forloop.counter }}</th>
+                           <td class="align-middle">{{ age }}</td>
+                           <td class="align-middle">{{ percent |floatformat }} %</td>
                         </tr>
-                        <tr class='age_data'>
-                           <td class="align-middle age_label">18 - 24:</td>
-                           <td class="align-middle age_percentage">{{ up_to_24_age_range_percentage |floatformat }} %</td>
-                        </tr>
-                        <tr class='age_data'>
-                           <td class="align-middle age_label">25 - 34:</td>
-                           <td class="align-middle age_percentage">{{ up_to_34_age_range_percentage |floatformat }} %</td>
-                        </tr>
-                        <tr class='age_data'>
-                           <td class="align-middle age_label">35 - 44:</td>
-                           <td class="align-middle age_percentage">{{ up_to_44_age_range_percentage  |floatformat }} %</td>
-                        </tr>
-                        <tr class='age_data'>
-                           <td class="align-middle age_label">45 - 54:</td>
-                           <td class="align-middle age_percentage">{{ up_to_54_age_range_percentage  |floatformat }} %</td>
-                        </tr>
-                        <tr class='age_data'>
-                           <td class="align-middle age_label">55 - 64:</td>
-                           <td class="align-middle age_percentage">{{ up_to_64_age_range_percentage |floatformat }} %</td>
-                        </tr>
-                        <tr class='age_data'>
-                           <td class="align-middle age_label"> 65 plus:</td>
-                           <td class="align-middle age_percentage">{{ up_to_65_plus_age_range_percentage |floatformat }} %</td>
-                        </tr>
+                        {% endfor %}
                      </tbody>
                   </table>
                </div>
@@ -78,37 +66,86 @@
                <h2 class="card bolder">
                   % per Gender:
                </h2>
-               <canvas class="myChart chart-size" width="400" height="100"></canvas>
+               <div class="hidden">
+                  {% for gender in genders %}
+                  {{gender.title}} {{gender.id}}
+                  {% endfor %} </div>
+               <div class="mb-5"><canvas class="myChart chart-size" width="400" height="100"></canvas></div>
+               <div class="table-responsive">
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th scope="col">#</th>
+                           <th class="col">Gender</th>
+                           <th class="col">Percentage</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for gender, percent in gender_data %}
+                        <tr>
+                           <th scope="row">{{ forloop.counter }}</th>
+                           <td class="align-middle">{{ gender }}</td>
+                           <td class="align-middle">{{ percent |floatformat }} %</td>
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
             </div>
             <div class="col-sm text-center mt-5 mb-5">
                <h2 class="card bolder">
                   <!--The different Industry options and percentage each Industry was chosen-->
                   % per Industry:
                </h2>
-               <canvas class="myChart3 chart-size" width="400" height="100"></canvas>
+               <div class="hidden">
+                  {% for industry in industries %}
+                  {{industry.title}} {{industry.id}}
+                  {% endfor %} </div>
+               <div class="mb-5"><canvas class="myChart3 chart-size" width="400" height="100"></canvas></div>
+               <div class="table-responsive">
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th scope="col">#</th>
+                           <th class="col">Industry</th>
+                           <th class="col">Percentage</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% for industry, percent in industry_data %}
+                        <tr>
+                           <th scope="row">{{ forloop.counter }}</th>
+                           <td class="align-middle"> {{ industry.title }}</td>
+                           <td class="align-middle">{{ percent |floatformat }} %</td>
+                        </tr>
+                        {% endfor %}
+                     </tbody>
+                  </table>
+               </div>
             </div>
-            <!--A for loop is utilised to return each question and a second for loop with its option set.
+         </div>
+         <!--A for loop is utilised to return each question and a second for loop with its option set.
                The percentage each option was chosen reflects-->
-            <div class="col-12 col-sm text-center mt-5 mb-5">
-               {% for question in questions %}
-               <h2 class="card bolder">
-                  Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
-               </h2>
-               <ul>
-                  {% for option in question.option_set.all %}
-                  <li>
-                     {{ forloop.counter }}) {{option.option}}: {{ option.percent|floatformat }}%
-                  </li>
-                  {% endfor %}
-               </ul>
+         <div class="col-12 col-sm text-center mt-5 mb-5">
+            {% for question in questions %}
+            <h2 class="card bolder">
+               Question {{ forloop.counter }} / {{ questions|length }}: {{ question.question }}
+            </h2>
+            <ul>
+               {% for option in question.option_set.all %}
+               <li>
+                  {{ forloop.counter }}) {{option.option}}: {{ option.percent|floatformat }}%
+               </li>
                {% endfor %}
-            </div>
-            <!--A Return link styled as a button to return to the survey-link page -->
-            <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">
-                  Return</a>
-            </div>
+            </ul>
+            {% endfor %}
+         </div>
+         <!--A Return link styled as a button to return to the survey-link page -->
+         <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">
+               Return</a>
          </div>
       </div>
    </div>
+</div>
 </div>
 {% endblock %}

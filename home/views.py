@@ -1,6 +1,14 @@
 """
 Xperiencedezignwiz home app views configuration
 
+After correcting any pylint issues, I was still left with the issue
+'class has no objects member', the object is only added when the screen
+is  rendered in the browser, so the issue is not valid. I followed
+the steps available for the following stack overflow:
+https://stackoverflow.com/questions/45135263/class-has-no-objects-member
+and created the .pylintrc file to customise the pylint settings to
+prevent this error from displaying.
+
 the index view is set up to display the homepage.
 
 the social media views are set up to authorise login via the

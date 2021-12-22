@@ -8,6 +8,14 @@ the views to align with my
 site's design and functionality.
 https://mattsegal.dev/django-survey-project.html.
 
+After correcting any pylint issues, I was still left with the issue
+'class has no objects member', the object is only added when the screen
+is  rendered in the browser, so the issue is not valid. I followed
+the steps available for the following stack overflow:
+https://stackoverflow.com/questions/45135263/class-has-no-objects-member
+and created the .pylintrc file to customise the pylint settings to
+prevent this error from displaying.
+
 survey-list: User can view all their surveys that they
 have created.
 
@@ -90,7 +98,7 @@ def detail(request, p_k):
     to start the survey and number of submissions.
     Chart-js is utilised to display the percentage
     of the default question option which has been selected for
-    gender, age range and industry. The custom questions
+    gender, age_range and industry. The custom questions
     and their options are displayed with the percentage
     figure of each option selection from the submitted
     completed surveys.
@@ -110,34 +118,51 @@ def detail(request, p_k):
     description from:
     https://www.kite.com/python/docs/django.db.models.Model.pk
     """
+    # The first section is to calculate and return the custom
+    # question and answer data
+    # ensure the correct survey is referenced
+    # except if it does not exist
     try:
         survey = (Survey.objects
                   .prefetch_related('question_set__option_set')
                   .get(pk=p_k, creator=request.user, is_active=True))
-    # the following warning  was displaying:
-    # Consider explicitly re-raising using the 'from' keyword
-    # Stack overflow solution added to all cases to resolve:
-    # https://stackoverflow.com/questions/63738900/pylint-raise-missing-from
+
     except Survey.DoesNotExist as survey_no_exist:
         raise Http404() from survey_no_exist
     # Calculate the results of user added questions
     questions = survey.question_set.all()
+    # for every question in all questions
+    # get the list of option primary keys and add them to
+    # option_pks
     for question in questions:
-        # for every question in all questions
-        # get the list of option primary keys and add them to
-        # option_pks
         option_pks = question.option_set.values_list('pk', flat=True)
         # count the number of option pks in the total answers for the survey
-        # match per option pk
+        # match per option pk i.e. total number of times the option has
+        # been selected by the survey takes
         total_answers_q = (Answer.objects.
                            filter(option_id__in=option_pks).count())
         for option in question.option_set.all():
             num_answers = Answer.objects.filter(option=option).count()
-            # convert to a percentage of total answers
+        # convert to a percentage of total answers
             option.percent = (100.0 * num_answers /
                               total_answers_q if total_answers_q else 0)
 
-    total_answers = DefaultAnswers.objects.filter(survey_id=p_k).count()
+    # count the total number of submissions received for the survey
+    num_submissions = survey.submission_set.filter(is_complete=True).count()
+    # From the DefaultAnswers model use a filter to count the total number
+    # of answers for the survey (default questions)
+    total_answers = (DefaultAnswers.objects.filter(survey_id=p_k).count())
+    # The next section is to calculate and return the age_range
+    # answer data # first we need to get the id from the AgeRange model
+    age_ranges = AgeRange.objects.all()
+    # add the age_range titles to a list
+    # derived the age_list_title and age_range age_id from age_ranges
+    age_list_title = ['Under 18', '18 - 24', '25 - 34', '35 - 44',
+                      '45 - 54', '55 - 64', '65 +']
+    # add the age_range ids to a list for reference purposes only
+    # age_ids = [8, 9, 10, 11, 12, 13, 14]
+    # per age_range calculate the total number of times the age_range has been
+    # selected using the age_range id to filter
     age_18_under_answers = (DefaultAnswers.objects
                             .filter(age_range=8, survey_id=p_k).count())
     age_18_24_answers = (DefaultAnswers.objects.filter(age_range=9,
@@ -150,24 +175,111 @@ def detail(request, p_k):
                                                        survey_id=p_k).count())
     age_55_64_answers = (DefaultAnswers.objects.filter(age_range=13,
                                                        survey_id=p_k).count())
-    age_65_plus_answers = (DefaultAnswers.objects.filter(age_range=14).count())
-    # convert to a percentage of total answers
-    under_18_age_range_percentage = (100.0 * age_18_under_answers /
-                                     total_answers if total_answers else 0)
-    up_to_24_age_range_percentage = (100.0 * age_18_24_answers /
-                                     total_answers if total_answers else 0)
-    up_to_34_age_range_percentage = (100.0 * age_25_34_answers /
-                                     total_answers if total_answers else 0)
-    up_to_44_age_range_percentage = (100.0 * age_35_44_answers /
-                                     total_answers if total_answers else 0)
-    up_to_54_age_range_percentage = (100.0 * age_45_54_answers /
-                                     total_answers if total_answers else 0)
-    up_to_64_age_range_percentage = (100.0 * age_55_64_answers /
-                                     total_answers if total_answers else 0)
-    up_to_65_plus_age_range_percentage = (100.0 * age_65_plus_answers /
-                                          total_answers if
-                                          total_answers else 0)
+    age_65_plus_answer = (DefaultAnswers.objects.filter(age_range=14,
+                                                        survey_id=p_k).count())
+    # per age_range convert to a percentage of total answers
+    under_18_ = (100.0 * age_18_under_answers /
+                 total_answers if total_answers else 0)
+    up_to_24_ = (100.0 * age_18_24_answers /
+                 total_answers if total_answers else 0)
+    up_to_34_ = (100.0 * age_25_34_answers /
+                 total_answers if total_answers else 0)
+    up_to_44_ = (100.0 * age_35_44_answers /
+                 total_answers if total_answers else 0)
+    up_to_54_ = (100.0 * age_45_54_answers /
+                 total_answers if total_answers else 0)
+    up_to_64_ = (100.0 * age_55_64_answers /
+                 total_answers if total_answers else 0)
+    up_to_65_ = (100.0 * age_65_plus_answer /
+                 total_answers if total_answers else 0)
+    # add the age_range percentages to a list
+    age_list_percentage = [under_18_, up_to_24_, up_to_34_,
+                           up_to_44_, up_to_54_, up_to_64_, up_to_65_]
+    # zip the lists together to return the data to the html page
+    age_range_data = zip(age_list_title, age_list_percentage)
+    # The next section is to calculate and return the gender
+    # answer data
+    genders = Gender.objects.all()
+    # derived the gender_title and id from genders
+    # add the gender titles to a list
+    gender_title = ['male', 'female', 'unknown', 'not disclosed']
+    # add the gender ids to a list for reference purposes only
+    # gender_ids = [5, 6, 7, 8]
+    # per gender calculate the total number of times the gender has been
+    # selected using the gender id to filter
+    female = (DefaultAnswers.objects
+                            .filter(gender=5, survey_id=p_k).count())
+    male = (DefaultAnswers.objects.filter(gender=6,
+                                          survey_id=p_k).count())
+    unknown = (DefaultAnswers.objects.filter(gender=7,
+                                             survey_id=p_k).count())
+    not_disclose = (DefaultAnswers.objects.filter(gender=8,
+                                                  survey_id=p_k).count())
+    # per gender convert to a percentage of total answers
+    female_percent_ = (100.0 * female /
+                       total_answers if total_answers else 0)
+    male_percent_ = (100.0 * male /
+                     total_answers if total_answers else 0)
+    unknown_percent_ = (100.0 * unknown /
+                        total_answers if total_answers else 0)
+    not_disclose_percent_ = (100.0 * not_disclose /
+                             total_answers if total_answers else 0)
+    # add the gender percentages to a list
+    gender_percentage = [female_percent_, male_percent_, unknown_percent_,
+                         not_disclose_percent_]
+    # zip the lists together to return the data to the html page
+    gender_data = zip(gender_title, gender_percentage)
 
+    # The next section is to calculate and return the industry
+    # answer data
+    # per industry calculate the total number of times the industry has been
+    # selected
+    industries = Industry.objects.all()
+    # derived the industry_title and id from industries
+    # add the industry titles to a list
+    industry_title = ['Commercial', 'Education', 'Financials',
+                      'Health Care', 'Industrials', 'Info Tech', 'Other']
+    # industry_ids = [26, 33, 25, 24, 28, 23, 31]
+    # per industry calculate the total number of times the industry has been
+    # selected using the industry id to filter
+    commercial = (DefaultAnswers.objects
+                  .filter(industry=26, survey_id=p_k).count())
+    education = (DefaultAnswers.objects.filter(industry=33,
+                                               survey_id=p_k).count())
+    financials = (DefaultAnswers.objects.filter(industry=25,
+                                                survey_id=p_k).count())
+    health_care = (DefaultAnswers.objects.filter(industry=24,
+                                                 survey_id=p_k).count())
+    industrials = (DefaultAnswers.objects.filter(industry=28,
+                                                 survey_id=p_k).count())
+    info_tech = (DefaultAnswers.objects.filter(industry=23,
+                                               survey_id=p_k).count())
+    other = (DefaultAnswers.objects.filter(industry=31,
+                                           survey_id=p_k).count())
+    # per industry convert to a percentage of total answers
+    commercial_per = (100.0 * commercial /
+                      total_answers if total_answers else 0)
+    education_per = (100.0 * education /
+                     total_answers if total_answers else 0)
+    financials_per = (100.0 * financials /
+                      total_answers if total_answers else 0)
+    health_care_per = (100.0 * health_care /
+                       total_answers if total_answers else 0)
+    industrials_per = (100.0 * industrials /
+                       total_answers if total_answers else 0)
+    info_tech_per = (100.0 * info_tech /
+                     total_answers if total_answers else 0)
+    other_per = (100.0 * other /
+                 total_answers if total_answers else 0)
+
+    # add the industry percentages to a list
+    industry_percentage = [commercial_per, education_per, financials_per,
+                           health_care_per, industrials_per,
+                           info_tech_per, other_per]
+    # zip the lists together to return the data to the html page
+    industry_data = zip(industry_title, industry_percentage)
+
+    # create the link to access the survey
     # fetch the hosting url
     host = request.get_host()
     # fetch the survey-start path and add the survey primary key
@@ -175,8 +287,6 @@ def detail(request, p_k):
     # create an accessible url by adding http / https with the host
     # and the path
     public_url = f'{request.scheme}://{host}{public_path}'
-    # count the total number of submissions received for the survey
-    num_submissions = survey.submission_set.filter(is_complete=True).count()
 
     return render(
         request,
@@ -186,14 +296,18 @@ def detail(request, p_k):
             'public_url': public_url,
             'questions': questions,
             'num_submissions': num_submissions,
-            'under_18_age_range_percentage': under_18_age_range_percentage,
-            'up_to_24_age_range_percentage': up_to_24_age_range_percentage,
-            'up_to_34_age_range_percentage': up_to_34_age_range_percentage,
-            'up_to_44_age_range_percentage': up_to_44_age_range_percentage,
-            'up_to_54_age_range_percentage': up_to_54_age_range_percentage,
-            'up_to_64_age_range_percentage': up_to_64_age_range_percentage,
-            'up_to_65_plus_age_range_percentage':
-            up_to_65_plus_age_range_percentage,
+            'age_ranges': age_ranges,
+            'age_list_title': age_list_title,
+            'age_list_percentage': age_list_percentage,
+            'age_range_data': age_range_data,
+            'genders': genders,
+            'gender_title': gender_title,
+            'gender_percentage': gender_percentage,
+            'gender_data': gender_data,
+            'industries': industries,
+            'industry_title': industry_title,
+            'industry_percentage': industry_percentage,
+            'industry_data': industry_data,
         },
     )
 
