@@ -120,43 +120,6 @@ def detail(request, p_k):
     # https://stackoverflow.com/questions/63738900/pylint-raise-missing-from
     except Survey.DoesNotExist as survey_no_exist:
         raise Http404() from survey_no_exist
-    default_answers = DefaultAnswers.objects.filter(survey_id=p_k)
-    total_answers = DefaultAnswers.objects.filter(survey_id=p_k).count()
-    # default_answer = get_object_or_404(default_answers)
-
-    for default_answer in default_answers:
-
-        age_range_totals = {'Under 18':
-                            (DefaultAnswers.objects
-                             .filter(age_range=8).count()),
-                            '18 - 24': (DefaultAnswers.objects
-                                        .filter(age_range=9,
-                                                survey_id=p_k)
-                                        .count()),
-                            '25 - 34': (DefaultAnswers.objects
-                                        .filter(age_range=10,
-                                                survey_id=p_k)
-                                        .count()),
-                            '35 - 44': (DefaultAnswers.objects
-                                        .filter(age_range=11,
-                                                survey_id=p_k)
-                                        .count()),
-                            '45 - 54': (DefaultAnswers.objects
-                                        .filter(age_range=12,
-                                                survey_id=p_k)
-                                        .count()),
-                            '55 - 64': (DefaultAnswers.objects
-                                        .filter(age_range=13,
-                                                survey_id=p_k)
-                                        .count()),
-                            '65 +': (DefaultAnswers.objects
-                                     .filter(age_range=14,
-                                             survey_id=p_k)
-                                     .count())}
-
-        # convert to a percentage of total answers
-        # age_range_percentage = (100.0 * num_answers /
-        # total_answers if total_answers else 0)
     # Calculate the results of user added questions
     questions = survey.question_set.all()
     for question in questions:
@@ -173,6 +136,37 @@ def detail(request, p_k):
             # convert to a percentage of total answers
             option.percent = (100.0 * num_answers /
                               total_answers_q if total_answers_q else 0)
+
+    total_answers = DefaultAnswers.objects.filter(survey_id=p_k).count()
+    age_18_under_answers = (DefaultAnswers.objects
+                            .filter(age_range=8, survey_id=p_k).count())
+    age_18_24_answers = (DefaultAnswers.objects.filter(age_range=9,
+                                                       survey_id=p_k).count())
+    age_25_34_answers = (DefaultAnswers.objects.filter(age_range=10,
+                                                       survey_id=p_k).count())
+    age_35_44_answers = (DefaultAnswers.objects.filter(age_range=11,
+                                                       survey_id=p_k).count())
+    age_45_54_answers = (DefaultAnswers.objects.filter(age_range=12,
+                                                       survey_id=p_k).count())
+    age_55_64_answers = (DefaultAnswers.objects.filter(age_range=13,
+                                                       survey_id=p_k).count())
+    age_65_plus_answers = (DefaultAnswers.objects.filter(age_range=14).count())
+    # convert to a percentage of total answers
+    under_18_age_range_percentage = (100.0 * age_18_under_answers /
+                                     total_answers if total_answers else 0)
+    up_to_24_age_range_percentage = (100.0 * age_18_24_answers /
+                                     total_answers if total_answers else 0)
+    up_to_34_age_range_percentage = (100.0 * age_25_34_answers /
+                                     total_answers if total_answers else 0)
+    up_to_44_age_range_percentage = (100.0 * age_35_44_answers /
+                                     total_answers if total_answers else 0)
+    up_to_54_age_range_percentage = (100.0 * age_45_54_answers /
+                                     total_answers if total_answers else 0)
+    up_to_64_age_range_percentage = (100.0 * age_55_64_answers /
+                                     total_answers if total_answers else 0)
+    up_to_65_plus_age_range_percentage = (100.0 * age_65_plus_answers /
+                                          total_answers if
+                                          total_answers else 0)
 
     # fetch the hosting url
     host = request.get_host()
@@ -192,10 +186,15 @@ def detail(request, p_k):
             'public_url': public_url,
             'questions': questions,
             'num_submissions': num_submissions,
-            'default_answers': default_answers,
-            'total_answers': total_answers,
-            'age_range_totals': age_range_totals,
-             }
+            'under_18_age_range_percentage': under_18_age_range_percentage,
+            'up_to_24_age_range_percentage': up_to_24_age_range_percentage,
+            'up_to_34_age_range_percentage': up_to_34_age_range_percentage,
+            'up_to_44_age_range_percentage': up_to_44_age_range_percentage,
+            'up_to_54_age_range_percentage': up_to_54_age_range_percentage,
+            'up_to_64_age_range_percentage': up_to_64_age_range_percentage,
+            'up_to_65_plus_age_range_percentage':
+            up_to_65_plus_age_range_percentage,
+        },
     )
 
 

@@ -20,14 +20,20 @@
             var myChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: { 
-                    labels: [{% for answer in default_answers %} '{{ age_range }}', {%endfor%}],
+                    labels: ['Under 18', '18 - 24', '25 - 34',
+                             '35 - 44', '45 - 54', '55 - 64', '65 plus'],
                      //for loop through queryset created 
                      // and for ever age range option:
                      // the percent per age range is shown as a float number
                     datasets: [{ 
                         label: '% per age', 
-                        data: [{% for answer in default_answers %}
-                        {{ age_range.percent|floatformat }}, {%endfor%}],
+                        data: [{{ under_18_age_range_percentage |floatformat }},
+                               {{ up_to_24_age_range_percentage |floatformat }},
+                               {{ up_to_34_age_range_percentage |floatformat }},
+                               {{ up_to_44_age_range_percentage  |floatformat }},
+                               {{ up_to_54_age_range_percentage  |floatformat }},
+                               {{ up_to_64_age_range_percentage |floatformat }},
+                               {{ up_to_65_plus_age_range_percentage |floatformat }}],
                         // chart styling
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)', 
@@ -188,7 +194,7 @@
                     datasets: [{ 
                         label: '% per industry', 
                         data: [{% for answer in default_answers %}
-                        {{ industry.percent|floatformat }}, {% endfor %}],
+                        {{ answer.industry.percent|floatformat }}, {% endfor%}],
                         // chart styling 
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)', 

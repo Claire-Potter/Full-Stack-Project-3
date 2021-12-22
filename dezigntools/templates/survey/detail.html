@@ -29,28 +29,49 @@
                <!--The different age range options and percentage each age range was chosen-->
                <h2 class="card bolder">
                   % per Age Range:
-                  <div>
-                     <div>Total answers: {{ total_answers }}
-                        <p>{% for age in age_range_totals %}</p>
-                            {{ age }}{{ value }}%
-
-                            {% endfor %}
-                     </div>
-                     <div>{% for default_answer in default_answers %}</div>
-                     <div>{{ default_answer.age_range }}</div>
-                     <div>{{ default_answer.age_range.percent|floatformat }}%</div>
-                     <div>{{ default_answer.industry }}</div>
-                     <div>{{ default_answer.industry.percent|floatformat }}%</div>
-                     <div>{{ default_answer.gender }}</div>
-                     <div>{{ default_answer.gender.percent|floatformat }}%</div>
-                     <div>{% endfor %}</div>
-                  </div>
-
-
-
                </h2>
-               <canvas class="myChart2 chart-size" width="400" height="100"></canvas>
-
+               <div class="mb-5"><canvas class="myChart2 chart-size" width="400" height="100"></canvas></div>
+               
+               <div class="table-responsive">
+                  <table class="table">
+                     <thead>
+                        <tr class='age_data'>
+                           <th class="col age_label">Age Range</th>
+                           <th class="col age_percentage">Percentage</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr class='age_data'>
+                           <td class="align-middle age_label">Under 18:</td>
+                           <td class="align-middle age_percentage">{{ under_18_age_range_percentage |floatformat }} %</td>
+                        </tr>
+                        <tr class='age_data'>
+                           <td class="align-middle age_label">18 - 24:</td>
+                           <td class="align-middle age_percentage">{{ up_to_24_age_range_percentage |floatformat }} %</td>
+                        </tr>
+                        <tr class='age_data'>
+                           <td class="align-middle age_label">25 - 34:</td>
+                           <td class="align-middle age_percentage">{{ up_to_34_age_range_percentage |floatformat }} %</td>
+                        </tr>
+                        <tr class='age_data'>
+                           <td class="align-middle age_label">35 - 44:</td>
+                           <td class="align-middle age_percentage">{{ up_to_44_age_range_percentage  |floatformat }} %</td>
+                        </tr>
+                        <tr class='age_data'>
+                           <td class="align-middle age_label">45 - 54:</td>
+                           <td class="align-middle age_percentage">{{ up_to_54_age_range_percentage  |floatformat }} %</td>
+                        </tr>
+                        <tr class='age_data'>
+                           <td class="align-middle age_label">55 - 64:</td>
+                           <td class="align-middle age_percentage">{{ up_to_64_age_range_percentage |floatformat }} %</td>
+                        </tr>
+                        <tr class='age_data'>
+                           <td class="align-middle age_label"> 65 plus:</td>
+                           <td class="align-middle age_percentage">{{ up_to_65_plus_age_range_percentage |floatformat }} %</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
             </div>
             <div class="col-sm text-center mt-5 mb-5">
                <!--The different gender options and percentage each gender was chosen-->
