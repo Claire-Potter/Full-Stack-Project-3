@@ -26,6 +26,15 @@ questions section.
 The Question model is used to store the questions
 created by a user.
 
+The AgeQuestion model is used to store the default
+age question.
+
+The GenderQuestion model is used to store the default
+gender question.
+
+The IndustryQuestion model is used to store the default
+industry question.
+
 The Option model is used to store the multi-choice
 options created by a user. .
 
@@ -33,7 +42,10 @@ The Submission model is utilised to store the set of answer
 selections as answered by the user.
 
 The Answer model is utilised to store the set of option
-selections as answered by the user. T
+selections as answered by the user.
+
+The Default Answer model is utilised to store the s
+et of default answers as answered by the user.
 """
 from django.db import models
 from django.contrib.auth.models import User
@@ -54,7 +66,6 @@ class Survey(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-
     title = models.CharField(max_length=64)
     survey_image = CloudinaryField('image', default='son8liypgdn9yzc3lx7h',
                                    blank=True,
@@ -77,7 +88,6 @@ class Question(models.Model):
     related survey and the question field is utilised
     to capture and store the question.
     """
-
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     question = models.CharField(max_length=128)
     do_not_delete = models.BooleanField(default=False)
@@ -90,14 +100,12 @@ class Question(models.Model):
 
 class AgeQuestion(models.Model):
     """
-    The Question model is used to store the questions
-    created by a user. The survey field contains the
-    related survey and the question field is utilised
-    to capture and store the question.
+    The AgeQuestion model is used to store the default
+    age question.
     """
-
     age_question = models.CharField(max_length=128,
-                                    default='Please select your age range:')
+                                    default='Please select your age range:',
+                                    editable=False)
     do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the question field
@@ -108,15 +116,13 @@ class AgeQuestion(models.Model):
 
 class GenderQuestion(models.Model):
     """
-    The Question model is used to store the questions
-    created by a user. The survey field contains the
-    related survey and the question field is utilised
-    to capture and store the question.
+    The GenderQuestion model is used to store the default
+    gender question.
     """
-
     gender_question = models.CharField(max_length=128,
                                        default='Please select your'
-                                               ' preferred gender:')
+                                               ' preferred gender:',
+                                               editable=False)
     do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the question field
@@ -127,15 +133,13 @@ class GenderQuestion(models.Model):
 
 class IndustryQuestion(models.Model):
     """
-    The Question model is used to store the questions
-    created by a user. The survey field contains the
-    related survey and the question field is utilised
-    to capture and store the question.
+    The IndustryQuestion model is used to store the default
+    industry question.
     """
-
     industry_question = models.CharField(max_length=128,
                                          default='Please select your'
-                                                 ' Industry of employment:')
+                                                 ' Industry of employment:',
+                                                 editable=False)
     do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the question field
@@ -152,7 +156,6 @@ class Option(models.Model):
     related question and the option field is utilised
     to capture and store the options.
     """
-
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     option = models.CharField(max_length=128)
     do_not_delete = models.BooleanField(default=False)
@@ -173,16 +176,16 @@ class AgeRange(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    title = models.CharField(max_length=80)
-    order_number = models.IntegerField()
+    title = models.CharField(max_length=80, editable=False)
+    order_number = models.IntegerField(editable=False)
     do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
         The Meta determines the ordering of the
-        age range choices according to order_number.
+        model according to order_number.
         """
-        ordering = ["order_number"]
+        ordering = ['order_number']
 
     # The string is set to return as the AgeRange title field
     # if it exists, else a blank title
@@ -200,8 +203,8 @@ class Gender(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    title = models.CharField(max_length=80)
-    order_number = models.IntegerField()
+    title = models.CharField(max_length=80, editable=False)
+    order_number = models.IntegerField(editable=False)
     do_not_delete = models.BooleanField(default=True)
 
     class Meta:
@@ -209,7 +212,7 @@ class Gender(models.Model):
         The Meta determines the ordering of the
         gender choices according to order_number.
         """
-        ordering = ["order_number"]
+        ordering = ['order_number']
 
     # The string is set to return as the Gender title field
     # if it exists, else a blank title
@@ -226,15 +229,16 @@ class Industry(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, editable=False)
     do_not_delete = models.BooleanField(default=True)
 
     class Meta:
         """
         The Meta determines the ordering of the
-        industry choices according to the title.
+        industry choices according to the title
+        and the plural name.
         """
-        ordering = ["title"]
+        ordering = ['title']
         verbose_name_plural = 'Industries'
 
     # The string is set to return as the Industry title field
@@ -247,12 +251,9 @@ class DefaultOptions(models.Model):
     """
     The DefaultQuestion model is utilised to
     store the default questions added to all surveys.
-    All user answers are saved to this model. The survey
+    As well as the default options. The survey
     field is a ForeignKey field which is used to save the
-    related survey, the name is the username, which is
-    automaticall derived from the User,
-    the email is the user email, which is  automatically derived
-    from the User, the gender field contains the gender choices
+    related survey, the gender field contains the gender choices
     from the related Gender model, the age_range field contains the age_range
     choices from the related AgeRange model and the industry field
     contains the industry choices from the related Industry model.
@@ -285,9 +286,9 @@ class DefaultOptions(models.Model):
     class Meta:
         """
         The Meta determines the ordering of the
-        industry choices according to the title.
+        model and the plural name.
         """
-        ordering = ["survey"]
+        ordering = ['survey']
         verbose_name_plural = 'Default Options'
 
     # The string is set to return as the Survey field
@@ -304,7 +305,6 @@ class Submission(models.Model):
     date and time of creation and the is_complete field will be true
     if completed otherwise false.
     """
-
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     is_complete = models.BooleanField(default=False)
@@ -323,7 +323,6 @@ class Answer(models.Model):
     the related submission from the Submission model, the option field
     contains the options selected.
     """
-
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
     option = models.ForeignKey(Option, on_delete=models.CASCADE)
     do_not_delete = models.BooleanField(default=False)
@@ -336,17 +335,15 @@ class Answer(models.Model):
 
 class DefaultAnswers(models.Model):
     """
-    The DefaultQuestion model is utilised to
-    store the default questions added to all surveys.
-    All user answers are saved to this model. The survey
+    The DefaultAnswers model is utilised to
+    store the default questions answers. The survey
     field is a ForeignKey field which is used to save the
-    related survey, the name is the username, which is
-    automaticall derived from the User,
-    the email is the user email, which is  automatically derived
-    from the User, the gender field contains the gender choices
-    from the related Gender model, the age_range field contains the age_range
-    choices from the related AgeRange model and the industry field
-    contains the industry choices from the related Industry model.
+    related survey, The gender field contains the gender choices
+    from the related Gender model, the age_range field contains t
+    he age_range choices from the related AgeRange model and the
+    industry field contains the industry choices from the
+    related Industry model. The submission field pulls in the
+    submission from the Submission Model.
     """
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
@@ -364,9 +361,9 @@ class DefaultAnswers(models.Model):
     class Meta:
         """
         The Meta determines the ordering of the
-        industry choices according to the title.
+        model and the plural name.
         """
-        ordering = ["submission"]
+        ordering = ['submission']
         verbose_name_plural = 'Default Answers'
 
     # The string is set to return as the Survey field

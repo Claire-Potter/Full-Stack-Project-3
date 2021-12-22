@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block title %}View - Surveys{% endblock %}
 {% block content %}
 {{ block.super }}
-{% include "survey/chart_js.html" %}
+{% include 'survey/chart_js.html' %}
 <!--The following site provided a Django project blueprint to build a survey app. This was
    followed alongside the git hub page. I then customised the HTML and CSS to align with my
    site's design and functionality. https://mattsegal.dev/django-survey-project.html. Once the survey

@@ -31,7 +31,11 @@ create: User can create a survey.
 delete: User can delete a survey.
 
 edit: User can add questions to a draft survey,
-then acitvate the survey.
+then activate the survey.
+
+default_options_create:
+User reviews the default questions and options
+available and activates them for their survey.
 
 question_create: User can add a question to a
 draft survey.
@@ -52,6 +56,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.forms.formsets import formset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
@@ -423,7 +428,6 @@ def create(request):
     requests using Python.The HTTP request returns a Response
     Object with all the response data (content, encoding, status, etc).
     Definition from https://www.w3schools.com/python/module_requests.asp
-
     """
     context = dict(form=SurveyForm())
     if request.method == 'POST':
@@ -457,7 +461,8 @@ def create(request):
 @login_required
 def delete(request, p_k):
     """
-    User can delete an existing survey
+    User can delete an existing survey. A success
+    message will display once deleted.
 
     request: The requests module allows you to send HTTP
     requests using Python.The HTTP request returns a Response
@@ -479,6 +484,7 @@ def delete(request, p_k):
     if request.method == 'POST':
         # if the request method is post then delete
         survey.delete()
+        messages.success(request, 'Survey deleted successfully')
 
     return redirect('survey-list')
 
@@ -515,10 +521,12 @@ def edit(request, p_k):
         survey = (Survey.objects
                   .prefetch_related('question_set__option_set')
                   .get(pk=p_k, creator=request.user, is_active=False))
-        default_options = DefaultOptions.objects.all()
-        default_option = get_object_or_404(default_options, survey_id=p_k)
     except Survey.DoesNotExist as survey_no_exist:
         raise Http404() from survey_no_exist
+    # return the default questions and options from the Default Options
+    # module
+    default_options = DefaultOptions.objects.all()
+    default_option = get_object_or_404(default_options, survey_id=p_k)
 
     if request.method == 'POST':
         # if the request method is equal to post
@@ -549,7 +557,8 @@ def edit(request, p_k):
 @login_required
 def default_options_create(request, p_k):
     """
-    User can add options to a survey question
+    User reviews the default questions and options
+    available and activates them for their survey.
 
     request: The requests module allows you to send HTTP
     requests using Python.The HTTP request returns a Response
@@ -566,15 +575,20 @@ def default_options_create(request, p_k):
     description from:
     https://www.kite.com/python/docs/django.db.models.Model.pk
     """
+    # fetch the survey from the survey model with the matching survey pk
+    # and the creator equal to the logged in user
     survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
+    # fetch the age, gender and industry questions from their
+    # Models
     age_question = get_object_or_404(AgeQuestion)
     gender_question = get_object_or_404(GenderQuestion)
     industry_question = get_object_or_404(IndustryQuestion)
+    # fetch the age_ranges, genders and industries options from
+    # their Models
     age_ranges = AgeRange.objects.all()
     genders = Gender.objects.all()
     industries = Industry.objects.all()
-    # fetch the survey from the survey model with the matching survey pk
-    # and the creator equal to the logged in user
+
     if request.method == 'POST':
         # if the request method is post
         # fetch the completed OptionForm
@@ -587,7 +601,7 @@ def default_options_create(request, p_k):
             default_options.gender_question_id = gender_question.pk
             default_options.industry_question_id = industry_question.pk
             default_options.save()
-            return redirect("survey-question-create",
+            return redirect('survey-question-create',
                             p_k=p_k)
     else:
         default_options_form = DefaultOptionsForm(request.POST)
@@ -614,6 +628,7 @@ def question_create(request, p_k):
     """
     User can add a question to a draft survey
     Survey: the Survey model
+
     pk: Regardless of whether you define a primary key field yourself,
     or let Django supply one for you, each model will have a property
     called pk. It behaves like a normal attribute on the model, but
@@ -623,12 +638,14 @@ def question_create(request, p_k):
     and it will update the correct field in the model.
     description from:
     https://www.kite.com/python/docs/django.db.models.Model.pk
+
     creator: request the logged in user details
     """
-    survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
     # fetch the survey from the survey model with the matching pk and
     # creator equal to the logged in user
-    if request.method == "POST":
+    survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
+
+    if request.method == 'POST':
         # if request method is equal to post,
         # fetch the completed QuestionForm
         form = QuestionForm(request.POST)
@@ -640,13 +657,13 @@ def question_create(request, p_k):
             question.save()
             # open the page to add options to
             # the created question
-            return redirect("survey-option-create",
+            return redirect('survey-option-create',
                             survey_pk=p_k, question_pk=question.pk)
     else:
         form = QuestionForm()
 
-    return render(request, "survey/question.html",
-                  {"survey": survey, "form": form})
+    return render(request, 'survey/question.html',
+                  {'survey': survey, 'form': form})
 
 
 # @login_required checks if the user is logged in to display
@@ -656,10 +673,12 @@ def question_create(request, p_k):
 def option_create(request, survey_pk, question_pk):
     """
     User can add options to a survey question
+
     request: The requests module allows you to send HTTP
     requests using Python.The HTTP request returns a Response
     Object with all the response data (content, encoding, status, etc).
     Definition from https://www.w3schools.com/python/module_requests.asp
+
     pk: Regardless of whether you define a primary key field yourself,
     or let Django supply one for you, each model will have a property
     called pk. It behaves like a normal attribute on the model, but
@@ -674,7 +693,7 @@ def option_create(request, survey_pk, question_pk):
     # fetch the survey from the survey model with the matching survey pk
     # and the creator equal to the logged in user
     question = Question.objects.get(pk=question_pk)
-    if request.method == "POST":
+    if request.method == 'POST':
         # if the request method is post
         # fetch the completed OptionForm
         form = OptionForm(request.POST)
@@ -690,9 +709,9 @@ def option_create(request, survey_pk, question_pk):
     options = question.option_set.all()
     return render(
         request,
-        "survey/options.html",
-        {"survey": survey, "question": question,
-         "options": options, "form": form},
+        'survey/options.html',
+        {'survey': survey, 'question': question,
+         'options': options, 'form': form},
     )
 
 
@@ -725,7 +744,7 @@ def start(request, p_k):
         # create the submission object as the survey object
         return redirect('survey-submit',
                         survey_pk=survey.pk, sub_pk=sub.pk)
-        # go to the submit default questions page
+        # go to the submit page
 
     return render(request, 'survey/start.html', {'survey': survey})
 
@@ -749,6 +768,9 @@ def submit(request, survey_pk, sub_pk):
     description from:
     https://www.kite.com/python/docs/django.db.models.Model.pk
     """
+    # Get the survey object related fields question(s) and option(s),
+    # pk is equal to the survey pk and it is active if it exists, if not
+    #  raise an http404 error
     try:
         survey = (Survey.objects
                   .prefetch_related('question_set__option_set',)
@@ -756,11 +778,9 @@ def submit(request, survey_pk, sub_pk):
     except Survey.DoesNotExist as survey_no_exist:
         raise Http404() from survey_no_exist
 
+    # Get the default options from the Model for the survey_id
     default_options = DefaultOptions.objects.all()
     default_option = get_object_or_404(default_options, survey_id=survey_pk)
-    # Get the survey object related fields question(s) and option(s),
-    # pk is equal to the survey pk and it is active if it exists, if not
-    #  raise an http404 error
 
     try:
         sub = survey.submission_set.get(pk=sub_pk, is_complete=False)
@@ -770,11 +790,12 @@ def submit(request, survey_pk, sub_pk):
         # set to false if it exists, if not raise an http404 error
 
     questions = survey.question_set.all()
+    # questions is equal to all questions created for
+    # a survey
     age_question = default_option.age_question
     gender_question = default_option.gender_question
     industry_question = default_option.industry_question
-    # questions is equal to all questions created for
-    # a survey
+    # retrieve default questions from the Default Options model
     options = [q.option_set.all() for q in questions]
     # options is equal to all options created for a question
     option_form_kwargs = {'empty_permitted': False, 'options': options}
@@ -792,10 +813,11 @@ def submit(request, survey_pk, sub_pk):
             default_answer.submission_id = sub_pk
             default_answer.survey_id = survey_pk
             default_answer.save()
+        # for the completed default answer form validate and save
+        formset = AnswerFormSet(request.POST, form_kwargs=option_form_kwargs)
         # if the request method is post
         # the formset is the completed AnswerFormSet
         # options cannot be empty
-        formset = AnswerFormSet(request.POST, form_kwargs=option_form_kwargs)
         if formset.is_valid():
             # for a valid formset
             with transaction.atomic():

@@ -15,10 +15,13 @@ to capture their own options.
 The AnswerForm is created to refer to the Answer model,
 it holds the user's option choices.
 
-The DefaultQuestionForm is created to refer to the
-DefaultQuestion model,
-it holds the user's gender, age range
+The DefaultOPtionsForm is created to refer to the
+DefaultOptions model,
+it holds the default gender, age range
 and industry choices.
+
+The DefaultAnswerForm is created to for answers
+to the default survey per user.
 
 The BaseAnswerFormSet is created to hold the
 user's completed survey.
@@ -69,14 +72,15 @@ class QuestionForm(forms.ModelForm):
 
 class DefaultOptionsForm(forms.ModelForm):
     """
-    The QuestionForm is created to refer to the Question model,
-    display the question field to allow the user
-    to capture their own questions.
+    The DefaultOPtionsForm is created to refer to the
+    DefaultOptions model,
+    it holds the default gender, age range
+    and industry choices.
     """
     class Meta:
         """
-        The Question model is referenced and
-        the question field is included in the form
+        The DefaultOptions model is referenced and
+        the active field is included.
         """
 
         model = DefaultOptions
@@ -124,14 +128,13 @@ class AnswerForm(forms.Form):
 
 class DefaultAnswerForm(forms.ModelForm):
     """
-    The QuestionForm is created to refer to the Question model,
-    display the question field to allow the user
-    to capture their own questions.
+    The DefaultAnswerForm is created to for answers
+    to the default survey per user.
     """
     class Meta:
         """
-        The Question model is referenced and
-        the question field is included in the form
+        The DefaultAnswers model is referenced and
+        the question answer options included.
         """
 
         model = DefaultAnswers

@@ -104,10 +104,10 @@
                     labels: [{% for gender in gender_title  %}
                             '{{ gender }}', {% endfor %}],
                      //for loop through queryset created 
-                     // and for ever age range option:
-                     // the percent per age range is shown as a float number
+                     // and for ever gender option:
+                     // the percent per gender is shown as a float number
                     datasets: [{ 
-                        label: '% per age', 
+                        label: '% per gender', 
                         data: [{% for percent in gender_percentage  %}
                         {{ percent |floatformat }}, {% endfor %}],
                         // chart styling
