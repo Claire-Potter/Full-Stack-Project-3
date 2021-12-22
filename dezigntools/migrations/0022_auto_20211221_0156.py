@@ -14,19 +14,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='agerange',
             name='age_question',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='dezigntools.agequestion'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='dezigntools.agequestion'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='gender',
             name='gender_question',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='dezigntools.genderquestion'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='dezigntools.genderquestion'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='industry',
             name='industry_question',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='dezigntools.agequestion'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='dezigntools.agequestion'),
             preserve_default=False,
         ),
     ]

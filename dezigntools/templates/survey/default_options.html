@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Option - Surveys{% endblock %}
+{% block title %} Default Options - Surveys{% endblock %}
 {% block content %}
 {% load crispy_forms_tags %}
 <!--The following site provided a Django project blueprint to build a survey app. This was
@@ -10,32 +10,46 @@
    <div class="row align-items-center">
       <div class="col-md-12 mt-5">
          <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
-            <h1 class="card-title bolder mt-3">Add options to question</h1>
+            <h1 class="card-title bolder mt-3 mb-5">Default Questions:</h1>
             <div class="ui container left aligned">
-               <h3 class="card-title">
-                  <!--The question the user has just created is delivered back and displated -->
-                  Question: {{ question.question }}
-               </h3>
-               <!--A for loop return and displays all options already created. The forloop.counter adds a number-->
-               <ul>
-                  {% for option in options %}
-                  <li>
-                     {{ forloop.counter }}) {{option.option}}
-                  </li>
-                  {% endfor %}
-               </ul>
-               <form method="post" enctype="multipart/form-data"
-                  class="ui form {% if form.errors %}error{% endif %}" novalidate>
+               <form method="post" enctype="multipart/form-data" class="ui form {% if form.errors %}error{% endif %}"
+                  novalidate>
                   <!--The option form is utilised to capture each new option -->
                   {% csrf_token %}
-                  <div class="form-group col-md-6 mb-0 text-form bolder">
-                     {{ form.option|as_crispy_field }}
+
+                  <div>The below questions and options will be included by default:
+                     <h3 class="card-title bolder mt-3">{{ age_question }}</h3>
+                  
+                  <div class="form-group col-md-6 mb-0 text-form">
+                     <ul>
+                        {% for age in age_ranges %}
+                        <li>{{ age }}</li>
+                        {% endfor %}
+                     </ul>
                   </div>
-                  <div><button class="btn mb-3 mr-1 get-started ml-3" type="submit">Add new option</button></div>
+                  <h3 class="card-title bolder mt-3">{{ gender_question }}</h3>
+                  <div class="form-group col-md-6 mb-0 text-form">
+                     <ul>
+                        {% for gender in genders %}
+                        <li>{{ gender }}</li>
+                        {% endfor %}
+                     </ul>
+                  </div>
+                   <h3 class="card-title bolder mt-3">{{ industry_question }}</h3>
+                  <div class="form-group col-md-6 mb-0 text-form">
+                     <ul>
+                        {% for industry in industries %}
+                        <li>{{ industry }}</li>
+                        {% endfor %}
+                     </ul>
+                  </div>
+                  <h3 class="card-title bolder mt-3">Please select active to activate the questions: </h3>
+                  {{ default_options_form.active|as_crispy_field }}
+                  <div><button class="btn mb-3 mr-1 get-started ml-3" type="submit">Accept</button></div>
                   <!--Cancel links styled as buttons were added to all pages, to always allow the user
                      to return to the previous page-->
                   <div><a class="btn mb-3 mr-1 get-started ml-3" href="{% url 'survey-edit' survey.pk %}"
-                     role="button">Cancel</a></div>
+                        role="button">Cancel</a></div>
                   <div>
                      <p class="font-italic ml-3 text-form bolder">Click cancel to return to the previous page.</p>
                   </div>
@@ -57,14 +71,6 @@
                   </div>
                   {% endif %}
                </form>
-               <!--Once at least one option is added , the user can select that they are done adding options. They will then
-                  be returned to create another question if required.-->
-               {% if options|length >= 0 %}
-               <div class="ui divider"></div>
-               <a class="btn mb-5 mr-1 get-started ml-3" href="{% url 'survey-edit' survey.pk %}" role="button">
-                  <div class="ui button">Done adding options</div>
-               </a>
-               {% endif %}
             </div>
          </div>
       </div>

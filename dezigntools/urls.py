@@ -29,6 +29,10 @@ urlpatterns = [
     path("surveys/<int:p_k>/", views.detail, name="survey-detail"),
     path("surveys/create/", views.create, name="survey-create"),
     path("surveys/<int:p_k>/delete/", views.delete, name="survey-delete"),
+    path("surveys/<int:p_k>/default-options/",
+         views.default_options_create,
+         name="survey-default-options-create"),
+
     path("surveys/<int:p_k>/question/", views.question_create,
          name="survey-question-create"),
     path(

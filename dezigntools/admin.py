@@ -27,7 +27,8 @@ Admin can also edit and delete.
 from django.contrib import admin
 from .models import (Survey, Question, Option, Submission, Answer,
                      AgeRange, Gender, Industry, AgeQuestion,
-                     GenderQuestion, IndustryQuestion)
+                     GenderQuestion, IndustryQuestion,
+                     DefaultOptions, DefaultAnswers)
 
 
 @admin.register(Survey)
@@ -53,7 +54,7 @@ class GenderAdmin(admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('title', 'do_not_delete')
+
     search_fields = ['title', 'do_not_delete']
     list_filter = ('title', 'do_not_delete')
 
@@ -98,46 +99,26 @@ class QuestionAdmin(admin.ModelAdmin):
     list_filter = ('question', 'survey', 'do_not_delete')
 
 
-@admin.register(AgeQuestion)
-class AgeQuestionAdmin(admin.ModelAdmin):
+admin.site.register(AgeQuestion)
+admin.site.register(GenderQuestion)
+admin.site.register(IndustryQuestion)
+admin.site.register(DefaultAnswers)
+
+
+@admin.register(DefaultOptions)
+class DefaultOptionsAdmin(admin.ModelAdmin):
     """
-    Model created to store the questions created
-    by the users.
+    Model created to store the default questions answers.
     Admin can also edit and delete. Do not delete
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('age_question', 'survey', 'do_not_delete')
-    search_fields = ['age_question', 'survey', 'do_not_delete']
-    list_filter = ('age_question', 'survey', 'do_not_delete')
-
-
-@admin.register(GenderQuestion)
-class GenderQuestionAdmin(admin.ModelAdmin):
-    """
-    Model created to store the questions created
-    by the users.
-    Admin can also edit and delete. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
-    """
-    list_display = ('gender_question', 'survey', 'do_not_delete')
-    search_fields = ['gender_question', 'survey', 'do_not_delete']
-    list_filter = ('gender_question', 'survey', 'do_not_delete')
-
-
-@admin.register(IndustryQuestion)
-class IndustryQuestionAdmin(admin.ModelAdmin):
-    """
-    Model created to store the questions created
-    by the users.
-    Admin can also edit and delete. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
-    """
-    list_display = ('industry_question', 'survey', 'do_not_delete')
-    search_fields = ['industry_question', 'survey', 'do_not_delete']
-    list_filter = ('industry_question', 'survey', 'do_not_delete')
+    list_display = ('survey', 'age_question', 'gender_question',
+                    'industry_question',
+                    'do_not_delete')
+    search_fields = ['survey', 'do_not_delete']
+    list_filter = ('survey', 'age_question', 'gender_question',
+                   'industry_question', 'do_not_delete')
 
 
 @admin.register(Option)
@@ -177,6 +158,6 @@ class AnswerAdmin(admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('submission', 'option', 'do_not_delete')
-    search_fields = ['submission', 'option', 'do_not_delete']
-    list_filter = ('submission', 'option', 'do_not_delete')
+    list_display = ('submission', 'option')
+    search_fields = ['submission', 'option']
+    list_filter = ('submission', 'option')

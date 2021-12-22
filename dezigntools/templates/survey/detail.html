@@ -18,8 +18,8 @@
          <h3 class="card-title">You have {{ num_submissions }} submissions</h3>
          <!--A link styled as a button provides a link to the survey start page-->
          <h3 class="card-title"><a class="btn mb-3 mr-1 get-started" role="button" href="{{ public_url }}"
-            aria-label="Click this button to start the survey">Start
-            Survey</a>
+               aria-label="Click this button to start the survey">Start
+               Survey</a>
          </h3>
          <h1 class="card-title bolder dividing">Answers</h1>
          <div class="row">
@@ -28,10 +28,26 @@
             <div class="col-sm text-center mt-5 mb-5">
                <!--The different age range options and percentage each age range was chosen-->
                <h2 class="card bolder">
-                  {% for age in age_range %}
-                  Age {{ age }} percentage {{ age.percentage }}
-                  {% endfor %}
                   % per Age Range:
+                  <div>
+                     <div>Total answers: {{ total_answers }}
+                        <p>{% for age in age_range_totals %}</p>
+                            {{ age }}{{ value }}%
+
+                            {% endfor %}
+                     </div>
+                     <div>{% for default_answer in default_answers %}</div>
+                     <div>{{ default_answer.age_range }}</div>
+                     <div>{{ default_answer.age_range.percent|floatformat }}%</div>
+                     <div>{{ default_answer.industry }}</div>
+                     <div>{{ default_answer.industry.percent|floatformat }}%</div>
+                     <div>{{ default_answer.gender }}</div>
+                     <div>{{ default_answer.gender.percent|floatformat }}%</div>
+                     <div>{% endfor %}</div>
+                  </div>
+
+
+
                </h2>
                <canvas class="myChart2 chart-size" width="400" height="100"></canvas>
 
@@ -68,7 +84,7 @@
             </div>
             <!--A Return link styled as a button to return to the survey-link page -->
             <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">
-               Return</a>
+                  Return</a>
             </div>
          </div>
       </div>

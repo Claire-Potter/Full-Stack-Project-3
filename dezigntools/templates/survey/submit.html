@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Submit - Surveys{% endblock %}
 {% block content %}
+{% load crispy_forms_tags %}
 <!--The following site provided a Django project blueprint to build a survey app. This was
    followed alongside the git hub page. I then customised the HTML and CSS to align with my
    site's design and functionality. https://mattsegal.dev/django-survey-project.html. This form
@@ -14,44 +15,59 @@
             <h2 class="card-title bolder mt-5">Your answers to {{ survey.title }}</h2>
             <form method="post" novalidate>
                {% csrf_token %}
-               {{ formset.management_form }}
-               <!--A for loop will return all created questions and their options -->
-               {% for question, form in question_forms %}
                <div class="ui basic padded segment left aligned">
                   <div class="ui form {% if form.errors %}error{% endif %}">
                      <h3 class="ui header bolder">
-                        Question {{ forloop.counter }}: {{ question.question }}
+                        Question: {{ age_question }}
                      </h3>
-                     {% for field in form %}
-                     <div class="field {% if field.errors %}error{% endif %}">
-                        {{ field }}
+                     <div class="form-group col-md-6 mb-0 text-form bolder">
+                        {{ default_answer_form.age_range|as_crispy_field }}
                      </div>
-                     {% endfor %}
-                     <!--An if statement and two for statements are utilised to provide an  error message per field and non-fields only if any 
-                        errors occur.-->
-                     {% if form.errors %}
-                     <div class="ui message error">
-                        <div class="header">We had some issues</div>
-                        <ul class="list">
-                           {% for field in form %}
-                           {% for error in field.errors %}
-                           <li>{{ field.label_tag }} {{ error }}</li>
-                           {% endfor %}
-                           {% endfor %}
-                           {% for error in form.non_field_errors %}
-                           <li>{{ error }}</li>
-                           {% endfor %}
-                        </ul>
-                     </div>
-                     {% endif %}
                   </div>
                </div>
-               {% endfor %}
-               <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
-               <!--The Cancel button will return the user to the site's home page-->
-               <div><a class="btn mb-5 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel and Return
-                  Home</a>
-               </div>
+               <div class="ui basic padded segment left aligned">
+                  <div class="ui form {% if form.errors %}error{% endif %}">
+                     <h3 class="ui header bolder">
+                        Question: {{ gender_question }}
+                     </h3>
+                     <div class="form-group col-md-6 mb-0 text-form bolder">
+                        {{ default_answer_form.gender|as_crispy_field }}
+                     </div>
+                  </div>
+                  <div class="ui basic padded segment left aligned">
+                     <div class="ui form {% if form.errors %}error{% endif %}">
+                        <h3 class="ui header bolder">
+                           Question: {{ industry_question }}
+                        </h3>
+                        <div class="form-group col-md-6 mb-0 text-form bolder">
+                           {{ default_answer_form.industry|as_crispy_field }}
+                        </div>
+                     </div>
+                  </div>
+                  {% csrf_token %}
+                  {{ formset.management_form }}
+                  <!--A for loop will return all created questions and their options -->
+                  {% for question, form in question_forms %}
+                  <div class="ui basic padded segment left aligned">
+                     <div class="ui form {% if form.errors %}error{% endif %}">
+                        <h3 class="ui header bolder">
+                           Question {{ forloop.counter }}: {{ question.question }}
+                        </h3>
+                        {% for field in form %}
+                        <div class="field {% if field.errors %}error{% endif %}">
+                           {{ field }}
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+                  {% endfor %}
+                  <button type="submit" class="btn mb-3 mr-1 get-started">Submit</button>
+                  <!--The Cancel button will return the user to the site's home page-->
+                  <div><a class="btn mb-5 mr-1 get-started" href="{% url 'home' %}" role="button">Cancel
+                        and
+                        Return
+                        Home</a>
+                  </div>
             </form>
          </div>
       </div>

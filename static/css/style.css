@@ -541,15 +541,15 @@ ul {
 	border-radius: 5px;
 }
 
-#error_1_id_gender,
-#error_1_id_age_range,
-#error_1_id_industry {
+#error_1_id_genders,
+#error_1_id_age_ranges,
+#error_1_id_industries {
 	display: none;
 }
 
-#id_gender,
-#id_age_range,
-#id_industry {
+#id_genders,
+#id_age_ranges,
+#id_industries {
 	border-color: grey;
 	background-image: none;
 	box-shadow: none;

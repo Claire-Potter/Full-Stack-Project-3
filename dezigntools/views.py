@@ -49,10 +49,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .models import (Survey, Question, Answer, Submission,
                      AgeRange, Gender, Industry, AgeQuestion,
-                     GenderQuestion, IndustryQuestion)
+                     GenderQuestion, IndustryQuestion, DefaultOptions,
+                     DefaultAnswers
+                     )
 from .forms import (SurveyForm, QuestionForm, OptionForm, AnswerForm,
-                    BaseAnswerFormSet, EmailForm, AgeForm, GenderForm,
-                    IndustryForm)
+                    BaseAnswerFormSet, EmailForm,
+                    DefaultOptionsForm, DefaultAnswerForm)
 
 
 # @login_required checks if the user is logged in to display
@@ -118,7 +120,43 @@ def detail(request, p_k):
     # https://stackoverflow.com/questions/63738900/pylint-raise-missing-from
     except Survey.DoesNotExist as survey_no_exist:
         raise Http404() from survey_no_exist
+    default_answers = DefaultAnswers.objects.filter(survey_id=p_k)
+    total_answers = DefaultAnswers.objects.filter(survey_id=p_k).count()
+    # default_answer = get_object_or_404(default_answers)
 
+    for default_answer in default_answers:
+
+        age_range_totals = {'Under 18':
+                            (DefaultAnswers.objects
+                             .filter(age_range=8).count()),
+                            '18 - 24': (DefaultAnswers.objects
+                                        .filter(age_range=9,
+                                                survey_id=p_k)
+                                        .count()),
+                            '25 - 34': (DefaultAnswers.objects
+                                        .filter(age_range=10,
+                                                survey_id=p_k)
+                                        .count()),
+                            '35 - 44': (DefaultAnswers.objects
+                                        .filter(age_range=11,
+                                                survey_id=p_k)
+                                        .count()),
+                            '45 - 54': (DefaultAnswers.objects
+                                        .filter(age_range=12,
+                                                survey_id=p_k)
+                                        .count()),
+                            '55 - 64': (DefaultAnswers.objects
+                                        .filter(age_range=13,
+                                                survey_id=p_k)
+                                        .count()),
+                            '65 +': (DefaultAnswers.objects
+                                     .filter(age_range=14,
+                                             survey_id=p_k)
+                                     .count())}
+
+        # convert to a percentage of total answers
+        # age_range_percentage = (100.0 * num_answers /
+        # total_answers if total_answers else 0)
     # Calculate the results of user added questions
     questions = survey.question_set.all()
     for question in questions:
@@ -135,35 +173,7 @@ def detail(request, p_k):
             # convert to a percentage of total answers
             option.percent = (100.0 * num_answers /
                               total_answers_q if total_answers_q else 0)
-    total_answers_a = (Answer.objects.
-                       filter(option_id__in=option_pks).count())
-    age_ranges = AgeRange.objects.all()
-    age_pks = age_ranges.values_list('pk', flat=True)
-    total_answers_a = (Answer.objects.
-                       filter(age_range_id__in=age_pks).count())
-    for age in age_ranges:
-        num_answers = Answer.objects.filter(age_range=age).count()
-        # convert to a percentage of total answers
-        age.percent = (100.0 * num_answers /
-                       total_answers_a if total_answers_a else 0)
-    genders = Gender.objects.all()
-    gender_pks = genders.values_list('pk', flat=True)
-    total_answers_g = (Answer.objects.
-                       filter(gender_id__in=gender_pks).count())
-    for gender in genders:
-        num_answers = Answer.objects.filter(gender=gender).count()
-        # convert to a percentage of total answers
-        gender.percent = (100.0 * num_answers /
-                          total_answers_g if total_answers_g else 0)
-    industries = Industry.objects.all()
-    industry_pks = industries.values_list('pk', flat=True)
-    total_answers_i = (Answer.objects.
-                       filter(industry_id__in=industry_pks).count())
-    for industry in industries:
-        num_answers = Answer.objects.filter(industry=industry).count()
-        # convert to a percentage of total answers
-        industry.percent = (100.0 * num_answers /
-                            total_answers_i if total_answers_i else 0)
+
     # fetch the hosting url
     host = request.get_host()
     # fetch the survey-start path and add the survey primary key
@@ -182,10 +192,10 @@ def detail(request, p_k):
             'public_url': public_url,
             'questions': questions,
             'num_submissions': num_submissions,
-            'age_ranges': age_ranges,
-            'genders': genders,
-            'industries': industries,
-        },
+            'default_answers': default_answers,
+            'total_answers': total_answers,
+            'age_range_totals': age_range_totals,
+             }
     )
 
 
@@ -319,7 +329,7 @@ def create(request):
             survey = form.save(commit=False)
             survey.creator = request.user
             survey.save()
-            return redirect('survey-edit', p_k=survey.id)
+            return redirect('survey-default-options-create', p_k=survey.id)
     else:
         form = SurveyForm(initial={'title': 'Add a'
                                    ' Survey Title', })
@@ -390,11 +400,10 @@ def edit(request, p_k):
         # still a draft not active, fetch it. If it does
         # not exist raise an http404 error.
         survey = (Survey.objects
-                  .prefetch_related('question_set__option_set',
-                                    'agequestion_set__agerange_set',
-                                    'genderquestion_set__gender_set',
-                                    'industryquestion_set__industry_set')
+                  .prefetch_related('question_set__option_set')
                   .get(pk=p_k, creator=request.user, is_active=False))
+        default_options = DefaultOptions.objects.all()
+        default_option = get_object_or_404(default_options, survey_id=p_k)
     except Survey.DoesNotExist as survey_no_exist:
         raise Http404() from survey_no_exist
 
@@ -408,9 +417,9 @@ def edit(request, p_k):
         return redirect('send-survey-email', p_k=p_k)
     else:
         questions = survey.question_set.all()
-        age_question = survey.agequestion_set.all()
-        gender_question = survey.genderquestion_set.all()
-        industry_question = survey.industryquestion_set.all()
+        age_question = default_option.age_question
+        gender_question = default_option.gender_question
+        industry_question = default_option.industry_question
         # if the request method is not post, return
         # survey edit page, with the questions that
         # the user has already added
@@ -425,92 +434,7 @@ def edit(request, p_k):
 # the view, if they are not, they will be required to login
 # before they can access the page
 @login_required
-def question_create(request, p_k):
-    """
-    User can add a question to a draft survey
-
-    Survey: the Survey model
-
-    pk: Regardless of whether you define a primary key field yourself,
-    or let Django supply one for you, each model will have a property
-    called pk. It behaves like a normal attribute on the model, but
-    is actually an alias for whichever attribute is the primary key field
-    for the model. You can read and set this value,
-    just as you would for any other attribute,
-    and it will update the correct field in the model.
-    description from:
-    https://www.kite.com/python/docs/django.db.models.Model.pk
-
-    creator: request the logged in user details
-    """
-    survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
-    # fetch the survey from the survey model with the matching pk and
-    # creator equal to the logged in user
-    if request.method == 'POST':
-        # if request method is equal to post,
-        # fetch the completed QuestionForm
-        form = QuestionForm(request.POST)
-        age_form = AgeForm(request.POST,
-                           initial={'age_question':
-                                    'Please select your age range:'})
-        gender_form = GenderForm(request.POST,
-                                 initial={'gender_question':
-                                          'Please select your preferred'
-                                          ' gender:'})
-        industry_form = IndustryForm(request.POST,
-                                     initial={'industry_question':
-                                              'Please select your'
-                                              ' Industry of employment:'})
-        # if the form is valid save the created
-        # question to the survey
-        if form.is_valid():
-            question = form.save(commit=False)
-            question.survey = survey
-            question.save()
-        if age_form.is_valid():
-            age_question = age_form.save(commit=False)
-            age_question.survey = survey
-            age_question.save()
-        if gender_form.is_valid():
-            gender_question = gender_form.save(commit=False)
-            gender_question.survey = survey
-            gender_question.save()
-        if industry_form.is_valid():
-            industry_question = industry_form.save(commit=False)
-            industry_question.survey = survey
-            industry_question.save()
-            # open the page to add options to
-            # the created question
-            return redirect('survey-option-create',
-                            survey_pk=p_k, question_pk=question.pk,
-                            age_question_pk=age_question.pk,
-                            gender_question_pk=gender_question.pk,
-                            industry_question_pk=industry_question.pk,)
-    else:
-        form = QuestionForm()
-        age_form = AgeForm(initial={'age_question':
-                                    'Please select your age range:'})
-        gender_form = GenderForm(initial={'gender_question':
-                                          'Please select your preferred'
-                                          ' gender:'})
-        industry_form = IndustryForm(initial={'industry_question':
-                                              'Please select your'
-                                              ' Industry of employment:'})
-
-    return render(request, 'survey/question.html',
-                  {'survey': survey, 'form': form,
-                   'age_form': age_form, 'gender_form':
-                   gender_form, 'industry_form':
-                   industry_form})
-
-
-# @login_required checks if the user is logged in to display
-# the view, if they are not, they will be required to login
-# before they can access the page
-@login_required
-def option_create(request, survey_pk, question_pk,
-                  age_question_pk, gender_question_pk,
-                  industry_question_pk):
+def default_options_create(request, p_k):
     """
     User can add options to a survey question
 
@@ -529,25 +453,117 @@ def option_create(request, survey_pk, question_pk,
     description from:
     https://www.kite.com/python/docs/django.db.models.Model.pk
     """
+    survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
+    age_question = get_object_or_404(AgeQuestion)
+    gender_question = get_object_or_404(GenderQuestion)
+    industry_question = get_object_or_404(IndustryQuestion)
+    age_ranges = AgeRange.objects.all()
+    genders = Gender.objects.all()
+    industries = Industry.objects.all()
+    # fetch the survey from the survey model with the matching survey pk
+    # and the creator equal to the logged in user
+    if request.method == 'POST':
+        # if the request method is post
+        # fetch the completed OptionForm
+        default_options_form = DefaultOptionsForm(request.POST)
+        if default_options_form.is_valid():
+            default_options = default_options_form.save(commit=False)
+            default_options.id = p_k
+            default_options.survey_id = p_k
+            default_options.age_question_id = age_question.pk
+            default_options.gender_question_id = gender_question.pk
+            default_options.industry_question_id = industry_question.pk
+            default_options.save()
+            return redirect("survey-question-create",
+                            p_k=p_k)
+    else:
+        default_options_form = DefaultOptionsForm(request.POST)
+    age_ranges = AgeRange.objects.all()
+    genders = Gender.objects.all()
+    industries = Industry.objects.all()
+    return render(
+        request,
+        'survey/default_options.html',
+        {'survey': survey,
+         'age_question': age_question, 'gender_question':
+         gender_question, 'industry_question': industry_question,
+         'age_ranges': age_ranges, 'genders': genders,
+         'industries': industries,
+         'default_options_form': default_options_form},
+    )
+
+
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
+@login_required
+def question_create(request, p_k):
+    """
+    User can add a question to a draft survey
+    Survey: the Survey model
+    pk: Regardless of whether you define a primary key field yourself,
+    or let Django supply one for you, each model will have a property
+    called pk. It behaves like a normal attribute on the model, but
+    is actually an alias for whichever attribute is the primary key field
+    for the model. You can read and set this value,
+    just as you would for any other attribute,
+    and it will update the correct field in the model.
+    description from:
+    https://www.kite.com/python/docs/django.db.models.Model.pk
+    creator: request the logged in user details
+    """
+    survey = get_object_or_404(Survey, pk=p_k, creator=request.user)
+    # fetch the survey from the survey model with the matching pk and
+    # creator equal to the logged in user
+    if request.method == "POST":
+        # if request method is equal to post,
+        # fetch the completed QuestionForm
+        form = QuestionForm(request.POST)
+        # if the form is valid save the created
+        # question to the survey
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.survey = survey
+            question.save()
+            # open the page to add options to
+            # the created question
+            return redirect("survey-option-create",
+                            survey_pk=p_k, question_pk=question.pk)
+    else:
+        form = QuestionForm()
+
+    return render(request, "survey/question.html",
+                  {"survey": survey, "form": form})
+
+
+# @login_required checks if the user is logged in to display
+# the view, if they are not, they will be required to login
+# before they can access the page
+@login_required
+def option_create(request, survey_pk, question_pk):
+    """
+    User can add options to a survey question
+    request: The requests module allows you to send HTTP
+    requests using Python.The HTTP request returns a Response
+    Object with all the response data (content, encoding, status, etc).
+    Definition from https://www.w3schools.com/python/module_requests.asp
+    pk: Regardless of whether you define a primary key field yourself,
+    or let Django supply one for you, each model will have a property
+    called pk. It behaves like a normal attribute on the model, but
+    is actually an alias for whichever attribute is the primary key field
+    for the model. You can read and set this value,
+    just as you would for any other attribute,
+    and it will update the correct field in the model.
+    description from:
+    https://www.kite.com/python/docs/django.db.models.Model.pk
+    """
     survey = get_object_or_404(Survey, pk=survey_pk, creator=request.user)
     # fetch the survey from the survey model with the matching survey pk
     # and the creator equal to the logged in user
     question = Question.objects.get(pk=question_pk)
-    age_question = AgeQuestion.objects.get(pk=age_question_pk)
-    gender_question = GenderQuestion.objects.get(pk=gender_question_pk)
-    industry_question = IndustryQuestion.objects.get(pk=industry_question_pk)
-    if request.method == 'POST':
+    if request.method == "POST":
         # if the request method is post
         # fetch the completed OptionForm
-        age_ranges = AgeRange.objects.all()
-        for age_range in age_ranges:
-            age_range.age_question_id = age_question_pk
-        genders = Gender.objects.all()
-        for gender in genders:
-            gender.gender_question_id = gender_question_pk
-        industries = Industry.objects.all()
-        for industry in industries:
-            industry.industry_question_id = industry_question_pk
         form = OptionForm(request.POST)
         # if the form is valid save the
         # option to the question
@@ -559,17 +575,11 @@ def option_create(request, survey_pk, question_pk,
         form = OptionForm()
 
     options = question.option_set.all()
-    age_ranges = age_question.agerange_set.all()
-    genders = gender_question.gender_set.all()
-    industries = industry_question.industry_set.all()
     return render(
         request,
-        'survey/options.html',
-        {'survey': survey, 'question': question,
-         'age_question': age_question, 'gender_question':
-         gender_question, 'industry_question': industry_question,
-         'options': options, 'age_ranges': age_ranges,
-         'genders': genders, 'industries': industries, 'form': form},
+        "survey/options.html",
+        {"survey": survey, "question": question,
+         "options": options, "form": form},
     )
 
 
@@ -628,16 +638,16 @@ def submit(request, survey_pk, sub_pk):
     """
     try:
         survey = (Survey.objects
-                  .prefetch_related('question_set__option_set',
-                                    'agequestion_set__agerange_set',
-                                    'genderquestion_set__gender_set',
-                                    'industryquestion_set__industry_set')
+                  .prefetch_related('question_set__option_set',)
                   .get(pk=survey_pk, is_active=True))
     except Survey.DoesNotExist as survey_no_exist:
         raise Http404() from survey_no_exist
-        # Get the survey object related fields question(s) and option(s),
-        # pk is equal to the survey pk and it is active if it exists, if not
-        #  raise an http404 error
+
+    default_options = DefaultOptions.objects.all()
+    default_option = get_object_or_404(default_options, survey_id=survey_pk)
+    # Get the survey object related fields question(s) and option(s),
+    # pk is equal to the survey pk and it is active if it exists, if not
+    #  raise an http404 error
 
     try:
         sub = survey.submission_set.get(pk=sub_pk, is_complete=False)
@@ -647,32 +657,32 @@ def submit(request, survey_pk, sub_pk):
         # set to false if it exists, if not raise an http404 error
 
     questions = survey.question_set.all()
-    age_question = survey.agequestion_set.all()
-    gender_question = survey.genderquestion_set.all()
-    industry_question = survey.industryquestion_set.all()
+    age_question = default_option.age_question
+    gender_question = default_option.gender_question
+    industry_question = default_option.industry_question
     # questions is equal to all questions created for
     # a survey
     options = [q.option_set.all() for q in questions]
-    age_ranges = [a.agerange_set.all() for a in age_question]
-    genders = [g.gender_set.all() for g in gender_question]
-    industries = [i.industry_set.all() for i in industry_question]
     # options is equal to all options created for a question
-    form_kwargs = {'empty_permitted': False, 'options': options,
-                   'age_ranges': age_ranges, 'genders': genders,
-                   'industries': industries}
+    option_form_kwargs = {'empty_permitted': False, 'options': options}
     # the options can not be submitted as empty i.e. the user has
     # to select an option
     AnswerFormSet = (formset_factory(AnswerForm,
-                     extra=len(questions, age_question,
-                               gender_question, industry_question),
+                     extra=len(questions),
                      formset=BaseAnswerFormSet))
     # create the AnswerFormSet by taking the answerform per question and
     # adding it to the BaseAnswerFormSet
     if request.method == 'POST':
+        default_answer_form = DefaultAnswerForm(request.POST)
+        if default_answer_form.is_valid():
+            default_answer = default_answer_form.save(commit=False)
+            default_answer.submission_id = sub_pk
+            default_answer.survey_id = survey_pk
+            default_answer.save()
         # if the request method is post
         # the formset is the completed AnswerFormSet
         # options cannot be empty
-        formset = AnswerFormSet(request.POST, form_kwargs=form_kwargs)
+        formset = AnswerFormSet(request.POST, form_kwargs=option_form_kwargs)
         if formset.is_valid():
             # for a valid formset
             with transaction.atomic():
@@ -685,34 +695,29 @@ def submit(request, survey_pk, sub_pk):
                 for form in formset:
                     (Answer.objects
                      .create(option_id=form.cleaned_data['option'],
-                             age_range_id=form.cleaned_data['age_range'],
-                             gender_id=form.cleaned_data['gender'],
-                             industry_id=form.cleaned_data['industry'],
                              submission_id=sub_pk,))
                     # for every completed form in the formset, create it
                     # as an object in the Answer model
-
-                sub.is_complete = True
-                sub.save()
-                # mark submission is complete as true and save
-            return redirect('survey-thanks', p_k=survey_pk)
-            # redirect to the survey thanks page
+        sub.is_complete = True
+        sub.save()
+        # mark submission is complete as true and save
+        return redirect('survey-thanks', p_k=survey_pk)
+        # redirect to the survey thanks page
 
     else:
-        formset = AnswerFormSet(form_kwargs=form_kwargs)
+        formset = AnswerFormSet(form_kwargs=option_form_kwargs)
+        default_answer_form = DefaultAnswerForm()
 
     question_forms = zip(questions, formset)
-    age_question_forms = zip(age_question, formset)
-    gender_question_forms = zip(gender_question, formset)
-    industry_question_forms = zip(industry_question, formset)
     return render(
         request,
         'survey/submit.html',
         {'survey': survey, 'question_forms': question_forms,
-         'age_question_forms': age_question_forms,
-         'gender_question_forms': gender_question_forms,
-         'industry_question_forms': industry_question_forms,
-         'formset': formset},
+         'age_question': age_question,
+         'gender_question': gender_question,
+         'industry_question': industry_question,
+         'formset': formset, 'default_answer_form':
+         default_answer_form},
     )
 
 

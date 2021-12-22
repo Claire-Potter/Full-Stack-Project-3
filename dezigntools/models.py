@@ -56,7 +56,7 @@ class Survey(models.Model):
     """
 
     title = models.CharField(max_length=64)
-    survey_image = CloudinaryField('image', default='jevm2uwqm08nn5rmfmdq',
+    survey_image = CloudinaryField('image', default='son8liypgdn9yzc3lx7h',
                                    blank=True,
                                    null=True)
     is_active = models.BooleanField(default=False)
@@ -96,7 +96,6 @@ class AgeQuestion(models.Model):
     to capture and store the question.
     """
 
-    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     age_question = models.CharField(max_length=128,
                                     default='Please select your age range:')
     do_not_delete = models.BooleanField(default=False)
@@ -115,7 +114,6 @@ class GenderQuestion(models.Model):
     to capture and store the question.
     """
 
-    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     gender_question = models.CharField(max_length=128,
                                        default='Please select your'
                                                ' preferred gender:')
@@ -135,7 +133,6 @@ class IndustryQuestion(models.Model):
     to capture and store the question.
     """
 
-    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     industry_question = models.CharField(max_length=128,
                                          default='Please select your'
                                                  ' Industry of employment:')
@@ -176,7 +173,6 @@ class AgeRange(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    age_question = models.ForeignKey(AgeQuestion, on_delete=models.CASCADE)
     title = models.CharField(max_length=80)
     order_number = models.IntegerField()
     do_not_delete = models.BooleanField(default=True)
@@ -204,8 +200,6 @@ class Gender(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    gender_question = models.ForeignKey(GenderQuestion,
-                                        on_delete=models.CASCADE)
     title = models.CharField(max_length=80)
     order_number = models.IntegerField()
     do_not_delete = models.BooleanField(default=True)
@@ -232,8 +226,6 @@ class Industry(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    industry_question = models.ForeignKey(IndustryQuestion,
-                                          on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     do_not_delete = models.BooleanField(default=True)
 
@@ -249,6 +241,59 @@ class Industry(models.Model):
     # if it exists, else a blank title
     def __str__(self):
         return '%s' % (self.title) if self.title else ' '
+
+
+class DefaultOptions(models.Model):
+    """
+    The DefaultQuestion model is utilised to
+    store the default questions added to all surveys.
+    All user answers are saved to this model. The survey
+    field is a ForeignKey field which is used to save the
+    related survey, the name is the username, which is
+    automaticall derived from the User,
+    the email is the user email, which is  automatically derived
+    from the User, the gender field contains the gender choices
+    from the related Gender model, the age_range field contains the age_range
+    choices from the related AgeRange model and the industry field
+    contains the industry choices from the related Industry model.
+    """
+
+    survey = models.ForeignKey(Survey,
+                               on_delete=models.CASCADE)
+
+    age_question = models.ForeignKey(AgeQuestion, on_delete=models.CASCADE,
+                                     related_name='agequestion_set')
+
+    gender_question = models.ForeignKey(GenderQuestion,
+                                        on_delete=models.CASCADE,
+                                        related_name='genderquestion_set')
+
+    industry_question = models.ForeignKey(IndustryQuestion,
+                                          on_delete=models.CASCADE,
+                                          related_name='industryquestion_set')
+
+    age_ranges = models.ManyToManyField(AgeRange,
+                                        related_name='age_ranges_set')
+
+    genders = models.ManyToManyField(Gender, related_name='genders_set')
+
+    industries = models.ManyToManyField(Industry,
+                                        related_name='industries_set')
+    do_not_delete = models.BooleanField(default=False)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        """
+        The Meta determines the ordering of the
+        industry choices according to the title.
+        """
+        ordering = ["survey"]
+        verbose_name_plural = 'Default Options'
+
+    # The string is set to return as the Survey field
+    # if it exists, else a blank field
+    def __str__(self):
+        return '%s' % (self.survey) if self.survey else ' '
 
 
 class Submission(models.Model):
@@ -281,12 +326,50 @@ class Answer(models.Model):
 
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
     option = models.ForeignKey(Option, on_delete=models.CASCADE)
-    age_range = models.ForeignKey(AgeRange, on_delete=models.CASCADE)
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
-    industry = models.ForeignKey(Industry, on_delete=models.CASCADE)
     do_not_delete = models.BooleanField(default=False)
 
     # The string is set to return as the Option field
     # if it exists, else a blank field
     def __str__(self):
         return '%s' % (self.option) if self.option else ' '
+
+
+class DefaultAnswers(models.Model):
+    """
+    The DefaultQuestion model is utilised to
+    store the default questions added to all surveys.
+    All user answers are saved to this model. The survey
+    field is a ForeignKey field which is used to save the
+    related survey, the name is the username, which is
+    automaticall derived from the User,
+    the email is the user email, which is  automatically derived
+    from the User, the gender field contains the gender choices
+    from the related Gender model, the age_range field contains the age_range
+    choices from the related AgeRange model and the industry field
+    contains the industry choices from the related Industry model.
+    """
+    survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
+    submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
+    age_range = models.ForeignKey(AgeRange,
+                                  related_name='questions_age_ranges_set',
+                                  on_delete=models.CASCADE)
+    gender = models.ForeignKey(Gender, related_name='questions'
+                                                    '_genders'
+                                                    '_set',
+                               on_delete=models.CASCADE)
+    industry = models.ForeignKey(Industry,
+                                 related_name='questions_industries_set',
+                                 on_delete=models.CASCADE)
+
+    class Meta:
+        """
+        The Meta determines the ordering of the
+        industry choices according to the title.
+        """
+        ordering = ["submission"]
+        verbose_name_plural = 'Default Answers'
+
+    # The string is set to return as the Survey field
+    # if it exists, else a blank field
+    def __str__(self):
+        return '%s' % (self.survey) if self.survey else ' '
