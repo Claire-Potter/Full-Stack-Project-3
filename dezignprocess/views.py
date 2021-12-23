@@ -233,7 +233,6 @@ class StepNext(generic.ListView):
     # displaying
     queryset = Step.objects.filter(list_number='2')
     template_name = 'next.html'
-    paginate_by: 3
 
     def get_context_data(self, **kwargs):
         """

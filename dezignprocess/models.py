@@ -5,7 +5,7 @@ The Step and Comment models were created according to the
 Code Institute 'I Think Therefore I Blog' project but fully
 customised for purpose.
 
-The Images model is created to house all of the images
+The Image model is created to house all of the images
 utilised by thw dezignprocess app.
 
 The Resource Model is created to house the videos displayed
@@ -28,7 +28,7 @@ from cloudinary.models import CloudinaryField
 from embed_video.fields import EmbedVideoField
 
 
-class Images(models.Model):
+class Image(models.Model):
     """
     The Image class to upload and store an image to Cloudinary,
     provide the alt / aria-label text using the name field, provide
@@ -67,15 +67,12 @@ class Images(models.Model):
 
     class Meta:
         """
-        Meta created to order the Images Model according
+        Meta created to order the Image Model according
         to the order_number. It also determines the latest
         entry saved to the model referring to the added date.
-        The verbose_name_plural is set to Images so that it
-        doesn't display as Imagess on the admin page.
         """
         ordering = ['order_number']
         get_latest_by = ['added']
-        verbose_name_plural = 'Images'
 
     # The string is set to return as the Image title field
     # if it exists, else a blank title
@@ -121,7 +118,7 @@ class Tool(models.Model):
     The title field is for the name of the tool, the slug is saved for the
     tool page, the excerpt field is for a short explanation, the body field
     contains the content and uses django-summernote to style the content.
-    The image field is where the image from the Images
+    The image field is where the image from the Image
     model is selected and the order_number is to order the Tool model by.
     Do not delete
     field is added to indicate that the saved data
@@ -132,7 +129,7 @@ class Tool(models.Model):
     slug = models.SlugField(max_length=80, default='steps_document')
     excerpt = models.TextField(blank=True)
     body = models.TextField(blank=True)
-    image = models.ForeignKey(Images, on_delete=models.CASCADE,
+    image = models.ForeignKey(Image, on_delete=models.CASCADE,
                               related_name='tool_image',
                               default='1')
     order_number = models.IntegerField()
@@ -158,9 +155,9 @@ class Step(models.Model):
     Steps include: Getting Started, Empathy, Define, Ideate,
     Prototype, Test and Finishing Off. The title field is for
     the step name, the slug is used for the step page, the feature_image
-    field is used to select the feature image from the Images model,
+    field is used to select the feature image from the Image model,
     the steps_image field is used to select the step image for
-    the step_detail page from the Images model, the excerpt field
+    the step_detail page from the Image model, the excerpt field
     contains a short explanation, the body field contains the
     content and uses django-summernote to style the content. The order_number
     is used to order the steps by, resources is used to select the relevant
@@ -174,10 +171,10 @@ class Step(models.Model):
     title = models.CharField(max_length=80, unique=True)
     slug = models.SlugField(max_length=80, unique=True)
     feature_image = models.ForeignKey(
-        Images, on_delete=models.CASCADE, related_name='featured_image',
-        default='1')
+        Image, on_delete=models.CASCADE, related_name='featured_image',
+        default='0')
     steps_image = models.ForeignKey(
-        Images, on_delete=models.CASCADE, related_name='step_image',
+        Image, on_delete=models.CASCADE, related_name='step_image',
         default='1')
     excerpt = models.TextField(blank=True)
     body = models.TextField(blank=True)
@@ -246,7 +243,7 @@ class Progress(models.Model):
     name = models.CharField(max_length=80, default='username')
     email = models.EmailField(blank=True)
     updated_on = models.DateTimeField(auto_now_add=True)
-    deletable = models.BooleanField(default=True, editable=True)
+    deletable = models.BooleanField(default=True, editable=False)
 
     class ProgressStatus(models.TextChoices):
         """

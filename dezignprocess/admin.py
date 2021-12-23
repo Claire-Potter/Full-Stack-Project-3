@@ -35,7 +35,7 @@ required fields. Admin can also edit and delete.
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from embed_video.admin import AdminVideoMixin
-from .models import Step, Comment, Tool, Progress, Resource, Images
+from .models import Step, Comment, Tool, Progress, Resource, Image
 
 
 @admin.register(Step)
@@ -52,13 +52,21 @@ class StepAdmin(SummernoteModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('title', 'slug', 'deletable')
+    list_display = ('title', 'deletable')
     search_fields = ['title', 'excerpt', 'deletable']
     list_filter = ('deletable',)
-    prepopulated_fields = {'slug': ('title',)}
-    summernote_fields = ('body',)
+    summernote_fields = ('body')
 
     def has_delete_permission(self, request, obj=None):
+        return False
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('title', 'slug', 'order_number',
+                                           'added', 'list_number', 'deletable')
+        return self.readonly_fields
+
+    def has_add_permission(self, request, obj=None):
         return False
 
 
@@ -75,14 +83,20 @@ class ToolAdmin(SummernoteModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('title', 'slug', 'deletable')
+    list_display = ('title', 'deletable')
     search_fields = ['title', 'deletable']
-    prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
     list_filter = ('deletable',)
+    exclude = ('slug', 'order_number')
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('title', 'slug', 'order_number',
+                                           'deletable')
+        return self.readonly_fields
 
 
 @admin.register(Progress)
@@ -102,6 +116,16 @@ class ProgressAdmin(admin.ModelAdmin):
                     'deletable')
     list_filter = ('updated_on', 'step', 'deletable')
     search_fields = ('name', 'email', 'progress', 'deletable')
+    exclude = ('username',)
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('name', 'email', 'step',
+                                           'updated_on', 'progress')
+        return self.readonly_fields
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Comment)
@@ -119,6 +143,16 @@ class CommentAdmin(admin.ModelAdmin):
                     'deletable')
     list_filter = ('created_on', 'step', 'deletable')
     search_fields = ('name', 'email', 'body', 'deletable')
+    exclude = ('username',)
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('name', 'email', 'step',
+                                           'created_on', 'body')
+        return self.readonly_fields
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Resource)
@@ -136,9 +170,18 @@ class ResourceAdmin(AdminVideoMixin, admin.ModelAdmin):
     list_display = ('video_name', 'video_url', 'deletable')
     search_fields = ['video_name', 'deletable']
     list_filter = ('video_name', 'video_url', 'deletable')
+    exclude = ('order_number', 'added')
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('video_name',)
+        return self.readonly_fields
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
-@admin.register(Images)
+@admin.register(Image)
 class ImageAdmin(AdminVideoMixin, admin.ModelAdmin):
     """
     The Images admin set up reads the Images model and allows
@@ -151,3 +194,15 @@ class ImageAdmin(AdminVideoMixin, admin.ModelAdmin):
     list_display = ('category', 'title', 'name', 'deletable')
     search_fields = ['title', 'name', 'deletable']
     list_filter = ('category', 'title', 'deletable')
+    exclude = ('order_number', 'added')
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:  # editing an existing object
+            return self.readonly_fields + ('title', 'category',)
+        return self.readonly_fields
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request, obj=None):
+        return False

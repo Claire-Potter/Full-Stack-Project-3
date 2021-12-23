@@ -55,6 +55,9 @@ class SurveyAdmin(admin.ModelAdmin):
     search_fields = ['title', 'is_active', 'deletable']
     list_filter = ('deletable', 'creator', 'created_at')
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(Gender)
 class GenderAdmin(admin.ModelAdmin):
@@ -129,6 +132,9 @@ class QuestionAdmin(admin.ModelAdmin):
     search_fields = ['question', 'survey', 'deletable']
     list_filter = ('question', 'survey', 'deletable')
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(AgeQuestion)
 class AgeQuestionAdmin(admin.ModelAdmin):
@@ -190,6 +196,9 @@ class DefaultOptionsAdmin(admin.ModelAdmin):
     list_filter = ('survey', 'age_question', 'gender_question',
                    'industry_question', 'deletable')
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(Option)
 class OptionAdmin(admin.ModelAdmin):
@@ -202,6 +211,9 @@ class OptionAdmin(admin.ModelAdmin):
     list_display = ('question', 'option', 'deletable')
     search_fields = ['question', 'option', 'deletable']
     list_filter = ('question', 'option', 'deletable')
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Submission)
@@ -219,6 +231,9 @@ class SubmissionAdmin(admin.ModelAdmin):
     list_filter = ('survey', 'created_at', 'is_complete',
                    'deletable')
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
@@ -232,6 +247,9 @@ class AnswerAdmin(admin.ModelAdmin):
     search_fields = ['submission', 'option']
     list_filter = ('submission', 'option')
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(DefaultAnswers)
 class DefaultAnswerAdmin(admin.ModelAdmin):
@@ -244,3 +262,6 @@ class DefaultAnswerAdmin(admin.ModelAdmin):
     list_display = ('submission', 'survey', 'deletable')
     search_fields = ['submission', 'survey', 'deletable']
     list_filter = ('submission', 'survey', 'deletable')
+
+    def has_add_permission(self, request, obj=None):
+        return False

@@ -18,7 +18,7 @@ import os
 from pathlib import Path
 import dj_database_url
 from django.contrib.messages import constants as messages
-if os.path.isfile("env.py"):
+if os.path.isfile('env.py'):
     import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,8 +35,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["xperience-dezignwiz.herokuapp.com", "localhost",
-                 "localhost:8000"]
+ALLOWED_HOSTS = ['xperience-dezignwiz.herokuapp.com', 'localhost',
+                 'localhost:8000']
 
 
 # Application definition
@@ -129,7 +129,7 @@ WSGI_APPLICATION = 'xperiencedezignwiz.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
 
@@ -215,7 +215,7 @@ AUTHENTICATION_BACKENDS = [
 
 # Twilio SendGrid
 # https://docs.sendgrid.com/for-developers/sending-email/django
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = 'xperiencedezignwiz@gmail.com'
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
