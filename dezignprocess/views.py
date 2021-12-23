@@ -109,19 +109,6 @@ def search(request):
         elif searched != Step.objects.filter(title=searched):
             step = get_object_or_404(queryset, title='None')
             image = step.steps_image
-            click = ('You searched for an incorrect term.'
-                     ' This search is set up to return the'
-                     ' pages for the steps within the'
-                     ' Design Thinking process.'
-                     ' Please search for one of the steps:'
-                     ' Getting Started,'
-                     ' Empathy,'
-                     ' Define,'
-                     ' Ideate,'
-                     ' Prototype,'
-                     ' Test or'
-                     ' Finishing Off.'
-                     ' The search field is case sensitive.')
 
         return render(
             request, 'search.html',

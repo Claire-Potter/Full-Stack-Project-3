@@ -10,11 +10,9 @@
             <!-- if a search term was included generate the below div-->
             {% if searched %}
             {% if 'None' in step.title %}
-            <div class="col-12 col-md-6 mx-auto card-with-background mb-5">
+            <div class="col-12 col-md-6 mx-auto mb-5 card text-center">
                <!-- searched returns the searched for term, click returns an instructional statement per step -->
                <h2 class="bolder mx-md-5 mt-5">You Searched for {{ searched }}</h2>
-               <p class="mx-md-5 mb-5">{{ click }}</p>
-            </div>
             {% else %}
             <div class="col-12 col-md-6 mx-auto text-center mb-5 ">
                <!-- searched returns the searched for term, click returns an instructional statement per step -->
@@ -49,39 +47,85 @@
                               this does not contain a page link to follow-->
                            {% if 'None' in step.title %}
                            <h2 class="card-title bolder text-center">{{ step.title }}</h2>
-                           {% else %}
-                           <a href="{% url 'step_detail' step.slug %}" class="step-link text-center">
-                              <h2 class="card-title bolder">{{ step.title }}</h2>
-                           </a>
-                           {% endif %}
-                           <p class="card-text text-center">
-                              {{ step.excerpt | safe }}
+                           <p class="card-text">
+                              This search is set up to return the pages for the steps within the Design Thinking
+                              process.
+                              Click below to access the step you were looking for:
                            </p>
+                           <ul>
+                              <li><a href="{% url 'step_detail' slug='getting-started' %}"
+                                    class="step-link text-center">
+                                    <h2 class="card-title bolder">Getting Started</h2>
+                                 </a></li>
+                              <li><a href="{% url 'step_detail' slug='empathy' %}" class="step-link text-center">
+                                    <h2 class="card-title bolder">Empathy</h2>
+                                 </a></li>
+                              <li><a href="{% url 'step_detail' slug='define' %}" class="step-link text-center">
+                                    <h2 class="card-title bolder">Define</h2>
+                                 </a></li>
+                              <li><a href="{% url 'step_detail' slug='ideate' %}" class="step-link text-center">
+                                    <h2 class="card-title bolder">Ideate</h2>
+                                 </a></li>
+                              <li><a href="{% url 'step_detail' slug='prototype' %}" class="step-link text-center">
+                                    <h2 class="card-title bolder">Prototype</h2>
+                                 </a></li>
+                              <li><a href="{% url 'step_detail' slug='test' %}" class="step-link text-center">
+                                    <h2 class="card-title bolder">Test</h2>
+                                 </a></li>
+                              <li><a href="{% url 'step_detail' slug='finishing-off' %}" class="step-link text-center">
+                                    <h2 class="card-title bolder">Finishing Off</h2>
+                                 </a></li>
+                           </ul>
                            <!-- The Return button will direct the user back to the previous screen-->
-                           <div class="text-center"><a class="btn get-started mx-auto"
-                                 href="{{ request.META.HTTP_REFERER }}">Return</a></div>
+                           <div class="ml-1 mb-5">
+                              <a class="btn get-started" href="{{ request.META.HTTP_REFERER }}">Return</a> </div>
                         </div>
+                        </div>
+                        {% else %}
+                        <a href="{% url 'step_detail' step.slug %}" class="step-link text-center">
+                           <h2 class="card-title bolder">{{ step.title }}</h2>
+                        </a>
+                        <p class="card-text text-center">
+                           {{ step.excerpt | safe }}
+                        </p>
+                        <!-- The Return button will direct the user back to the previous screen-->
+                        <div class="text-center"><a class="btn get-started mx-auto"
+                              href="{{ request.META.HTTP_REFERER }}">Return</a></div>
                      </div>
+                     {% endif %}
                   </div>
                </div>
             </div>
             {% else %}
             <!-- If an empty search was completed the below content will be returned-->
-            <div class="col-12 col-md-6 mx-auto mb-5 card card-with-background">
+            <div class="col-12 col-md-6 mx-auto mb-5 card text-center card-with-background">
                <h2 class="mt-5 bolder">You forgot to enter any search criteria.</h2>
                <p class="card-text">
                   This search is set up to return the pages for the steps within the Design Thinking process.
-                  Please search for one of the steps:
+                  Click below to access the step you were looking for:
                </p>
                <ul>
-                  <li>Getting Started</li>
-                  <li>Empathy</li>
-                  <li>Define</li>
-                  <li>Ideate</li>
-                  <li>Prototype</li>
-                  <li>Test</li>
-                  <li>Finishing Off</li>
-                  <li>The search field is case sensitive.</li>
+                  <li><a href="{% url 'step_detail' slug='getting-started' %}" class="step-link text-center">
+                        <h2 class="card-title bolder">Getting Started</h2>
+                     </a></li>
+                  <li><a href="{% url 'step_detail' slug='empathy' %}" class="step-link text-center">
+                        <h2 class="card-title bolder">Empathy</h2>
+                     </a></li>
+                  <li><a href="{% url 'step_detail' slug='define' %}" class="step-link text-center">
+                        <h2 class="card-title bolder">Define</h2>
+                     </a></li>
+                  <li><a href="{% url 'step_detail' slug='ideate' %}" class="step-link text-center">
+                        <h2 class="card-title bolder">Ideate</h2>
+                     </a></li>
+                  <li><a href="{% url 'step_detail' slug='prototype' %}" class="step-link text-center">
+                        <h2 class="card-title bolder">Prototype</h2>
+                     </a></li>
+                  <li><a href="{% url 'step_detail' slug='test' %}" class="step-link text-center">
+                        <h2 class="card-title bolder">Test</h2>
+                     </a></li>
+                  <li><a href="{% url 'step_detail' slug='finishing-off' %}" class="step-link text-center">
+                        <h2 class="card-title bolder">Finishing Off</h2>
+                     </a></li>
                </ul>
                <!-- The Return button will direct the user back to the previous screen-->
                <div class="ml-1 mb-5">
