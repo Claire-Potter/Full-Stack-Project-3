@@ -215,11 +215,11 @@ class Step(models.Model):
 
     def number_of_resources(self):
         """
-       A count of the number_of_resources by counting
-       the number of resources selected in the resources
-       field and returning it as an integer. This is
-       displayed through the first.html template and the
-       next.html template
+        A count of the number_of_resources by counting
+        the number of resources selected in the resources
+        field and returning it as an integer. This is
+        displayed through the first.html template and the
+        next.html template
         """
         return self.resources.count()
 
