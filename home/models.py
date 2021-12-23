@@ -28,7 +28,7 @@ class Home(models.Model):
     name = models.CharField(max_length=80)
     home_image = CloudinaryField('image', default='placeholder')
     created_on = models.DateTimeField(auto_now_add=True)
-    do_not_delete = models.BooleanField(default=True)
+    deletable = models.BooleanField(default=False, editable=False)
 
     class Meta:
         """
@@ -57,7 +57,7 @@ class Contact(models.Model):
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
 
     class Meta:
         """
@@ -81,7 +81,7 @@ class Verification(models.Model):
     """
     verification = models.CharField(max_length=250)
     updated_on = models.DateTimeField(auto_now_add=True)
-    do_not_delete = models.BooleanField(default=True)
+    deletable = models.BooleanField(default=False, editable=False)
 
     class Meta:
         """

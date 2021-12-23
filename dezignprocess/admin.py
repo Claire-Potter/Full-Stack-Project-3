@@ -52,9 +52,9 @@ class StepAdmin(SummernoteModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('title', 'slug', 'do_not_delete')
-    search_fields = ['title', 'excerpt', 'do_not_delete']
-    list_filter = ('do_not_delete',)
+    list_display = ('title', 'slug', 'deletable')
+    search_fields = ['title', 'excerpt', 'deletable']
+    list_filter = ('deletable',)
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
 
@@ -75,11 +75,11 @@ class ToolAdmin(SummernoteModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('title', 'slug', 'do_not_delete')
-    search_fields = ['title', 'do_not_delete']
+    list_display = ('title', 'slug', 'deletable')
+    search_fields = ['title', 'deletable']
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
-    list_filter = ('do_not_delete',)
+    list_filter = ('deletable',)
 
     def has_delete_permission(self, request, obj=None):
         return False
@@ -99,9 +99,9 @@ class ProgressAdmin(admin.ModelAdmin):
     should not be deleted if set to True.
     """
     list_display = ('progress', 'step', 'updated_on', 'name',
-                    'do_not_delete')
-    list_filter = ('updated_on', 'step', 'do_not_delete')
-    search_fields = ('name', 'email', 'progress', 'do_not_delete')
+                    'deletable')
+    list_filter = ('updated_on', 'step', 'deletable')
+    search_fields = ('name', 'email', 'progress', 'deletable')
 
 
 @admin.register(Comment)
@@ -116,9 +116,9 @@ class CommentAdmin(admin.ModelAdmin):
     should not be deleted if set to True.
     """
     list_display = ('name', 'body', 'step', 'created_on',
-                    'do_not_delete')
-    list_filter = ('created_on', 'step', 'do_not_delete')
-    search_fields = ('name', 'email', 'body', 'do_not_delete')
+                    'deletable')
+    list_filter = ('created_on', 'step', 'deletable')
+    search_fields = ('name', 'email', 'body', 'deletable')
 
 
 @admin.register(Resource)
@@ -133,9 +133,9 @@ class ResourceAdmin(AdminVideoMixin, admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('video_name', 'video_url', 'do_not_delete')
-    search_fields = ['video_name', 'do_not_delete']
-    list_filter = ('video_name', 'video_url', 'do_not_delete')
+    list_display = ('video_name', 'video_url', 'deletable')
+    search_fields = ['video_name', 'deletable']
+    list_filter = ('video_name', 'video_url', 'deletable')
 
 
 @admin.register(Images)
@@ -148,6 +148,6 @@ class ImageAdmin(AdminVideoMixin, admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('category', 'title', 'name', 'do_not_delete')
-    search_fields = ['title', 'name', 'do_not_delete']
-    list_filter = ('category', 'title', 'do_not_delete')
+    list_display = ('category', 'title', 'name', 'deletable')
+    search_fields = ['title', 'name', 'deletable']
+    list_filter = ('category', 'title', 'deletable')

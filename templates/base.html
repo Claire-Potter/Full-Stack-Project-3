@@ -85,6 +85,11 @@
                         <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                      </li>
                      {% endif %}
+                     {% if user.is_staff %}
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                     </li>
+                     {% endif %}
                   </ul>
                   <!--
                      Search form created to enable a user to search by Design Thinking step title. Javascript

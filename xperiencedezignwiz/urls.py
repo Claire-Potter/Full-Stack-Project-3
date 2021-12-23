@@ -21,12 +21,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include("home.urls")),
-    path("", include("dezigntools.urls"), name="dezigntools_urls"),
-    path("", include("dezignprocess.urls"), name="dezignprocess_urls"),
+    path('admin/', admin.site.urls),
+    path('', include('home.urls')),
+    path('', include('dezigntools.urls'), name='dezigntools_urls'),
+    path('', include('dezignprocess.urls'), name='dezignprocess_urls'),
     path('summernote/', include('django_summernote.urls')),
-    path("accounts/", include("allauth.urls")),
-    path("accounts/", include('rest_auth.urls')),
-    path("accounts/", include('rest_auth.registration.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('rest_auth.urls')),
+    path('accounts/', include('rest_auth.registration.urls')),
     ]

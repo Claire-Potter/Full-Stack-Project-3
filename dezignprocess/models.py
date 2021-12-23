@@ -45,7 +45,7 @@ class Images(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100, blank=True)
     order_number = models.IntegerField()
-    do_not_delete = models.BooleanField(default=True)
+    deletable = models.BooleanField(default=True, editable=False)
 
     class ImageCategory(models.TextChoices):
         """
@@ -99,7 +99,7 @@ class Resource(models.Model):
     video_url = EmbedVideoField(blank=True)
     added = models.DateTimeField(auto_now_add=True)
     order_number = models.IntegerField()
-    do_not_delete = models.BooleanField(default=True)
+    deletable = models.BooleanField(default=True, editable=False)
 
     class Meta:
         """
@@ -127,7 +127,8 @@ class Tool(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    title = models.CharField(max_length=80, unique=True, default='placeholder')
+    title = models.CharField(max_length=80, unique=True,
+                             default='placeholder')
     slug = models.SlugField(max_length=80, default='steps_document')
     excerpt = models.TextField(blank=True)
     body = models.TextField(blank=True)
@@ -135,7 +136,7 @@ class Tool(models.Model):
                               related_name='tool_image',
                               default='1')
     order_number = models.IntegerField()
-    do_not_delete = models.BooleanField(default=True)
+    deletable = models.BooleanField(default=False)
 
     class Meta:
         """
@@ -187,8 +188,8 @@ class Step(models.Model):
     tools = models.ManyToManyField(
         Tool, related_name='tool', blank=True)
     list_number = models.IntegerField(
-        default='1')
-    do_not_delete = models.BooleanField(default=True)
+        default='0')
+    deletable = models.BooleanField(default=False)
 
     class Meta:
         """
@@ -245,7 +246,7 @@ class Progress(models.Model):
     name = models.CharField(max_length=80, default='username')
     email = models.EmailField(blank=True)
     updated_on = models.DateTimeField(auto_now_add=True)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=True)
 
     class ProgressStatus(models.TextChoices):
         """
@@ -305,7 +306,7 @@ class Comment(models.Model):
     email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
 
     class Meta:
         """
