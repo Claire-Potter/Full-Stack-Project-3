@@ -71,7 +71,7 @@ class Survey(models.Model):
                                    blank=True,
                                    null=True)
     is_active = models.BooleanField(default=False)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
 
@@ -90,7 +90,7 @@ class Question(models.Model):
     """
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     question = models.CharField(max_length=128)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
 
     # The string is set to return as the question field
     # if it exists, else a blank field
@@ -104,9 +104,8 @@ class AgeQuestion(models.Model):
     age question.
     """
     age_question = models.CharField(max_length=128,
-                                    default='Please select your age range:',
-                                    editable=False)
-    do_not_delete = models.BooleanField(default=False)
+                                    default='Please select your age range:')
+    deletable = models.BooleanField(default=False, editable=False)
 
     # The string is set to return as the question field
     # if it exists, else a blank field
@@ -121,9 +120,8 @@ class GenderQuestion(models.Model):
     """
     gender_question = models.CharField(max_length=128,
                                        default='Please select your'
-                                               ' preferred gender:',
-                                               editable=False)
-    do_not_delete = models.BooleanField(default=False)
+                                               ' preferred gender:')
+    deletable = models.BooleanField(default=False, editable=False)
 
     # The string is set to return as the question field
     # if it exists, else a blank field
@@ -138,9 +136,8 @@ class IndustryQuestion(models.Model):
     """
     industry_question = models.CharField(max_length=128,
                                          default='Please select your'
-                                                 ' Industry of employment:',
-                                                 editable=False)
-    do_not_delete = models.BooleanField(default=False)
+                                                 ' Industry of employment:')
+    deletable = models.BooleanField(default=False, editable=False)
 
     # The string is set to return as the question field
     # if it exists, else a blank field
@@ -158,7 +155,7 @@ class Option(models.Model):
     """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     option = models.CharField(max_length=128)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
 
     # The string is set to return as the option field
     # if it exists, else a blank field
@@ -176,9 +173,9 @@ class AgeRange(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    title = models.CharField(max_length=80, editable=False)
-    order_number = models.IntegerField(editable=False)
-    do_not_delete = models.BooleanField(default=True)
+    title = models.CharField(max_length=80)
+    order_number = models.IntegerField()
+    deletable = models.BooleanField(default=False, editable=False)
 
     class Meta:
         """
@@ -203,9 +200,9 @@ class Gender(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    title = models.CharField(max_length=80, editable=False)
-    order_number = models.IntegerField(editable=False)
-    do_not_delete = models.BooleanField(default=True)
+    title = models.CharField(max_length=80)
+    order_number = models.IntegerField()
+    deletable = models.BooleanField(default=False, editable=False)
 
     class Meta:
         """
@@ -229,8 +226,8 @@ class Industry(models.Model):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    title = models.CharField(max_length=250, editable=False)
-    do_not_delete = models.BooleanField(default=True)
+    title = models.CharField(max_length=250)
+    deletable = models.BooleanField(default=False, editable=False)
 
     class Meta:
         """
@@ -280,7 +277,7 @@ class DefaultOptions(models.Model):
 
     industries = models.ManyToManyField(Industry,
                                         related_name='industries_set')
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
     active = models.BooleanField(default=False)
 
     class Meta:
@@ -308,7 +305,7 @@ class Submission(models.Model):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
     is_complete = models.BooleanField(default=False)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
 
     # The string is set to return as the Survey field
     # if it exists, else a blank field
@@ -325,7 +322,7 @@ class Answer(models.Model):
     """
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
     option = models.ForeignKey(Option, on_delete=models.CASCADE)
-    do_not_delete = models.BooleanField(default=False)
+    deletable = models.BooleanField(default=True, editable=False)
 
     # The string is set to return as the Option field
     # if it exists, else a blank field
@@ -357,6 +354,7 @@ class DefaultAnswers(models.Model):
     industry = models.ForeignKey(Industry,
                                  related_name='questions_industries_set',
                                  on_delete=models.CASCADE)
+    deletable = models.BooleanField(default=True, editable=False)
 
     class Meta:
         """

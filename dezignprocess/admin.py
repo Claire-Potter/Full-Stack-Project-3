@@ -58,6 +58,9 @@ class StepAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
 
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 
 @admin.register(Tool)
 class ToolAdmin(SummernoteModelAdmin):
@@ -77,6 +80,9 @@ class ToolAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('body',)
     list_filter = ('do_not_delete',)
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Progress)

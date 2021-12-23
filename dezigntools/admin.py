@@ -3,13 +3,10 @@ The Survey model is created to store the data for the
 survey created by a user. Admin can also edit and delete.
 
 The Gender model created to store the gender choices.
-Admin can also edit and delete.
 
 AgeRange model created to store the age range choices.
-Admin can also edit and delete.
 
 Industry model created to store the age range choices.
-Admin can also edit and delete.
 
 Questions model created to store the questions created
 by the users.
@@ -17,15 +14,12 @@ Admin can also edit and delete.
 
 The AgeQuestion model is used to store the default
 age question.
-Admin can also edit and delete.
 
 The GenderQuestion model is used to store the default
 gender question
-Admin can also edit and delete.
 
 The IndustryQuestion model is used to store the default
 industry question.
-Admin can also edit and delete.
 
 Option model created to store the option answers.
 Admin can also edit and delete.
@@ -57,9 +51,9 @@ class SurveyAdmin(admin.ModelAdmin):
     should not be deleted if set to True.
     """
     list_display = ('title', 'is_active', 'creator',
-                    'created_at', 'do_not_delete')
-    search_fields = ['title', 'is_active', 'do_not_delete']
-    list_filter = ('do_not_delete', 'creator', 'created_at')
+                    'created_at', 'deletable')
+    search_fields = ['title', 'is_active', 'deletable']
+    list_filter = ('deletable', 'creator', 'created_at')
 
 
 @admin.register(Gender)
@@ -70,9 +64,14 @@ class GenderAdmin(admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True. It is
     """
-    search_fields = ['title', 'do_not_delete']
-    list_filter = ('title', 'do_not_delete')
-    readonly_fields = ['title']
+    search_fields = ['title', 'deletable']
+    list_filter = ('title', 'deletable')
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(AgeRange)
@@ -84,10 +83,16 @@ class AgeRangeAdmin(admin.ModelAdmin):
     should not be deleted if set to True. It is
     also marked as read_only.
     """
-    list_display = ('title', 'do_not_delete')
-    search_fields = ['title', 'do_not_delete']
-    list_filter = ('title', 'do_not_delete')
+    list_display = ('title', 'deletable')
+    search_fields = ['title', 'deletable']
+    list_filter = ('title', 'deletable')
     readonly_fields = ['title']
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Industry)
@@ -99,10 +104,16 @@ class IndustryAdmin(admin.ModelAdmin):
     should not be deleted if set to True. It is also
     marked as read_only
     """
-    list_display = ('title', 'do_not_delete')
-    search_fields = ['title', 'do_not_delete']
-    list_filter = ('title', 'do_not_delete')
+    list_display = ('title', 'deletable')
+    search_fields = ['title', 'deletable']
+    list_filter = ('title', 'deletable')
     readonly_fields = ['title']
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Question)
@@ -114,9 +125,9 @@ class QuestionAdmin(admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('question', 'survey', 'do_not_delete')
-    search_fields = ['question', 'survey', 'do_not_delete']
-    list_filter = ('question', 'survey', 'do_not_delete')
+    list_display = ('question', 'survey', 'deletable')
+    search_fields = ['question', 'survey', 'deletable']
+    list_filter = ('question', 'survey', 'deletable')
 
 
 @admin.register(AgeQuestion)
@@ -125,8 +136,13 @@ class AgeQuestionAdmin(admin.ModelAdmin):
     Model to store the age question.
     It is ready only
     """
-    list_display = ('age_question', 'do_not_delete')
-    readonly_fields = ['age_question']
+    list_display = ('age_question', 'deletable')
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(GenderQuestion)
@@ -135,8 +151,13 @@ class GenderQuestionAdmin(admin.ModelAdmin):
     Model to store the gender question.
     It is ready only
     """
-    readonly_fields = ['gender_question']
-    list_display = ('gender_question', 'do_not_delete')
+    list_display = ('gender_question', 'deletable')
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(IndustryQuestion)
@@ -145,8 +166,13 @@ class IndustryQuestionAdmin(admin.ModelAdmin):
     Model to store the age question.
     It is ready only
     """
-    readonly_fields = ['industry_question']
-    list_display = ('industry_question', 'do_not_delete')
+    list_display = ('industry_question', 'deletable')
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(DefaultOptions)
@@ -159,10 +185,10 @@ class DefaultOptionsAdmin(admin.ModelAdmin):
     """
     list_display = ('survey', 'age_question', 'gender_question',
                     'industry_question',
-                    'do_not_delete')
-    search_fields = ['survey', 'do_not_delete']
+                    'deletable')
+    search_fields = ['survey', 'deletable']
     list_filter = ('survey', 'age_question', 'gender_question',
-                   'industry_question', 'do_not_delete')
+                   'industry_question', 'deletable')
 
 
 @admin.register(Option)
@@ -173,9 +199,9 @@ class OptionAdmin(admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('question', 'option', 'do_not_delete')
-    search_fields = ['question', 'option', 'do_not_delete']
-    list_filter = ('question', 'option', 'do_not_delete')
+    list_display = ('question', 'option', 'deletable')
+    search_fields = ['question', 'option', 'deletable']
+    list_filter = ('question', 'option', 'deletable')
 
 
 @admin.register(Submission)
@@ -187,11 +213,11 @@ class SubmissionAdmin(admin.ModelAdmin):
     should not be deleted if set to True.
     """
     list_display = ('survey', 'created_at', 'is_complete',
-                    'do_not_delete')
+                    'deletable')
     search_fields = ['survey', 'created_at', 'is_complete',
-                     'do_not_delete']
+                     'deletable']
     list_filter = ('survey', 'created_at', 'is_complete',
-                   'do_not_delete')
+                   'deletable')
 
 
 @admin.register(Answer)
@@ -202,7 +228,7 @@ class AnswerAdmin(admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('submission', 'option')
+    list_display = ('submission', 'option', 'deletable')
     search_fields = ['submission', 'option']
     list_filter = ('submission', 'option')
 
@@ -215,6 +241,6 @@ class DefaultAnswerAdmin(admin.ModelAdmin):
     field is added to indicate that the saved data
     should not be deleted if set to True.
     """
-    list_display = ('submission', 'survey')
-    search_fields = ['submission', 'survey']
-    list_filter = ('submission', 'survey')
+    list_display = ('submission', 'survey', 'deletable')
+    search_fields = ['submission', 'survey', 'deletable']
+    list_filter = ('submission', 'survey', 'deletable')
