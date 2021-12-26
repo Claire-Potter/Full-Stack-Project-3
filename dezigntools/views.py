@@ -617,7 +617,7 @@ def default_options_create(request, p_k):
          gender_question, 'industry_question': industry_question,
          'age_ranges': age_ranges, 'genders': genders,
          'industries': industries,
-         'default_options_form': default_options_form,},
+         'default_options_form': default_options_form, },
     )
 
 
