@@ -31,14 +31,7 @@
                <a class="btn mb-3 mr-1 get-started"
                   href="{% url 'survey-question-create' survey.pk %}" role="button">Add a question
                </a>
-               <!--Cancel links styled as buttons were added to all pages, to always allow the user
-                  to return to the previous page or survey-list-->
-               <div><a class="btn mb-3 mr-1 get-started" href="{% url 'survey-list' %}" role="button">Cancel</a>
-               </div>
-               <div>
-                  <p class="font-italic ml-3 text-form bolder">Click cancel to return to your list of surveys.</p>
-               </div>
-               <!--If at least one question has been added to the survey a submit button is presented
+                             <!--If at least one question has been added to the survey a submit button is presented
                   to the user as an activate survey button to submit the Surveyform.-->
                {% if questions|length > 0 %}
                <div class="ui divider"></div>

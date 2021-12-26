@@ -31,13 +31,7 @@ from embed_video.fields import EmbedVideoField
 class Image(models.Model):
     """
     The Image class to upload and store an image to Cloudinary,
-    provide the alt / aria-label text using the name field, provide
-    an image title using the title field, keep track of the date that
-    the image was added and provide an order_number so that when images
-    are selected within the Step Model and the Tool Model, the list of
-    images is organised. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    provide the alt / aria-label text using the name field.
     """
     name = models.CharField(max_length=100, blank=True)
     image = CloudinaryField('image', default='placeholder',
@@ -82,14 +76,8 @@ class Image(models.Model):
 
 class Resource(models.Model):
     """
-    The Resource class is utilised to upload and store the
-    videos displayed on the step_detail page. The video_name field
-    is used to capture the video titile, video_url to store the
-    you tube url for the video, added to store the added date and
-    order_number, to order the videos accordingly. The django-embed-video
-    library is utilsied to store the videos. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    Utilised to store the videos displayed within
+    the resources section on the step detail page.
     """
     video_name = models.CharField(max_length=100, blank=True,
                                   default='placeholder')
@@ -113,16 +101,8 @@ class Resource(models.Model):
 
 class Tool(models.Model):
     """
-    Model created to store the design thinking recommended tools per step.
-    These are tools utilised to provide advice on help to complete each step.
-    The title field is for the name of the tool, the slug is saved for the
-    tool page, the excerpt field is for a short explanation, the body field
-    contains the content and uses django-summernote to style the content.
-    The image field is where the image from the Image
-    model is selected and the order_number is to order the Tool model by.
-    Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    Utilised to store the data and
+    create the view using the step_tool.html template.
     """
     title = models.CharField(max_length=80, unique=True,
                              default='placeholder')
@@ -152,21 +132,6 @@ class Step(models.Model):
     """
     Model created to store the data required for creating
     the different Steps within the Design Thinking Process.
-    Steps include: Getting Started, Empathy, Define, Ideate,
-    Prototype, Test and Finishing Off. The title field is for
-    the step name, the slug is used for the step page, the feature_image
-    field is used to select the feature image from the Image model,
-    the steps_image field is used to select the step image for
-    the step_detail page from the Image model, the excerpt field
-    contains a short explanation, the body field contains the
-    content and uses django-summernote to style the content. The order_number
-    is used to order the steps by, resources is used to select the relevant
-    videos per step, tools is used to select the relevant tools per step,
-    added records the added on date and time and list number is used to
-    determine whether the step appears on the first step page or the next
-    step page. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
     """
     title = models.CharField(max_length=80, unique=True)
     slug = models.SlugField(max_length=80, unique=True)
@@ -225,15 +190,6 @@ class Progress(models.Model):
     """
     Model created to store the data required to display and
     update the progress status per step.
-    It is rendered through the ProgressForm on the Step_Detail page.
-    The step field is used to select the step the progress status is
-    created against. The username is used to determine the user that creates
-    the progress status. The name field is used to display the username  and
-    the email field is used to display the user email. Updated on reflects
-    the date that the progress status was updated, and progress is the field
-    used to select the actual progress status. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
     """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
                              related_name='progress')
@@ -248,8 +204,7 @@ class Progress(models.Model):
     class ProgressStatus(models.TextChoices):
         """
         Progress class to create the text field choices for the progress
-        dropdown within the Step Model. The options are Not Started,
-        In Progress, Completed or Revisiting
+        dropdown within the Step Model.
         """
         NOT_STARTED = 'Not Started', ('Not Started')
         IN_PROGRESS = 'In Progress', ('In Progress')
@@ -283,15 +238,6 @@ class Comment(models.Model):
     created by users per step.
     These comments users add as they progress through
     the various steps.
-    It is rendered through the CommentForm on the step_detail page.
-    The step field is used to select the step the comment is
-    created against. The username is used to determine the user that creates
-    the comment. The name field is used to display the username  and
-    the email field is used to display the user email. Created on reflects
-    the date that the comment was created, and body is the field
-    used to create the content. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
     """
     step = models.ForeignKey(Step, on_delete=models.CASCADE,
                              related_name='comments')

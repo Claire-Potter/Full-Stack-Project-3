@@ -19,11 +19,9 @@ from cloudinary.models import CloudinaryField
 
 class Home(models.Model):
     """
-    Model created to render a view for the homepage.
-    A foreignKey field is linked to store the username
-    as the related_name 'home'. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    Model created to store homepage data.
+    Utilised to store the home image and create
+    the Home page view using the template index.html.
     """
     name = models.CharField(max_length=80)
     home_image = CloudinaryField('image', default='placeholder')
@@ -32,7 +30,7 @@ class Home(models.Model):
 
     class Meta:
         """
-        Meta created to order the Contact Model according
+        Meta created to order the Home Model according
         to the created on date.
         """
         ordering = ['-created_on']
@@ -44,11 +42,8 @@ class Home(models.Model):
 
 class Contact(models.Model):
     """
-    Model created to render the contact page.
-    A foreignKey field is linked to store the username
-    as the related_name 'contact'. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    Model created to render the contact page
+    and save the contact request data.
     """
     username = models.ForeignKey(
                User, on_delete=models.CASCADE, related_name='contact',
@@ -74,10 +69,7 @@ class Contact(models.Model):
 class Verification(models.Model):
     """
     Model created to render a view for the google verification.
-    A characterfield is linked to store the google verification.
-    Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    No page displayed to user and not included in the admin site.
     """
     verification = models.CharField(max_length=250)
     updated_on = models.DateTimeField(auto_now_add=True)

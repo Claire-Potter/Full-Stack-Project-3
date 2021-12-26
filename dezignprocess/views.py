@@ -109,6 +109,7 @@ def search(request):
         elif searched != Step.objects.filter(title=searched):
             step = get_object_or_404(queryset, title='None')
             image = step.steps_image
+            click = ('Click below to access the step you were looking for:')
 
         return render(
             request, 'search.html',

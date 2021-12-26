@@ -56,15 +56,7 @@ from cloudinary.models import CloudinaryField
 class Survey(models.Model):
     """
     The Survey model is created to store the data for the
-    survey created by a user. The title field stores
-    the survey title. The survey image is a Cloudinary
-    field to upload an image for the survey. Is_active
-    indicates true if the survey has been activated,
-    otherwise false. The creator is a forreignkey field
-    which returns the username. Created_at will be the date
-    and time that the survey was created. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    survey created by a user.
     """
     title = models.CharField(max_length=64)
     survey_image = CloudinaryField('image', default='son8liypgdn9yzc3lx7h',
@@ -84,9 +76,7 @@ class Survey(models.Model):
 class Question(models.Model):
     """
     The Question model is used to store the questions
-    created by a user. The survey field contains the
-    related survey and the question field is utilised
-    to capture and store the question.
+    created by a user.
     """
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     question = models.CharField(max_length=128)
@@ -149,9 +139,7 @@ class IndustryQuestion(models.Model):
 class Option(models.Model):
     """
     The Option model is used to store the multi-choice
-    options created by a user. The question field contains the
-    related question and the option field is utilised
-    to capture and store the options.
+    options created by a user.
     """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     option = models.CharField(max_length=128)
@@ -167,11 +155,7 @@ class AgeRange(models.Model):
     """
     The AgeRange model is created to store the age range choices.
     This is chosen as part of the survey within the default
-    questions section. The title contains the age range choice
-    and the order_number is used to determine the order to
-    sort the age ranges by choices by. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    questions section.
     """
     title = models.CharField(max_length=80)
     order_number = models.IntegerField()
@@ -194,11 +178,7 @@ class Gender(models.Model):
     """
     Model created to store the gender choices.
     This is chosen as part of the survey within the default
-    questions section. The title contains the gender choice
-    and the order_number is used to determine the order to
-    sort the gender choices by. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    questions section.
     """
     title = models.CharField(max_length=80)
     order_number = models.IntegerField()
@@ -221,10 +201,7 @@ class Industry(models.Model):
     """
     The Industry model is created to store the Industry choices.
     This is chosen as part of the survey within the default
-    questions section. The title field stores the Industry
-    choice and is used to sorder the model by. Do not delete
-    field is added to indicate that the saved data
-    should not be deleted if set to True.
+    questions section.
     """
     title = models.CharField(max_length=250)
     deletable = models.BooleanField(default=False, editable=False)
@@ -246,14 +223,9 @@ class Industry(models.Model):
 
 class DefaultOptions(models.Model):
     """
-    The DefaultQuestion model is utilised to
+    The DefaultOptions model is utilised to
     store the default questions added to all surveys.
-    As well as the default options. The survey
-    field is a ForeignKey field which is used to save the
-    related survey, the gender field contains the gender choices
-    from the related Gender model, the age_range field contains the age_range
-    choices from the related AgeRange model and the industry field
-    contains the industry choices from the related Industry model.
+    As well as the default options.
     """
 
     survey = models.ForeignKey(Survey,
@@ -278,7 +250,7 @@ class DefaultOptions(models.Model):
     industries = models.ManyToManyField(Industry,
                                         related_name='industries_set')
     deletable = models.BooleanField(default=True, editable=False)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=True, blank=False)
 
     class Meta:
         """
@@ -297,10 +269,7 @@ class DefaultOptions(models.Model):
 class Submission(models.Model):
     """
     The Submission model is utilised to store the set of answer
-    selections as answered by the user. The survey field
-    contains the related survey, the created_at field contains the
-    date and time of creation and the is_complete field will be true
-    if completed otherwise false.
+    selections as answered by the user.
     """
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     created_at = models.DateTimeField(default=timezone.now)
@@ -316,9 +285,7 @@ class Submission(models.Model):
 class Answer(models.Model):
     """
     The Answer model is utilised to store the set of option
-    selections as answered by the user. The submission field contains
-    the related submission from the Submission model, the option field
-    contains the options selected.
+    selections as answered by the user.
     """
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
     option = models.ForeignKey(Option, on_delete=models.CASCADE)
@@ -333,14 +300,7 @@ class Answer(models.Model):
 class DefaultAnswers(models.Model):
     """
     The DefaultAnswers model is utilised to
-    store the default questions answers. The survey
-    field is a ForeignKey field which is used to save the
-    related survey, The gender field contains the gender choices
-    from the related Gender model, the age_range field contains t
-    he age_range choices from the related AgeRange model and the
-    industry field contains the industry choices from the
-    related Industry model. The submission field pulls in the
-    submission from the Submission Model.
+    store the default questions answers.
     """
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)

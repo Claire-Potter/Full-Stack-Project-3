@@ -1,25 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load cloudinary %}
-{% cloudinary step_instance.image crop='scale' fetch_format='auto' %}
+<!--{% load cloudinary %}-->
+<!--{% cloudinary step_instance.image crop='scale' fetch_format='auto' %}-->
 <!-- https://www.youtube.com/watch?v=AGtae4L5BbI referenced to build the search functionality and fully customised -->
-<section class="pt-5 pb-5">
+<!-- if a search term was included generate the below div-->
+{% if 'None' in step.title %}
+<div class="pt-5 pb-5">
    <div class="container">
       <div class="row">
          <div class="col-12 mb-5 ">
-            <!-- if a search term was included generate the below div-->
-            {% if searched %}
-            {% if 'None' in step.title %}
             <div class="col-12 col-md-6 mx-auto mb-5 card text-center">
                <!-- searched returns the searched for term, click returns an instructional statement per step -->
-               <h2 class="bolder mx-md-5 mt-5">You Searched for {{ searched }}</h2>
-            {% else %}
-            <div class="col-12 col-md-6 mx-auto text-center mb-5 ">
-               <!-- searched returns the searched for term, click returns an instructional statement per step -->
-               <h2 class="bolder mx-md-5 mt-5">You Searched for {{ searched }}</h2>
-               <p>{{ click }}</p>
+               <h2 class="bolder mx-md-5 mt-5">You Searched for an incorrect term ~ {{ searched }}</h2>
             </div>
-            {% endif %}
             <div class="col-12 col-md-6 mx-auto mb-5">
                <hr />
             </div>
@@ -45,13 +38,13 @@
                         <div class="card-body align-items-center">
                            <!-- For any search that does not match a step, the 'None' step is returned
                               this does not contain a page link to follow-->
-                           {% if 'None' in step.title %}
                            <h2 class="card-title bolder text-center">{{ step.title }}</h2>
-                           <p class="card-text">
-                              This search is set up to return the pages for the steps within the Design Thinking
+                           <p class="card-text text-center">
+                              This search is set up to return the pages for the steps within
+                              the Design Thinking
                               process.
-                              Click below to access the step you were looking for:
                            </p>
+                           <p class="card-text text-center">{{ click }}</p>
                            <ul>
                               <li><a href="{% url 'step_detail' slug='getting-started' %}"
                                     class="step-link text-center">
@@ -75,65 +68,75 @@
                               <li><a href="{% url 'step_detail' slug='finishing-off' %}" class="step-link text-center">
                                     <h2 class="card-title bolder">Finishing Off</h2>
                                  </a></li>
+                              <!-- The Return button will direct the user back to the previous screen-->
+                              <li>
+                                 <div class="text-center"> <a class="mb-5 btn get-started"
+                                       href="{{ request.META.HTTP_REFERER }}">Return</a></div>
+                              </li>
                            </ul>
-                           <!-- The Return button will direct the user back to the previous screen-->
-                           <div class="ml-1 mb-5">
-                              <a class="btn get-started" href="{{ request.META.HTTP_REFERER }}">Return</a> </div>
                         </div>
-                        </div>
-                        {% else %}
-                        <a href="{% url 'step_detail' step.slug %}" class="step-link text-center">
-                           <h2 class="card-title bolder">{{ step.title }}</h2>
-                        </a>
-                        <p class="card-text text-center">
-                           {{ step.excerpt | safe }}
-                        </p>
-                        <!-- The Return button will direct the user back to the previous screen-->
-                        <div class="text-center"><a class="btn get-started mx-auto"
-                              href="{{ request.META.HTTP_REFERER }}">Return</a></div>
                      </div>
-                     {% endif %}
                   </div>
                </div>
             </div>
-            {% else %}
-            <!-- If an empty search was completed the below content will be returned-->
-            <div class="col-12 col-md-6 mx-auto mb-5 card text-center card-with-background">
-               <h2 class="mt-5 bolder">You forgot to enter any search criteria.</h2>
-               <p class="card-text">
-                  This search is set up to return the pages for the steps within the Design Thinking process.
-                  Click below to access the step you were looking for:
-               </p>
-               <ul>
-                  <li><a href="{% url 'step_detail' slug='getting-started' %}" class="step-link text-center">
-                        <h2 class="card-title bolder">Getting Started</h2>
-                     </a></li>
-                  <li><a href="{% url 'step_detail' slug='empathy' %}" class="step-link text-center">
-                        <h2 class="card-title bolder">Empathy</h2>
-                     </a></li>
-                  <li><a href="{% url 'step_detail' slug='define' %}" class="step-link text-center">
-                        <h2 class="card-title bolder">Define</h2>
-                     </a></li>
-                  <li><a href="{% url 'step_detail' slug='ideate' %}" class="step-link text-center">
-                        <h2 class="card-title bolder">Ideate</h2>
-                     </a></li>
-                  <li><a href="{% url 'step_detail' slug='prototype' %}" class="step-link text-center">
-                        <h2 class="card-title bolder">Prototype</h2>
-                     </a></li>
-                  <li><a href="{% url 'step_detail' slug='test' %}" class="step-link text-center">
-                        <h2 class="card-title bolder">Test</h2>
-                     </a></li>
-                  <li><a href="{% url 'step_detail' slug='finishing-off' %}" class="step-link text-center">
-                        <h2 class="card-title bolder">Finishing Off</h2>
-                     </a></li>
-               </ul>
-               <!-- The Return button will direct the user back to the previous screen-->
-               <div class="ml-1 mb-5">
-                  <a class="btn get-started" href="{{ request.META.HTTP_REFERER }}">Return</a> </div>
-            </div>
-            {% endif %}
          </div>
       </div>
    </div>
-</section>
+</div>
+{% else %}
+<div class="pt-5 pb-5">
+   <div class="container">
+      <div class="row">
+         <div class="col-12 mb-5 ">
+            <div class="col-12 col-md-6 mx-auto text-center mb-5 ">
+               <!-- searched returns the searched for term, click returns an instructional statement per step -->
+               <h2 class="bolder mx-md-5 mt-5">You Searched for {{ searched }}</h2>
+               <p>{{ click }}</p>
+            </div>
+            <div class="col-12 col-md-6 mx-auto mb-5">
+               <hr />
+            </div>
+            <div class="container">
+               <div class="row g-0">
+                  <div class="col-md-12 card mb-3">
+                     <!-- The same html and css code from the step_detail page is used to return the step 
+                              excluding the accordion body content.-->
+                     <div class="card align-items-center">
+                        <!-- The if statement checks if the title placeholder exists in the image url
+                                 if it does the placeholder image is displayed, if not the unique feature image
+                                 per step is displayed.-->
+                        {% if 'placeholder' in image.image.url %}
+                        <div class="step-image"><img
+                              src="https://res.cloudinary.com/newxperience/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1636711280/Xperience%20DezignWiz/design-thinking-placeholder.jpg"
+                              class="card-img-top img-fluid image-inner" alt="Placeholder image of a bright light"
+                              aria-label="Placeholder image of a bright light"></div>
+                        {% else %}
+                        <div class="step-image"><img src=" {{ image.image.url }}"
+                              class="card-img-top img-fluid image-inner" alt="{{ image.name }}"
+                              aria-label="{{ image.name }}"></div>
+                        {% endif %}
+                        <div class="card-body align-items-center">
+                           <!-- For any search that does not match a step, the 'None' step is returned
+                                    this does not contain a page link to follow-->
+                           <div>
+                              <a href="{% url 'step_detail' step.slug %}" class="step-link text-center">
+                                 <h2 class="card-title bolder">{{ step.title }}</h2>
+                              </a>
+                              <p class="card-text text-center">
+                                 {{ step.excerpt | safe }}
+                              </p>
+                              <!-- The Return button will direct the user back to the previous screen-->
+                              <div class="text-center"><a class="btn get-started mx-auto"
+                                    href="{{ request.META.HTTP_REFERER }}">Return</a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endif %}
 {% endblock %}

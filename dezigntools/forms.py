@@ -35,12 +35,13 @@ will be the email content.
 Forms for the dezigntools app to be rendered by dezigntools/views.py
 """
 from django import forms
+from django.forms import ModelForm
 from multi_email_field.forms import MultiEmailField
 from .models import (Survey, Question, Option,
                      DefaultOptions, DefaultAnswers)
 
 
-class SurveyForm(forms.ModelForm):
+class SurveyForm(ModelForm):
     """
     The SurveyForm is created to refer to the Survey model, display
     the title field and capture new content.
@@ -54,7 +55,7 @@ class SurveyForm(forms.ModelForm):
         fields = ['title']
 
 
-class QuestionForm(forms.ModelForm):
+class QuestionForm(ModelForm):
     """
     The QuestionForm is created to refer to the Question model,
     display the question field to allow the user
@@ -70,13 +71,21 @@ class QuestionForm(forms.ModelForm):
         fields = ['question']
 
 
-class DefaultOptionsForm(forms.ModelForm):
+class DefaultOptionsForm(ModelForm):
     """
     The DefaultOPtionsForm is created to refer to the
     DefaultOptions model,
     it holds the default gender, age range
     and industry choices.
     """
+    def clean_shortcodeactive(self):
+        cleaned_data = self.clean()
+        active = cleaned_data.get('active')
+        if active is False:  # You create this function
+            self.add_error('active', 'Please select Active to'
+                           'activate the questions')
+        return active
+
     class Meta:
         """
         The DefaultOptions model is referenced and
@@ -87,7 +96,7 @@ class DefaultOptionsForm(forms.ModelForm):
         fields = ['active']
 
 
-class OptionForm(forms.ModelForm):
+class OptionForm(ModelForm):
     """
     The OptionForm is created to refer to the Option model,
     display the option field to allow the user
@@ -126,7 +135,7 @@ class AnswerForm(forms.Form):
         self.fields['option'] = option_field
 
 
-class DefaultAnswerForm(forms.ModelForm):
+class DefaultAnswerForm(ModelForm):
     """
     The DefaultAnswerForm is created to for answers
     to the default survey per user.

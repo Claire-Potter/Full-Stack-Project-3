@@ -595,6 +595,7 @@ def default_options_create(request, p_k):
         default_options_form = DefaultOptionsForm(request.POST)
         if default_options_form.is_valid():
             default_options = default_options_form.save(commit=False)
+            default_options.active = True
             default_options.id = p_k
             default_options.survey_id = p_k
             default_options.age_question_id = age_question.pk
@@ -616,7 +617,7 @@ def default_options_create(request, p_k):
          gender_question, 'industry_question': industry_question,
          'age_ranges': age_ranges, 'genders': genders,
          'industries': industries,
-         'default_options_form': default_options_form},
+         'default_options_form': default_options_form,},
     )
 
 
