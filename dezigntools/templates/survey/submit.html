@@ -13,7 +13,7 @@
             These are radio button options which the user will need to select between.-->
          <div class="col-md-6 mx-auto card-with-background mb-5 px-5 pt-5">
             <h2 class="card-title bolder mt-5">Your answers to {{ survey.title }}</h2>
-            <form method="post" novalidate>
+            <form method="post">
                {% csrf_token %}
                <div class="ui basic padded segment left aligned">
                   <div class="ui form {% if form.errors %}error{% endif %}">
@@ -44,7 +44,7 @@
                         </div>
                      </div>
                   </div>
-                  {% csrf_token %}
+                  </div>
                   {{ formset.management_form }}
                   <!--A for loop will return all created questions and their options -->
                   {% for question, form in question_forms %}

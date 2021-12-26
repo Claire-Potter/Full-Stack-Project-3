@@ -70,7 +70,7 @@ INSTALLED_APPS = [
     'home',
 ]
 
-SITE_ID = 3
+SITE_ID = 6
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

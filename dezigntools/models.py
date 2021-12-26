@@ -288,7 +288,8 @@ class Answer(models.Model):
     selections as answered by the user.
     """
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
-    option = models.ForeignKey(Option, on_delete=models.CASCADE)
+    option = models.ForeignKey(Option, on_delete=models.CASCADE, null=False,
+                               blank=False)
     deletable = models.BooleanField(default=True, editable=False)
 
     # The string is set to return as the Option field
@@ -303,17 +304,18 @@ class DefaultAnswers(models.Model):
     store the default questions answers.
     """
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)
-    submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
+    submission = models.ForeignKey(Submission, on_delete=models.CASCADE,
+                                   null=False)
     age_range = models.ForeignKey(AgeRange,
                                   related_name='questions_age_ranges_set',
-                                  on_delete=models.CASCADE)
+                                  on_delete=models.CASCADE, null=False)
     gender = models.ForeignKey(Gender, related_name='questions'
                                                     '_genders'
                                                     '_set',
-                               on_delete=models.CASCADE)
+                               on_delete=models.CASCADE, null=False)
     industry = models.ForeignKey(Industry,
                                  related_name='questions_industries_set',
-                                 on_delete=models.CASCADE)
+                                 on_delete=models.CASCADE, blank=False)
     deletable = models.BooleanField(default=True, editable=False)
 
     class Meta:

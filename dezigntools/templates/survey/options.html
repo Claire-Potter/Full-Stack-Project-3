@@ -32,13 +32,6 @@
                      {{ form.option|as_crispy_field }}
                   </div>
                   <div><button class="btn mb-3 mr-1 get-started ml-3" type="submit">Add new option</button></div>
-                  <!--Cancel links styled as buttons were added to all pages, to always allow the user
-                     to return to the previous page-->
-                  <div><a class="btn mb-3 mr-1 get-started ml-3" href="{% url 'survey-edit' survey.pk %}"
-                     role="button">Cancel</a></div>
-                  <div>
-                     <p class="font-italic ml-3 text-form bolder">Click cancel to return to the previous page.</p>
-                  </div>
                   <!--An if statement and two for statements are utilised to provide an  error message per field and non-fields only if any 
                      errors occur.-->
                   {% if form.errors %}
