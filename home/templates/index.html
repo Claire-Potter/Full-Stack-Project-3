@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 {% load cloudinary %}
 {% cloudinary home_instance.home_image crop="scale" fetch_format="auto" %}
 <div class="container pt-5 pb-5">
