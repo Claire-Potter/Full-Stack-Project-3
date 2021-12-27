@@ -3,11 +3,11 @@
 ## Navigation
 
 ### Desktop site:
-![Navigation Menu Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-desktop.jpgraw=true)
+![navigation-menu-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-desktop.JPG)
 
 
 ### Mobile Site
-![Navigation Menu Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-mobile.jpgraw=true)
+![navigation-menu-mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-mobile.JPG)
 
 The Navigation Menu falls within the Header. This is created on the template base.html, which is the base template for all site templates. It contains the site logo - Xperience DezignWiz, with the 'X' created as a font awesome icon.
 
@@ -36,19 +36,19 @@ The Steps dropdown menu is created in the template and the dropdown action is co
 
 #### Dropdown Desktop:
 
-![Dropdown Menu Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/02.steps-dropdown-desktop.jpgraw=true)
+![Dropdown Menu Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/02.steps-dropdown-desktop.JPG)
 
 #### Dropdown Mobile:
 
-![Dropdown Menu Mobile](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/02.steps-dropdown-mobile.JPGraw=true)
+![Dropdown Menu Mobile](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/02.steps-dropdown-mobile.JPG)
 
 ## The Home Page
 
 ### Desktop Site
-![Home Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-desktop.jpgraw=true)
+![Home Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-desktop.JPG)
 
 ### Mobile Site
-![Home Page Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-mobile.jpgraw=true)
+![Home Page Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-mobile.JPG)
 
 * The Home Page displays a welcome message containing the site purpose
 * This is created as a bootstrap accordion and can be minimized
@@ -58,9 +58,9 @@ The Steps dropdown menu is created in the template and the dropdown action is co
 ## The Footer
 
 ### Desktop Site
-![Footer Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-desktop.jpg)
+![Footer Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-desktop.JPG)
 ### Mobile Site
-![Footer Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-mobile.jpg)
+![Footer Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-mobile.JPG)
 
 * The Footer contains the creation date and designer details
 * It has been styled in a darker blue colour to create contrast with the white font
@@ -70,14 +70,14 @@ The Steps dropdown menu is created in the template and the dropdown action is co
 ## Steps One to Three and Steps Four to Seven
 
 ### Desktop Site
-![Steps One to Three Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-desktop.jpgraw=true)
+![Steps One to Three Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-desktop.JPG)
 
-![Steps Four to Seven Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-desktop.jpgraw=true)
+![Steps Four to Seven Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-desktop.JPG)
 
 ### Mobile Site
-![Steps One to Three Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-mobile.jpgraw=true)
+![Steps One to Three Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-mobile.JPG)
 
-![Steps Four to Seven Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-mobile.jpgraw=true)
+![Steps Four to Seven Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-mobile.JPG)
 
 * The Get Started button will open the first page of the Design Thinking steps containing steps one to three
 * The steps can also be accessed from the navigation menu under the dropdown steps
@@ -99,7 +99,7 @@ Navigation arrow icons are provided to allow the user to easily scroll back and 
 
 #### Steps Navigation
 
-![Steps Navigation Arrows](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/06.prev-next-arrows.jpgraw=true)
+![Steps Navigation Arrows](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/06.prev-next-arrows.JPG)
 
 
 #### Steps Button
@@ -108,15 +108,15 @@ The Image overlay was used to create the link styled as a button to access the i
 
 #### Steps Button
 
-![Step Button](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/07.step-buttons.jpgraw=true)
+![Step Button](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/07.step-buttons.JPG)
 
 ## Step Detail
 
 ### Desktop Site
-![Step Detail Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-desktop.jpgraw=true)
+![Step Detail Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-desktop.JPG)
 
 ### Mobile Site
-![Step Detail Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-mobile.jpgraw=true)
+![Step Detail Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-mobile.JPG)
 
 * The Step Detail site, accessed from the steps page, renders for all seven steps. In the jumbotron each step will contain the unique Step title, number and progress status
 * Below the step detail image specific for the step page will display followed by the step excerpt
@@ -128,17 +128,17 @@ The Image overlay was used to create the link styled as a button to access the i
 * The user will have controls available to choose when to play the video and the associated options
 
 ### Desktop Site
-![Resource Videos Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-desktop.jpgraw=true)
+![Resource Videos Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-desktop.JPG)
 
 ### Mobile Site
-![Resource Videos Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-mobile.jpgraw=true)
+![Resource Videos Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-mobile.JPG)
 
 ### Tools
 * Each tool added to the step can be accessed in this section
 * The link will open the step tool page, it doesn't open a new page as there is a return button available at the end of each step tool page
 
 ### Desktop Site
-![Step Tools Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-three-tools-desktop.jpg)
+![Step Tools Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-three-tools-desktop.JPG)
 
 ### Mobile Site
 ![Step Tools Mobile](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/08.step-details-three-tools-mobile.JPG)
@@ -154,17 +154,17 @@ The Image overlay was used to create the link styled as a button to access the i
 * Once a user has updated their status it will reflect at the top of the Step Detail page as the latest saved status
 
 ### Step Progress Status Desktop
-![Step Progress Status Section Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-step-updates-desktop.jpg)
+![Step Progress Status Section Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-step-updates-desktop.JPG)
 
 ### Progress Form Mobile
-![Step Progress Form](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-four-progress-mobile.jpg)
+![Step Progress Form](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-four-progress-mobile.JPG)
 
 ### Progress Status Updated
-![Step Progress Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-five-progress-updated-mobile.jpg)
+![Step Progress Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-five-progress-updated-mobile.JPG)
 
 ### Progress Status Section if not logged in
 
-![Progress Status if not logged in](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-seven-step-updates-not-logged-in.jpg)
+![Progress Status if not logged in](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-seven-step-updates-not-logged-in.JPG)
 
 ### Comments
 * The Comments section contains a comments form used to capture any relevant progress comments
@@ -173,10 +173,10 @@ The Image overlay was used to create the link styled as a button to access the i
 * When they navigate back to the specific step detail page, they can view their captured comment
 
 ### Comments Form Mobile
-![Comments Form Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-mobile.jpg)
+![Comments Form Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-mobile.JPG)
 
 ### Comments Updated
-![Comments Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-display-mobile.jpg)
+![Comments Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-display-mobile.JPG)
 
 ## Step Tools
 * When a step tool link is selected the step tool page will open
@@ -184,16 +184,16 @@ The Image overlay was used to create the link styled as a button to access the i
 * A return button is found at the end of the step tool page so that the user can easily navigate back to the step detail page
 
 ### Desktop site
-![Step Tool Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-desktop.jpg)
+![Step Tool Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-desktop.JPG)
 ### Mobile Site
-![Step Tool Mobile Page](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-mobile.jpg)
+![Step Tool Mobile Page](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-mobile.JPG)
 
 ## Survey - from Empathy Step
 * The Survey is a tool utilised within the empathy step
 * A section is specifically created to display on the empathy page to provide a user the link to create surveys.
 
 ### Survey from Empathy Step
-![Survey from Empathy Step](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/11.step-tools-survey-from-empathy.jpg)
+![Survey from Empathy Step](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/11.step-tools-survey-from-empathy.JPG)
 
 ## Survey - List
 * When the Survey tool is selected from the Empathy Step or from the main menu link, the user will be directed tot the Survey List page
@@ -205,11 +205,11 @@ The Image overlay was used to create the link styled as a button to access the i
 * If the Survey is activated the view link will display
 
 ### Desktop Site
-![Survey List Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop.jpg)
+![Survey List Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop.JPG)
 ### Mobile Site
-![Survey List Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-mobile.jpg)
+![Survey List Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-mobile.JPG)
 ### Survey List - No Surveys
-![Survey List -No Surveys](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop-no-surveys.jpg)
+![Survey List -No Surveys](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop-no-surveys.JPG)
 
 ### Survey Create
 
@@ -219,10 +219,10 @@ The Image overlay was used to create the link styled as a button to access the i
 * Once the user submits, the draft survey us created
 
 ### Desktop Site
-![Survey Create Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-desktop.jpg)
+![Survey Create Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-desktop.JPG)
 
 ### Mobile Site
-![Survey Create Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-mobile.jpg)
+![Survey Create Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-mobile.JPG)
 
 ## Survey Default Questions
 * After the survey title is created the user is directed to the default questions page
@@ -230,9 +230,9 @@ The Image overlay was used to create the link styled as a button to access the i
 * They will only have the option to accept and proceed as all surveys are set up to include the generic questions
 
 ### Desktop Site
-![Survey Default Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-desktop.jpg)
+![Survey Default Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-desktop.JPG)
 ### Mobile Site
-![Survey Default Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-mobile.jpg)
+![Survey Default Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-mobile.JPG)
 
 ## Survey - Add Questions and Options
 * The user will have the option to create their own custom questions for their survey
@@ -244,23 +244,23 @@ The Image overlay was used to create the link styled as a button to access the i
 * Once they have added all their questions they can choose to Activate the survey
 
 ### Desktop Site
-![Survey Create Question Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-desktop.jpg)
+![Survey Create Question Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-desktop.JPG)
 ### Mobile Site
-![Survey Create Question Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-mobile.jpg)
+![Survey Create Question Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-mobile.JPG)
 ### Cancel Add Question
-![Cancel Add Questions](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-cancel-to-edit-desktop.jpg)
+![Cancel Add Questions](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-cancel-to-edit-desktop.JPG)
 
 ### Desktop Site
-![Add Option Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-desktop.jpg)
+![Add Option Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-desktop.JPG)
 
 ### Mobile Site
-![Create Option Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-mobile.jpg)
+![Create Option Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-mobile.JPG)
 
 ### Create Second Option
-![Create second option](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-second-mobile.jpg)
+![Create second option](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-second-mobile.JPG)
 
 ### Activate Survey
-![Activate Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/17.survey-create-add-second-question-or-activate.jpg)
+![Activate Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/17.survey-create-add-second-question-or-activate.JPG)
 
 ## Send Survey
 
@@ -275,14 +275,14 @@ The Image overlay was used to create the link styled as a button to access the i
 * The email content will be added to the email template created in Sendgrid and delivered to the valid email address/es
 
 ### Desktop Site
-![Send Email Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-desktop.jpg)
+![Send Email Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-desktop.JPG)
 ### Mobile Site
-![Send Email Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-mobile.jpg)
+![Send Email Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-mobile.JPG)
 ### Email Sent message
-![Survey Sent](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.email-sent-mobile.jpg)
+![Survey Sent](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.email-sent-mobile.JPG)
 
 ### Email Delivered
-![Email Delivered](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/19.email-template.jpg)
+![Email Delivered](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/19.email-template.JPG)
 
 ## Start Survey
 
@@ -292,10 +292,10 @@ The Image overlay was used to create the link styled as a button to access the i
 * When the button is clicked the surveyee will be taken to complete their answers
 
 ### Desktop Site
-![Start Survey Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-desktop.jpg)
+![Start Survey Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-desktop.JPG)
 
 ### Mobile Site
-![Start Survey Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-mobile.jpg)
+![Start Survey Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-mobile.JPG)
 
 ## Complete and Submit Survey
 * The surveyee can proceed to answer the survey without having to login
@@ -306,14 +306,14 @@ The Image overlay was used to create the link styled as a button to access the i
 * A thank you message is displayed with a link to the home page to be taken back to check out the rest of the site
 
 ### Desktop Site
-![Complete Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-desktop.jpg)
+![Complete Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-desktop.JPG)
 ### Mobile Site
-![Complete Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-mobile.jpg)
+![Complete Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-mobile.JPG)
 ### Answer Required
-![Required Answers](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-required.jpg)
+![Required Answers](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-required.JPG)
 
 ### Thank you message
-![Thank you message](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/22.survey-thank-you-desktop.jpg)
+![Thank you message](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/22.survey-thank-you-desktop.JPG)
 
 ## Survey Details - Results
 
@@ -338,15 +338,15 @@ The Image overlay was used to create the link styled as a button to access the i
 * The charts can be refined and the custom questions can also be displayed as charts
 
 ### Desktop Site
-![Survey Detail part one desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-desktop.jpg)
-![Survey Detail part two desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-desktop.jpg)
+![Survey Detail part one desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-desktop.JPG)
+![Survey Detail part two desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-desktop.JPG)
 
 ### Mobile Site
-![Survey Detail part one mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-mobile.jpg)
-![Survey Detail part two mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-mobile.jpg)
+![Survey Detail part one mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-mobile.JPG)
+![Survey Detail part two mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-mobile.JPG)
 
 ### Delete Survey
-![Survey-delete](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-delete.jpg)
+![Survey-delete](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-delete.JPG)
 
 ## Search for a Step
 
@@ -357,15 +357,15 @@ The Image overlay was used to create the link styled as a button to access the i
 * If an incorrect term is search or if the search form is submitted with an empty search, the page returned  provides the user with the links to each step page, so that they are able to access whichever page they require
 
 ### Desktop Site
-![Search desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-desktop.jpg)
-![Search-results-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-desktop.jpg)
+![Search desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-desktop.JPG)
+![Search-results-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-desktop.JPG)
 
 ### Mobile Site
-![Search mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-mobile.jpg)
-![Search results mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-mobile.jpg)
+![Search mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-mobile.JPG)
+![Search results mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-mobile.JPG)
 
 ### Search - None
-![Search None](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-none.jpg)
+![Search None](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-none.JPG)
 
 
 
