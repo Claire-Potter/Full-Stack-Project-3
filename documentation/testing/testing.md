@@ -298,11 +298,11 @@ As **a User** I can **easily Navigate across all site pages** so that **I can vi
     * Pass
 
 #### Desktop Site 
-![Navigation Menu Desktop](https://raw.githubusercontent.com/claire-potter/xperience-dezignwiz/main/documentation/features/01.header-navigation-search-desktop.jpg)
+![Navigation Menu Desktop](https://raw.githubusercontent.com/claire-potter/xperience-dezignwiz/main/documentation/features/01.header-navigation-search-desktop.JPG)
 
 
 #### Mobile Site
-![Navigation Menu Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-mobile.jpg)
+![Navigation Menu Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-mobile.JPG)
 
 ### Feature: Home Page
 
@@ -330,10 +330,10 @@ As a **Site User** I can **understand the site purpose** so that **my expectatio
     
 #### Desktop Site
 
-![Home Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-desktop.jpg)
+![Home Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-desktop.JPG)
 
 #### Mobile Site
-![Home Page Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-mobile.jpg)
+![Home Page Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-mobile.JPG)
 
 ### Feature: The Footer
 
@@ -362,9 +362,9 @@ As **a User** I can **access XperienceDezignWiz Social Media Accounts** so that 
 
 
 #### Desktop Site
-![Footer Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-desktop.jpg)
+![Footer Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-desktop.JPG)
 #### Mobile Site
-![Footer Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-mobile.jpg)
+![Footer Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/04.footer-mobile.JPG)
 
 ### Feature: Steps One to Three and Steps Four to Seven
 
@@ -417,14 +417,14 @@ As **a User** I can **view the summarised sub-sections of a step from the step p
     * Pass
     
 ### Desktop Site
-![Steps One to Three Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-desktop.jpg)
+![Steps One to Three Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-desktop.JPG)
 
-![Steps Four to Seven Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-desktop.jpg)
+![Steps Four to Seven Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-desktop.JPG)
 
 ### Mobile Site
-![Steps One to Three Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-mobile.jpg)
+![Steps One to Three Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-mobile.JPG)
 
-![Steps Four to Seven Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-mobile.jpg)
+![Steps Four to Seven Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-mobile.JPG)
 
 ### Steps Navigation
 
@@ -436,7 +436,7 @@ As **a User** I can **view the summarised sub-sections of a step from the step p
 
 #### Steps Navigation
 
-![Steps Navigation Arrows](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/06.prev-next-arrows.jpg)
+![Steps Navigation Arrows](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/06.prev-next-arrows.JPG)
 
 
 #### Steps Button
@@ -463,7 +463,7 @@ As **a Site User** I can **click on a step and open it** so that **I can access 
     
 #### Steps Button
 
-![Step Button](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/07.step-buttons.jpg)
+![Step Button](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/07.step-buttons.JPG)
 
 ### Feature: Step Detail
 
@@ -496,10 +496,10 @@ As **a User** I can **easily move back and fourth between steps** so that **I ca
     * Pass
 
 #### Desktop Site
-![Step Detail Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-desktop.jpg)
+![Step Detail Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-desktop.JPG)
 
 #### Mobile Site
-![Step Detail Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-mobile.jpg)
+![Step Detail Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-mobile.JPG)
 
 #### Resources
 * The Resources section within the Step Detail page contains the relevant Code Institute videos embedded per step
@@ -521,10 +521,10 @@ As **a Site User** I can **access and play the resource video/s within the step*
     * Pass
     
 #### Desktop Site
-![Resource Videos Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-desktop.jpg)
+![Resource Videos Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-desktop.JPG)
 
 #### Mobile Site
-![Resource Videos Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-mobile.jpg)
+![Resource Videos Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-mobile.JPG)
 
 #### Tools
 * Each tool added to the step can be accessed in this section
@@ -550,7 +550,7 @@ As **a Site User** I can **access any step tools available ** so that **I can co
     * Pass
 
 #### Desktop Site
-![Step Tools Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-three-tools-desktop.jpg)
+![Step Tools Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-three-tools-desktop.JPG)
 
 #### Mobile Site
 ![Step Tools Mobile](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/08.step-details-three-tools-mobile.JPG)
@@ -598,17 +598,17 @@ As a **User** I can **update my step progress status and it will reflect correct
 * A logged in user's status per step will reflect as selected status once updated
     * Pass    
 #### Step Progress Status Desktop
-![Step Progress Status Section Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-step-updates-desktop.jpg)
+![Step Progress Status Section Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-step-updates-desktop.JPG)
 
 #### Progress Form Mobile
-![Step Progress Form](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-four-progress-mobile.jpg)
+![Step Progress Form](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-four-progress-mobile.JPG)
 
 #### Progress Status Updated
-![Step Progress Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-five-progress-updated-mobile.jpg)
+![Step Progress Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-five-progress-updated-mobile.JPG)
 
 #### Progress Status Section if not logged in
 
-![Progress Status if not logged in](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-seven-step-updates-not-logged-in.jpg)
+![Progress Status if not logged in](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-seven-step-updates-not-logged-in.JPG)
 
 #### Comments
 * The Comments section contains a comments form used to capture any relevant progress comments
@@ -621,10 +621,10 @@ As a **User** I can **update my step progress status and it will reflect correct
     * Pass
 
 #### Comments Form Mobile
-![Comments Form Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-mobile.jpg)
+![Comments Form Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-mobile.JPG)
 
 #### Comments Updated
-![Comments Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-display-mobile.jpg)
+![Comments Updated](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/09.step-details-six-comments-display-mobile.JPG)
 
 
 ### Feature: Step Tools
@@ -647,10 +647,10 @@ As **a User** I can **Return to the previous page** so that **When I follow an i
     * Pass
     
 #### Desktop site
-![Step Tool Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-desktop.jpg)
+![Step Tool Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-desktop.JPG)
 
 #### Mobile Site
-![Step Tool Mobile Page](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-mobile.jpg)
+![Step Tool Mobile Page](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/10.step-tools-mobile.JPG)
 
 ### Feature: Survey - from Empathy Step
 * The Survey is a tool utilised within the empathy step
@@ -659,7 +659,7 @@ As **a User** I can **Return to the previous page** so that **When I follow an i
     * Pass
 
 #### Survey from Empathy Step
-![Survey from Empathy Step](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/11.step-tools-survey-from-empathy.jpg)
+![Survey from Empathy Step](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/11.step-tools-survey-from-empathy.JPG)
 
 ### Feature: Survey - List
 * When the Survey tool is selected from the Empathy Step or from the main menu link, the user will be directed tot the Survey List page
@@ -696,11 +696,11 @@ As **a User** I can **create a new survey** so that **I can interact with custom
     * Pass
     
 #### Desktop Site
-![Survey List Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop.jpg)
+![Survey List Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop.JPG)
 #### Mobile Site
-![Survey List Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-mobile.jpg)
+![Survey List Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-mobile.JPG)
 #### Survey List - No Surveys
-![Survey List -No Surveys](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop-no-surveys.jpg)
+![Survey List -No Surveys](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/12.survey-list-desktop-no-surveys.JPG)
 
 #### Survey Create
 
@@ -714,10 +714,10 @@ As **a User** I can **create a new survey** so that **I can interact with custom
     * Pass
 
 #### Desktop Site
-![Survey Create Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-desktop.jpg)
+![Survey Create Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-desktop.JPG)
 
 #### Mobile Site
-![Survey Create Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-mobile.jpg)
+![Survey Create Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/13.survey-create-mobile.JPG)
 
 ### Feature: Survey Default Questions
 * After the survey title is created the user is directed to the default questions page
@@ -742,9 +742,9 @@ As **a User** I can **include predefined questions and answers** so that **it si
     * Pass
 
 #### Desktop Site
-![Survey Default Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-desktop.jpg)
+![Survey Default Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-desktop.JPG)
 #### Mobile Site
-![Survey Default Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-mobile.jpg)
+![Survey Default Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/14.survey-default-questions-options-mobile.JPG)
 
 
 ### Feature: Survey - Add Questions and Options
@@ -779,23 +779,23 @@ As **a User** I can **add my own questions and answer options** so that **I can 
     * Pass
 
 #### Desktop Site
-![Survey Create Question Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-desktop.jpg)
+![Survey Create Question Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-desktop.JPG)
 #### Mobile Site
-![Survey Create Question Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-mobile.jpg)
+![Survey Create Question Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-mobile.JPG)
 #### Cancel Add Question
-![Cancel Add Questions](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-cancel-to-edit-desktop.jpg)
+![Cancel Add Questions](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/15.survey-create-question-cancel-to-edit-desktop.JPG)
 
 ### Desktop Site
-![Add Option Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-desktop.jpg)
+![Add Option Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-desktop.JPG)
 
 ### Mobile Site
-![Create Option Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-mobile.jpg)
+![Create Option Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-mobile.JPG)
 
 ### Create Second Option
-![Create second option](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-second-mobile.jpg)
+![Create second option](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/16.survey-create-option-second-mobile.JPG)
 
 ### Activate Survey
-![Activate Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/17.survey-create-add-second-question-or-activate.jpg)
+![Activate Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/17.survey-create-add-second-question-or-activate.JPG)
 
 ### Feature: Send Survey
 
@@ -839,14 +839,14 @@ As **a User** I can **send out the Survey directly from within the site to multi
     * Pass
     
 #### Desktop Site
-![Send Email Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-desktop.jpg)
+![Send Email Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-desktop.JPG)
 #### Mobile Site
-![Send Email Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-mobile.jpg)
+![Send Email Survey](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.send-survey-mobile.JPG)
 #### Email Sent message
-![Survey Sent](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.email-sent-mobile.jpg)
+![Survey Sent](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/18.email-sent-mobile.JPG)
 
 #### Email Delivered
-![Email Delivered](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/19.email-template.jpg)
+![Email Delivered](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/19.email-template.JPG)
 
 ### Feature: Start Survey
 
@@ -860,10 +860,10 @@ As **a User** I can **send out the Survey directly from within the site to multi
     * Pass
 
 #### Desktop Site
-![Start Survey Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-desktop.jpg)
+![Start Survey Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-desktop.JPG)
 
 #### Mobile Site
-![Start Survey Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-mobile.jpg)
+![Start Survey Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/20.start-survey-mobile.JPG)
 
 ### Feature: Complete and Submit Survey
 
@@ -881,14 +881,14 @@ As **a User** I can **send out the Survey directly from within the site to multi
     * Pass
 
 #### Desktop Site
-![Complete Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-desktop.jpg)
+![Complete Questions Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-desktop.JPG)
 #### Mobile Site
-![Complete Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-mobile.jpg)
+![Complete Questions Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-mobile.JPG)
 #### Answer Required
-![Required Answers](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-required.jpg)
+![Required Answers](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/21.answer-default-questions-required.JPG)
 
 #### Thank you message
-![Thank you message](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/22.survey-thank-you-desktop.jpg)
+![Thank you message](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/22.survey-thank-you-desktop.JPG)
 
 ### Feature: Survey Details - Results
 * The Survey Detail page, accessed through the view button on the Survey List page contains the following content"
@@ -940,15 +940,15 @@ As **a User** I can **delete a survey** so that **I have the option available if
     * Pass
 
 #### Desktop Site
-![Survey Detail part one desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-desktop.jpg)
-![Survey Detail part two desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-desktop.jpg)
+![Survey Detail part one desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-desktop.JPG)
+![Survey Detail part two desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-desktop.JPG)
 
 #### Mobile Site
-![Survey Detail part one mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-mobile.jpg)
-![Survey Detail part two mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-mobile.jpg)
+![Survey Detail part one mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-one-mobile.JPG)
+![Survey Detail part two mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-detail-part-two-mobile.JPG)
 
 #### Delete Survey
-![Survey-delete](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-delete.jpg)
+![Survey-delete](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/23.survey-delete.JPG)
 
 ### Feature: Search for a Step
 
@@ -977,13 +977,13 @@ As **a User** I can **search for a Step** so that **I can access each step as an
     * Pass
   
 #### Desktop Site
-![Search desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-desktop.jpg)
-![Search-results-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-desktop.jpg)
+![Search desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-desktop.JPG)
+![Search-results-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-desktop.JPG)
 
 #### Mobile Site
-![Search mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-mobile.jpg)
-![Search results mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-mobile.jpg)
+![Search mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-mobile.JPG)
+![Search results mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-mobile.JPG)
 
 #### Search - None
-![Search None](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-none.jpg)
+![Search None](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-none.JPG)
 
