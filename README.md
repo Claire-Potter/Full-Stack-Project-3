@@ -212,7 +212,7 @@ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/d
 
 The colours for this site are based on the below image:
 
-![Colour Image](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/design/colour-scheme/inspiring-website-color-schemes.png raw=true)
+![Colour Image](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/design/colour-scheme/inspiring-website-color-schemes.png)
 
 The pink-blue combo is among the most preferred colour mixes that please the eye. For this website design, the designer has chosen several nuances of pastel blue jazzed up with energizing pink. I found the image on the following site:
 
