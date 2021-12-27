@@ -169,11 +169,12 @@ The Super User will have additional access to the Admin section. Certain models 
 
 Below is an image of the site structure, excluding the survey, as login is required to access.
 
-site-map
+
+<a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/design/site-map/site-map.pdf" target="_blank">Site Map</a>
 
 The survey basic structure is as follows:
 
-survey-journey
+<a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/design/site-map/survey-journey.JPG" target="_blank">Survey Journey</a>
 
 
 ### Access
@@ -203,14 +204,15 @@ The original wireframes created are saved as wireframes-desktop and wireframes-m
 2. The auths account default templates for login, logout, register etc were utilised and fully styled to match the site design.
 3. The Contact page was added later, and the Code Institute Resume Project -Contact template provided the template. It was fully customised to meet site design and requirements.
 
-Please click here to view all wireframes
+Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/design/wireframes" target="_blank">click here</a> to view all wireframes
+
 
 ## Design
 ### Colours
 
 The colours for this site are based on the below image:
 
-colour-image
+![Colour Image](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/design/colour-scheme/inspiring-website-color-schemes.png raw=true)
 
 The pink-blue combo is among the most preferred colour mixes that please the eye. For this website design, the designer has chosen several nuances of pastel blue jazzed up with energizing pink. I found the image on the following site:
 
@@ -226,16 +228,23 @@ The main font used across the body is 'Dongle' with the default font set as sans
 
 These fonts were chose to be easy to read and have a young and casual look.
 
-## Database
+# Database
 
 For development, I used the sqlite3 database that comes with Django. A PostgreSQL database through Heroku is in use 
 for the deployed live site.
 
-Please access the app and database file here.
+Please access the app and database file <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/apps-and-models/apps-and-models.md" target="_blank">here</a> 
+
+
+ <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/apps-and-models/apps-and-models.png" target="_blank">Database diagram</a>
+
+ <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/apps-and-models/full-database.png" target="_blank">Database diagram full site</a>
+
+ <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/apps-and-models/survey-data-model.JPG" target="_blank">Survey data model</a>
 
 # Features
  
- Please click here to view all features
+Please access the features file <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/features.md" target="_blank">here</a>
 
 # Technologies used 
 
@@ -282,7 +291,7 @@ ImageOptimizer used to minify image file sizes.
 
 # Testing
 
-Please access the full testing pack here.
+Please access the testing pack <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/testing.md" target="_blank">here</a>
 
 # Deployment
 
@@ -423,7 +432,7 @@ https://docs.djangoproject.com/en/3.2/releases/3.2/
 3. Survey app was built by following this tutorial from Matt Segal and the associated github page mentioned within the site https://mattsegal.dev/django-survey-project.html
 4. The following tutorial was referenced to build the search functionality and fully customised https://www.youtube.com/watch?v=AGtae4L5BbI
 5. Complex lookups with Q objects was referenced here:
-    https://docs.djangoproject.com/en/3.2/topics/db/queries/
+ https://docs.djangoproject.com/en/3.2/topics/db/queries/
 
 6. The instruction to create the apps-models.png image were found here:
 https://medium.com/@yathomasi1/1-using-django-extensions-to-visualize-the-database-diagram-in-django-application-c5fa7e710e16

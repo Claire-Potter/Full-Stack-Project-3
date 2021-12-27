@@ -3,11 +3,11 @@
 ## Navigation
 
 ### Desktop site:
-![Navigation Menu Desktop](https://raw.githubusercontent.com/claire-potter/xperience-dezignwiz/main/documentation/features/01.header-navigation-search-desktop.jpg)
+![Navigation Menu Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-desktop.jpgraw=true)
 
 
 ### Mobile Site
-![Navigation Menu Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-mobile.jpg)
+![Navigation Menu Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-mobile.jpgraw=true)
 
 The Navigation Menu falls within the Header. This is created on the template base.html, which is the base template for all site templates. It contains the site logo - Xperience DezignWiz, with the 'X' created as a font awesome icon.
 
@@ -36,19 +36,19 @@ The Steps dropdown menu is created in the template and the dropdown action is co
 
 #### Dropdown Desktop:
 
-![Dropdown Menu Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/02.steps-dropdown-desktop.jpg)
+![Dropdown Menu Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/02.steps-dropdown-desktop.jpgraw=true)
 
 #### Dropdown Mobile:
 
-![Dropdown Menu Mobile](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/02.steps-dropdown-mobile.JPG)
+![Dropdown Menu Mobile](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/02.steps-dropdown-mobile.JPGraw=true)
 
 ## The Home Page
 
 ### Desktop Site
-![Home Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-desktop.jpg)
+![Home Page Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-desktop.jpgraw=true)
 
 ### Mobile Site
-![Home Page Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-mobile.jpg)
+![Home Page Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/03.welcome-purpose-mobile.jpgraw=true)
 
 * The Home Page displays a welcome message containing the site purpose
 * This is created as a bootstrap accordion and can be minimized
@@ -70,14 +70,14 @@ The Steps dropdown menu is created in the template and the dropdown action is co
 ## Steps One to Three and Steps Four to Seven
 
 ### Desktop Site
-![Steps One to Three Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-desktop.jpg)
+![Steps One to Three Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-desktop.jpgraw=true)
 
-![Steps Four to Seven Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-desktop.jpg)
+![Steps Four to Seven Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-desktop.jpgraw=true)
 
 ### Mobile Site
-![Steps One to Three Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-mobile.jpg)
+![Steps One to Three Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-1-to-3-mobile.jpgraw=true)
 
-![Steps Four to Seven Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-mobile.jpg)
+![Steps Four to Seven Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/05.steps-4-7-mobile.jpgraw=true)
 
 * The Get Started button will open the first page of the Design Thinking steps containing steps one to three
 * The steps can also be accessed from the navigation menu under the dropdown steps
@@ -99,7 +99,7 @@ Navigation arrow icons are provided to allow the user to easily scroll back and 
 
 #### Steps Navigation
 
-![Steps Navigation Arrows](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/06.prev-next-arrows.jpg)
+![Steps Navigation Arrows](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/06.prev-next-arrows.jpgraw=true)
 
 
 #### Steps Button
@@ -108,15 +108,15 @@ The Image overlay was used to create the link styled as a button to access the i
 
 #### Steps Button
 
-![Step Button](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/07.step-buttons.jpg)
+![Step Button](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/07.step-buttons.jpgraw=true)
 
 ## Step Detail
 
 ### Desktop Site
-![Step Detail Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-desktop.jpg)
+![Step Detail Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-desktop.jpgraw=true)
 
 ### Mobile Site
-![Step Detail Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-mobile.jpg)
+![Step Detail Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-one-mobile.jpgraw=true)
 
 * The Step Detail site, accessed from the steps page, renders for all seven steps. In the jumbotron each step will contain the unique Step title, number and progress status
 * Below the step detail image specific for the step page will display followed by the step excerpt
@@ -128,10 +128,10 @@ The Image overlay was used to create the link styled as a button to access the i
 * The user will have controls available to choose when to play the video and the associated options
 
 ### Desktop Site
-![Resource Videos Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-desktop.jpg)
+![Resource Videos Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-desktop.jpgraw=true)
 
 ### Mobile Site
-![Resource Videos Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-mobile.jpg)
+![Resource Videos Mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/08.step-details-two-resources-mobile.jpgraw=true)
 
 ### Tools
 * Each tool added to the step can be accessed in this section
