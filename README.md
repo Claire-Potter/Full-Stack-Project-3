@@ -1,6 +1,12 @@
 # Xperience DezignWiz
 ## About this project:
 
+
+
+
+
+Please <a href="https://xperience-dezignwiz.herokuapp.com/" target="_blank">Click Here</a> to access the site
+
 The Design Thinking Process is used by multiple industries to assist project teams to solve business needs by coming up with user-centric solutions, including prototyping the solution and testing it followed by revisiting and reworking the solution concept. The focus is on the user and the user's needs. It consists of five steps: Empathy, Define, Ideate, Prototype and Test.
 
 The purpose of Xperience DezignWiz is to create a step by step approach for those who are new to the Design Thinking Process, to be able to understand each Design Thinking Step, provide tools relevant to the step to assist the user to complete the step and to be able to track their progress within each step. The key tool provided is a Survey tool, which allows the user to create and send their own surveys. A survey submissions summary is provided with charts, allowing the user to analyse their data to understand their user-base. This is very helpful to assist the user to move on to completing personas. The user can go back and fourth between the various steps and the process does not have to be completed sequentially.
@@ -508,7 +514,11 @@ https://stackoverflow.com/questions/45135263/class-has-no-objects-member
 2. All videos displayed as Resources are the property of Code Institute and were sourced from the Code Institute You Tube channel. They have been used from project purposes only 
 1. The favicon was created on Free Favicon Maker
 2. Images sourced through Unsplash and Shutterstock
-3. The Design Thinking material was sourced from the following sites and used for project purposes only:
+3. The mockup image in the ReadMe was created using the following site:
+https://responsivemockups.com/
+4. The favicon was generated here:
+https://favicon.io/favicon-converter/
+5. The Design Thinking material was sourced from the following sites and used for project purposes only:
 
     * https://www.interaction-design.org/literature/article/5-stages-in-the-design-thinking-process
 
@@ -526,7 +536,7 @@ https://stackoverflow.com/questions/45135263/class-has-no-objects-member
 
     * https://www.interaction-design.org/literature/topics/storytelling
     
-4. The decriptions used for the models were sourced from the following site:
+6. The decriptions used for the models were sourced from the following site:
 https://www.geeksforgeeks.org/django-model-data-types-and-fields-list/
 
 ## Acknowledgements

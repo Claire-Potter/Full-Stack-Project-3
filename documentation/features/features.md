@@ -4,37 +4,36 @@
 
 <!-- Start Document Outline -->
 
+* [Table of Contents](#table-of-contents)
 * [Navigation](#navigation)
-	* [Desktop site:](#desktop-site)
+	* [Desktop site](#desktop-site)
 	* [Mobile Site](#mobile-site)
-	* [Desktop Site:](#desktop-site-1)
-	* [Mobile Site:](#mobile-site-1)
-	* [Links:](#links)
+	* [Links](#links)
 	* [Dropdown Menu](#dropdown-menu)
-		* [Dropdown Desktop:](#dropdown-desktop)
-		* [Dropdown Mobile:](#dropdown-mobile)
+		* [Dropdown Desktop](#dropdown-desktop)
+		* [Dropdown Mobile](#dropdown-mobile)
 * [The Home Page](#the-home-page)
+	* [Desktop Site](#desktop-site-1)
+	* [Mobile Site](#mobile-site-1)
+* [The Footer](#the-footer)
 	* [Desktop Site](#desktop-site-2)
 	* [Mobile Site](#mobile-site-2)
-* [The Footer](#the-footer)
+* [Steps One to Three and Steps Four to Seven](#steps-one-to-three-and-steps-four-to-seven)
 	* [Desktop Site](#desktop-site-3)
 	* [Mobile Site](#mobile-site-3)
-* [Steps One to Three and Steps Four to Seven](#steps-one-to-three-and-steps-four-to-seven)
-	* [Desktop Site](#desktop-site-4)
-	* [Mobile Site](#mobile-site-4)
 	* [Steps Navigation](#steps-navigation)
 		* [Steps Navigation](#steps-navigation-1)
 		* [Steps Button](#steps-button)
 		* [Steps Button](#steps-button-1)
 * [Step Detail](#step-detail)
+	* [Desktop Site](#desktop-site-4)
+	* [Mobile Site](#mobile-site-4)
+	* [Resources](#resources)
 	* [Desktop Site](#desktop-site-5)
 	* [Mobile Site](#mobile-site-5)
-	* [Resources](#resources)
+	* [Tools](#tools)
 	* [Desktop Site](#desktop-site-6)
 	* [Mobile Site](#mobile-site-6)
-	* [Tools](#tools)
-	* [Desktop Site](#desktop-site-7)
-	* [Mobile Site](#mobile-site-7)
 	* [Step Progress](#step-progress)
 	* [Step Progress Status Desktop](#step-progress-status-desktop)
 	* [Progress Form Mobile](#progress-form-mobile)
@@ -44,52 +43,52 @@
 	* [Comments Form Mobile](#comments-form-mobile)
 	* [Comments Updated](#comments-updated)
 * [Step Tools](#step-tools)
-	* [Desktop site](#desktop-site-8)
-	* [Mobile Site](#mobile-site-8)
+	* [Desktop site](#desktop-site-7)
+	* [Mobile Site](#mobile-site-7)
 * [Survey - from Empathy Step](#survey---from-empathy-step)
 	* [Survey from Empathy Step](#survey-from-empathy-step)
 * [Survey - List](#survey---list)
-	* [Desktop Site](#desktop-site-9)
-	* [Mobile Site](#mobile-site-9)
+	* [Desktop Site](#desktop-site-8)
+	* [Mobile Site](#mobile-site-8)
 	* [Survey List - No Surveys](#survey-list---no-surveys)
 	* [Survey Create](#survey-create)
+	* [Desktop Site](#desktop-site-9)
+	* [Mobile Site](#mobile-site-9)
+* [Survey Default Questions](#survey-default-questions)
 	* [Desktop Site](#desktop-site-10)
 	* [Mobile Site](#mobile-site-10)
-* [Survey Default Questions](#survey-default-questions)
+* [Survey - Add Questions and Options](#survey---add-questions-and-options)
 	* [Desktop Site](#desktop-site-11)
 	* [Mobile Site](#mobile-site-11)
-* [Survey - Add Questions and Options](#survey---add-questions-and-options)
+	* [Cancel Add Question](#cancel-add-question)
 	* [Desktop Site](#desktop-site-12)
 	* [Mobile Site](#mobile-site-12)
-	* [Cancel Add Question](#cancel-add-question)
-	* [Desktop Site](#desktop-site-13)
-	* [Mobile Site](#mobile-site-13)
 	* [Create Second Option](#create-second-option)
 	* [Activate Survey](#activate-survey)
 * [Send Survey](#send-survey)
-	* [Desktop Site](#desktop-site-14)
-	* [Mobile Site](#mobile-site-14)
+	* [Desktop Site](#desktop-site-13)
+	* [Mobile Site](#mobile-site-13)
 	* [Email Sent message](#email-sent-message)
 	* [Email Delivered](#email-delivered)
 * [Start Survey](#start-survey)
+	* [Desktop Site](#desktop-site-14)
+	* [Mobile Site](#mobile-site-14)
+* [Complete and Submit Survey](#complete-and-submit-survey)
 	* [Desktop Site](#desktop-site-15)
 	* [Mobile Site](#mobile-site-15)
-* [Complete and Submit Survey](#complete-and-submit-survey)
-	* [Desktop Site](#desktop-site-16)
-	* [Mobile Site](#mobile-site-16)
 	* [Answer Required](#answer-required)
 	* [Thank you message](#thank-you-message)
 * [Survey Details - Results](#survey-details---results)
-	* [Desktop Site](#desktop-site-17)
-	* [Mobile Site](#mobile-site-17)
+	* [Desktop Site](#desktop-site-16)
+	* [Mobile Site](#mobile-site-16)
 	* [Delete Survey](#delete-survey)
 * [Search for a Step](#search-for-a-step)
-	* [Desktop Site](#desktop-site-18)
-	* [Mobile Site](#mobile-site-18)
+	* [Desktop Site](#desktop-site-17)
+	* [Mobile Site](#mobile-site-17)
 	* [Search - None](#search---none)
 * [Contact Us](#contact-us)
-	* [Desktop Site](#desktop-site-19)
-	* [Mobile Site](#mobile-site-19)
+	* [Desktop Site](#desktop-site-18)
+	* [Mobile Site](#mobile-site-18)
 * [Site Administration](#site-administration)
 * [Account Management](#account-management)
 * [Sign In via Social Media Sites](#sign-in-via-social-media-sites)
@@ -99,22 +98,20 @@
 
 ## Navigation
 
-### Desktop site:
+### Desktop site
 ![navigation-menu-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-desktop.JPG)
 
+The Navigation menu will display horizontally across the page as an unordered list
 
 ### Mobile Site
 ![navigation-menu-mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/01.header-navigation-search-mobile.JPG)
 
-The Navigation Menu falls within the Header. This is created on the template base.html, which is the base template for all site templates. It contains the site logo - Xperience DezignWiz, with the 'X' created as a font awesome icon.
-
-### Desktop Site:
-The Navigation menu will display horizontally across the page as an unordered list
-
-### Mobile Site:
 The Navigation menu will compress into the navigation hamburger icon. When it is clicked the menu will display at the top of the site.
 
-### Links:
+The Navigation Menu falls within the Header. This is created on the template base.html, which is the base template for all site templates. It contains the site logo - Xperience DezignWiz, with the 'X' created as a font awesome icon.
+
+
+### Links
 * Home - the home page
 * Steps - dropdown menu:
     * Steps 1 to 3
@@ -131,11 +128,11 @@ The Navigation menu will compress into the navigation hamburger icon. When it is
 
 The Steps dropdown menu is created in the template and the dropdown action is completed through the JavaScript script.js
 
-#### Dropdown Desktop:
+#### Dropdown Desktop
 
 ![Dropdown Menu Desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/02.steps-dropdown-desktop.JPG)
 
-#### Dropdown Mobile:
+#### Dropdown Mobile
 
 ![Dropdown Menu Mobile](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/02.steps-dropdown-mobile.JPG)
 

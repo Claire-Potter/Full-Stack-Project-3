@@ -230,7 +230,7 @@
         * script.js - with warnings only
     * The code for the Chart-js script was entered into the validator and passed -apart from the template tags
     which are not recognised. Passed with warnings only.
-    *  Please <a href="" target="_blank">click here</a> to see the screenshots.
+    *  Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/javascript" target="_blank">click here</a> to see the screenshots.
         
 4. All .py files passed through pep-8 online successfully:
 
@@ -447,6 +447,10 @@ After spending multiple hours trying to resolve, I eventually wrote out the resu
 ### Social Accounts
 
 I found setting up the login via social accounts to be very tempermental. Not so much from the django account side but from the social account providers. It would work for a while, and then stop working. I managed to get it working for both Google and Facebook, so I hope that this doesn't change.
+
+### Custom Question Validation
+
+When I combined the default questions and custom questions into one front end form, the validation for the custom questions stopped working. Unfortunately I ran out of time to be able to resolve the issue.
 
 ## Feature and User Story Testing
 
