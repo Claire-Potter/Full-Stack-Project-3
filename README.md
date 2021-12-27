@@ -14,6 +14,8 @@ The project is developed using Django, Python, JavaScript, HTML, CSS, and the Bo
 
 This is currently a test project.
 
+# Table of Contents
+
 <!-- Start Document Outline -->
 
 * [Ux Design](#ux-design)

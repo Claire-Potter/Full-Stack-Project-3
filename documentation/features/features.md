@@ -1,5 +1,7 @@
 # Features
 
+## Table of Contents
+
 <!-- Start Document Outline -->
 
 * [Navigation](#navigation)
@@ -485,7 +487,7 @@ The Image overlay was used to create the link styled as a button to access the i
 ![Contact Mobile Site](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/25.contact-mobile.JPG)
 
 
- Please <a href="" target="_blank">click here</a> to view the rest of the images.
+ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/contact" target="_blank">click here</a> to view the rest of the images.
 
  ## Site Administration
 
@@ -497,7 +499,7 @@ The Image overlay was used to create the link styled as a button to access the i
  * Various fields have had their create or edit ability removed as these should only be completed from the front end as a user
  * The Admin users are still able to create user fields from the front end
 
-  Please <a href="" target="_blank">click here</a> to view the administration screenshots.
+  Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/site-administration" target="_blank">click here</a> to view the administration screenshots.
 
 ## Account Management
 
@@ -512,7 +514,7 @@ The Image overlay was used to create the link styled as a button to access the i
  * A user has the option to add a new email address, add an additional email address, update their primary email address or resend their email validation message
  * The account base.html has been set up as a bootstrap side bar menu which displays across the account pages
 
- Please <a href="" target="_blank">click here</a> to view the account management screenshots.
+ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/account-management" target="_blank">click here</a> to view the account management screenshots.
 
  ## Sign In via Social Media Sites
 
@@ -522,7 +524,7 @@ The Image overlay was used to create the link styled as a button to access the i
  * They will be able to successfully login
  * The single sign on makes it easy for the user to access the site
 
- Please <a href="" target="_blank">click here</a> to view the sign on via social accounts.
+ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/sign-on-social-accounts" target="_blank">click here</a> to view the sign on via social accounts.
 
 ## Alert Messages
 
@@ -530,7 +532,7 @@ The Image overlay was used to create the link styled as a button to access the i
   * The message will automatically clear after two seconds
   * This provides the user with confirmation that their action was successful or failed
 
-![Alert Message]()
+![Alert Message](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/account-management/30.success-message.JPG)
 
 
 

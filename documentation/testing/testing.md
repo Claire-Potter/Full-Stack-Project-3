@@ -1,5 +1,7 @@
 # Testing
 
+## Table of Contents
+
 <!-- Start Document Outline -->
 
 * [Responsiveness and Compatibility](#responsiveness-and-compatibility)
@@ -158,7 +160,7 @@
     * Edge
     * Opera
     * The site is compatible and accessible across all browsers.
-    *  Please  <a href="" target="_blank">click here</a>  to view browser testing screenshots.
+    *  Please  <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/browser" target="_blank">click here</a>  to view browser testing screenshots.
     
 2. Devices and Screen Sizes
 
@@ -228,7 +230,7 @@
         * script.js - with warnings only
     * The code for the Chart-js script was entered into the validator and passed -apart from the template tags
     which are not recognised. Passed with warnings only.
-    *  Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/pep-8" target="_blank">click here</a> to see the screenshots.
+    *  Please <a href="" target="_blank">click here</a> to see the screenshots.
         
 4. All .py files passed through pep-8 online successfully:
 
@@ -1206,7 +1208,7 @@ As **a User** I can **create and submit a contact request** so that **I can rece
 ![Contact Mobile Site](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/25.contact-mobile.JPG)
 
 
- Please <a href="" target="_blank">click here</a> to view the rest of the images.
+ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/contact" target="_blank">click here</a> to view the rest of the images.
 
  ### Feature Site Administration
 
@@ -1290,7 +1292,7 @@ As **a SuperUser** I can **access the Admin Site** so that **I can provide admin
 * A SuperUser will have no User Group restriction and will be able to access Accounts, Users and User Group, Social Accounts and additional access per DezignProcess and DezignTools App Admin
     * Pass
 
-  Please <a href="" target="_blank">click here</a> to view the administration screenshots.
+  Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/site-administration" target="_blank">click here</a> to view the administration screenshots.
 
 ### Feature Account Management
 
@@ -1336,7 +1338,7 @@ As **a SuperUser** I can **access the Admin Site** so that **I can provide admin
 * A user can validate their email address/es
     * Pass
 
- Please <a href="" target="_blank">click here</a> to view the account management screenshots.
+ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/account-management" target="_blank">click here</a> to view the account management screenshots.
 
 ### Feature Sign In via Social Media Sites
 
@@ -1364,7 +1366,7 @@ As **a User** I can **login via my social media accounts** so that **I have sing
 * The user successfully registers and continues to login using their social account details
     * Pass
 
- Please <a href="" target="_blank">click here</a> to view the sign on via social accounts.
+ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/features/sign-on-social-accounts" target="_blank">click here</a> to view the sign on via social accounts.
 
 ### Feature Alert Messages
 
@@ -1388,7 +1390,7 @@ As **a User** I can **receive system messages** so that **I can know if an actio
 * The system message displays the correct content and will automatically clear from the page
     * Pass
 
-![Alert Message]()
+![Alert Message](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/account-management/30.success-message.JPG)
 
 ### Responsive Site
 
