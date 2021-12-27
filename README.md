@@ -1,8 +1,7 @@
 # Xperience DezignWiz
 ## About this project:
 
-
-
+![Xperience DezignWiz Mockup](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/design/mockup/mockup-image.png)
 
 
 Please <a href="https://xperience-dezignwiz.herokuapp.com/" target="_blank">Click Here</a> to access the site
