@@ -1,5 +1,154 @@
 # Testing
 
+<!-- Start Document Outline -->
+
+* [Responsiveness and Compatibility](#responsiveness-and-compatibility)
+* [Code Validation](#code-validation)
+* [Testing Accessibility](#testing-accessibility)
+* [Performance:](#performance)
+* [Automated Tests](#automated-tests)
+	* [Tox Environment test](#tox-environment-test)
+* [Django Extensions](#django-extensions)
+* [Validate-template](#validate-template)
+* [HTML-Validator](#html-validator)
+* [Spell Checker](#spell-checker)
+* [Bugs and Issues](#bugs-and-issues)
+	* [Model Creation](#model-creation)
+	* [Chart-js](#chart-js)
+	* [Social Accounts](#social-accounts)
+* [Feature and User Story Testing](#feature-and-user-story-testing)
+	* [Feature: Navigation](#feature-navigation)
+		* [User Story](#user-story)
+		* [Acceptance Criteria](#acceptance-criteria)
+		* [Desktop Site](#desktop-site)
+		* [Mobile Site](#mobile-site)
+	* [Feature: Home Page](#feature-home-page)
+		* [User Story](#user-story-1)
+		* [Acceptance Criteria](#acceptance-criteria-1)
+		* [Desktop Site](#desktop-site-1)
+		* [Mobile Site](#mobile-site-1)
+	* [Feature: The Footer](#feature-the-footer)
+		* [User Story](#user-story-2)
+		* [Acceptance Criteria](#acceptance-criteria-2)
+		* [Desktop Site](#desktop-site-2)
+		* [Mobile Site](#mobile-site-2)
+	* [Feature: Steps One to Three and Steps Four to Seven](#feature-steps-one-to-three-and-steps-four-to-seven)
+		* [User Stories](#user-stories)
+		* [Acceptance Criteria](#acceptance-criteria-3)
+	* [Desktop Site](#desktop-site-3)
+	* [Mobile Site](#mobile-site-3)
+	* [Steps Navigation](#steps-navigation)
+		* [Steps Navigation](#steps-navigation-1)
+		* [Steps Button](#steps-button)
+		* [User Story](#user-story-3)
+		* [Acceptance Criteria](#acceptance-criteria-4)
+		* [Steps Button](#steps-button-1)
+	* [Feature: Step Detail](#feature-step-detail)
+		* [User Story](#user-story-4)
+		* [Acceptance Criteria](#acceptance-criteria-5)
+		* [Desktop Site](#desktop-site-4)
+		* [Mobile Site](#mobile-site-4)
+		* [Resources](#resources)
+		* [User Story](#user-story-5)
+		* [Acceptance Criteria](#acceptance-criteria-6)
+		* [Desktop Site](#desktop-site-5)
+		* [Mobile Site](#mobile-site-5)
+		* [Tools](#tools)
+		* [User Story](#user-story-6)
+		* [Acceptance Criteria](#acceptance-criteria-7)
+		* [Desktop Site](#desktop-site-6)
+		* [Mobile Site](#mobile-site-6)
+		* [Step Progress](#step-progress)
+		* [User Stories](#user-stories-1)
+		* [Acceptance Criteria](#acceptance-criteria-8)
+		* [Step Progress Status Desktop](#step-progress-status-desktop)
+		* [Progress Form Mobile](#progress-form-mobile)
+		* [Progress Status Updated](#progress-status-updated)
+		* [Progress Status Section if not logged in](#progress-status-section-if-not-logged-in)
+		* [Comments](#comments)
+		* [Comments Form Mobile](#comments-form-mobile)
+		* [Comments Updated](#comments-updated)
+	* [Feature: Step Tools](#feature-step-tools)
+		* [Acceptance Criteria](#acceptance-criteria-9)
+		* [Desktop site](#desktop-site-7)
+		* [Mobile Site](#mobile-site-7)
+	* [Feature: Survey - from Empathy Step](#feature-survey---from-empathy-step)
+		* [Survey from Empathy Step](#survey-from-empathy-step)
+	* [Feature: Survey - List](#feature-survey---list)
+		* [User Story](#user-story-7)
+		* [Acceptance Criteria](#acceptance-criteria-10)
+		* [Desktop Site](#desktop-site-8)
+		* [Mobile Site](#mobile-site-8)
+		* [Survey List - No Surveys](#survey-list---no-surveys)
+		* [Survey Create](#survey-create)
+		* [Desktop Site](#desktop-site-9)
+		* [Mobile Site](#mobile-site-9)
+	* [Feature: Survey Default Questions](#feature-survey-default-questions)
+		* [User Story](#user-story-8)
+		* [Acceptance Criteria](#acceptance-criteria-11)
+		* [Desktop Site](#desktop-site-10)
+		* [Mobile Site](#mobile-site-10)
+	* [Feature: Survey - Add Questions and Options](#feature-survey---add-questions-and-options)
+		* [User Story](#user-story-9)
+		* [Acceptance Criteria](#acceptance-criteria-12)
+		* [Desktop Site](#desktop-site-11)
+		* [Mobile Site](#mobile-site-11)
+		* [Cancel Add Question](#cancel-add-question)
+	* [Desktop Site](#desktop-site-12)
+	* [Mobile Site](#mobile-site-12)
+	* [Create Second Option](#create-second-option)
+	* [Activate Survey](#activate-survey)
+	* [Feature: Send Survey](#feature-send-survey)
+		* [User Story](#user-story-10)
+		* [Acceptance Criteria](#acceptance-criteria-13)
+		* [Desktop Site](#desktop-site-13)
+		* [Mobile Site](#mobile-site-13)
+		* [Email Sent message](#email-sent-message)
+		* [Email Delivered](#email-delivered)
+	* [Feature: Start Survey](#feature-start-survey)
+		* [Desktop Site](#desktop-site-14)
+		* [Mobile Site](#mobile-site-14)
+	* [Feature: Complete and Submit Survey](#feature-complete-and-submit-survey)
+		* [Desktop Site](#desktop-site-15)
+		* [Mobile Site](#mobile-site-15)
+		* [Answer Required](#answer-required)
+		* [Thank you message](#thank-you-message)
+	* [Feature: Survey Details - Results](#feature-survey-details---results)
+		* [User Stories](#user-stories-2)
+		* [Acceptance Criteria](#acceptance-criteria-14)
+		* [Desktop Site](#desktop-site-16)
+		* [Mobile Site](#mobile-site-16)
+		* [Delete Survey](#delete-survey)
+	* [Feature: Search for a Step](#feature-search-for-a-step)
+		* [User Story](#user-story-11)
+		* [Acceptance Criteria](#acceptance-criteria-15)
+		* [Desktop Site](#desktop-site-17)
+		* [Mobile Site](#mobile-site-17)
+		* [Search - None](#search---none)
+	* [Feature Contact Us](#feature-contact-us)
+		* [User Story](#user-story-12)
+		* [Acceptance Criteria](#acceptance-criteria-16)
+		* [Desktop Site](#desktop-site-18)
+		* [Mobile Site](#mobile-site-18)
+	* [Feature Site Administration](#feature-site-administration)
+		* [User Stories](#user-stories-3)
+		* [Acceptance Criteria](#acceptance-criteria-17)
+	* [Feature Account Management](#feature-account-management)
+		* [User Story](#user-story-13)
+		* [Acceptance Criteria](#acceptance-criteria-18)
+	* [Feature Sign In via Social Media Sites](#feature-sign-in-via-social-media-sites)
+		* [User Story](#user-story-14)
+		* [Acceptance Criteria](#acceptance-criteria-19)
+	* [Feature Alert Messages](#feature-alert-messages)
+		* [User Story](#user-story-15)
+		* [Acceptance Criteria](#acceptance-criteria-20)
+	* [Responsive Site](#responsive-site)
+		* [User Story](#user-story-16)
+		* [Acceptance Criteria](#acceptance-criteria-21)
+
+<!-- End Document Outline -->
+
+
 ## Responsiveness and Compatibility
 
 1. Lambda Test was used to check the site on different browsers and operating systems:
@@ -9,7 +158,7 @@
     * Edge
     * Opera
     * The site is compatible and accessible across all browsers.
-    * Please click here to view browser testing screenshots.
+    *  Please  <a href="" target="_blank">click here</a>  to view browser testing screenshots.
     
 2. Devices and Screen Sizes
 
@@ -72,17 +221,20 @@
           
 2. W3C CSS Jigsaw Validator
     * The code for the stylesheet.css was entered into the validator and passed excluding the google fonts import.
+    *  Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/css-validation/css-validation.JPG" target="_blank">click here</a> to see the screenshot.
+
 3. JScript Code Validator
     * The code for the following JavaScript scripts pages was entered into the validator passed:
-        * script.js
+        * script.js - with warnings only
+    * The code for the Chart-js script was entered into the validator and passed -apart from the template tags
+    which are not recognised. Passed with warnings only.
+    *  Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/pep-8" target="_blank">click here</a> to see the screenshots.
         
 4. All .py files passed through pep-8 online successfully:
 
- Please click here to view the screenshots.
+ Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/pep-8" target="_blank">click here</a>.
 
-Pycodestyle ran within the console returned no errors:
- 
- Please click here to view the screenshots.
+Pycodestyle ran within the console returned no errors.
 
 ## Testing Accessibility
 
@@ -90,7 +242,8 @@ The Wave Evaluation Tool was used to test the Accessibility of the site.
 
 I had to make some changes to make sure I could pass the accessibility testing as best as possible.
 
-Please click here to see the Wave screenshots.
+Please <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/accessibility" target="_blank">click here</a> to see the Wave screenshots.
+
 
 **Home page:**
 
@@ -148,7 +301,7 @@ No other errors
 
 ## Performance:
 
-Google lighthouse utilised to test performance of site and mobile. Please see reports attached here.
+Google lighthouse utilised to test performance of site and mobile. Please see reports attached <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/google-lighthouse" target="_blank"> here</a>.
 
 I used the tool ImageOptimizer to resize all images to improve performance.
 I also moved the home image
@@ -179,16 +332,16 @@ The following steps were followed to run a tox test:
 I had to create the following two files:
 
 
-image one
+![Tox image one](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/automated-tests/tox/tox-file-1.png)
 
 
 And:
 
-image two
+![Tox image two](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/automated-tests/tox/tox-file-2.png)
 
 Results were as follows:
 
-image three
+![Tox image three](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/automated-tests/tox/tox-results.png)
 
 Which means:
 
@@ -202,7 +355,12 @@ Please follow this link to description of tox system overview:
 
 Django extensions was installed and the automated check through python manage.py was run successfully.
 
+![Django Extensions](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/automated-tests/django-extensions/1.django_extensions.JPG)
+
+
 Results were as follows:
+
+![Django Extensions Results](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/automated-tests/django-extensions/2.django-extensions-check.JPG)
 
 ## Validate-template
 
@@ -210,8 +368,11 @@ The validate-template test was created in home - tests.py and run for all templa
 
 Before:
 
+![Validate Before](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/automated-tests/validate-template/validate-template-top-level.JPG)
+
 After corrections:
 
+![Validate After](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/automated-tests/validate-template/validate-template-top-level-after.JPG)
 
 ## HTML-Validator 
 
@@ -227,7 +388,7 @@ It was installed as follows:
 6. Enable and open each site page for validation file to be generated.
 7. Only if a template contains an error will the text file be created and displayed in the console, therefore there are no screenshots for templates once errors were corrected.
 
-Please click here to view the results.
+Please  <a href="https://github.com/Claire-Potter/Xperience-DezignWiz/tree/main/documentation/testing/automated-tests/html-validator" target="_blank"> click here</a> to view the results.
 
 ## Spell Checker
 
@@ -235,11 +396,17 @@ internetmarketingninjas.com was utilised to check spelling across the entire sit
 
 Each page received a summary with any errors per page as follows:
 
+![Summary](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/spell-checker/home-page.JPG)
+
 Most of the spelling errors were due to American vs. British spelling as the site is American.
 
 Spelling Before:
 
+![Spelling Before](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/spell-checker/spelling-errors-before.JPG)
+
 Spelling After:
+
+![Spelling After](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/testing/spell-checker/spelling-errors-after.JPG)
 
 ## Bugs and Issues
 
@@ -270,6 +437,14 @@ However, when it came to the questions, which a user can set up themselves, a fo
 The issue was that, I could only get the chart-js jquery code to reference one chart element. Even if I created multiple elements and tried to reach one after the other by referencing the class, it would only generate the chart once. The data was then corrupted as it would try to add one question and option set over the other.
 
 Due to time restraint, I wasn’t able to spend further time trying to complete this task. I made the decision to keep the question section set up the same as the set up completed in the survey tutorial for the first release of this project.
+
+I ran in to further issues when trying to get the default options answers to calculate correctly. I tried a for loop, adding a dictionary, tried to create a range and calculate and  Django annotate, but I couldn't get the results to add together, i.e. if two users selected option A, there would be one result for option A and not two.
+
+After spending multiple hours trying to resolve, I eventually wrote out the results I required in the view and sent them to the template as context. It is not the best solution however the page displays as required.
+
+### Social Accounts
+
+I found setting up the login via social accounts to be very tempermental. Not so much from the django account side but from the social account providers. It would work for a while, and then stop working. I managed to get it working for both Google and Facebook, so I hope that this doesn't change.
 
 ## Feature and User Story Testing
 
@@ -978,12 +1153,254 @@ As **a User** I can **search for a Step** so that **I can access each step as an
   
 #### Desktop Site
 ![Search desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-desktop.JPG)
+
+
+
 ![Search-results-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-desktop.JPG)
 
 #### Mobile Site
 ![Search mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-mobile.JPG)
+
+
+
 ![Search results mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-mobile.JPG)
 
 #### Search - None
 ![Search None](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-none.JPG)
 
+
+### Feature Contact Us
+
+* From the navigation menu a user can select Contact us
+    * Pass
+* They do not need to be logged in to use this feature
+    * Pass
+* A contact form will be provided on the page
+    * Pass
+* If the user is logged in, their name and email address will be automatically completed
+    * Pass
+* They are able to capture their request and send it
+    * Pass
+* An email will be sent to the admin email address
+    * Pass
+* The admin are also able to view and delete the contact request from the admin page
+    * Pass
+
+#### User Story
+
+As **a User** I can **create and submit a contact request** so that **I can receive support from admin**
+  
+#### Acceptance Criteria
+  
+* A User is able to capture a message
+    * Pass
+* The contact request is saved and admin can access it from the Admin site
+    * Pass
+* An email is sent to the admin email address containing the name, email address and contact message of the user
+    * Pass
+
+#### Desktop Site
+![Contact Desktop Site](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/25.contact-desktop.JPG)
+
+#### Mobile Site
+![Contact Mobile Site](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/25.contact-mobile.JPG)
+
+
+ Please <a href="" target="_blank">click here</a> to view the rest of the images.
+
+ ### Feature Site Administration
+
+ * The Django Admin Site has been enabled and set up for two users
+    * Pass
+ * The AdminUser has a user group assigned
+     * Pass
+ * The SuperUser does not have a user group assigned
+     * Pass
+ * View and action restrictions have been enabled in admin.py for each model
+     * Pass
+ * This has been set up in order to protect data to ensure the administrators cannot 'break' the site
+     * Pass
+ * Various fields have had their create or edit ability removed as these should only be completed from the front end as a user
+     * Pass
+ * The Admin users are still able to create user fields from the front end
+     * Pass
+
+#### User Stories
+
+As **a Site Administrator** I can **access the Admin site** so that **I can view/add/edit and delete content as required**
+
+As **a SuperUser** I can **access the Admin Site** so that **I can provide admin support**
+  
+
+#### Acceptance Criteria
+  
+* A Site Administrator will have the Admin site as a link within their navigation menu
+    * Pass
+* A Site Administrator will be able to edit the home page image and alt text saved as the name
+    * Pass
+* A Site Administrator will be able to edit the following Step fields: feature image, steps image, excerpt, body, resources and tools
+    * Pass
+* A Site Administrator will be able to add new tools and edit the following fields: excerpt, body and image
+    * Pass
+* A Site Administrator will be able to view only:
+    * Default Questions
+        * Age 
+            * Pass
+        * Gender
+            * Pass
+        * Industry
+            * Pass
+    * Default Options
+        * Age
+            * Pass
+        * Gender
+            * Pass
+        * Industry
+            * Pass
+* A Site Administrator will be able to View/Delete:
+    * Progress Status - users
+        * Pass
+    * Comments
+        * Pass
+    * Questions
+        * Pass
+    * Options
+        * Pass
+    *  Submissions
+        * Pass
+    * Default Question Answers
+        * Pass
+    * Answers
+        * Pass
+    * Contact Requests
+        * Pass
+ * A Site Administrator will be able to View/Edit/Delete:
+    * All Steps Pages Images (Images)
+        * Pass
+    * Resources
+        * Pass
+    * Surveys
+        * Pass
+
+  
+* A SuperUser will have the Admin site as a link within their navigation menu
+    * Pass
+* A SuperUser will have the same access as the Site Administrator and additional access
+    * Pass
+* A SuperUser will have no User Group restriction and will be able to access Accounts, Users and User Group, Social Accounts and additional access per DezignProcess and DezignTools App Admin
+    * Pass
+
+  Please <a href="" target="_blank">click here</a> to view the administration screenshots.
+
+### Feature Account Management
+
+ * The Django Auth Account Management has been set up for the site
+    * Pass
+ * The default templates have been used to create the account pages
+     * Pass
+ * If a user is not logged in - they will have the option to login or register on their menu
+     * Pass
+ * When creating a new account, the email field will be validated
+     * Pass
+ * When creating a password validations are applied
+     * Pass
+ * When a user registers, an email is sent to validate their email address
+     * Pass
+ * If a user forgets their password they can send a forgot password email
+     * Pass
+ * A link will be sent to them, if they follow it they can successfully reset their password
+     * Pass
+ * A user has the option to add a new email address, add an additional email address, update their primary email address or resend their email validation message
+     * Pass
+ * The account base.html has been set up as a bootstrap side bar menu which displays across the account pages
+     * Pass
+
+ #### User Story
+
+ As **a User** I can **perform simple account actions such as resetting my password, changing my email address, logging in and out** so that **I can easily access and update my account without having to reach out for support**
+
+#### Acceptance Criteria
+  
+* A new user can register for an account
+    * Pass
+* A user can login to their account and logout of their account
+    * Pass
+* A user can send a forgotten password email to themselves to reset their password
+    * Pass
+* A user can change their email address
+    * Pass
+* A user can add an additional email address
+    * Pass
+* A user can udpate their primary email address
+    * Pass
+* A user can validate their email address/es
+    * Pass
+
+ Please <a href="" target="_blank">click here</a> to view the account management screenshots.
+
+### Feature Sign In via Social Media Sites
+
+ * It has been enabled for a user to sign in via Google and Facebook
+    * Pass
+ * From the login page the user can click on either Google or Facebook to register or login to the site
+     * Pass
+ * Their social media account will be picked up and aunthenticated
+     * Pass
+ * They will be able to successfully login
+     * Pass
+ * The single sign on makes it easy for the user to access the site
+     * Pass
+
+#### User Story
+
+As **a User** I can **login via my social media accounts** so that **I have single sign on benefit**
+
+#### Acceptance Criteria
+  
+* A user can select between their google or facebook accounts to login to the site
+    * Pass
+* The site will fetch their account details, validate them and create their social accounts
+    * Pass
+* The user successfully registers and continues to login using their social account details
+    * Pass
+
+ Please <a href="" target="_blank">click here</a> to view the sign on via social accounts.
+
+### Feature Alert Messages
+
+  * If a user completes an action a success or error message will be displayed
+    * Pass
+  * The message will automatically clear after two seconds
+    * Pass
+  * This provides the user with confirmation that their action was successful or failed
+    * Pass
+
+#### User Story
+
+As **a User** I can **receive system messages** so that **I can know if an action has been completed successfully**
+
+#### Acceptance Criteria
+  
+* When a form is saved a system message will display
+    * Pass
+* When a user logs in or out, a system message will display
+    * Pass
+* The system message displays the correct content and will automatically clear from the page
+    * Pass
+
+![Alert Message]()
+
+### Responsive Site
+
+#### User Story
+
+As **a User** I can **access the site across devices and across platforms** so that **no matter what device or platform I utilise, I can view and interact with the site and enjoy a similar experience**
+
+#### Acceptance Criteria
+  
+* The user can display the site across multiple devices and screensizes and the site will render accordingly 
+    * Pass
+* The user can access the site from various platfroms and the site will render accordingly
+    * Pass
+* The user's experience is similar across all devices and platforms
+    * Pass

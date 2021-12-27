@@ -14,7 +14,52 @@ The project is developed using Django, Python, JavaScript, HTML, CSS, and the Bo
 
 This is currently a test project.
 
-Table of Contents
+<!-- Start Document Outline -->
+
+* [Ux Design](#ux-design)
+	* [User Stories](#user-stories)
+	* [Strategy](#strategy)
+		* [High-level Business Goals](#high-level-business-goals)
+		* [Value](#value)
+		* [Why is this site so special?](#why-is-this-site-so-special)
+		* [Trade-offs](#trade-offs)
+	* [Scope](#scope)
+	* [Structure](#structure)
+		* [Skeleton](#skeleton)
+		* [Access](#access)
+			* [Site visitors:](#site-visitors)
+			* [Registered users:](#registered-users)
+			* [Site administrators and Superusers:](#site-administrators-and-superusers)
+	* [Wireframes](#wireframes)
+		* [Differences:](#differences)
+	* [Design](#design)
+		* [Colours](#colours)
+		* [Fonts](#fonts)
+* [Database](#database)
+* [Features](#features)
+* [Technologies used](#technologies-used)
+	* [Languages](#languages)
+	* [Agile Planning](#agile-planning)
+	* [Images](#images)
+	* [Libraries and Frameworks](#libraries-and-frameworks)
+	* [Development tools](#development-tools)
+	* [Deployment/Hosting](#deploymenthosting)
+	* [Static and media file storage](#static-and-media-file-storage)
+	* [Email](#email)
+* [Testing](#testing)
+* [Deployment](#deployment)
+	* [Required technology](#required-technology)
+	* [Maintaining Code](#maintaining-code)
+	* [Deployment to Heroku](#deployment-to-heroku)
+	* [How to Fork the Repository](#how-to-fork-the-repository)
+* [References](#references)
+	* [Code](#code)
+		* [General Queries](#general-queries)
+		* [Code Adaptations](#code-adaptations)
+	* [Content](#content)
+	* [Acknowledgements](#acknowledgements)
+
+<!-- End Document Outline -->
 
 # Ux Design
 

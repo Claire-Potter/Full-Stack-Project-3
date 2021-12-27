@@ -1,5 +1,100 @@
 # Features
 
+<!-- Start Document Outline -->
+
+* [Navigation](#navigation)
+	* [Desktop site:](#desktop-site)
+	* [Mobile Site](#mobile-site)
+	* [Desktop Site:](#desktop-site-1)
+	* [Mobile Site:](#mobile-site-1)
+	* [Links:](#links)
+	* [Dropdown Menu](#dropdown-menu)
+		* [Dropdown Desktop:](#dropdown-desktop)
+		* [Dropdown Mobile:](#dropdown-mobile)
+* [The Home Page](#the-home-page)
+	* [Desktop Site](#desktop-site-2)
+	* [Mobile Site](#mobile-site-2)
+* [The Footer](#the-footer)
+	* [Desktop Site](#desktop-site-3)
+	* [Mobile Site](#mobile-site-3)
+* [Steps One to Three and Steps Four to Seven](#steps-one-to-three-and-steps-four-to-seven)
+	* [Desktop Site](#desktop-site-4)
+	* [Mobile Site](#mobile-site-4)
+	* [Steps Navigation](#steps-navigation)
+		* [Steps Navigation](#steps-navigation-1)
+		* [Steps Button](#steps-button)
+		* [Steps Button](#steps-button-1)
+* [Step Detail](#step-detail)
+	* [Desktop Site](#desktop-site-5)
+	* [Mobile Site](#mobile-site-5)
+	* [Resources](#resources)
+	* [Desktop Site](#desktop-site-6)
+	* [Mobile Site](#mobile-site-6)
+	* [Tools](#tools)
+	* [Desktop Site](#desktop-site-7)
+	* [Mobile Site](#mobile-site-7)
+	* [Step Progress](#step-progress)
+	* [Step Progress Status Desktop](#step-progress-status-desktop)
+	* [Progress Form Mobile](#progress-form-mobile)
+	* [Progress Status Updated](#progress-status-updated)
+	* [Progress Status Section if not logged in](#progress-status-section-if-not-logged-in)
+	* [Comments](#comments)
+	* [Comments Form Mobile](#comments-form-mobile)
+	* [Comments Updated](#comments-updated)
+* [Step Tools](#step-tools)
+	* [Desktop site](#desktop-site-8)
+	* [Mobile Site](#mobile-site-8)
+* [Survey - from Empathy Step](#survey---from-empathy-step)
+	* [Survey from Empathy Step](#survey-from-empathy-step)
+* [Survey - List](#survey---list)
+	* [Desktop Site](#desktop-site-9)
+	* [Mobile Site](#mobile-site-9)
+	* [Survey List - No Surveys](#survey-list---no-surveys)
+	* [Survey Create](#survey-create)
+	* [Desktop Site](#desktop-site-10)
+	* [Mobile Site](#mobile-site-10)
+* [Survey Default Questions](#survey-default-questions)
+	* [Desktop Site](#desktop-site-11)
+	* [Mobile Site](#mobile-site-11)
+* [Survey - Add Questions and Options](#survey---add-questions-and-options)
+	* [Desktop Site](#desktop-site-12)
+	* [Mobile Site](#mobile-site-12)
+	* [Cancel Add Question](#cancel-add-question)
+	* [Desktop Site](#desktop-site-13)
+	* [Mobile Site](#mobile-site-13)
+	* [Create Second Option](#create-second-option)
+	* [Activate Survey](#activate-survey)
+* [Send Survey](#send-survey)
+	* [Desktop Site](#desktop-site-14)
+	* [Mobile Site](#mobile-site-14)
+	* [Email Sent message](#email-sent-message)
+	* [Email Delivered](#email-delivered)
+* [Start Survey](#start-survey)
+	* [Desktop Site](#desktop-site-15)
+	* [Mobile Site](#mobile-site-15)
+* [Complete and Submit Survey](#complete-and-submit-survey)
+	* [Desktop Site](#desktop-site-16)
+	* [Mobile Site](#mobile-site-16)
+	* [Answer Required](#answer-required)
+	* [Thank you message](#thank-you-message)
+* [Survey Details - Results](#survey-details---results)
+	* [Desktop Site](#desktop-site-17)
+	* [Mobile Site](#mobile-site-17)
+	* [Delete Survey](#delete-survey)
+* [Search for a Step](#search-for-a-step)
+	* [Desktop Site](#desktop-site-18)
+	* [Mobile Site](#mobile-site-18)
+	* [Search - None](#search---none)
+* [Contact Us](#contact-us)
+	* [Desktop Site](#desktop-site-19)
+	* [Mobile Site](#mobile-site-19)
+* [Site Administration](#site-administration)
+* [Account Management](#account-management)
+* [Sign In via Social Media Sites](#sign-in-via-social-media-sites)
+* [Alert Messages](#alert-messages)
+
+<!-- End Document Outline -->
+
 ## Navigation
 
 ### Desktop site:
@@ -358,15 +453,84 @@ The Image overlay was used to create the link styled as a button to access the i
 
 ### Desktop Site
 ![Search desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-desktop.JPG)
+
+
+
 ![Search-results-desktop](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-desktop.JPG)
 
 ### Mobile Site
 ![Search mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-step-mobile.JPG)
+
+
 ![Search results mobile](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-results-mobile.JPG)
 
 ### Search - None
 ![Search None](https://github.com/claire-potter/xperience-dezignwiz/blob/main/documentation/features/24.search-none.JPG)
 
+
+## Contact Us
+
+* From the navigation menu a user can select Contact us
+* They do not need to be logged in to use this feature
+* A contact form will be provided on the page
+* If the user is logged in, their name and email address will be automatically completed
+* They are able to capture their request and send it
+* An email will be sent to the admin email address
+* The admin are also able to view and delete the contact request from the admin page
+
+### Desktop Site
+![Contact Desktop Site](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/25.contact-desktop.JPG)
+
+### Mobile Site
+![Contact Mobile Site](https://github.com/Claire-Potter/Xperience-DezignWiz/blob/main/documentation/features/25.contact-mobile.JPG)
+
+
+ Please <a href="" target="_blank">click here</a> to view the rest of the images.
+
+ ## Site Administration
+
+ * The Django Admin Site has been enabled and set up for two users
+ * The AdminUser has a user group assigned
+ * The SuperUser does not have a user group assigned
+ * View and action restrictions have been enabled in admin.py for each model
+ * This has been set up in order to protect data to ensure the administrators cannot 'break' the site
+ * Various fields have had their create or edit ability removed as these should only be completed from the front end as a user
+ * The Admin users are still able to create user fields from the front end
+
+  Please <a href="" target="_blank">click here</a> to view the administration screenshots.
+
+## Account Management
+
+ * The Django Auth Account Management has been set up for the site
+ * The default templates have been used to create the account pages
+ * If a user is not logged in - they will have the option to login or register on their menu
+ * When creating a new account, the email field will be validated
+ * When creating a password validations are applied
+ * When a user registers, an email is sent to validate their email address
+ * If a user forgets their password they can send a forgot password email
+ * A link will be sent to them, if they follow it they can successfully reset their password
+ * A user has the option to add a new email address, add an additional email address, update their primary email address or resend their email validation message
+ * The account base.html has been set up as a bootstrap side bar menu which displays across the account pages
+
+ Please <a href="" target="_blank">click here</a> to view the account management screenshots.
+
+ ## Sign In via Social Media Sites
+
+ * It has been enabled for a user to sign in via Google and Facebook
+ * From the login page the user can click on either Google or Facebook to register or login to the site
+ * Their social media account will be picked up and aunthenticated
+ * They will be able to successfully login
+ * The single sign on makes it easy for the user to access the site
+
+ Please <a href="" target="_blank">click here</a> to view the sign on via social accounts.
+
+## Alert Messages
+
+  * If a user completes an action a success or error message will be displayed
+  * The message will automatically clear after two seconds
+  * This provides the user with confirmation that their action was successful or failed
+
+![Alert Message]()
 
 
 
